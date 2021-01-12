@@ -1,18 +1,18 @@
-from resourse.repositories.repositories import SeasonRepositories
-from resourse.validator.validte import schema
+from resourse.repositories.LeagueRepositories import LeagueRepositories
+from resourse.validator.LeagueValidte import schema, create
 from cerberus import Validator
 from common.responce.responce import Responce
 
 
-class SeasonServices:
+class LeagueServices:
     def __init__(self):
-        self.repository = SeasonRepositories()
+        self.repository = LeagueRepositories()
 
-    def get(self, name):
-        return self.repository.get(name)
+    def get(self):
+        return self.repository.get()
 
     def post(self, body):
-        valid = Validator(schema)
+        valid = Validator(create)
         res = valid.validate(body)
 
         if res:

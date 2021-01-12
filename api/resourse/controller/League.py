@@ -1,17 +1,16 @@
 # noinspection PyProtectedMember
 from flask_restful import Resource, request
 from common.middleware.admin import login_admin
-from resourse.services.sercices import SeasonServices
+from resourse.services.LeagueServices import LeagueServices
 
 
-class Season(Resource):
+class League(Resource):
     def __init__(self):
-        self.service = SeasonServices()
+        self.service = LeagueServices()
         self.body = request.get_json()
 
     def get(self):
-        name = request.args.get("name")
-        service = self.service.get(name)
+        service = self.service.get()
 
         return service['message'], service["status"]
 
