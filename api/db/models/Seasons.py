@@ -1,6 +1,6 @@
 from db.connect.connect import db
 from common.timestemp.timestamp import TimeStamp
-import json
+
 
 class Seasons(db.Model):
     __tablename__ = 'Seasons'

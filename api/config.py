@@ -1,5 +1,6 @@
 from os import environ, path
 
+
 class Config(object):
     # flask config
     DEBUG = True

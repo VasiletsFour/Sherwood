@@ -3,6 +3,7 @@ from common.errorExcept.erroExcept import NotConnectError
 
 db = SQLAlchemy()
 
+
 def connectDd(app):
     try:
         db.init_app(app)

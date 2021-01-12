@@ -1,3 +1,4 @@
+# noinspection PyProtectedMember
 from flask_restful import Resource, request
 from common.middleware.admin import login_admin
 from resourse.services.sercices import SeasonServices

@@ -6,5 +6,6 @@ class SeasonSchema(Schema):
     name = fields.Str()
     date = fields.Integer()
 
+
 season_schema = SeasonSchema()
 seasons_schema = SeasonSchema(many=True)

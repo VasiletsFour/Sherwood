@@ -6,17 +6,17 @@ from common.responce.responce import Responce
 
 class SeasonServices:
     def __init__(self):
-        self.repositorie = SeasonRepositories()
+        self.repository = SeasonRepositories()
 
     def get(self, name):
-        return self.repositorie.get(name)
+        return self.repository.get(name)
 
     def post(self, body):
         valid = Validator(schema)
         res = valid.validate(body)
 
         if res:
-            return self.repositorie.post(body)
+            return self.repository.post(body)
 
         return Responce(400, 'Not valid').__dict__()
 
@@ -25,6 +25,6 @@ class SeasonServices:
         res = valid.validate(body)
 
         if res and id:
-            return self.repositorie.put(id, body)
+            return self.repository.put(id, body)
 
         return Responce(400, 'Not valid').__dict__()
