@@ -1,16 +1,10 @@
-from common.marshmallow.marshmallow import ma
+from marshmallow import Schema, fields
 
-class SeasonSchema(ma.Schema):
-    class Meta:
-        fields = ("name",  "_links")
 
-    _links = ma.Hyperlinks(
-        {
-            "self": ma.URLFor('season', values=dict(id="<id>")),
-            "collection": ma.URLFor("get"),
-        }
-    )
-
+class SeasonSchema(Schema):
+    id = fields.Integer()
+    name = fields.Str()
+    date = fields.Integer()
 
 season_schema = SeasonSchema()
 seasons_schema = SeasonSchema(many=True)
