@@ -1,5 +1,5 @@
-from db.connect.connect import db
 from common.timestemp.timestamp import TimeStamp
+from db.connect.connect import db
 
 
 class Seasons(db.Model):

@@ -1,7 +1,7 @@
+from common.responce.responce import Responce
+from db.connect.connect import db
 from db.models.SeasonsModel import Seasons
 from resourse.scheam.SeasonSchema import seasons_schema
-from db.connect.connect import db
-from common.responce.responce import Responce
 
 
 class SeasonRepositories:
@@ -35,8 +35,9 @@ class SeasonRepositories:
     @staticmethod
     def put(id: str, body: object):
         try:
-            test = Seasons.query.filter(Seasons.id == id)
-            test.update(dict(name=body["name"]))
+            season = Seasons.query.filter(Seasons.id == id)
+            season.update(dict(name=body["name"]))
+
             db.session.commit()
 
             return Responce(200, "update").__dict__()

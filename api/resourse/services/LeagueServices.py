@@ -1,7 +1,8 @@
+from cerberus import Validator
+
+from common.responce.responce import Responce
 from resourse.repositories.LeagueRepositories import LeagueRepositories
 from resourse.validator.LeagueValidte import schema, create
-from cerberus import Validator
-from common.responce.responce import Responce
 
 
 class LeagueServices:
@@ -26,5 +27,11 @@ class LeagueServices:
 
         if res and id:
             return self.repository.put(id, body)
+
+        return Responce(400, 'Not valid').__dict__()
+
+    def delete(self, id):
+        if id:
+            return self.repository.delete(id)
 
         return Responce(400, 'Not valid').__dict__()

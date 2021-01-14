@@ -9,21 +9,25 @@ class League(Resource):
         self.service = LeagueServices()
         self.body = request.get_json()
 
-    def get(self):
+    def get(self, *args, **kwargs):
         service = self.service.get()
 
         return service['message'], service["status"]
 
     @login_admin
-    def post(self):
+    def post(self, *args, **kwargs):
         service = self.service.post(self.body)
 
         return service['message'], service["status"]
 
     @login_admin
-    def put(self):
-        id = request.args.get("id")
+    def put(self, id):
         service = self.service.put(id, self.body)
 
         return service['message'], service["status"]
 
+    @login_admin
+    def delete(self, id):
+        service = self.service.delete(id)
+
+        return service['message'], service["status"]

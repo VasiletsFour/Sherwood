@@ -1,11 +1,12 @@
 from flask import Flask
-from flask_restful import Api
 from flask_cors import CORS
-from db.connect.connect import connectDd
-from resourse.controller.Season import Season
-from resourse.controller.League import League
-from common.marshmallow.marshmallow import create_ma
 from flask_migrate import Migrate
+from flask_restful import Api
+
+from common.marshmallow.marshmallow import create_ma
+from db.connect.connect import connectDd
+from resourse.controller.League import League
+from resourse.controller.Season import Season
 
 
 def create_app():
@@ -14,14 +15,14 @@ def create_app():
     app.config.from_object('config.Config')
     app.url_map.strict_slashes = False
 
-    api = Api(app)
+    api = Api(app, prefix="/api")
 
     db = connectDd(app)
     create_ma(app)
     CORS(app)
     Migrate(app, db)
 
-    api.add_resource(Season, "/api/season/")
-    api.add_resource(League, "/api/league/")
+    api.add_resource(Season, "/season/", "/season/admin/", "/season/admin/<string:id>")
+    api.add_resource(League, "/league/", "/league/admin/", "/league/admin/<string:id>")
 
     return app

@@ -1,13 +1,14 @@
 from flask_sqlalchemy import SQLAlchemy
+
 from common.errorExcept.erroExcept import NotConnectError
 
 db = SQLAlchemy()
 
 
-def connectDd(app):
+def connectDd(app, connectMes=print(" -Database connect")):
     try:
         db.init_app(app)
-        print(" -Database connect")
+        connectMes()
 
         return db
     except:
