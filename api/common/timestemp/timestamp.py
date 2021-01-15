@@ -2,14 +2,16 @@ from datetime import datetime
 
 
 class TimeStamp:
-    def toTimeStamp(self):
+    @staticmethod
+    def toTimeStamp():
         now = datetime.now()
         time_stamp = datetime.timestamp(now)
 
         return round(time_stamp)
 
-    def fromTimeStamp(self, timeStamp):
+    @staticmethod
+    def fromTimeStamp(time_stamp: int):
         try:
-            return datetime.fromtimestamp(timeStamp)
+            return datetime.fromtimestamp(time_stamp)
         except:
             print("Error")

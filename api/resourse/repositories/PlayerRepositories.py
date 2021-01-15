@@ -1,16 +1,16 @@
 from common.responce.responce import Responce
 from db.connect.connect import db
-from db.models.LeagueModel import Leagues
+from db.models.PlayerModel import Players
 from resourse.repositories.Repositories import Repositories
-from resourse.scheam.LeagueSchema import leagues_schema
+from resourse.scheam.PlayerSchema import players_schema
 
 
-class LeagueRepositories(Repositories):
+class PlayerRepositories(Repositories):
     @staticmethod
-    def get(id: str):
+    def get():
         try:
-            leagues = db.session.query(Leagues).filter_by(season_id=id).all()
-            schema = leagues_schema.dump(leagues)
+            players = db.session.query(Players).all()
+            schema = players_schema.dump(players)
 
             return Responce(200, schema).__dict__()
         except:
@@ -19,13 +19,10 @@ class LeagueRepositories(Repositories):
     @staticmethod
     def post(body: object):
         try:
-            leagues = [Leagues("Elite-Лига", body["season_id"])]
-
-            for i in range(body["count"] - 1):
-                leagues.append(Leagues("Лига-{num}".format(num=i + 1), body["season_id"]))
-
-            db.session.bulk_save_objects(leagues)
-            db.session.commit()
+            # player = Players(body["name"], body["team_id"])
+            #
+            # db.session.add(player)
+            # db.session.commit()
 
             return Responce(201, "create").__dict__()
         except:
@@ -34,10 +31,10 @@ class LeagueRepositories(Repositories):
     @staticmethod
     def put(id: str, body: object):
         try:
-            league = Leagues.query.filter(Leagues.id == id)
-            league.update(dict(name=body["name"]))
-
-            db.session.commit()
+            # player = Players.query.filter(Players.id == id)
+            # player.update(dict(name=body["name"]))
+            #
+            # db.session.commit()
 
             return Responce(200, "update").__dict__()
         except:
@@ -46,8 +43,8 @@ class LeagueRepositories(Repositories):
     @staticmethod
     def delete(id: str):
         try:
-            db.session.query(Leagues).filter(Leagues.id == id).delete()
-            db.session.commit()
+            # db.session.query(Players).filter(Players.id == id).delete()
+            # db.session.commit()
 
             return Responce(200, "Delete").__dict__()
         except:

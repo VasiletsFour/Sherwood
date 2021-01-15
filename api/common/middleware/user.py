@@ -3,7 +3,7 @@ from functools import wraps
 from flask import request, abort
 
 
-def login_admin(f):
+def login_user(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         try:

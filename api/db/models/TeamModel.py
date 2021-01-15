@@ -2,7 +2,7 @@ from db.connect.connect import db
 
 
 class Team(db.Model):
-    __tablename__ = 'Team'
+    __tablename__ = 'Teams'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True, nullable=False)
