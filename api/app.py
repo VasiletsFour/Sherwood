@@ -7,6 +7,9 @@ from common.marshmallow.marshmallow import create_ma
 from db.connect.connect import connectDd
 from resourse.controller.League import League
 from resourse.controller.Season import Season
+from resourse.controller.Team import Team
+
+migrate = Migrate()
 
 
 def create_app():
@@ -18,11 +21,14 @@ def create_app():
     api = Api(app, prefix="/api")
 
     db = connectDd(app)
+
     create_ma(app)
     CORS(app)
     Migrate(app, db)
+    migrate.init_app(app, db)
 
     api.add_resource(Season, "/season/", "/season/admin/", "/season/admin/<string:id>")
-    api.add_resource(League, "/league/", "/league/admin/", "/league/admin/<string:id>")
+    api.add_resource(League, "/league/<string:id>", "/league/admin/", "/league/admin/<string:id>")
+    api.add_resource(Team, "/team/", "/team/admin/", "/team/admin/<string:id>")
 
     return app

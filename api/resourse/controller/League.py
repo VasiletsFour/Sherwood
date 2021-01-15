@@ -1,32 +1,32 @@
-# noinspection PyProtectedMember
-from flask_restful import Resource, request
-from common.middleware.admin import login_admin
+import common.middleware.admin
+from resourse.controller.Controller import Controller
 from resourse.services.LeagueServices import LeagueServices
 
 
-class League(Resource):
+class League(Controller):
     def __init__(self):
+        super().__init__()
         self.service = LeagueServices()
-        self.body = request.get_json()
 
-    def get(self, *args, **kwargs):
-        service = self.service.get()
+    def get(self, id):
+        print(id)
+        service = self.service.get(id)
 
         return service['message'], service["status"]
 
-    @login_admin
+    @common.middleware.admin.login_admin
     def post(self, *args, **kwargs):
         service = self.service.post(self.body)
 
         return service['message'], service["status"]
 
-    @login_admin
+    @common.middleware.admin.login_admin
     def put(self, id):
         service = self.service.put(id, self.body)
 
         return service['message'], service["status"]
 
-    @login_admin
+    @common.middleware.admin.login_admin
     def delete(self, id):
         service = self.service.delete(id)
 

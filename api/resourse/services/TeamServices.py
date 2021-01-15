@@ -1,21 +1,24 @@
 from common.responce.responce import Responce
-from resourse.repositories.LeagueRepositories import LeagueRepositories
+from db.models.TeamModel import Team
+from resourse.repositories.TeamRepositories import TeamRepositories
 from resourse.services.Services import Services
-from resourse.validator.LeagueValidte import update, create
+from resourse.validator.TeamServices import create, update
 
 
-class LeagueServices(Services):
+class TeamServices(Services):
     def __init__(self):
         super().__init__()
-        self.repository = LeagueRepositories()
+        self.repository = TeamRepositories()
 
-    def get(self, id: str):
-        if id:
-            return self.repository.get(id)
+    def get(self, name: str = None, league_id: str = None):
+        filters = True
 
-        return Responce(400, 'Not valid').__dict__()
+        if name or league_id:
+            filters = (Team.league_id == league_id) | (Team.name == name)
 
-    def post(self, body):
+        return self.repository.get(filters)
+
+    def post(self, body: object):
         res = self.valid.validation(create, body)
 
         if res:
@@ -23,7 +26,7 @@ class LeagueServices(Services):
 
         return Responce(400, 'Not valid').__dict__()
 
-    def put(self, id, body):
+    def put(self, id: str, body: object):
         res = self.valid.validation(update, body)
 
         if res and id:
@@ -31,7 +34,7 @@ class LeagueServices(Services):
 
         return Responce(400, 'Not valid').__dict__()
 
-    def delete(self, id):
+    def delete(self, id: str):
         if id:
             return self.repository.delete(id)
 

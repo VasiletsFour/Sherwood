@@ -13,6 +13,7 @@ class Config(object):
     MYSQL_port = 3306
     MYSQL_DATABASE = environ.get("Elit")
     SQLALCHEMY_DATABASE_URI = "mysql://root:Hft4150tbc4101f@localhost/Elit"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class ProductionConfig(Config):
