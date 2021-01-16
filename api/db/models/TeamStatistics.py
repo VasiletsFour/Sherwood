@@ -5,7 +5,7 @@ class TeamStatistics(db.Model):
     __tablename__ = 'TeamStatistics'
 
     id = db.Column(db.Integer, primary_key=True)
-    team_id = db.Column(db.Integer, db.ForeignKey('Team.id'), nullable=False)
+    team_id = db.Column(db.Integer, db.ForeignKey('Teams.id'), nullable=False)
     goals = db.Column(db.Integer)
     missed = db.Column(db.Integer)
     points = db.Column(db.Integer)

@@ -19,10 +19,10 @@ class PlayerRepositories(Repositories):
     @staticmethod
     def post(body: object):
         try:
-            # player = Players(body["name"], body["team_id"])
-            #
-            # db.session.add(player)
-            # db.session.commit()
+            player = Players(body["name"], body["team_id"])
+
+            db.session.add(player)
+            db.session.commit()
 
             return Responce(201, "create").__dict__()
         except:
@@ -31,10 +31,10 @@ class PlayerRepositories(Repositories):
     @staticmethod
     def put(id: str, body: object):
         try:
-            # player = Players.query.filter(Players.id == id)
-            # player.update(dict(name=body["name"]))
-            #
-            # db.session.commit()
+            player = Players.query.filter(Players.id == id)
+            player.update(dict(name=body["name"]))
+
+            db.session.commit()
 
             return Responce(200, "update").__dict__()
         except:
@@ -43,8 +43,8 @@ class PlayerRepositories(Repositories):
     @staticmethod
     def delete(id: str):
         try:
-            # db.session.query(Players).filter(Players.id == id).delete()
-            # db.session.commit()
+            db.session.query(Players).filter(Players.id == id).delete()
+            db.session.commit()
 
             return Responce(200, "Delete").__dict__()
         except:
