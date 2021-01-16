@@ -24,7 +24,7 @@ class SeasonServices(Services):
         if res:
             return self.repository.post(body)
 
-        return Responce(400, 'Not valid').__dict__()
+        return Responce(400, {'error': 'Not valid'}).__dict__()
 
     def put(self, id: str, body: object):
         res = self.valid.validation(schema, body)
@@ -32,4 +32,4 @@ class SeasonServices(Services):
         if res and id:
             return self.repository.put(id, body)
 
-        return Responce(400, 'Not valid').__dict__()
+        return Responce(400, {'error': 'Not valid'}).__dict__()

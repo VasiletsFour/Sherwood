@@ -13,9 +13,9 @@ class SeasonRepositories(Repositories):
             season = db.session.query(Seasons).filter(filters).all()
             schema = seasons_schema.dump(season)
 
-            return Responce(200, schema).__dict__()
+            return Responce(200, {'data': schema}).__dict__()
         except:
-            return Responce(400, 'Get Error').__dict__()
+            return Responce(400, {'error': 'Get Error'}).__dict__()
 
     @staticmethod
     def post(body: object):
@@ -26,9 +26,9 @@ class SeasonRepositories(Repositories):
             db.session.add(season)
             db.session.commit()
 
-            return Responce(201, "create").__dict__()
+            return Responce(201, {'data': 'create'}).__dict__()
         except:
-            return Responce(400, 'Create Error').__dict__()
+            return Responce(400, {'error': 'Create Error'}).__dict__()
 
     @staticmethod
     def put(id: str, body: object):
@@ -38,6 +38,6 @@ class SeasonRepositories(Repositories):
 
             db.session.commit()
 
-            return Responce(200, "update").__dict__()
+            return Responce(200, {'data': 'update'}).__dict__()
         except:
-            return Responce(400, 'Update Error').__dict__()
+            return Responce(400, {'error': 'Update Error'}).__dict__()

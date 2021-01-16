@@ -9,7 +9,6 @@ class League(Controller):
         self.service = LeagueServices()
 
     def get(self, id):
-        print(id)
         service = self.service.get(id)
 
         return service['message'], service["status"]

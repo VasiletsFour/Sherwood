@@ -9,6 +9,7 @@ from resourse.controller.League import League
 from resourse.controller.Season import Season
 from resourse.controller.Team import Team
 from resourse.controller.Player import Player
+from resourse.controller.SignUp import SignUp
 
 migrate = Migrate()
 
@@ -45,5 +46,6 @@ def create_app():
     api.add_resource(League, "/league/<string:id>", "/league/admin/", "/league/admin/<string:id>")
     api.add_resource(Team, "/team/", "/team/admin/", "/team/admin/<string:id>")
     api.add_resource(Player, "/player/", "/player/admin/", "/player/<string:id>", "/player/admin/<string:id>")
+    api.add_resource(SignUp, "/signUp/")
 
     return app
