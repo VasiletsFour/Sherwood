@@ -15,6 +15,10 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = "mysql://root:Hft4150tbc4101f@localhost/Elit"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    # key
+    JWT_SECRET_KEY = "flask_jwt_secret"
+    bcrypt_key = "flask_bcrypt-secret"
+
 
 class ProductionConfig(Config):
     DEVELOPMENT = False

@@ -1,5 +1,5 @@
 create = {
-    'name': {
+    'firstname': {
         'type': 'string',
         'required': True
     },

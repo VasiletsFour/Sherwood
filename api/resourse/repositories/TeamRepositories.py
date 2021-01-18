@@ -19,7 +19,7 @@ class TeamRepositories(Repositories):
     @staticmethod
     def post(body: object):
         try:
-            team = Team(body["name"], body["league_id"])
+            team = Team(**body)
 
             db.session.add(team)
             db.session.commit()

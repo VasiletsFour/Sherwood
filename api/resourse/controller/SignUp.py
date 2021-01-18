@@ -1,4 +1,3 @@
-import common.middleware.admin
 from resourse.controller.Controller import Controller
 from resourse.services.SignUpServices import SignUpServices
 

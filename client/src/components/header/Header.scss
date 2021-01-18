@@ -1,0 +1,21 @@
+.header{
+  height: 80px;
+  padding: 0 40px;
+  background-color: #333333;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+
+
+  &__logotype{
+    font-weight: bold;
+    font-size: 50px;
+    margin: 0;
+  }
+
+  &__menuWrapper{
+    display: flex;
+  }
+
+}

@@ -1,7 +1,7 @@
 from common.responce.responce import Responce
 from resourse.repositories.SignUpRepositories import SignUpRepositories
 from resourse.services.Services import Services
-from resourse.validator.SignUpValidate import create
+from resourse.validator.UserValidate import create
 
 
 class SignUpServices(Services):
@@ -9,11 +9,12 @@ class SignUpServices(Services):
         super().__init__()
         self.repository = SignUpRepositories()
 
-    def get(self, token):
+    def get(self, token:str):
         if token:
-            return self.repository.get()
+            return self.repository.get(token)
 
         return Responce(400, {'error': 'Empty token'}).__dict__()
+
 
     def post(self, body):
         res = self.valid.validation(create, body)
