@@ -1,0 +1,15 @@
+.blogNews{
+  &__title{
+    margin: 0;
+  }
+
+  &__blogNewsContainer{
+    max-height: 80%;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      width: 2px;
+      height: 2px;
+    }
+  }
+}

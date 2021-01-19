@@ -1,21 +1,130 @@
 .header{
-  height: 80px;
-  padding: 0 40px;
-  background-color: #333333;
+  position: absolute;
+  width: 100vw;
+  height: 100px;
+  top: 0;
+  background-color: #000a12;
   display: flex;
-  flex-direction: row;
   align-items: center;
 
+  &__logotypeContainer {
+    margin-left: 25px;
+    display: flex;
+    align-items: center;
+    width: 120px;
+    height: 80px;
+    z-index: 3;
+    position: absolute;
+    background-color: #000a12;
+    border-radius: 100%;
+  }
 
-
-  &__logotype{
+  &__logotype {
+    margin: 0 0 5px 0;
+    text-shadow: 3px 3px #5f5a5a;
+    cursor: pointer;
+    color: white;
     font-weight: bold;
     font-size: 50px;
-    margin: 0;
   }
 
-  &__menuWrapper{
+  &__menuWrapper {
+    margin-left: 105px;
+    margin-right: 14px;
+    border-radius: 15px;
+    background-color: #484848;
+    height: 60%;
+    width: 100%;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
+  &__menuContainer {
+    height: 100%;
+    margin: 0 0 0 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__menuContainer li {
+    display: flex;
+    align-items: center;
+    height: 70%;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    font-family: "Arial Black", serif;
+    list-style-type: none;
+    padding: 4px 18px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__menuContainer li a{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    color: white;
+  }
+
+
+  &__loginContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    margin-right: 20px;
+  }
+
+  &__login {
+    font-size: 18px;
+    color: whitesmoke;
+    font-weight: 600;
+  }
+
+  &__search {
+    margin-right: 4px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__inputSearch {
+    border: 0;
+    border-radius: 4px;
+  }
+
+  &__icon {
+    margin-right: 10px;
+    color: #393939;
+
+    &:hover {
+      color: #dd5a12;
+    }
+  }
+
+  &__socialIconContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    margin-right: 30px;
+  }
+
+  &__socialIcon {
+    cursor: pointer;
+    padding: 6px;
+    color: white;
+    font-size: 33px;
+    transition: all 0.2s ease;
+
+    &:hover{
+      transform: scale(1.2);
+    }
+  }
 }

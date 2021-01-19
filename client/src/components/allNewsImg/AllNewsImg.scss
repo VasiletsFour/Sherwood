@@ -1,0 +1,12 @@
+.allNewsImg {
+  margin-top: 20px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+
+  img{
+    border-radius: 4px;
+    height: 185px;
+  }
+}

@@ -1,5 +1,17 @@
-body{
+body {
   height: 100%;
   background-color: #F3F6F8;
-  margin: 0;
 }
+
+li{
+  list-style-type: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+#root {
+  height: 100%;
+}
+
