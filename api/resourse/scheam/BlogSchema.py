@@ -7,6 +7,7 @@ class BlogSchema(Schema):
     tags = fields.List(fields.String)
     text = fields.String()
     date = fields.Integer()
+    # img = fields.String()
     author_id = fields.Integer()
 
 

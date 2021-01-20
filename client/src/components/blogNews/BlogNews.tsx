@@ -1,18 +1,14 @@
 import React from "react"
+import {Blog} from "../../request/BlogApi"
 import "./BlogNews.scss"
 
-interface Props {
-    title: string
-    tag: Array<string>
-    text: string
-}
 
-export const BlogNews = ({title, tag, text}: Props) => (
+export const BlogNews = ({title, tags, text}: Blog) => (
     <div className="blogNews">
         <h1 className="blogNews__title">{title}</h1>
-        <div className="blogNews__tagContainer">
-            {tag.map((item: string, index:number) => <span key={item + String(index)}>{item}</span>)}
-        </div>
+        {tags && <div className="blogNews__tagContainer">
+            {tags.map((item: string, index: number) => <span key={item + String(index)}>{item}</span>)}
+        </div>}
         <div className="home__blogNewsContainer">
             <p>
                 {text}

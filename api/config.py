@@ -19,6 +19,9 @@ class Config(object):
     JWT_SECRET_KEY = "flask_jwt_secret"
     bcrypt_key = "flask_bcrypt-secret"
 
+    # CORS
+    CORS_ENABLED = False
+
 
 class ProductionConfig(Config):
     DEVELOPMENT = False

@@ -1,8 +1,7 @@
 import React, {useState} from "react"
-import { useHistory } from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import {FaInstagram, FaSearch, FaYoutube} from 'react-icons/fa';
-import {Link} from "react-router-dom"
-import {ROOT_URL, TIME_TABLE_URL} from "../../utils/urls"
+import {HOME_URL, TIME_TABLE_URL, TOURNAMENT_TABLE_URL} from "../../utils/urls"
 import "./Header.scss"
 
 export const Header = () => {
@@ -10,7 +9,7 @@ export const Header = () => {
     const [open, setOpen] = useState(false)
 
     const handleLogo = () => {
-        history.push(ROOT_URL.urlTemplate)
+        history.push(HOME_URL.urlTemplate)
     }
 
     return (
@@ -22,7 +21,7 @@ export const Header = () => {
                 <ul className="header__menuContainer">
                     <li><Link to={TIME_TABLE_URL.urlTemplate}>Расписание</Link></li>
                     <li>Результаты матчей</li>
-                    <li>Турнирная таблица</li>
+                    <li><Link to={TOURNAMENT_TABLE_URL.urlTemplate}>Турнирная таблица</Link></li>
                     <li>Команды</li>
                     <li>Бомбардиры</li>
                     <li>Заявочный лист</li>

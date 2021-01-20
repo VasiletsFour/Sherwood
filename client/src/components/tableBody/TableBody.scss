@@ -1,0 +1,19 @@
+.tableBody{
+
+  &__up{
+    font-size: 16px;
+    color: darkgreen;
+  }
+
+  &__down{
+    margin-bottom: 1px;
+    font-size: 16px;
+    color: #9C1A1C;
+  }
+
+  &__circle{
+    margin-bottom: 1px;
+    font-size: 8px;
+    color: #585858;
+  }
+}

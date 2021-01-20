@@ -1,10 +1,9 @@
 from flask import Flask
 from flask_migrate import Migrate
-from flask_restful import Api
-
 from common.bcrypt.bcrypt import bcrypt
 from common.marshmallow.marshmallow import create_ma
 from db.connect.connect import connectDd
+from flask_restful import Api
 from resourse.controller.League import League
 from resourse.controller.Player import Player
 from resourse.controller.Season import Season
@@ -30,6 +29,16 @@ def create_app():
     Migrate(app, db)
     migrate.init_app(app, db, render_as_batch=True)
     bcrypt.init_app(app)
+
+    @app.after_request
+    def after_request(response):
+        response.headers.add('Content-Type', 'application/json')
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Expose-Headers', 'Content-Type,Content-Length,Authorization,X-Pagination')
+
+        return response
 
     @app.before_first_request
     def create_tables():

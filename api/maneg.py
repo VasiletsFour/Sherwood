@@ -5,6 +5,7 @@ from app import create_app
 
 app = create_app()
 cors = CORS(app)
+
 manager = Manager(create_app)
 manager.add_command('db', MigrateCommand)
 

@@ -1,19 +1,26 @@
 import React from "react";
-import {BrowserRouter as Router, Redirect, Route, Switch} from "react-router-dom";
-import {HomePage, TimeTablePage} from "./page";
+import {ConnectedRouter} from "connected-react-router";
+import {Redirect, Route, Switch} from "react-router-dom";
+import {HomePage, TimeTablePage, TournamentTablePage} from "./page";
 import "./style/global.scss";
-import {ROOT_URL, TIME_TABLE_URL} from "./utils/urls";
+import {HOME_URL, ROOT_URL, TIME_TABLE_URL, TOURNAMENT_TABLE_URL} from "./utils/urls";
+import {store} from "./store/store";
+import {Provider} from "react-redux";
+import history from "./utils/history";
 
 class App extends React.Component {
     render() {
         return (
-            <Router>
-                <Switch>
-                    <Route path={ROOT_URL.urlTemplate} component={HomePage}/>
-                    <Route path={TIME_TABLE_URL.urlTemplate} component={TimeTablePage}/>
-                    <Redirect from="/" to={ROOT_URL.urlTemplate}/>
-                </Switch>
-            </Router>
+            <Provider store={store}>
+                <ConnectedRouter history={history}>
+                    <Switch>
+                        <Route path={HOME_URL.urlTemplate} component={HomePage}/>
+                        <Route path={TIME_TABLE_URL.urlTemplate} component={TimeTablePage}/>
+                        <Route path={TOURNAMENT_TABLE_URL.urlTemplate} component={TournamentTablePage}/>
+                        <Redirect from={ROOT_URL.urlTemplate} to={HOME_URL.urlTemplate}/>
+                    </Switch>
+                </ConnectedRouter>
+            </Provider>
         );
     }
 }
