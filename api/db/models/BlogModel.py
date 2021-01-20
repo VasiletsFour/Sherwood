@@ -10,7 +10,7 @@ class Blogs(db.Model):
     tags = db.Column(db.PickleType, nullable=False)
     text = db.Column(db.String(500), nullable=False)
     date = db.Column(db.Integer, unique=True, nullable=False)
-    author_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('Users.id'), nullable=False)
 
     def __init__(self, title, tags, text, author_id):
         self.title = title

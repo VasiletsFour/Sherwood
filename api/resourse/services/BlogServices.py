@@ -1,5 +1,4 @@
 from common.responce.responce import Responce
-from db.models.BlogModel import Blogs
 from resourse.repositories.BlogRepositories import BlogRepositories
 from resourse.services.Services import Services
 from resourse.validator.BlogValidate import create, update

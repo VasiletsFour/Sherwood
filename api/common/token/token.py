@@ -6,7 +6,7 @@ from config import Config
 def checkToken(token: str):
     decodeToken = jwt.decode(token, Config.JWT_SECRET_KEY)
 
-    return decodeToken["user"]
+    return decodeToken
 
 
 def getConfirmToken(id):

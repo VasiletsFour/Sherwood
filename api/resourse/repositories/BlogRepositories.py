@@ -1,14 +1,14 @@
 from common.responce.responce import Responce
-from common.token.token import checkToken
+from common.token.token import checkToken, getConfirmToken
 from db.connect.connect import db
 from db.models.BlogModel import Blogs
 from resourse.repositories.Repositories import Repositories
 from resourse.scheam.BlogSchema import blogs_schema
 
 
-class TeamRepositories(Repositories):
+class BlogRepositories(Repositories):
     @staticmethod
-    def get(filters):
+    def get():
         try:
             blogs = db.session.query(Blogs).all()
             schema = blogs_schema.dump(blogs)
@@ -21,7 +21,7 @@ class TeamRepositories(Repositories):
     def post(body: object, token: str):
         try:
             check = checkToken(token)
-            print(check)
+
             blog = Blogs(**body, author_id=check["id"])
 
             db.session.add(blog)

@@ -13,8 +13,8 @@ class SignUpRepositories(Repositories):
 
     def get(self, token: str):
         try:
-            user_id = checkToken(token)
-            user = Users.query.filter(Users.id == user_id, Users.confirmEmail == False)
+            user = checkToken(token)
+            user = Users.query.filter(Users.id == user["user"], Users.confirmEmail == False)
             user.update(dict(confirmEmail=True))
 
             db.session.commit()
@@ -32,6 +32,7 @@ class SignUpRepositories(Repositories):
             schema = user_schema(user)
 
             token = getConfirmToken(schema["id"])
+
             return Responce(201, {'data': token}).__dict__()
         except:
             return Responce(400, {'error': 'Create Error'}).__dict__()

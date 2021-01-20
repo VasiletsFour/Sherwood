@@ -4,7 +4,7 @@ from marshmallow import Schema, fields
 class BlogSchema(Schema):
     id = fields.Integer()
     title = fields.String()
-    tags = fields.List()
+    tags = fields.List(fields.String)
     text = fields.String()
     date = fields.Integer()
     author_id = fields.Integer()
