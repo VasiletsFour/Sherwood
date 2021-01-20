@@ -7,6 +7,7 @@ class Controller(Resource):
         self.body = request.get_json()
         self.name = request.args.get("name")
         self.league_id = request.args.get("league_id")
+        self.token = request.headers.get("Authorization")
 
     def get(self, *args, **kwargs):
         pass
