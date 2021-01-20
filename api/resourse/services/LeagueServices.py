@@ -1,7 +1,7 @@
 from common.responce.responce import Responce
 from resourse.repositories.LeagueRepositories import LeagueRepositories
 from resourse.services.Services import Services
-from resourse.validator.LeagueValidte import update, create
+from resourse.validator.LeagueValidate import update, create
 
 
 class LeagueServices(Services):

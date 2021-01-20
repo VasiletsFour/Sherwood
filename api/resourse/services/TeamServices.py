@@ -2,7 +2,7 @@ from common.responce.responce import Responce
 from db.models.TeamModel import Team
 from resourse.repositories.TeamRepositories import TeamRepositories
 from resourse.services.Services import Services
-from resourse.validator.TeamServices import create, update
+from resourse.validator.TeamValidate import create, update
 
 
 class TeamServices(Services):

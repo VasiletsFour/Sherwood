@@ -1,7 +1,7 @@
 from common.responce.responce import Responce
 from resourse.repositories.PlayerRepositories import PlayerRepositories
 from resourse.services.Services import Services
-from resourse.validator.PlayerValidte import create, update
+from resourse.validator.PlayerValidate import create, update
 
 
 class PlayerServices(Services):

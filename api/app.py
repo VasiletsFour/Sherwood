@@ -40,6 +40,7 @@ def create_app():
         from db.models.TimeTableModel import TimeTables
         from db.models.LeagueModel import Leagues
         from db.models.UserModel import Users
+        from db.models.BlogModel import Blogs
 
         db.create_all()
         db.session.commit()

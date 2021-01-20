@@ -2,7 +2,7 @@ from common.responce.responce import Responce
 from db.models.SeasonsModel import Seasons
 from resourse.repositories.SeasonRepositories import SeasonRepositories
 from resourse.services.Services import Services
-from resourse.validator.SeasonValidte import schema
+from resourse.validator.SeasonValidate import schema
 
 
 class SeasonServices(Services):

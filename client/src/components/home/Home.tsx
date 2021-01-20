@@ -65,7 +65,7 @@ export const Home = () => {
             <div className="home__blog">
                 <div className="home__blogWrapper">
                     {actuallyNews &&
-                    <ActuallyImg img={actuallyNews.img} handleActually={(index) => handleActually(index)}/>}
+                    <ActuallyImg title={actuallyNews.title} img={actuallyNews.img} handleActually={(index) => handleActually(index)}/>}
                     <AllNewsImg news={news}
                                 actuallyNews={(index: number) => handleActually(index)}/>
                 </div>
