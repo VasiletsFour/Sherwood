@@ -1,9 +1,9 @@
 import React from "react";
 import {ConnectedRouter} from "connected-react-router";
 import {Redirect, Route, Switch} from "react-router-dom";
-import {HomePage, TimeTablePage, TournamentTablePage} from "./page";
+import {ConfirmAccount, HomePage, TimeTablePage, TournamentTablePage} from "./page";
 import "./style/global.scss";
-import {HOME_URL, ROOT_URL, TIME_TABLE_URL, TOURNAMENT_TABLE_URL} from "./utils/urls";
+import {CONFIRM_ACCOUNT_URL, HOME_URL, ROOT_URL, TIME_TABLE_URL, TOURNAMENT_TABLE_URL} from "./utils/urls";
 import {store} from "./store/store";
 import {Provider} from "react-redux";
 import history from "./utils/history";
@@ -17,6 +17,7 @@ class App extends React.Component {
                         <Route path={HOME_URL.urlTemplate} component={HomePage}/>
                         <Route path={TIME_TABLE_URL.urlTemplate} component={TimeTablePage}/>
                         <Route path={TOURNAMENT_TABLE_URL.urlTemplate} component={TournamentTablePage}/>
+                        <Route path={CONFIRM_ACCOUNT_URL.urlTemplate} component={ConfirmAccount}/>
                         <Redirect from={ROOT_URL.urlTemplate} to={HOME_URL.urlTemplate}/>
                     </Switch>
                 </ConnectedRouter>

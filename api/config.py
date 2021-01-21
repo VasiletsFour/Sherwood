@@ -2,6 +2,8 @@ from os import environ
 
 
 class Config(object):
+    CLIENT = "http://localhost:3000"
+
     # flask config
     DEBUG = True
     DEVELOPMENT = True
@@ -22,7 +24,12 @@ class Config(object):
     # CORS
     CORS_ENABLED = False
 
+    #smtp
+    PORT_SMTP = 465
+    EMAIL_SMTP = "vasiletsl0unge@gmail.com"
+    PASS_SMTP = "hft4150tbc4101f"
 
 class ProductionConfig(Config):
+    CLIENT = "//"
     DEVELOPMENT = False
     DEBUG = False

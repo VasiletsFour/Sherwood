@@ -1,0 +1,23 @@
+.leagueName {
+
+  &__nameContainer {
+    display: flex;
+    align-items: center;
+    background: -webkit-linear-gradient(left, grey, darkgrey);
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    height: 90px;
+  }
+
+  &__name{
+    font-size: 26px;
+    font-weight: 700;
+    margin-left: 50px;
+  }
+
+  &__childWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

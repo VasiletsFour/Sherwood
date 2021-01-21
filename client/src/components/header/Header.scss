@@ -1,6 +1,6 @@
 .header{
   position: absolute;
-  width: 100vw;
+  width: 100%;
   height: 100px;
   top: 0;
   background-color: #000a12;
@@ -34,7 +34,7 @@
     border-radius: 15px;
     background-color: #484848;
     height: 60%;
-    width: 100%;
+    width: 86%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,13 +48,14 @@
   }
 
   &__menuContainer li {
+    white-space: nowrap;
     display: flex;
     align-items: center;
     height: 70%;
     text-transform: uppercase;
     color: white;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 14px;
     font-family: "Arial Black", serif;
     list-style-type: none;
     padding: 4px 18px;

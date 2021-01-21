@@ -1,6 +1,6 @@
 import React from "react"
-import {LeagueMap, TableBody, TableHead} from "../";
-import {TournamentTableApi} from "../../request/TournamentTableApi"
+import {TableBody, TableHead} from "../../";
+import {TournamentTableApi} from "../../../request/TournamentTableApi";
 import "./TournamentTable.scss"
 
 const teams = [
@@ -29,15 +29,13 @@ export const TournamentTable = () => {
     })
 
     return (
-        <div className="tournamentTable">
-            <LeagueMap/>
-            <table className="tournamentTable__table">
-                <TableHead classname="tournamentTable__tableCol tournamentTable__tableColHead"/>
-                <tbody className="tournamentTable__tableBody">
-                {newTeams.map((item: TournamentTableApi, index: number) => <TableBody key={"Table" + item.id}
-                                                                                      team={item} index={index}
-                                                                                      classname="tournamentTable__tableCol tournamentTable__tableColBody"/>)}
-                </tbody>
-            </table>
-        </div>)
+        <table className="tournamentTable">
+            <TableHead classname="tournamentTable__tableCol tournamentTable__tableColHead"/>
+            <tbody className="tournamentTable__tableBody">
+            {newTeams.map((item: TournamentTableApi, index: number) => <TableBody key={"Table" + item.id}
+                                                                                  team={item} index={index}
+                                                                                  classname="tournamentTable__tableCol tournamentTable__tableColBody"/>)}
+            </tbody>
+        </table>
+    )
 }

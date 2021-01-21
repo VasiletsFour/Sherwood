@@ -41,9 +41,10 @@ export const Home = () => {
     const handleActually = (index: number) => {
         let num = actuallyNum + index
 
-        if (num === news.length) {
-            num = 0
-        }
+        num === news.length && (num = 0)
+
+        num === -1 && (num = news.length - 1)
+
 
         setActuallyNum(num)
         setActuallyNews(news[num])

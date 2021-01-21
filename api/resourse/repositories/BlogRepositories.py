@@ -1,5 +1,5 @@
 from common.responce.responce import Responce
-from common.token.token import checkToken, getConfirmToken
+from common.token.token import Token
 from db.connect.connect import db
 from db.models.BlogModel import Blogs
 from resourse.repositories.Repositories import Repositories
@@ -7,6 +7,9 @@ from resourse.scheam.BlogSchema import blogs_schema
 
 
 class BlogRepositories(Repositories):
+    def __init__(self):
+        self.token = Token()
+
     @staticmethod
     def get():
         try:
@@ -17,10 +20,9 @@ class BlogRepositories(Repositories):
         except:
             return Responce(400, {'error': 'Get Error'}).__dict__()
 
-    @staticmethod
-    def post(body: object, token: str):
+    def post(self, body: object, token: str):
         try:
-            check = checkToken(token)
+            check = self.token.decode(token)
 
             blog = Blogs(**body, author_id=check["id"])
 

@@ -9,12 +9,11 @@ class SignUpServices(Services):
         super().__init__()
         self.repository = SignUpRepositories()
 
-    def get(self, token:str):
+    def get(self, token: str):
         if token:
             return self.repository.get(token)
 
         return Responce(400, {'error': 'Empty token'}).__dict__()
-
 
     def post(self, body):
         res = self.valid.validation(create, body)

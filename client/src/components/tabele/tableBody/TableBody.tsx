@@ -1,6 +1,7 @@
 import React, {useState} from "react"
-import {FaChevronDown, FaChevronRight, FaCircle, FaSortDown, FaSortUp} from "react-icons/fa";
-import {TournamentTableApi} from "../../request/TournamentTableApi"
+import {FaCircle, FaSortDown, FaSortUp} from "react-icons/fa";
+import {ChevronDownRight} from "../../icon/chevronDownRight/ChevronDownRight";
+import {TournamentTableApi} from "../../../request/TournamentTableApi"
 import "./TableBody.scss"
 
 interface Props {
@@ -14,7 +15,7 @@ export const TableBody = ({team, index, classname}: Props) => {
 
     return (
         <tr className={`${classname} "tableBody`}>
-            <td onClick={() => setOpen(!open)}>{!open ? <FaChevronDown/> : <FaChevronRight/>}</td>
+            <td onClick={() => setOpen(!open)}><ChevronDownRight open={open}/></td>
             <td>{index + 1} {index + 1 > team.previousPosition ?
                 <FaSortDown className="tableBody__down"/> : index + 1 === team.previousPosition ?
                     <FaCircle className="tableBody__circle"/> : <FaSortUp className="tableBody__up"/>}</td>
