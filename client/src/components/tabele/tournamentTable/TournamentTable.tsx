@@ -3,6 +3,18 @@ import {TableBody, TableHead} from "../../";
 import {TournamentTableApi} from "../../../request/TournamentTableApi";
 import "./TournamentTable.scss"
 
+const headRow = ["Инфо",
+    "Позиция",
+    "Имя",
+    "Игр",
+    "Побед",
+    "Ничьих",
+    "Поражений",
+    "Забито",
+    "Пропущено",
+    "Разница",
+    "Очков"]
+
 const teams = [
     {id: 1, name: "1Name", win: 3, draw: 0, lose: 1, points: 10, goalFor: 20, goalAgainst: 2, previousPosition: 2},
     {id: 2, name: "2Name", win: 1, draw: 2, lose: 1, points: 5, goalFor: 10, goalAgainst: 2, previousPosition: 5},
@@ -14,23 +26,11 @@ const teams = [
 ]
 
 export const TournamentTable = () => {
-    const newTeams = teams.sort((item: TournamentTableApi, itemNext: TournamentTableApi) => {
-        let index = itemNext.points - item.points
-
-        if (index === 0) {
-            index = itemNext.goalFor - item.goalFor
-
-            if (index === 0) {
-                index = itemNext.goalAgainst - item.goalAgainst
-            }
-        }
-
-        return index
-    })
+    const newTeams = teams.sort((item: TournamentTableApi, itemNext: TournamentTableApi) => itemNext.points - item.points)
 
     return (
         <table className="tournamentTable">
-            <TableHead classname="tournamentTable__tableCol tournamentTable__tableColHead"/>
+            <TableHead classname="tournamentTable__tableCol tournamentTable__tableColHead" rowHead={headRow}/>
             <tbody className="tournamentTable__tableBody">
             {newTeams.map((item: TournamentTableApi, index: number) => <TableBody key={"Table" + item.id}
                                                                                   team={item} index={index}

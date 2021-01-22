@@ -1,7 +1,7 @@
-import {Action} from "redux";
 import {getBlogsListAction} from "./action";
 import {BlogState, initialBlogState} from "./state";
 import {errorReducer, okReducer, runningReducer, triggerReducer} from "../reducerType"
+import {Action} from "redux";
 
 export function blogReducer(state: BlogState = initialBlogState as BlogState, action: Action): BlogState {
     // getBlogAction
@@ -16,21 +16,19 @@ export function blogReducer(state: BlogState = initialBlogState as BlogState, ac
         };
     }
     if (getBlogsListAction.ok.is(action)) {
+        const {data} = action["result"]
+
         return {
             ...state,
-            blogs: {
-                data: action,
-                ...okReducer
-            },
+            blogs: {data, ...okReducer}
         };
     }
     if (getBlogsListAction.error.is(action)) {
+        const {error} = action["error"]
+
         return {
             ...state,
-            blogs: {
-                error: action,
-                ...errorReducer
-            },
+            blogs: {error, ...errorReducer}
         };
     }
 

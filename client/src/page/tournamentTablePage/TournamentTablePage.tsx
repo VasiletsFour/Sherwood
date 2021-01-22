@@ -1,9 +1,9 @@
 import React from "react"
 import {MainLayout} from "../../layouts";
-import {TournamentTableLeague} from "../../components"
+import {Tournament} from "../../components"
 
 export const TournamentTablePage = () => (
     <MainLayout>
-        <TournamentTableLeague/>
+        <Tournament/>
     </MainLayout>
 )

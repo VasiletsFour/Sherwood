@@ -5,7 +5,7 @@ export const TimeTable = () => (
     <div>
         <h1>Расписание</h1>
         <LeagueMap>
-            <p>w</p>
+            <p>TimeTable</p>
         </LeagueMap>
     </div>
 )

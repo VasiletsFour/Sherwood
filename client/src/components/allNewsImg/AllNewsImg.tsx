@@ -39,7 +39,7 @@ export const AllNewsImg = ({news, actuallyNews}: Props) => {
     return (
         <div className="allNewsImg">
             {news.length - 1 > 2 && <FaArrowLeft
-                onClick={() => handleArrow(1)}
+                onClick={() => handleArrow()}
                 className="home__arrowNews home__arrowLeft"/>}
             {allNews.map((item: Blog, index: number) => <img key={String(index) + item.id} src={item.img} alt="img news"
                                                              onClick={() => actuallyNews(index)}/>)}

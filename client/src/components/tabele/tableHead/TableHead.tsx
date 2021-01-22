@@ -1,23 +1,14 @@
 import React from "react"
 
 interface Props{
-    classname:string
+    classname: string
+    rowHead: Array<string>
 }
 
-export const TableHead = ({classname}:Props) => (
-    <thead >
+export const TableHead = ({classname, rowHead}: Props) => (
+    <thead>
     <tr className={classname}>
-        <th>Инфо</th>
-        <th>Позиция</th>
-        <th>Имя</th>
-        <th>Игр</th>
-        <th>Побед</th>
-        <th>Ничьих</th>
-        <th>Поражений</th>
-        <th>Забито</th>
-        <th>Пропущено</th>
-        <th>Разница</th>
-        <th>Очков</th>
+        {rowHead.map((item: string, index: number) => <th key={index + item + "TableHead"}>{item}</th>)}
     </tr>
     </thead>
 )
