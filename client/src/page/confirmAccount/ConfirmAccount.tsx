@@ -1,4 +1,3 @@
-import React from "react"
 import {CONFIRM_ACCOUNT_URL} from "../../utils/urls";
 import {getConfirmAccountApi} from "../../request/AccountRequest";
 import {useHistory} from "react-router-dom";
