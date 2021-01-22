@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, compose, createStore} from "redux";
+import {AnyAction, applyMiddleware, combineReducers, compose, createStore} from "redux";
 import {connectRouter, routerMiddleware} from "connected-react-router";
 import history from "../utils/history";
 import {all} from "redux-saga/effects";
@@ -22,13 +22,8 @@ const appReducer = combineReducers<AppState>({
     router: connectRouter(history),
 });
 
-const rootReducer = (state: AppState | undefined, action: any) => {
-    if (!action.type) {
-        state = undefined;
-    }
+const rootReducer = (state: AppState | undefined, action: AnyAction) => appReducer(state, action)
 
-    return appReducer(state, action);
-};
 
 export const store = createStore(
     rootReducer,
