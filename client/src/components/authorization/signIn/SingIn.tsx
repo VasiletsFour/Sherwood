@@ -1,4 +1,5 @@
 import React from "react"
+import {InputPassword} from "../../input/InputPassword";
 
 interface Props{
     signUp:()=>void
@@ -14,6 +15,7 @@ export const SignIn = ({signUp}:Props) => (
             </div>
             <div className="authorization__inputWrapper">
                 <label className="authorization__inputLabel">Пароль</label>
+                <InputPassword classname="authorization__input"/>
             </div>
             <p onClick={signUp}>Зарегестрироваться</p>
             <button className="authorization__sendBtn">Войти</button>
