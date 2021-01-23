@@ -7,7 +7,7 @@ from resourse.scheam.LeagueSchema import leagues_schema
 
 class LeagueRepositories(Repositories):
     @staticmethod
-    def get(id: str):
+    def get(id: int):
         try:
             leagues = db.session.query(Leagues).filter_by(season_id=id).all()
             schema = leagues_schema.dump(leagues)

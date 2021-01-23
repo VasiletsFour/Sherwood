@@ -1,3 +1,6 @@
+from jwt import ExpiredSignatureError, DecodeError
+from sqlalchemy.exc import IntegrityError
+
 from common.bcrypt.bcrypt import BcryptPass
 from common.emailSend.emailSend import SendEmail
 from common.responce.responce import Responce
@@ -5,7 +8,6 @@ from common.token.token import Token
 from db.connect.connect import db
 from db.models.UserModel import Users
 from resourse.repositories.Repositories import Repositories
-from jwt import ExpiredSignatureError, DecodeError
 
 
 class SignUpRepositories(Repositories):
@@ -39,5 +41,7 @@ class SignUpRepositories(Repositories):
             SendEmail(body["email"], token)
 
             return Responce(201, {'data': "Please, confirm email"}).__dict__()
-        except:
-            return Responce(400, {'error': 'Create Error'}).__dict__()
+        except IntegrityError:
+            return Responce(400, {'error': 'User with this email already exists'}).__dict__()
+#
+#

@@ -56,10 +56,10 @@ def create_app():
         db.session.commit()
 
     api.add_resource(Season, "/season/", "/season/admin/", "/season/admin/<string:id>")
-    api.add_resource(League, "/league/<string:id>", "/league/admin/", "/league/admin/<string:id>")
+    api.add_resource(League, "/league/<int:id>", "/league/admin/", "/league/admin/<string:id>")
     api.add_resource(Team, "/team/", "/team/admin/", "/team/admin/<string:id>")
     api.add_resource(Player, "/player/", "/player/admin/", "/player/<string:id>", "/player/admin/<string:id>")
-    api.add_resource(SignUp, "/signUp/", "/signUp/<string:token>")
+    api.add_resource(SignUp, "/auth/signUp/", "/auth/confirm/<string:token>")
     api.add_resource(Blogs, "/blogs/", "/blogs/admin/", "/blogs/admin/<string:id>")
 
     return app

@@ -9,7 +9,7 @@ class LeagueServices(Services):
         super().__init__()
         self.repository = LeagueRepositories()
 
-    def get(self, id: str):
+    def get(self, id: int):
         if id:
             return self.repository.get(id)
 

@@ -5,6 +5,7 @@ class UserSchema(Schema):
     id = fields.Integer()
     firstname = fields.Str()
     surname = fields.Str()
+    email = fields.Str()
 
 
 user_schema = UserSchema()

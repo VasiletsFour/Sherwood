@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import {Link, useHistory} from "react-router-dom";
+import {Authorization} from "../";
 import {FaInstagram, FaSearch, FaYoutube} from 'react-icons/fa';
 import {locationGo} from "../../utils/locationGo"
 import {
@@ -15,7 +16,8 @@ import "./Header.scss"
 
 export const Header = () => {
     const history = useHistory()
-    const [open, setOpen] = useState(false)
+    const [openSearch, setOpenSearch] = useState(false)
+    const [openLogin, setOpenLogin] = useState(false)
 
     const handleLogo = () => history.push(HOME_URL.urlTemplate)
 
@@ -35,10 +37,11 @@ export const Header = () => {
                     <li>Комитет</li>
                 </ul>
                 <div className="header__loginContainer">
-                    <p className="header__login">Вход</p>
+                    <p onClick={() => setOpenLogin(!openLogin)} className="header__login">Вход</p>
+                    {openLogin && <Authorization setClose={() => setOpenLogin(!openLogin)}/>}
                     <div className="header__search">
-                        <FaSearch className="header__icon" onClick={() => setOpen(!open)}/>
-                        {open && <input className="header__inputSearch" type="text"/>}
+                        <FaSearch className="header__icon" onClick={() => setOpenSearch(!openSearch)}/>
+                        {openSearch && <input className="header__inputSearch" type="text"/>}
                     </div>
                 </div>
             </div>

@@ -45,21 +45,12 @@ export const Home = () => {
 
         num === -1 && (num = news.length - 1)
 
-
         setActuallyNum(num)
         setActuallyNews(news[num])
     }
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            if (actuallyNum === news.length - 1) {
-                return setActuallyNum(0)
-            }
-
-            return setActuallyNum(actuallyNum + 1)
-        }, 8000)
-
-        setActuallyNews(news[actuallyNum])
+        const interval = setInterval(() => handleActually(1), 8000)
 
         return () => clearInterval(interval)
     }, [actuallyNews, actuallyNum])
