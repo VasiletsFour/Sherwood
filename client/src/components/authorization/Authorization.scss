@@ -1,8 +1,8 @@
 .authorization {
   border-radius: 8px;
   width: 800px;
-  height: 700px;
   background-color: #5f5e5e;
+  padding-bottom: 40px;
 
   &__header {
     display: flex;
@@ -84,6 +84,7 @@
   }
 
   &__input {
+    color: white;
     outline: none;
     border: 1px solid #676161;
     width: 100%;

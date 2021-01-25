@@ -1,15 +1,21 @@
 from flask import Flask
 from flask_migrate import Migrate
+from flask_restful import Api
+
 from common.bcrypt.bcrypt import bcrypt
 from common.marshmallow.marshmallow import create_ma
 from db.connect.connect import connectDd
-from flask_restful import Api
+from resourse.controller.AdminBlogs import AdminBlogs
+from resourse.controller.AdminLeague import AdminLeague
+from resourse.controller.AdminPlayer import AdminPlayer
+from resourse.controller.AdminSeasone import AdminSeason
+from resourse.controller.AdminTeams import AdminTeam
+from resourse.controller.Blogs import Blogs
 from resourse.controller.League import League
 from resourse.controller.Player import Player
 from resourse.controller.Season import Season
 from resourse.controller.SignUp import SignUp
 from resourse.controller.Team import Team
-from resourse.controller.Blogs import Blogs
 
 migrate = Migrate()
 
@@ -42,24 +48,31 @@ def create_app():
 
     @app.before_first_request
     def create_tables():
-        from db.models.PlayerModel import Players
-        from db.models.TeamModel import Team
-        from db.models.SeasonsModel import Seasons
-        from db.models.PlayerStatisticsModel import PlayersStatistics
-        from db.models.TeamStatistics import TeamStatistics
-        from db.models.TimeTableModel import TimeTables
-        from db.models.LeagueModel import Leagues
-        from db.models.UserModel import Users
-        from db.models.BlogModel import Blogs
+        # from db.models.PlayerModel import Players
+        # from db.models.TeamModel import Team
+        # from db.models.SeasonsModel import Seasons
+        # from db.models.PlayerStatisticsModel import PlayersStatistics
+        # from db.models.TeamStatistics import TeamStatistics
+        # from db.models.TimeTableModel import TimeTables
+        # from db.models.LeagueModel import Leagues
+        # from db.models.UserModel import Users
+        # from db.models.BlogModel import Blogs
 
         db.create_all()
         db.session.commit()
 
-    api.add_resource(Season, "/season/", "/season/admin/", "/season/admin/<string:id>")
-    api.add_resource(League, "/league/<int:id>", "/league/admin/", "/league/admin/<string:id>")
-    api.add_resource(Team, "/team/", "/team/admin/", "/team/admin/<string:id>")
-    api.add_resource(Player, "/player/", "/player/admin/", "/player/<string:id>", "/player/admin/<string:id>")
+    api.add_resource(Season, "/season/")
+    api.add_resource(League, "/league/<int:id>")
+    api.add_resource(Team, "/team/")
+    api.add_resource(Player, "/player/")
     api.add_resource(SignUp, "/auth/signUp/", "/auth/confirm/<string:token>")
-    api.add_resource(Blogs, "/blogs/", "/blogs/admin/", "/blogs/admin/<string:id>")
+    api.add_resource(Blogs, "/blogs/")
+
+    # admin
+    api.add_resource(AdminBlogs, "/admin/blogs/", "/admin/blogs/<string:id>")
+    api.add_resource(AdminTeam, "/admin/team/", "/admin/team/<string:id>")
+    api.add_resource(AdminLeague, "/admin/league", "/admin/league/<string:id>")
+    api.add_resource(AdminPlayer, "/admin/player", "/admin/player/<string:id>")
+    api.add_resource(AdminSeason, "/admin/season/", "/admin/season/<string:id>")
 
     return app

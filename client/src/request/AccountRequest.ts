@@ -2,7 +2,7 @@ import {makeGetRequest} from "../api/makeRequest";
 
 //GET Confirm Email
 export const getConfirmAccountApi = async (token: string): Promise<string> => {
-    const {data, status} = await makeGetRequest(`/auth/confirm/${token}`);
+    const {data, status} = await makeGetRequest(`/signUp/${token}`);
 
     if (status === 201) {
         return data;
