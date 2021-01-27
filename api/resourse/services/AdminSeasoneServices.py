@@ -24,3 +24,9 @@ class AdminSeasonServices(Services):
             return self.repository.put(id, body)
 
         return Responce(400, {'error': 'Not valid'}).__dict__()
+
+    def delete(self, id: int):
+        if id:
+            return self.repository.delete(id)
+
+        return Responce(400, {'error': 'Not valid'}).__dict__()

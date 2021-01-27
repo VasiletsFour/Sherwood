@@ -7,11 +7,13 @@ import {blogReducer, BlogSaga, BlogState} from "./blog";
 import {leagueReducer, LeagueSaga, LeagueState} from "./league";
 import {teamReducer, TeamSaga, TeamState} from "./team"
 import {authReducer, AuthSaga, AuthState} from "./auth"
+import {seasonReducer, SeasonSaga, SeasonState} from "./season"
 
 export interface AppState {
     authState: AuthState;
     blogState: BlogState;
     leagueState: LeagueState;
+    seasonState: SeasonState;
     teamState: TeamState;
     router: any;
 }
@@ -24,6 +26,7 @@ const appReducer = combineReducers<AppState>({
     authState: authReducer,
     blogState: blogReducer,
     leagueState: leagueReducer,
+    seasonState: seasonReducer,
     teamState: teamReducer,
     router: connectRouter(history),
 });
@@ -41,6 +44,7 @@ export default function* rootSaga() {
         AuthSaga(),
         BlogSaga(),
         LeagueSaga(),
+        SeasonSaga(),
         TeamSaga()
     ]);
 }

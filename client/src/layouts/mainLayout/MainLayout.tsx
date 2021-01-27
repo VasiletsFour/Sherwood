@@ -1,5 +1,5 @@
 import React from "react"
-import {Header} from "../../components"
+import {Footer, Header} from "../../components"
 import "./MainLayout.scss"
 
 interface Props {
@@ -12,6 +12,6 @@ export const MainLayout = ({children}: Props) => (
             <main>
                 {children}
             </main>
-            {/*<Footer/>*/}
+            <Footer/>
         </div>
     )

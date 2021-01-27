@@ -18,9 +18,9 @@ class AdminBlogRepositories(Repositories):
             db.session.add(blog)
             db.session.commit()
 
-            return Responce(201, {'data': 'create'}).__dict__()
+            return Responce(201, {'data': 'create'}).__dict__
         except:
-            return Responce(400, {'error': 'Create Error'}).__dict__()
+            return Responce(400, {'error': 'Create Error'}).__dict__
 
     @staticmethod
     def put(id: str, body: object):
@@ -30,9 +30,9 @@ class AdminBlogRepositories(Repositories):
 
             db.session.commit()
 
-            return Responce(200, {'data': 'update'}).__dict__()
+            return Responce(200, {'data': 'update'}).__dict__
         except:
-            return Responce(400, {'error': 'Update Error'}).__dict__()
+            return Responce(400, {'error': 'Update Error'}).__dict__
 
     @staticmethod
     def delete(id: str):
@@ -40,6 +40,6 @@ class AdminBlogRepositories(Repositories):
             db.session.query(Blogs).filter(Blogs.id == id).delete()
             db.session.commit()
 
-            return Responce(200, {'data': 'Delete'}).__dict__()
+            return Responce(200, {'data': 'Delete'}).__dict__
         except:
-            return Responce(400, {'error': 'Delete Error'}).__dict__()
+            return Responce(400, {'error': 'Delete Error'}).__dict__

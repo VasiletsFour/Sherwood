@@ -21,9 +21,8 @@ function* getLeagueWorker() {
         yield put(getLeagueListAction.running());
         const response = yield call(getLeagueApi);
 
-        yield put(getLeagueListAction.ok({params: {}, result: {data: response}}));
+        yield put(getLeagueListAction.ok({params: {}, result: response}));
     } catch (e) {
-        console.log(e);
-        yield put(getLeagueListAction.error());
+        yield put(getLeagueListAction.error({params: {}, error: e}));
     }
 }

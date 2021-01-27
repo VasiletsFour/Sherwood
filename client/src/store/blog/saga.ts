@@ -22,7 +22,6 @@ function* getBlogsWorker() {
 
         yield put(getBlogsListAction.ok({params: {}, result: response}));
     } catch (e) {
-        console.log(e);
-        yield put(getBlogsListAction.error());
+        yield put(getBlogsListAction.error({params: {}, error: e}));
     }
 }

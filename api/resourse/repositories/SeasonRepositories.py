@@ -8,10 +8,7 @@ from resourse.scheam.SeasonSchema import seasons_schema
 class SeasonRepositories(Repositories):
     @staticmethod
     def get(filters):
-        try:
-            season = db.session.query(Seasons).filter(filters).all()
-            schema = seasons_schema.dump(season)
-
-            return Responce(200, {'data': schema}).__dict__()
-        except:
-            return Responce(400, {'error': 'Get Error'}).__dict__()
+        season = db.session.query(Seasons).filter(filters).all()
+        schema = seasons_schema.dump(season)
+        print(Responce(400, {"err": "errr"}).__dict__)
+        return Responce(200, {'data': schema}).__dict__

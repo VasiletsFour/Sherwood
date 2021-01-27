@@ -13,8 +13,8 @@ class Config(object):
     MYSQL_USER = environ.get("root")
     MYSQL_PASSWORD = environ.get("Hft4150tbc4101f")
     MYSQL_port = 3306
-    MYSQL_DATABASE = environ.get("Elit")
-    SQLALCHEMY_DATABASE_URI = "mysql://root:Hft4150tbc4101f@localhost/Elit"
+    MYSQL_DATABASE = environ.get("Elite")
+    SQLALCHEMY_DATABASE_URI = "mysql://root:Hft4150tbc4101f@localhost/Elite"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # key
@@ -24,10 +24,11 @@ class Config(object):
     # CORS
     CORS_ENABLED = False
 
-    #smtp
+    # smtp
     PORT_SMTP = 465
     EMAIL_SMTP = "vasiletsl0unge@gmail.com"
     PASS_SMTP = "hft4150tbc4101f"
+
 
 class ProductionConfig(Config):
     CLIENT = "//"

@@ -16,6 +16,6 @@ class BlogRepositories(Repositories):
             blogs = db.session.query(Blogs).all()
             schema = blogs_schema.dump(blogs)
 
-            return Responce(200, {'data': schema}).__dict__()
+            return Responce(200, {'data': schema}).__dict__
         except:
-            return Responce(400, {'error': 'Get Error'}).__dict__()
+            return Responce(400, {'error': 'Get Error'}).__dict__

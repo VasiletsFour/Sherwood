@@ -1,8 +1,10 @@
 import React from "react"
+import {LogoType} from "../";
 import "./Footer.scss"
 
 export const Footer = () => (
     <footer className="footer">
-        <p>wor2k</p>
+        <div className="footer__border"/>
+        <div className="footer__wrapper"><LogoType classname="footer"/></div>
     </footer>
 )

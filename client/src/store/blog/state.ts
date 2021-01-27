@@ -1,4 +1,5 @@
 import {Blog} from "../../request/BlogApi";
+import {defaultState} from "../defaultState";
 
 export interface BlogState {
     blogs: {
@@ -10,10 +11,5 @@ export interface BlogState {
 }
 
 export const initialBlogState: BlogState = {
-    blogs: {
-        finished: false,
-        loading: false,
-        error: null,
-        data: null,
-    }
+    blogs: defaultState
 };

@@ -12,6 +12,6 @@ class PlayerRepositories(Repositories):
             players = db.session.query(Players).all()
             schema = players_schema.dump(players)
 
-            return Responce(200, {'data': schema}).__dict__()
+            return Responce(200, {'data': schema}).__dict__
         except:
-            return Responce(400, {'error': 'Get Error'}).__dict__()
+            return Responce(400, {'error': 'Get Error'}).__dict__

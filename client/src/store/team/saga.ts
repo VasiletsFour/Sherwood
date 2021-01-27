@@ -22,7 +22,6 @@ function* getTeamWorker() {
 
         yield put(getTeamListAction.ok({params: {}, result: response}));
     } catch (e) {
-        console.log(e);
-        yield put(getTeamListAction.error());
+        yield put(getTeamListAction.error({params: {}, error: e}));
     }
 }

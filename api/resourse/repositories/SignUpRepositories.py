@@ -1,3 +1,5 @@
+from operator import __getitem__
+
 from jwt import ExpiredSignatureError, DecodeError
 from sqlalchemy.exc import IntegrityError
 
@@ -18,18 +20,18 @@ class SignUpRepositories(Repositories):
     def get(self, token: str):
         try:
             decode_token = self.token.decode(token)
-            user = Users.query.filter(Users.email == token["user"], Users.confirmEmail == False)
+            user = db.session.query(Users).filter(Users.email == decode_token["user"], Users.confirmEmail == False)
             user.update(dict(confirmEmail=True))
 
             db.session.commit()
 
-            return Responce(201, {'data': decode_token}).__dict__()
+            return Responce(201, {'data': decode_token}).__dict__
         except ExpiredSignatureError:
-            return Responce(400, {'error': 'Token Expired'}).__dict__()
+            return Responce(400, {'error': 'Token Expired'}).__dict__
         except DecodeError:
-            return Responce(400, {'error': 'Not a token'}).__dict__()
+            return Responce(400, {'error': 'Not a token'}).__dict__
 
-    def post(self, body: object):
+    def post(self, body: {__getitem__}):
         try:
             user = Users(**body)
 
@@ -40,8 +42,8 @@ class SignUpRepositories(Repositories):
 
             SendEmail(body["email"], token)
 
-            return Responce(201, {'data': "Please, confirm email"}).__dict__()
+            return Responce(201, {'data': "Please, confirm email"}).__dict__
         except IntegrityError:
-            return Responce(400, {'error': 'User with this email already exists'}).__dict__()
+            return Responce(400, {'error': 'User with this email already exists'}).__dict__
 #
 #

@@ -20,7 +20,6 @@ function* signupWorker(formValues: SignUpBody) {
         yield call(postSignUpApi, formValues);
         yield put({type: SIGNUP_NEW_USER, message: "Done"})
     } catch (e) {
-
         yield put({type: SIGNUP_NEW_USER, message: e.message})
     }
 }

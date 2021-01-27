@@ -8,7 +8,10 @@ from resourse.scheam.TeamSchema import teams_schema
 class TeamRepositories(Repositories):
     @staticmethod
     def get(filters):
-        teams = db.session.query(Team).options("Team").all()
-        schema = teams_schema.dump(teams)
+        try:
+            teams = db.session.query(Team).filter(filters).all()
+            schema = teams_schema.dump(teams)
 
-        return Responce(200, {'data': schema}).__dict__()
+            return Responce(200, {'data': schema}).__dict__
+        except AttributeError:
+            return Responce(400, {'error': "Team get error"}).__dict__

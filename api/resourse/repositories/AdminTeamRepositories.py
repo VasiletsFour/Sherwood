@@ -13,9 +13,9 @@ class AdminTeamRepositories(Repositories):
             db.session.add(team)
             db.session.commit()
 
-            return Responce(201, {'data': 'create'}).__dict__()
+            return Responce(201, {'data': 'create'}).__dict__
         except:
-            return Responce(400, {'error': 'Create Error'}).__dict__()
+            return Responce(400, {'error': 'Create Error'}).__dict__
 
     @staticmethod
     def put(id: str, body: object):
@@ -24,7 +24,7 @@ class AdminTeamRepositories(Repositories):
 
         db.session.commit()
 
-        return Responce(200, {'data': 'update'}).__dict__()
+        return Responce(200, {'data': 'update'}).__dict__
 
     @staticmethod
     def delete(id: str):
@@ -32,6 +32,6 @@ class AdminTeamRepositories(Repositories):
             db.session.query(Team).filter(Team.id == id).delete()
             db.session.commit()
 
-            return Responce(200, {'data': 'Delete'}).__dict__()
+            return Responce(200, {'data': 'Delete'}).__dict__
         except:
-            return Responce(400, {'error': 'Delete Error'}).__dict__()
+            return Responce(400, {'error': 'Delete Error'}).__dict__

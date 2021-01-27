@@ -16,9 +16,9 @@ class AdminLeagueRepositories(Repositories):
             db.session.bulk_save_objects(leagues)
             db.session.commit()
 
-            return Responce(201, "create").__dict__()
+            return Responce(201, "create").__dict__
         except:
-            return Responce(400, 'Create Error').__dict__()
+            return Responce(400, 'Create Error').__dict__
 
     @staticmethod
     def put(id: str, body: object):
@@ -28,9 +28,9 @@ class AdminLeagueRepositories(Repositories):
 
             db.session.commit()
 
-            return Responce(200, "update").__dict__()
+            return Responce(200, "update").__dict__
         except:
-            return Responce(400, 'Update Error').__dict__()
+            return Responce(400, 'Update Error').__dict__
 
     @staticmethod
     def delete(id: str):
@@ -38,6 +38,6 @@ class AdminLeagueRepositories(Repositories):
             db.session.query(Leagues).filter(Leagues.id == id).delete()
             db.session.commit()
 
-            return Responce(200, "Delete").__dict__()
+            return Responce(200, "Delete").__dict__
         except:
-            return Responce(400, 'Delete Error').__dict__()
+            return Responce(400, 'Delete Error').__dict__

@@ -1,4 +1,5 @@
 import {TeamApi} from "../../request/TeamApi";
+import {defaultState} from "../defaultState";
 
 export interface TeamState {
     teams: {
@@ -10,10 +11,5 @@ export interface TeamState {
 }
 
 export const initialTeamState: TeamState = {
-    teams: {
-        finished: false,
-        loading: false,
-        error: null,
-        data: null,
-    }
+    teams: defaultState
 };

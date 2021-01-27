@@ -1,0 +1,13 @@
+.logoType{
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 100%;
+
+  &__logo{
+    text-shadow: 3px 3px #5f5a5a;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+  }
+}

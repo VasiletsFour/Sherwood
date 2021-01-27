@@ -1,4 +1,5 @@
 import {LeagueApi} from "../../request/LeagueApi";
+import {defaultState} from "../defaultState";
 
 export interface LeagueState {
     league: {
@@ -10,10 +11,5 @@ export interface LeagueState {
 }
 
 export const initialLeagueState: LeagueState = {
-    league: {
-        finished: false,
-        loading: false,
-        error: null,
-        data: null,
-    }
+    league: defaultState
 };

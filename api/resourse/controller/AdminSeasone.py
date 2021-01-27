@@ -19,3 +19,10 @@ class AdminSeason(Controller):
         service = self.service.put(id, self.body)
 
         return service['message'], service["status"]
+
+    @common.middleware.admin.login_admin
+    def delete(self, id):
+        service = self.service.delete(id)
+
+        return service['message'], service["status"]
+

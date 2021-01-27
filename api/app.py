@@ -56,7 +56,7 @@ def create_app():
     def create_tables():
         # from db.models.PlayerModel import Players
         # from db.models.TeamModel import Team
-        # from db.models.SeasonsModel import Seasons
+        from db.models.SeasonsModel import Seasons
         # from db.models.PlayerStatisticsModel import PlayersStatistics
         # from db.models.TeamStatistics import TeamStatistics
         # from db.models.TimeTableModel import TimeTables

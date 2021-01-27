@@ -1,40 +1,49 @@
 .header{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   position: absolute;
   width: 100%;
-  height: 100px;
+  height: 100%;
   top: 0;
-  background-color: #000a12;
-  display: flex;
-  align-items: center;
+
+
+  &__border{
+    width: 98.5vw;
+    border-bottom: 2px solid #004c00;
+  }
+
+  &__wrapper{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 110px;
+    width: 100%;
+  }
 
   &__logotypeContainer {
-    margin-left: 25px;
-    display: flex;
-    align-items: center;
+    background-color: black;
     width: 120px;
     height: 80px;
     z-index: 3;
     position: absolute;
-    background-color: #000a12;
-    border-radius: 100%;
   }
 
   &__logotype {
     margin: 0 0 5px 0;
-    text-shadow: 3px 3px #5f5a5a;
-    cursor: pointer;
-    color: white;
-    font-weight: bold;
     font-size: 50px;
   }
 
   &__menuWrapper {
-    margin-left: 105px;
+    margin-top: 2px;
+    margin-left: 110px;
     margin-right: 14px;
     border-radius: 15px;
     background-color: #484848;
     height: 60%;
-    width: 86%;
+    width: 82%;
     display: flex;
     justify-content: space-between;
     align-items: center;

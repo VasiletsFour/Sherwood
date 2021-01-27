@@ -13,9 +13,9 @@ class AdminPlayerRepositories(Repositories):
             db.session.add(player)
             db.session.commit()
 
-            return Responce(201, {'data': 'create'}).__dict__()
+            return Responce(201, {'data': 'create'}).__dict__
         except:
-            return Responce(400, {'error': 'Create Error'}).__dict__()
+            return Responce(400, {'error': 'Create Error'}).__dict__
 
     @staticmethod
     def put(id: str, body: object):
@@ -25,9 +25,9 @@ class AdminPlayerRepositories(Repositories):
 
             db.session.commit()
 
-            return Responce(200, {'data': 'update'}).__dict__()
+            return Responce(200, {'data': 'update'}).__dict__
         except:
-            return Responce(400, {'error': 'Update Error'}).__dict__()
+            return Responce(400, {'error': 'Update Error'}).__dict__
 
     @staticmethod
     def delete(id: str):
@@ -35,6 +35,6 @@ class AdminPlayerRepositories(Repositories):
             db.session.query(Players).filter(Players.id == id).delete()
             db.session.commit()
 
-            return Responce(200, {'data': 'Delete'}).__dict__()
+            return Responce(200, {'data': 'Delete'}).__dict__
         except:
-            return Responce(400, {'error': 'Delete Error'}).__dict__()
+            return Responce(400, {'error': 'Delete Error'}).__dict__
