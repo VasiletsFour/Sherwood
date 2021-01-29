@@ -1,5 +1,5 @@
 import React from "react"
-import {TableBody, TableHead} from "../../";
+import {TableBodyTournament, TableHead} from "../../";
 import {TournamentTableApi} from "../../../request/TournamentTableApi";
 import "./TournamentTable.scss"
 
@@ -32,9 +32,9 @@ export const TournamentTable = () => {
         <table className="tournamentTable">
             <TableHead classname="tournamentTable__tableCol tournamentTable__tableColHead" rowHead={headRow}/>
             <tbody className="tournamentTable__tableBody">
-            {newTeams.map((item: TournamentTableApi, index: number) => <TableBody key={"Table" + item.id}
-                                                                                  team={item} index={index}
-                                                                                  classname="tournamentTable__tableCol tournamentTable__tableColBody"/>)}
+            {newTeams.map((item: TournamentTableApi, index: number) => <TableBodyTournament key={"Table" + item.id}
+                                                                                            team={item} index={index}
+                                                                                            classname="tournamentTable__tableCol tournamentTable__tableColBody"/>)}
             </tbody>
         </table>
     )

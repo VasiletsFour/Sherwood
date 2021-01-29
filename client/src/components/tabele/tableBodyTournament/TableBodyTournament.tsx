@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import {FaCircle, FaSortDown, FaSortUp} from "react-icons/fa";
 import {ChevronDownRight} from "../../icon/chevronDownRight/ChevronDownRight";
 import {TournamentTableApi} from "../../../request/TournamentTableApi"
-import "./TableBody.scss"
+import "./TableBodyTournament.scss"
 
 interface Props {
     team: TournamentTableApi
@@ -10,7 +10,7 @@ interface Props {
     classname: string
 }
 
-export const TableBody = ({team, index, classname}: Props) => {
+export const TableBodyTournament = ({team, index, classname}: Props) => {
     const [open, setOpen] = useState(false)
 
     return (

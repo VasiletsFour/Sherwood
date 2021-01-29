@@ -1,12 +1,10 @@
 import React from "react"
-import {LeagueMap} from "../leagueMap/LeagueMap";
+import {LeagueMap, PageTitle} from "../";
 import "./Scorer.scss"
 
 export const Scorer = () => (
     <div className="scorer">
-        <div className="scorer__titleContainer">
-            <h1>Бомбардиры</h1>
-        </div>
+        <PageTitle title="Бомбардиры"/>
         <LeagueMap>
             <p>Scorer</p>
         </LeagueMap>

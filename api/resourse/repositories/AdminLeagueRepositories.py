@@ -10,7 +10,7 @@ class AdminLeagueRepositories(Repositories):
         try:
             leagues = [Leagues("Elite-Лига", body["season_id"])]
 
-            for i in range(body["count"] - 1):
+            for i in range(body["count"]):
                 leagues.append(Leagues("Лига-{num}".format(num=i + 1), body["season_id"]))
 
             db.session.bulk_save_objects(leagues)

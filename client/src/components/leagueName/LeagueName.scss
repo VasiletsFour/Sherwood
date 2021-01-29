@@ -1,5 +1,4 @@
 .leagueName {
-
   &__nameContainer {
     display: flex;
     align-items: center;
@@ -7,6 +6,8 @@
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     height: 90px;
+    z-index: 4;
+    cursor: pointer;
   }
 
   &__name{

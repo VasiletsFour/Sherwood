@@ -1,4 +1,6 @@
 export interface LeagueApi {
-    id:string
-    name:string
+    id: number
+    name: string
+    season_id: number
+    season_name: string
 }

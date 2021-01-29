@@ -12,4 +12,4 @@ class LeagueServices(Services):
         if id:
             return self.repository.get(id)
 
-        return Responce(400, {'error': 'Not valid'}).__dict__()
+        return Responce(400, {'error': 'Not valid'}).__dict__

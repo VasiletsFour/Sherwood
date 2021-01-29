@@ -60,7 +60,7 @@ def create_app():
         # from db.models.PlayerStatisticsModel import PlayersStatistics
         # from db.models.TeamStatistics import TeamStatistics
         # from db.models.TimeTableModel import TimeTables
-        # from db.models.LeagueModel import Leagues
+        from db.models.LeagueModel import Leagues
         # from db.models.UserModel import Users
         # from db.models.BlogModel import Blogs
 
