@@ -6,10 +6,9 @@ bcrypt = Bcrypt()
 class BcryptPass:
     @staticmethod
     def passHash(password):
-
-        return bcrypt.generate_password_hash(password)
+        password = bcrypt.generate_password_hash(password)
+        return password.decode()
 
     @staticmethod
-    def checkPass(password:str, hash_pass):
-
+    def checkPass(password: str, hash_pass):
         return bcrypt.check_password_hash(hash_pass, password)

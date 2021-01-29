@@ -10,7 +10,6 @@ class TeamRepositories(Repositories):
     @staticmethod
     def get(filters, order):
         try:
-            print(order)
             teams = db.session.query(Team.id, Team.name, Leagues.id.label("league_id"),
                                      Leagues.name.label("league_name")).filter(filters).order_by(
                 order).join(

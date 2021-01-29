@@ -4,6 +4,8 @@ from cerberus import Validator
 class Validation:
     @staticmethod
     def validation(schema, body):
-        valid = Validator(schema)
-
-        return valid.validate(body)
+        v = Validator()
+        v.schema = schema
+        valid = v.validate(body)
+        print(v.errors)
+        return valid

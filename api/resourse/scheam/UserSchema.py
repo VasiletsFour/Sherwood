@@ -2,7 +2,7 @@ from marshmallow import Schema, fields
 
 
 class UserSchema(Schema):
-    id = fields.Integer()
+    id = fields.Int()
     firstname = fields.Str()
     surname = fields.Str()
     email = fields.Str()

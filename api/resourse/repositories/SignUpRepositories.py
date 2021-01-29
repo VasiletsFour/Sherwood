@@ -1,4 +1,5 @@
 from operator import __getitem__
+from smtplib import SMTPRecipientsRefused
 
 from jwt import ExpiredSignatureError, DecodeError
 from sqlalchemy.exc import IntegrityError
@@ -33,17 +34,20 @@ class SignUpRepositories(Repositories):
 
     def post(self, body: {__getitem__}):
         try:
+            body["password"] = self.bcrypt.passHash(body["password"])
+
             user = Users(**body)
+            token = self.token.getConfirmToken(body["email"])
 
             db.session.add(user)
             db.session.commit()
-
-            token = self.token.getConfirmToken(body["email"])
 
             SendEmail(body["email"], token)
 
             return Responce(201, {'data': "Please, confirm email"}).__dict__
         except IntegrityError:
             return Responce(400, {'error': 'User with this email already exists'}).__dict__
-#
-#
+        except AttributeError:
+            return Responce(400, {'error': "Try again"}).__dict__
+        except SMTPRecipientsRefused:
+            return Responce(400, {'error': "Invalid email"}).__dict__

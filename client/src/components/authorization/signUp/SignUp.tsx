@@ -48,11 +48,11 @@ export const SignUp = () => {
                 <FormInput classname="authorization" value={state.firstname}
                            name="firstname"
                            onChange={handleInputChange}
-                           label="Имя" placeholder="имя"/>
+                           label="Имя" placeholder="Имя"/>
                 <FormInput classname="authorization" value={state.surname}
                            name="surname"
                            onChange={handleInputChange}
-                           label="Фамилия" placeholder="фамилия"/>
+                           label="Фамилия" placeholder="Фамилия"/>
                 <InputPassword classname="authorization" label="Пароль" value={state.password}
                                name="password"
                                placeholder="Пароль"

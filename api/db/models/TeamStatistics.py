@@ -6,6 +6,7 @@ class TeamStatistics(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     team_id = db.Column(db.Integer, db.ForeignKey('Teams.id'), nullable=False)
+    team = db.relationship("Team", backref=db.backref("team", lazy=True))
     goal_for = db.Column(db.Integer)
     goal_against = db.Column(db.Integer)
     points = db.Column(db.Integer)

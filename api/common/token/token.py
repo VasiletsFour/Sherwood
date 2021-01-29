@@ -1,7 +1,8 @@
-from datetime import datetime, timedelta
-from common.responce.responce import Responce
+from datetime import datetime
+
 import jwt
 
+from common.responce.responce import Responce
 from config import Config
 
 
@@ -14,16 +15,14 @@ class Token:
         self.decode = lambda token: jwt.decode(token, self.__key)
 
     def getConfirmToken(self, email: str):
-        try:
-            if not id:
-                raise Exception()
+        if not id:
+            raise Exception()
 
-            confirm = jwt.encode({"exp": self.__expiredTime(600), "user": email}, self.__key,
-                                 algorithm=self.__algorithms)
+        confirm = jwt.encode({"exp": self.__expiredTime(600), "user": email}, self.__key,
+                             algorithm=self.__algorithms)
 
-            return confirm.decode('utf-8')
-        except:
-            return Responce(400, {'error': 'Confirm Error'}).__dict__()
+        return confirm.decode("utf-8")
+
 
     def getToken(self, id, role: str):
         try:
@@ -37,4 +36,4 @@ class Token:
 
             raise Exception()
         except:
-            return Responce(400, {'error': 'Token Error'}).__dict__()
+            return Responce(400, {'error': 'Token Error'}).__dict__

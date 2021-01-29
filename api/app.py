@@ -12,6 +12,7 @@ from resourse.controller.AdminSeasone import AdminSeason
 from resourse.controller.AdminTeams import AdminTeam
 from resourse.controller.Blogs import Blogs
 from resourse.controller.League import League
+from resourse.controller.Login import Login
 from resourse.controller.Player import Player
 from resourse.controller.Season import Season
 from resourse.controller.SignUp import SignUp
@@ -56,12 +57,12 @@ def create_app():
     def create_tables():
         # from db.models.PlayerModel import Players
         # from db.models.TeamModel import Team
-        from db.models.SeasonsModel import Seasons
+        # from db.models.SeasonsModel import Seasons
         # from db.models.PlayerStatisticsModel import PlayersStatistics
         # from db.models.TeamStatistics import TeamStatistics
         # from db.models.TimeTableModel import TimeTables
-        from db.models.LeagueModel import Leagues
-        # from db.models.UserModel import Users
+        # from db.models.LeagueModel import Leagues
+        from db.models.UserModel import Users
         # from db.models.BlogModel import Blogs
 
         db.create_all()
@@ -72,6 +73,7 @@ def create_app():
     api.add_resource(Team, "/team/")
     api.add_resource(Player, "/player/")
     api.add_resource(SignUp, "/auth/signUp/", "/auth/confirm/<string:token>")
+    api.add_resource(Login, "/auth/login")
     api.add_resource(Blogs, "/blogs/")
 
     # admin

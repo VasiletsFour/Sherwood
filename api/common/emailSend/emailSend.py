@@ -15,7 +15,7 @@ class SendEmail:
         self.message["From"] = self.sender_email
         self.message["To"] = receiver_email
         html = """\<html><body><h1>Добро пожаловать</h1><p>Для подтверждения почты перейдите по ссылке</p><a href="{url}">{url}</a></body></html>""".format(
-            url=Config.CLIENT + "/confirm_account/" + token)
+            url=Config.CLIENT + "/confirm_account/" + "token")
         part2 = MIMEText(html, "html")
         self.message.attach(part2)
         self.context = ssl.create_default_context()

@@ -2,9 +2,9 @@ from marshmallow import Schema, fields
 
 
 class SeasonSchema(Schema):
-    id = fields.Integer()
+    id = fields.Int()
     name = fields.Str()
-    date = fields.Integer()
+    date = fields.Int()
 
 
 season_schema = SeasonSchema()

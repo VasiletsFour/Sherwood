@@ -16,9 +16,11 @@ class Users(db.Model):
     password = db.Column(db.String(250), nullable=False)
     confirmEmail = db.Column(db.Boolean, default=False, nullable=False)
     player_id = db.Column(db.Integer, db.ForeignKey('Players.id'), nullable=True)
+    role = db.Column(db.String(6), default="user", nullable=False)
 
-    def __init__(self, firstname, surname, email, password):
+    def __init__(self, firstname, surname, email, password, role="user"):
         self.firstname = firstname
         self.surname = surname
         self.email = email
         self.password = bcrypt.passHash(password)
+        self.role = role

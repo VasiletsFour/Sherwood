@@ -8,10 +8,19 @@ class TeamServices(Services):
         super().__init__()
         self.repository = TeamRepositories()
 
-    def get(self, name: str = None, league_id: str = None):
+    def get(self, **kwargs):
         filters = True
+        order = Team.league_id
 
-        if name or league_id:
-            filters = (Team.league_id == league_id) | (Team.name == name)
+        if kwargs["kind"] == "asc":
+            if kwargs["type"] == "name": order = Team.name
+            if kwargs["type"] == "league_id": order = Team.league_id
 
-        return self.repository.get(filters)
+        if kwargs["kind"] == "desc":
+            if kwargs["type"] == "name": order = Team.name.desc()
+            if kwargs["type"] == "league_id": order = Team.league_id.desc()
+
+        if kwargs["name"] or kwargs["league_id"]:
+            filters = (Team.league_id == kwargs["name"]) | (Team.name == kwargs["name"])
+
+        return self.repository.get(filters, order)
