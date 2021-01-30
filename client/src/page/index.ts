@@ -1,6 +1,6 @@
 export * from "./homePage/HomePage"
 export * from "./timeTablePage/TimeTablePage"
 export * from "./tournamentTablePage/TournamentTablePage"
-export * from "./confirmAccount/ConfirmAccount"
+export * from "./confirmAccountPage/ConfirmAccountPage"
 export * from "./scorerPage/ScorerPage"
 export * from "./teamsPage/TeamsPage"

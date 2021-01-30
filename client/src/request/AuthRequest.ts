@@ -1,4 +1,4 @@
-import {SignUpBody} from "./AuthApi";
+import {SignInBody, SignUpBody} from "./AuthApi";
 import {makePostRequest} from "../api/makeRequest";
 
 //POST create user
@@ -13,10 +13,10 @@ export const postSignUpApi = async (body: SignUpBody): Promise<string> => {
 }
 
 //POST login
-export const postSignInApi = async (body: SignUpBody): Promise<string> => {
-    const {data, error, status} = await makePostRequest("/auth/signIn", body);
+export const postSignInApi = async (body: SignInBody): Promise<string> => {
+    const {data, error, status} = await makePostRequest("/auth/login", body);
 
-    if (status === 200) {
+    if (status === 201) {
         return data;
     }
 

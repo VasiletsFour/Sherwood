@@ -2,7 +2,7 @@ import {SignInBody, SignUpBody} from "../../request/AuthApi";
 
 export const SIGNUP_NEW_USER = "signup-new-user";
 export const LOGIN_USER = "login-user";
-export const LOGIN_FB = "login-fb"
+export const CONFIRM_USER = "confirm-user"
 
 interface SignupNewUserAction {
     type: typeof SIGNUP_NEW_USER;
@@ -14,9 +14,10 @@ interface LoginUserAction {
     payload: SignInBody;
 }
 
-interface LoginFbAction {
-    type: typeof LOGIN_FB;
-    payload: boolean;
+interface ConfirmAccountAction {
+    type: typeof CONFIRM_USER;
+    payload: string;
 }
 
-export type AuthActionTypes = SignupNewUserAction | LoginUserAction | LoginFbAction;
+
+export type AuthActionTypes = SignupNewUserAction | LoginUserAction | ConfirmAccountAction;

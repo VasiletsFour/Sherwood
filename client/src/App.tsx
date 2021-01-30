@@ -1,7 +1,7 @@
 import React from "react";
 import {ConnectedRouter} from "connected-react-router";
 import {Redirect, Route, Switch} from "react-router-dom";
-import {ConfirmAccount, HomePage, ScorerPage, TeamsPage, TimeTablePage, TournamentTablePage} from "./page";
+import {ConfirmAccountPage, HomePage, ScorerPage, TeamsPage, TimeTablePage, TournamentTablePage} from "./page";
 import "./style/global.scss";
 import {
     CONFIRM_ACCOUNT_URL,
@@ -25,7 +25,7 @@ class App extends React.Component {
                         <Route path={HOME_URL.urlTemplate} component={HomePage}/>
                         <Route path={TIME_TABLE_URL.urlTemplate} component={TimeTablePage}/>
                         <Route path={TOURNAMENT_TABLE_URL.urlTemplate} component={TournamentTablePage}/>
-                        <Route path={CONFIRM_ACCOUNT_URL.urlTemplate} component={ConfirmAccount}/>
+                        <Route path={CONFIRM_ACCOUNT_URL.urlTemplate} component={ConfirmAccountPage}/>
                         <Route path={SCORER_URL.urlTemplate} component={ScorerPage}/>
                         <Route path={TEAMS_URL.urlTemplate} component={TeamsPage}/>
                         <Redirect from={ROOT_URL.urlTemplate} to={HOME_URL.urlTemplate}/>

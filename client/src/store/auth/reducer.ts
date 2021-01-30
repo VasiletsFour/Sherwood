@@ -1,4 +1,4 @@
-import {SIGNUP_NEW_USER} from "./action";
+import {LOGIN_USER, SIGNUP_NEW_USER} from "./action";
 import {AuthState, initialAuthStateState} from "./state";
 
 
@@ -9,6 +9,11 @@ export function authReducer(state: AuthState = initialAuthStateState as AuthStat
             return {
                 ...state,
                 signUp: action.message
+            }
+        case LOGIN_USER:
+            return {
+                ...state,
+                login: action.message
             }
     }
 
