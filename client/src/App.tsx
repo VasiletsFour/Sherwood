@@ -1,9 +1,18 @@
 import React from "react";
 import {ConnectedRouter} from "connected-react-router";
 import {Redirect, Route, Switch} from "react-router-dom";
-import {ConfirmAccountPage, HomePage, ScorerPage, TeamsPage, TimeTablePage, TournamentTablePage} from "./page";
+import {
+    AccountPage,
+    ConfirmAccountPage,
+    HomePage,
+    ScorerPage,
+    TeamsPage,
+    TimeTablePage,
+    TournamentTablePage
+} from "./page";
 import "./style/global.scss";
 import {
+    ACCOUNT_PAGE,
     CONFIRM_ACCOUNT_URL,
     HOME_URL,
     ROOT_URL,
@@ -15,6 +24,7 @@ import {
 import {store} from "./store/store";
 import {Provider} from "react-redux";
 import history from "./utils/history";
+import {PrivateRoute} from "./routes";
 
 class App extends React.Component {
     render() {
@@ -28,6 +38,12 @@ class App extends React.Component {
                         <Route path={CONFIRM_ACCOUNT_URL.urlTemplate} component={ConfirmAccountPage}/>
                         <Route path={SCORER_URL.urlTemplate} component={ScorerPage}/>
                         <Route path={TEAMS_URL.urlTemplate} component={TeamsPage}/>
+
+                        {/*PRIVATE*/}
+                        <PrivateRoute path={ACCOUNT_PAGE.urlTemplate}>
+                            <AccountPage/>
+                        </PrivateRoute>
+
                         <Redirect from={ROOT_URL.urlTemplate} to={HOME_URL.urlTemplate}/>
                     </Switch>
                 </ConnectedRouter>

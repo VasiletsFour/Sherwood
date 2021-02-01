@@ -5,7 +5,7 @@ export interface AccountApi {
     firstname: string,
     b_day: number,
     surname: string,
-    role: boolean,
+    role: string,
     number: number,
     password: string
 }

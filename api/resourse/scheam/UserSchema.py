@@ -10,7 +10,7 @@ class UserSchema(Schema):
     number = fields.Int()
     password = fields.Str()
     player_id = fields.Int()
-    role = fields.Bool()
+    role = fields.Str()
 
 
 user_schema = UserSchema()

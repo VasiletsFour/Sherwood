@@ -16,6 +16,12 @@ export function* AccountSaga() {
 
 function* getAccountWorker() {
     try {
+        const state: AppState = yield select();
+
+        if (state.accountState.account.finished) {
+            return
+        }
+
         yield put(getAccountAction.running());
         const response = yield call(getAccountApi);
 

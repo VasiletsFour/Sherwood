@@ -10,21 +10,17 @@ export function* TeamSaga() {
         const teamUrlMatch = action.type === LOCATION_CHANGE && TEAMS_URL.match(action.payload.location).isMatched;
 
         if (teamUrlMatch) {
-            yield call(getTeamWorker, action, action.payload.isFirstRendering);
+            yield call(getTeamWorker, action);
         }
 
         if (getTeamListAction.trigger(action)) {
-            yield call(getTeamWorker, action, false)
+            yield call(getTeamWorker, action)
         }
     }
 }
 
-function* getTeamWorker({query}: typeof getTeamListAction.trigger.typeInterface, isFirstRendering: boolean) {
+function* getTeamWorker({query}: typeof getTeamListAction.trigger.typeInterface) {
     try {
-        if (!query && !isFirstRendering) {
-            return;
-        }
-
         yield put(getTeamListAction.running());
         const response = yield call(getTeamsApi, query);
 

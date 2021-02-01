@@ -8,7 +8,7 @@ class Blogs(Resource):
         self.service = BlogServices()
         self.token = request.headers.get("Authorization")
 
-    def get(self, *args, **kwargs):
+    def get(self):
         service = self.service.get()
 
         return service['message'], service["status"]

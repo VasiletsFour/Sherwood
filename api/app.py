@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_restful import Api
 
@@ -24,26 +25,25 @@ migrate = Migrate()
 def create_app():
     app = Flask(__name__)
 
+    CORS(app, supports_credentials=True)
     app.config.from_object('config.Config')
     app.url_map.strict_slashes = False
 
     api = Api(app, prefix="/api")
-
     db = connectDd(app)
 
     Migrate(app, db)
     migrate.init_app(app, db, render_as_batch=True)
     bcrypt.init_app(app)
 
-    @app.after_request
-    def after_request(response):
-        response.headers.add('Content-Type', 'application/json')
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        response.headers.add('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS')
-        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-        response.headers.add('Access-Control-Expose-Headers', 'Content-Type,Content-Length,Authorization,X-Pagination')
-
-        return response
+    # @app.after_request
+    # def after_request(response):
+    #     response.headers.add('Access-Control-Allow-Origin', '*')
+    #     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+    #     response.headers.add('Access-Control-Allow-Headers', ' *')
+    #     response.headers.add('Access-Control-Expose-Headers', '*')
+    #
+    #     return response
 
     with app.app_context():
         if db.engine.url.drivername == 'sqlite':

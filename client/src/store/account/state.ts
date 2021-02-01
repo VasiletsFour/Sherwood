@@ -6,7 +6,7 @@ export interface AccountState {
         finished: boolean;
         loading: boolean;
         error: string | null;
-        data: AccountApi[] | null;
+        data: AccountApi | null;
     };
 }
 
