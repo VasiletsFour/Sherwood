@@ -1,9 +1,8 @@
 export interface AuthState {
     signUp: boolean | null,
     login: boolean | null,
-    confirm: string | null
+    confirm: { type: string, message: string } | null
     logoutUser: boolean | null
-
 }
 
 export const initialAuthStateState: AuthState = {
