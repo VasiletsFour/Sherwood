@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {TableHead} from "../../";
+import {Loader, TableHead} from "../../";
 import {useHistory} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {AppState} from "../../../store/store";
@@ -38,16 +38,20 @@ export const TeamsTable = () => {
         })
     }
 
-    return (
-        <table className="teamTable">
-            <TableHead classname="team__tableCol team__tableColHead" rowHead={headRow} sortType={sortType}
-                       setSortType={(type: string, kind: "asc" | "desc", kindBool: boolean) => handleSort(type, kind, kindBool)}/>
-            <tbody className="team__tableBody">
-            {list && list.map((item: TeamApi) => (
-                <TableBodyTeam
-                    key={item.id + "teamTable"}
-                    team={item} classname="team"/>))}
-            </tbody>
-        </table>
-    )
+    if (teams.finished && !teams.loading && teams.data) {
+        return (
+            <table className="teamTable">
+                <TableHead classname="team__tableCol team__tableColHead" rowHead={headRow} sortType={sortType}
+                           setSortType={(type: string, kind: "asc" | "desc", kindBool: boolean) => handleSort(type, kind, kindBool)}/>
+                <tbody className="team__tableBody">
+                {list && list.map((item: TeamApi) => (
+                    <TableBodyTeam
+                        key={item.id + "teamTable"}
+                        team={item} classname="team"/>))}
+                </tbody>
+            </table>
+        )
+    }
+
+    return <Loader/>
 }

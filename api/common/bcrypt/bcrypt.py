@@ -10,5 +10,5 @@ class BcryptPass:
         return password.decode()
 
     @staticmethod
-    def checkPass(password: str, hash_pass):
+    def checkPass(password: str, hash_pass: str):
         return bcrypt.check_password_hash(hash_pass, password)
