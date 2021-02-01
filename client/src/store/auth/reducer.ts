@@ -1,9 +1,8 @@
-import {LOGIN_USER, SIGNUP_NEW_USER} from "./action";
+import {CONFIRM_USER, LOGIN_USER, SIGNUP_NEW_USER} from "./action";
 import {AuthState, initialAuthStateState} from "./state";
 
 
 export function authReducer(state: AuthState = initialAuthStateState as AuthState, action: any): AuthState {
-
     switch (action.type) {
         case SIGNUP_NEW_USER:
             return {
@@ -14,6 +13,11 @@ export function authReducer(state: AuthState = initialAuthStateState as AuthStat
             return {
                 ...state,
                 login: action.message
+            }
+        case CONFIRM_USER:
+            return {
+                ...state,
+                confirm: action.message
             }
     }
 

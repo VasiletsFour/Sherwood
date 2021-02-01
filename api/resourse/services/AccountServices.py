@@ -1,11 +1,11 @@
-from resourse.repositories.PlayerRepositories import PlayerRepositories
+from resourse.repositories.AccountRepositories import AccountRepositories
 from resourse.services.Services import Services
 
 
-class PlayerServices(Services):
+class AccountServices(Services):
     def __init__(self):
         super().__init__()
-        self.repository = PlayerRepositories()
+        self.repository = AccountRepositories()
 
     def get(self):
         return self.repository.get()

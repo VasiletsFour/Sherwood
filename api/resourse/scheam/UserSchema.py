@@ -6,6 +6,11 @@ class UserSchema(Schema):
     firstname = fields.Str()
     surname = fields.Str()
     email = fields.Str()
+    b_day = fields.Int()
+    number = fields.Int()
+    password = fields.Str()
+    player_id = fields.Int()
+    role = fields.Bool()
 
 
 user_schema = UserSchema()

@@ -8,8 +8,10 @@ import {leagueReducer, LeagueSaga, LeagueState} from "./league";
 import {teamReducer, TeamSaga, TeamState} from "./team"
 import {authReducer, AuthSaga, AuthState} from "./auth"
 import {seasonReducer, SeasonSaga, SeasonState} from "./season"
+import {accountReducer, AccountSaga, AccountState} from "./account"
 
 export interface AppState {
+    accountState: AccountState;
     authState: AuthState;
     blogState: BlogState;
     leagueState: LeagueState;
@@ -23,6 +25,7 @@ const composeEnhancers = (window as any)["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"]
 const sagaMiddleware = createSagaMiddleware();
 
 const appReducer = combineReducers<AppState>({
+    accountState: accountReducer,
     authState: authReducer,
     blogState: blogReducer,
     leagueState: leagueReducer,
@@ -41,6 +44,7 @@ export const store = createStore(
 
 export default function* rootSaga() {
     yield all([
+        AccountSaga(),
         AuthSaga(),
         BlogSaga(),
         LeagueSaga(),

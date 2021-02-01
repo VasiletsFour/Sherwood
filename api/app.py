@@ -3,8 +3,8 @@ from flask_migrate import Migrate
 from flask_restful import Api
 
 from common.bcrypt.bcrypt import bcrypt
-from common.marshmallow.marshmallow import create_ma
 from db.connect.connect import connectDd
+from resourse.controller.Account import Account
 from resourse.controller.AdminBlogs import AdminBlogs
 from resourse.controller.AdminLeague import AdminLeague
 from resourse.controller.AdminPlayer import AdminPlayer
@@ -30,8 +30,6 @@ def create_app():
     api = Api(app, prefix="/api")
 
     db = connectDd(app)
-
-    create_ma(app)
 
     Migrate(app, db)
     migrate.init_app(app, db, render_as_batch=True)
@@ -62,7 +60,7 @@ def create_app():
         # from db.models.TeamStatistics import TeamStatistics
         # from db.models.TimeTableModel import TimeTables
         # from db.models.LeagueModel import Leagues
-        from db.models.UserModel import Users
+        # from db.models.UserModel import Users
         # from db.models.BlogModel import Blogs
 
         db.create_all()
@@ -76,7 +74,10 @@ def create_app():
     api.add_resource(Login, "/auth/login")
     api.add_resource(Blogs, "/blogs/")
 
-    # admin
+    # private routes
+    api.add_resource(Account, "/account")
+
+    # admin routes
     api.add_resource(AdminBlogs, "/admin/blogs/", "/admin/blogs/<string:id>")
     api.add_resource(AdminTeam, "/admin/team/", "/admin/team/<string:id>")
     api.add_resource(AdminLeague, "/admin/league", "/admin/league/<string:id>")

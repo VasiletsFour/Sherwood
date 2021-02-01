@@ -1,37 +1,45 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {CONFIRM_ACCOUNT_URL, HOME_URL} from "../../utils/urls";
 import {useHistory} from "react-router-dom";
+import {Loader} from "../loader/Loader";
+import {useDispatch, useSelector} from "react-redux";
+import {AppState} from "../../store/store";
+import {CONFIRM_USER} from "../../store/auth";
 import {InformationBanner} from "../banner/informationBanner/InformationBanner";
-import {getConfirmAccountApi} from "../../request/AccountRequest";
 
 interface Props {
     location: Location;
 }
 
 export const ConfirmAccount = ({location}: Props) => {
+    const dispatch = useDispatch()
     const history = useHistory()
+    const {confirm} = useSelector((state: AppState) => ({confirm: state?.authState?.confirm}));
     const token = location.pathname.replace(CONFIRM_ACCOUNT_URL.urlTemplate + "/", "")
-    const [error, setError] = useState({error: false, text: ""})
     const [openPopup, setOpenPopup] = useState(false)
 
-    error.text === "" && getConfirmAccountApi(token)
-        .then((data) => setError({error: false, text: data}))
-        .catch((error) => setError({error: true, text: error.message}))
+    useEffect(() => {
+        !confirm && dispatch({
+            type: CONFIRM_USER,
+            payload: token,
+        });
+    }, [])
 
     return (
         <div>
-            {!error.error && error.text !== "" &&
+            {confirm && confirm.type !== "Error" &&
             <InformationBanner title={"Потверждено"} text={"Аккаунт готов к работе"} btnText={"ОК"}
                                click={() => history.push(HOME_URL.urlTemplate)}/>}
-            {error.error && error.text !== "" &&
+            {confirm && confirm.type === "Error" &&
             <InformationBanner error={true}
-                               text={error.text === "Not a token" ? "Произашла ошибка, даные не потверждены" : "Время ожидания вышло, повторно отправте сообщение"}
+                               text={confirm.message === "Not a token" ? "Произашла ошибка, даные не потверждены" : "Время ожидания вышло, повторно отправте сообщение"}
                                btnText={"ОК"}
                                click={() => {
-                                   error.text === "Not a token" && history.push(HOME_URL.urlTemplate)
-                                   error.text === "Token Expired" && setOpenPopup(true)
+                                   confirm.message === "Not a token" && history.push(HOME_URL.urlTemplate)
+                                   confirm.message === "Token Expired" && setOpenPopup(true)
                                }}/>}
             {openPopup && <p>work</p>}
+            {!confirm && <Loader/>}
         </div>
     )
 }

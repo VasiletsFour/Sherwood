@@ -1,13 +1,13 @@
 import {call, put, take} from "redux-saga/effects";
 import {CONFIRM_USER, LOGIN_USER, SIGNUP_NEW_USER} from "./action";
 import {SignInBody, SignUpBody} from "../../request/AuthApi";
-import {postSignInApi, postSignUpApi} from "../../request/AuthRequest";
+import {getConfirmAccountApi, postSignInApi, postSignUpApi} from "../../request/AuthRequest";
 import {setToken} from "../../utils/storage"
-import {getConfirmAccountApi} from "../../request/AccountRequest";
 
 export function* AuthSaga() {
     while (true) {
         const action = yield take("*");
+
         switch (action.type) {
             case SIGNUP_NEW_USER:
                 yield call(signupWorker, action.payload);
@@ -62,6 +62,6 @@ function* confirmWorker(token:string) {
         yield call(setToken, response.data)
         yield put({type: CONFIRM_USER, message: response.message})
     } catch (e) {
-        yield put({type: LOGIN_USER, message: e.message})
+        yield put({type: CONFIRM_USER, message: {type:e.name, message:e.message}})
     }
 }

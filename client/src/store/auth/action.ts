@@ -19,5 +19,4 @@ interface ConfirmAccountAction {
     payload: string;
 }
 
-
 export type AuthActionTypes = SignupNewUserAction | LoginUserAction | ConfirmAccountAction;

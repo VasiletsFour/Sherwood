@@ -5,7 +5,7 @@ import {Action} from "redux";
 
 
 export function seasonReducer(state: SeasonState = initialSeasonState as SeasonState, action: Action): SeasonState {
-    // getLeagueAction
+    // getSeasonAction
     if (getSeasonListAction.trigger.is(action)) {
         return {
             ...state,

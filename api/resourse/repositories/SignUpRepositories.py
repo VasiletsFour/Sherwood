@@ -26,7 +26,7 @@ class SignUpRepositories(Repositories):
 
             db.session.commit()
 
-            return Responce(201, {'data': decode_token}).__dict__
+            return Responce(201, {'data': "Account Confirm"}).__dict__
         except ExpiredSignatureError:
             return Responce(400, {'error': 'Token Expired'}).__dict__
         except DecodeError:
