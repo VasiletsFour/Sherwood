@@ -28,7 +28,7 @@ class LoginRepositories(Repositories):
 
             return Responce(201, {'data': token}).__dict__
         except UserNotFound:
-            return Responce(404, {'error': UserNotFound.__dict__}).__dict__
+            return Responce(404, {'error': UserNotFound().text}).__dict__
         except InvalidPassword:
             return Responce(404, {'error': "Invalid password"}).__dict__
 #

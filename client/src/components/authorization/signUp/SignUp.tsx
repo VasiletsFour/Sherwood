@@ -4,6 +4,10 @@ import {InputPassword} from "../../input/inputPassword/InputPassword";
 import {FormInput} from "../../input/formInput/FormInput";
 import {SIGNUP_NEW_USER} from "../../../store/auth";
 
+interface Props {
+    close: () => void
+}
+
 const initialState = {
     firstname: "",
     surname: "",
@@ -11,7 +15,7 @@ const initialState = {
     password: ""
 }
 
-export const SignUp = () => {
+export const SignUp = ({close}: Props) => {
     const dispatch = useDispatch()
     const [state, setState] = useState(initialState)
     const [confirmPassword, setConfirmPassword] = useState<string>("")
@@ -35,6 +39,8 @@ export const SignUp = () => {
             type: SIGNUP_NEW_USER,
             payload: state,
         });
+
+        close()
     }
 
     return (

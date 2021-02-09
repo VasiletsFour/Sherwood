@@ -1,8 +1,9 @@
 import {call, put, take} from "redux-saga/effects";
-import {CONFIRM_USER, LOGIN_USER, SIGNUP_NEW_USER} from "./action";
+import {CONFIRM_USER, LOGIN_USER, LOGOUT_USER, SIGNUP_NEW_USER} from "./action";
 import {SignInBody, SignUpBody} from "../../request/AuthApi";
 import {getConfirmAccountApi, postSignInApi, postSignUpApi} from "../../request/AuthRequest";
-import {setToken} from "../../utils/storage"
+import {getToken, removeToken, setToken} from "../../utils"
+import {getAccountAction} from "../account";
 
 export function* AuthSaga() {
     while (true) {
@@ -17,6 +18,9 @@ export function* AuthSaga() {
                 break;
             case CONFIRM_USER:
                 yield call(confirmWorker, action.payload);
+                break;
+            case LOGOUT_USER:
+                yield call(logoutWorker);
                 break;
         }
     }
@@ -44,6 +48,7 @@ function* loginWorker(formValues: SignInBody) {
 
         const response = yield call(postSignInApi, formValues);
 
+        yield call(getAccountAction.trigger)
         yield call(setToken, response.data)
         yield put({type: LOGIN_USER, message: true})
     } catch (e) {
@@ -62,6 +67,20 @@ function* confirmWorker(token:string) {
         yield call(setToken, response.data)
         yield put({type: CONFIRM_USER, message: response.message})
     } catch (e) {
-        yield put({type: CONFIRM_USER, message: {type:e.name, message:e.message}})
+        yield put({type: CONFIRM_USER, message: {type: e.name, message: e.message}})
+    }
+}
+
+function* logoutWorker() {
+    try {
+        if (!getToken()) {
+            return
+        }
+
+        yield put(getAccountAction.trigger());
+        yield call(removeToken)
+        yield put({type: CONFIRM_USER, message: true})
+    } catch (e) {
+        yield put({type: CONFIRM_USER, message: {type: e.name, message: e.message}})
     }
 }

@@ -1,26 +1,25 @@
 import React, {useState} from "react"
-import {Link, useHistory} from "react-router-dom";
-import {Authorization, LogoType} from "../";
+import {Link} from "react-router-dom";
+import {Authorization, LogoType, UserMenu} from "../";
 import {FaInstagram, FaSearch, FaUser, FaYoutube} from 'react-icons/fa';
-import {locationGo} from "../../utils/locationGo"
 import {
-    ACCOUNT_PAGE,
     INSTAGRAM_URL,
+    locationGo,
     SCORER_URL,
     TEAMS_URL,
     TIME_TABLE_URL,
     TOURNAMENT_TABLE_URL,
     YOU_TUBE_URL
-} from "../../utils/urls"
+} from "../../utils"
 import "./Header.scss"
 import {useSelector} from "react-redux";
 import {AppState} from "../../store/store";
 
 export const Header = () => {
-    const history = useHistory()
     const {account} = useSelector((state: AppState) => ({account: state?.accountState.account}));
     const [openSearch, setOpenSearch] = useState(false)
     const [openLogin, setOpenLogin] = useState(false)
+    const [openMenu, setOpenMenu] = useState(false)
 
     return (
         <header className="header">
@@ -38,7 +37,10 @@ export const Header = () => {
                     </ul>
                     <div className="header__loginContainer">
                         {account.finished && !account.loading && account.data &&
-                        <FaUser className="header__userIcon" onClick={() => history.push(ACCOUNT_PAGE.urlTemplate)}/>}
+                        <FaUser className="header__userIcon" onClick={() => setOpenMenu(!openMenu)}/>}
+                        {account.finished && !account.loading && account.data && openMenu &&
+                        <UserMenu email={account.data.email} firstname={account.data.firstname}
+                                  surname={account.data.surname} close={() => setOpenMenu(false)}/>}
                         {!account.data &&
                         <p onClick={() => setOpenLogin(!openLogin)} className="header__login">Вход</p>}
                         {openLogin && <Authorization setClose={() => setOpenLogin(!openLogin)}/>}

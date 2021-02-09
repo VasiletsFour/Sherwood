@@ -20,7 +20,7 @@ import {
     TEAMS_URL,
     TIME_TABLE_URL,
     TOURNAMENT_TABLE_URL
-} from "./utils/urls";
+} from "./utils";
 import {store} from "./store/store";
 import {Provider} from "react-redux";
 import history from "./utils/history";

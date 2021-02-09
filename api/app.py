@@ -36,14 +36,14 @@ def create_app():
     migrate.init_app(app, db, render_as_batch=True)
     bcrypt.init_app(app)
 
-    # @app.after_request
-    # def after_request(response):
-    #     response.headers.add('Access-Control-Allow-Origin', '*')
-    #     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
-    #     response.headers.add('Access-Control-Allow-Headers', ' *')
-    #     response.headers.add('Access-Control-Expose-Headers', '*')
-    #
-    #     return response
+    @app.after_request
+    def after_request(response):
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Methods', '*')
+        response.headers.add('Access-Control-Allow-Headers', ' *')
+        response.headers.add('Access-Control-Expose-Headers', '*')
+        #
+        return response
 
     with app.app_context():
         if db.engine.url.drivername == 'sqlite':

@@ -22,8 +22,8 @@ export const Authorization = ({setClose}: Props) => {
                 </div>
                 <div className="authorization__main">
                     <div className="authorization__userContainer"><FaUser/></div>
-                    {!signUp && <SignIn signUp={() => setSignUp(!signUp)}/>}
-                    {signUp && <SignUp/>}
+                    {!signUp && <SignIn close={() => handleClose()} signUp={() => setSignUp(!signUp)}/>}
+                    {signUp && <SignUp close={() => handleClose()}/>}
                 </div>
             </div>
         </ModalLayout>

@@ -1,4 +1,4 @@
-import {CONFIRM_USER, LOGIN_USER, SIGNUP_NEW_USER} from "./action";
+import {CONFIRM_USER, LOGIN_USER, LOGOUT_USER, SIGNUP_NEW_USER} from "./action";
 import {AuthState, initialAuthStateState} from "./state";
 
 
@@ -18,6 +18,11 @@ export function authReducer(state: AuthState = initialAuthStateState as AuthStat
             return {
                 ...state,
                 confirm: action.message
+            }
+        case LOGOUT_USER:
+            return {
+                ...state,
+                logoutUser: action.message
             }
     }
 

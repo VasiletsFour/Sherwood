@@ -11,9 +11,10 @@ const initialState = {
 
 interface Props {
     signUp: () => void
+    close: () => void
 }
 
-export const SignIn = ({signUp}: Props) => {
+export const SignIn = ({signUp, close}: Props) => {
     const dispatch = useDispatch()
     const [state, setState] = useState(initialState)
 
@@ -31,6 +32,8 @@ export const SignIn = ({signUp}: Props) => {
             type: LOGIN_USER,
             payload: state,
         });
+
+        close()
     }
     return (
         <div className="authorization__signIn">
