@@ -1,5 +1,5 @@
-import {SeasonApi} from "../../request/SeasonApi";
-import {defaultState} from "../defaultState";
+import { SeasonApi } from "../../request/SeasonApi";
+import { defaultState } from "../defaultState";
 
 export interface SeasonState {
     seasons: {
@@ -11,5 +11,5 @@ export interface SeasonState {
 }
 
 export const initialSeasonState: SeasonState = {
-    seasons: defaultState,
+    seasons: defaultState
 };

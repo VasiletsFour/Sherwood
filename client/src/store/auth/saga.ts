@@ -1,9 +1,9 @@
-import {call, put, take} from "redux-saga/effects";
-import {CONFIRM_USER, LOGIN_USER, LOGOUT_USER, SIGNUP_NEW_USER} from "./action";
-import {SignInBody, SignUpBody} from "../../request/AuthApi";
-import {getConfirmAccountApi, postSignInApi, postSignUpApi} from "../../request/AuthRequest";
-import {getToken, removeToken, setToken} from "../../utils"
-import {getAccountAction} from "../account";
+import { call, put, take } from "redux-saga/effects";
+import { SignInBody, SignUpBody } from "../../request/AuthApi";
+import { getConfirmAccountApi, postSignInApi, postSignUpApi } from "../../request/AuthRequest";
+import { getToken, removeToken, setToken } from "../../utils";
+import { getAccountAction } from "../account";
+import { CONFIRM_USER, LOGIN_USER, LOGOUT_USER, SIGNUP_NEW_USER } from "./action";
 
 export function* AuthSaga() {
     while (true) {
@@ -26,61 +26,65 @@ export function* AuthSaga() {
     }
 }
 
-
 function* signupWorker(formValues: SignUpBody) {
     try {
         if (!formValues) {
-            return
+            return;
         }
 
         yield call(postSignUpApi, formValues);
-        yield put({type: SIGNUP_NEW_USER, message: true})
-    } catch (e) {
-        yield put({type: SIGNUP_NEW_USER, message: e.message})
+        yield put({ type: SIGNUP_NEW_USER, message: true });
+    } catch (err) {
+        yield put({ type: SIGNUP_NEW_USER, message: err.message });
     }
 }
 
 function* loginWorker(formValues: SignInBody) {
     try {
         if (!formValues) {
-            return
+            return;
         }
 
         const response = yield call(postSignInApi, formValues);
 
-        yield call(getAccountAction.trigger)
-        yield call(setToken, response.data)
-        yield put({type: LOGIN_USER, message: true})
-    } catch (e) {
-        yield put({type: LOGIN_USER, message: e.message})
+        yield call(setToken, response.data);
+        yield put({ type: LOGIN_USER, message: { data: true } });
+    } catch (err) {
+        yield put({ type: LOGIN_USER, message: { err: err.message } });
     }
 }
 
-function* confirmWorker(token:string) {
+function* confirmWorker(token: string) {
     try {
         if (!token) {
-            return
+            return;
         }
 
         const response = yield call(getConfirmAccountApi, token);
 
-        yield call(setToken, response.data)
-        yield put({type: CONFIRM_USER, message: response.message})
+        yield call(setToken, response.data);
+        yield put({ type: CONFIRM_USER, message: response.message });
     } catch (e) {
-        yield put({type: CONFIRM_USER, message: {type: e.name, message: e.message}})
+        yield put({
+            type: CONFIRM_USER,
+            message: { type: e.name, message: e.message }
+        });
     }
 }
 
 function* logoutWorker() {
     try {
         if (!getToken()) {
-            return
+            return;
         }
 
         yield put(getAccountAction.trigger());
-        yield call(removeToken)
-        yield put({type: CONFIRM_USER, message: true})
-    } catch (e) {
-        yield put({type: CONFIRM_USER, message: {type: e.name, message: e.message}})
+        yield call(removeToken);
+        yield put({ type: CONFIRM_USER, message: true });
+    } catch (err) {
+        yield put({
+            type: CONFIRM_USER,
+            message: { type: err.name, message: err.message }
+        });
     }
 }

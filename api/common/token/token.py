@@ -29,10 +29,13 @@ class Token:
 
     def getToken(self, id, role: str):
         try:
+            body = {"role": role, "id": id}
+
             if role == 'user' or role == "admin" and id:
-                auth = jwt.encode({"exp": self.__expiredTime(600), "id": id, "role": role}, self.__key,
+                auth = jwt.encode({"exp": self.__expiredTime(600), **body}, self.__key,
                                   algorithm=self.__algorithms)
-                ref = jwt.encode({"exp": self.__expiredTime(3600), "id": id}, self.__key, algorithm=self.__algorithms)
+                ref = jwt.encode({"exp": self.__expiredTime(3600), **body}, self.__key,
+                                 algorithm=self.__algorithms)
                 tokens = {'auth': auth.decode("utf-8"), 'ref': ref.decode("utf-8")}
 
                 return tokens

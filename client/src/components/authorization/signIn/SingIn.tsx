@@ -1,25 +1,25 @@
-import React, {ChangeEvent, useState} from "react"
-import {InputPassword} from "../../input/inputPassword/InputPassword";
-import {FormInput} from "../../input/formInput/FormInput";
-import {useDispatch} from "react-redux";
-import {LOGIN_USER} from "../../../store/auth";
+import React, { ChangeEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { LOGIN_USER } from "../../../store/auth";
+import { FormInput } from "../../input/formInput/FormInput";
+import { InputPassword } from "../../input/inputPassword/InputPassword";
 
 const initialState = {
     email: "",
-    password: ""
-}
+    password: "",
+};
 
 interface Props {
-    signUp: () => void
-    close: () => void
+    signUp: () => void;
+    close: () => void;
 }
 
-export const SignIn = ({signUp, close}: Props) => {
-    const dispatch = useDispatch()
-    const [state, setState] = useState(initialState)
+export const SignIn = ({ signUp, close }: Props) => {
+    const dispatch = useDispatch();
+    const [state, setState] = useState(initialState);
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const {value, name} = event.target;
+        const { value, name } = event.target;
 
         setState({
             ...state,
@@ -28,28 +28,40 @@ export const SignIn = ({signUp, close}: Props) => {
     };
 
     const handleLogin = () => {
-        state && dispatch({
-            type: LOGIN_USER,
-            payload: state,
-        });
+        state &&
+            dispatch({
+                type: LOGIN_USER,
+                payload: state,
+            });
 
-        close()
-    }
+        close();
+    };
+
     return (
         <div className="authorization__signIn">
             <h1 className="authorization__title">Вxод</h1>
             <div className="authorization__inputContainer">
-                <FormInput classname="authorization" value={state.email}
-                           name="email"
-                           onChange={handleInputChange}
-                           label="Почта" placeholder="Почта"/>
-                <InputPassword classname="authorization" label="Пароль" value={state.password}
-                               name="password"
-                               placeholder="Пароль"
-                               onChange={handleInputChange}/>
+                <FormInput
+                    classname="authorization"
+                    value={state.email}
+                    name="email"
+                    onChange={handleInputChange}
+                    label="Почта"
+                    placeholder="Почта"
+                />
+                <InputPassword
+                    classname="authorization"
+                    label="Пароль"
+                    value={state.password}
+                    name="password"
+                    placeholder="Пароль"
+                    onChange={handleInputChange}
+                />
                 <p onClick={signUp}>Зарегестрироваться</p>
-                <button className="authorization__sendBtn" onClick={() => handleLogin()}>Войти</button>
+                <button className="authorization__sendBtn" onClick={() => handleLogin()}>
+                    Войти
+                </button>
             </div>
         </div>
-    )
-}
+    );
+};

@@ -1,5 +1,5 @@
-import {TeamApi} from "../../request/TeamApi";
-import {defaultState} from "../defaultState";
+import { TeamApi } from "../../request/TeamApi";
+import { defaultState } from "../defaultState";
 
 export interface TeamState {
     teams: {

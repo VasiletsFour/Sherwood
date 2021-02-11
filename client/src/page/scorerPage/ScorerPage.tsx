@@ -1,7 +1,9 @@
-import React from "react"
-import {MainLayout} from "../../layouts"
-import {Scorer} from "../../components";
+import React from "react";
+import { Scorer } from "../../components";
+import { MainLayout } from "../../layouts";
 
 export const ScorerPage = () => (
-    <MainLayout><Scorer/></MainLayout>
-)
+    <MainLayout>
+        <Scorer />
+    </MainLayout>
+);

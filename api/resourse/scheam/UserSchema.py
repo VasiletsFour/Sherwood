@@ -8,7 +8,6 @@ class UserSchema(Schema):
     email = fields.Str()
     b_day = fields.Int()
     number = fields.Int()
-    password = fields.Str()
     player_id = fields.Int()
     role = fields.Str()
 

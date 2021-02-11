@@ -1,37 +1,36 @@
-import {initialLeagueState, LeagueState} from "./state";
-import {getLeagueListAction} from "./action";
-import {errorReducer, okReducer, runningReducer, triggerReducer} from "../reducerType"
-import {Action} from "redux";
-
+import { Action } from "redux";
+import { errorReducer, okReducer, runningReducer, triggerReducer } from "../reducerType";
+import { getLeagueListAction } from "./action";
+import { initialLeagueState, LeagueState } from "./state";
 
 export function leagueReducer(state: LeagueState = initialLeagueState as LeagueState, action: Action): LeagueState {
     // getLeagueAction
     if (getLeagueListAction.trigger.is(action)) {
         return {
             ...state,
-            league: {...triggerReducer},
+            league: { ...triggerReducer }
         };
     }
     if (getLeagueListAction.running.is(action)) {
         return {
             ...state,
-            league: {...runningReducer},
+            league: { ...runningReducer }
         };
     }
     if (getLeagueListAction.ok.is(action)) {
-        const {data} = action["result"]
+        const { data } = action["result"];
 
         return {
             ...state,
-            league: {data, ...okReducer}
+            league: { data, ...okReducer }
         };
     }
     if (getLeagueListAction.error.is(action)) {
-        const {error} = action["error"]
+        const { error } = action["error"];
 
         return {
             ...state,
-            league: {error, ...errorReducer}
+            league: { error, ...errorReducer }
         };
     }
 

@@ -4,10 +4,8 @@ class NotConnectError(Exception):
 
 
 class UserNotFound(Exception):
-    def __init__(self):
-        self.text = "User not found"
+    text = "User not found"
 
 
 class InvalidPassword(Exception):
-    def __init__(self):
-        self.text = "Invalid password"
+    text = "Invalid password"

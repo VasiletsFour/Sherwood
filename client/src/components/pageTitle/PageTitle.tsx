@@ -1,12 +1,12 @@
-import React from "react"
-import "./PageTitle.scss"
+import React from "react";
+import "./PageTitle.scss";
 
 interface Props {
-    title: string
+    title: string;
 }
 
-export const PageTitle = ({title}: Props) => (
+export const PageTitle = ({ title }: Props) => (
     <div className="pageTitle">
         <h1>{title}</h1>
     </div>
-)
+);

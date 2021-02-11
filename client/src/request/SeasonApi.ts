@@ -1,5 +1,5 @@
 export interface SeasonApi {
-    id: number
-    name: string
-    date: number
+    id: number;
+    name: string;
+    date: number;
 }

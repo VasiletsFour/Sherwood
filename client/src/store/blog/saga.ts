@@ -1,8 +1,8 @@
-import {LOCATION_CHANGE} from "connected-react-router";
-import {call, put, take} from "redux-saga/effects";
-import {HOME_URL} from "../../utils/urls";
-import {getBlogsListAction} from "./action";
-import {getBlogsApi} from "../../request/BlogRequest";
+import { LOCATION_CHANGE } from "connected-react-router";
+import { call, put, take } from "redux-saga/effects";
+import { getBlogsApi } from "../../request/BlogRequest";
+import { HOME_URL } from "../../utils";
+import { getBlogsListAction } from "./action";
 
 export function* BlogSaga() {
     while (true) {
@@ -20,8 +20,8 @@ function* getBlogsWorker() {
         yield put(getBlogsListAction.running());
         const response = yield call(getBlogsApi);
 
-        yield put(getBlogsListAction.ok({params: {}, result: response}));
+        yield put(getBlogsListAction.ok({ params: {}, result: response }));
     } catch (e) {
-        yield put(getBlogsListAction.error({params: {}, error: e}));
+        yield put(getBlogsListAction.error({ params: {}, error: e }));
     }
 }

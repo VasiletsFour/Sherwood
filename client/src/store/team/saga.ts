@@ -1,8 +1,8 @@
-import {LOCATION_CHANGE} from "connected-react-router";
-import {call, put, take} from "redux-saga/effects";
-import {TEAMS_URL} from "../../utils/urls";
-import {getTeamListAction} from "./action";
-import {getTeamsApi} from "../../request/TeamRequest";
+import { LOCATION_CHANGE } from "connected-react-router";
+import { call, put, take } from "redux-saga/effects";
+import { getTeamsApi } from "../../request/TeamRequest";
+import { TEAMS_URL } from "../../utils";
+import { getTeamListAction } from "./action";
 
 export function* TeamSaga() {
     while (true) {
@@ -14,18 +14,18 @@ export function* TeamSaga() {
         }
 
         if (getTeamListAction.trigger(action)) {
-            yield call(getTeamWorker, action)
+            yield call(getTeamWorker, action);
         }
     }
 }
 
-function* getTeamWorker({query}: typeof getTeamListAction.trigger.typeInterface) {
+function* getTeamWorker({ query }: typeof getTeamListAction.trigger.typeInterface) {
     try {
         yield put(getTeamListAction.running());
         const response = yield call(getTeamsApi, query);
 
-        yield put(getTeamListAction.ok({params: {query}, result: response}));
+        yield put(getTeamListAction.ok({ params: { query }, result: response }));
     } catch (e) {
-        yield put(getTeamListAction.error({params: {query}, error: e}));
+        yield put(getTeamListAction.error({ params: { query }, error: e }));
     }
 }

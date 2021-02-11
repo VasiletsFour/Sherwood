@@ -1,9 +1,9 @@
-import React from "react"
-import {MainLayout} from "../../layouts/"
-import {TimeTable} from "../../components"
+import React from "react";
+import { MainLayout } from "../../layouts/";
+import { TimeTable } from "../../components";
 
 export const TimeTablePage = () => (
     <MainLayout>
-        <TimeTable/>
+        <TimeTable />
     </MainLayout>
-)
+);

@@ -1,0 +1,39 @@
+.headerMenu {
+  height: 100%;
+  margin: 0 0 0 40px;
+  display: flex;
+  align-items: center;
+
+
+  li {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    height: 70%;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    font-family: "Arial Black", serif;
+    list-style-type: none;
+    padding: 4px 18px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__menuItem {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    color: white;
+  }
+
+  &__menuItemActivate {
+    font-size: 15px;
+    color: darkred;
+  }
+}

@@ -1,5 +1,5 @@
-import {defaultState} from "../defaultState";
-import {AccountApi} from "../../request/AccountApi";
+import { AccountApi } from "../../request/AccountApi";
+import { defaultState } from "../defaultState";
 
 export interface AccountState {
     account: {
@@ -11,5 +11,5 @@ export interface AccountState {
 }
 
 export const initialAccountState: AccountState = {
-    account: defaultState
+    account: defaultState,
 };

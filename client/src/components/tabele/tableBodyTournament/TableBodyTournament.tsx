@@ -1,24 +1,33 @@
-import React, {useState} from "react"
-import {FaCircle, FaSortDown, FaSortUp} from "react-icons/fa";
-import {ChevronDownRight} from "../../icon/chevronDownRight/ChevronDownRight";
-import {TournamentTableApi} from "../../../request/TournamentTableApi"
-import "./TableBodyTournament.scss"
+import React, { useState } from "react";
+import { FaCircle, FaSortDown, FaSortUp } from "react-icons/fa";
+import { TournamentTableApi } from "../../../request/TournamentTableApi";
+import { ChevronDownRight } from "../../icon/chevronDownRight/ChevronDownRight";
+import "./TableBodyTournament.scss";
 
 interface Props {
-    team: TournamentTableApi
-    index: number
-    classname: string
+    team: TournamentTableApi;
+    index: number;
+    classname: string;
 }
 
-export const TableBodyTournament = ({team, index, classname}: Props) => {
-    const [open, setOpen] = useState(false)
+export const TableBodyTournament = ({ team, index, classname }: Props) => {
+    const [open, setOpen] = useState(false);
 
     return (
         <tr className={`${classname} "tableBody`}>
-            <td onClick={() => setOpen(!open)}><ChevronDownRight open={open}/></td>
-            <td>{index + 1} {index + 1 > team.previousPosition ?
-                <FaSortDown className="tableBody__down"/> : index + 1 === team.previousPosition ?
-                    <FaCircle className="tableBody__circle"/> : <FaSortUp className="tableBody__up"/>}</td>
+            <td onClick={() => setOpen(!open)}>
+                <ChevronDownRight open={open} />
+            </td>
+            <td>
+                {index + 1}{" "}
+                {index + 1 > team.previousPosition ? (
+                    <FaSortDown className="tableBody__down" />
+                ) : index + 1 === team.previousPosition ? (
+                    <FaCircle className="tableBody__circle" />
+                ) : (
+                    <FaSortUp className="tableBody__up" />
+                )}
+            </td>
             <td>{team.name}</td>
             <td>{team.win + team.draw + team.lose}</td>
             <td>{team.win}</td>
@@ -26,8 +35,13 @@ export const TableBodyTournament = ({team, index, classname}: Props) => {
             <td>{team.lose}</td>
             <td>{team.goalFor}</td>
             <td>{team.goalAgainst}</td>
-            <td>{team.goalFor > team.goalAgainst && "+"}{team.goalFor - team.goalAgainst}</td>
-            <td><strong>{team.points}</strong></td>
+            <td>
+                {team.goalFor > team.goalAgainst && "+"}
+                {team.goalFor - team.goalAgainst}
+            </td>
+            <td>
+                <strong>{team.points}</strong>
+            </td>
         </tr>
-    )
-}
+    );
+};
