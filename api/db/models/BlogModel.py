@@ -13,10 +13,9 @@ class Blogs(db.Model):
     # img = db.Column(db.String(700), nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey('Users.id'), nullable=False)
 
-    def __init__(self, title, tags, text, img,  author_id):
+    def __init__(self, title, tags, text, author_id):
         self.title = title
         self.tags = tags
         self.text = text
         self.date = TimeStamp().toTimeStamp()
-        # self.img = img
         self.author_id = author_id

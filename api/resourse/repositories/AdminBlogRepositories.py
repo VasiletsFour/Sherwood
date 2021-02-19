@@ -1,3 +1,5 @@
+import werkzeug
+
 from common.responce.responce import Responce
 from common.token.token import Token
 from db.connect.connect import db
@@ -9,9 +11,12 @@ class AdminBlogRepositories(Repositories):
     def __init__(self):
         self.token = Token()
 
+    def get(self, file: werkzeug.datastructures.FileStorage, token: str):
+        return Responce(201, {'data': 'Save file'}).__dict__
+
     def post(self, body: object, token: str):
         try:
-            check = self.token.decode(token)
+            check = self.token.decodeToken(token)
 
             blog = Blogs(**body, author_id=check["id"])
 

@@ -1,11 +1,18 @@
 import React from "react";
-import { LogoType } from "../";
+import {useSelector} from "react-redux";
+import {LogoType} from "../";
+import {AppState} from "../../store/store";
 import "./Footer.scss";
 
-export const Footer = () => (
-    <footer className="footer">
-        <div className="footer__wrapper">
-            <LogoType classname="footer" />
-        </div>
-    </footer>
-);
+export const Footer = () => {
+    const {account} = useSelector((state: AppState) => ({
+        account: state?.accountState.account,
+    }));
+    return (
+        <footer className="footer">
+            <div className="footer__wrapper">
+                <LogoType classname="footer" isAdmin={account.data?.role}/>
+            </div>
+        </footer>
+    );
+}

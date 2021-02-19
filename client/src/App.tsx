@@ -4,7 +4,12 @@ import { Provider } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import {
     AccountPage,
+    AdminBlogPage,
+    AdminLeaguePage,
     AdminPage,
+    AdminPlayerPage,
+    AdminSeasonPage,
+    AdminTeamPage,
     ApplicationListPage,
     CommitteePage,
     ConfirmAccountPage,
@@ -20,7 +25,12 @@ import { store } from "./store/store";
 import "./style/global.scss";
 import {
     ACCOUNT_PAGE,
+    ADMIN_BLOG_PAGE,
+    ADMIN_LEAGUE_PAGE,
     ADMIN_PAGE,
+    ADMIN_PLAYER_PAGE,
+    ADMIN_SEASON_PAGE,
+    ADMIN_TEAM_PAGE,
     APPLICATION_LIST_PAGE,
     COMMITTEE_PAGE,
     CONFIRM_ACCOUNT_URL,
@@ -56,8 +66,26 @@ class App extends React.Component {
                         </PrivateRoute>
 
                         {/*ADMIN*/}
-                        <AdminRoute path={ADMIN_PAGE.urlTemplate}>
+                        <AdminRoute path={ADMIN_PAGE.urlTemplate} excat>
                             <AdminPage />
+                        </AdminRoute>
+                        <AdminRoute path={ADMIN_BLOG_PAGE.urlTemplate} excat>
+                            <AdminBlogPage />
+                        </AdminRoute>
+                        <AdminRoute path={ADMIN_SEASON_PAGE.urlTemplate} excat>
+                            <AdminSeasonPage />
+                        </AdminRoute>
+                        <AdminRoute path={ADMIN_SEASON_PAGE.urlTemplate} excat>
+                            <AdminSeasonPage />
+                        </AdminRoute>
+                        <AdminRoute path={ADMIN_LEAGUE_PAGE.urlTemplate} excat>
+                            <AdminLeaguePage />
+                        </AdminRoute>
+                        <AdminRoute path={ADMIN_TEAM_PAGE.urlTemplate} excat>
+                            <AdminTeamPage />
+                        </AdminRoute>
+                        <AdminRoute path={ADMIN_PLAYER_PAGE.urlTemplate} excat>
+                            <AdminPlayerPage />
                         </AdminRoute>
 
                         <Redirect from={ROOT_URL.urlTemplate} to={HOME_URL.urlTemplate} />

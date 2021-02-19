@@ -1,15 +1,17 @@
 import { LOCATION_CHANGE } from "connected-react-router";
-import { call, put, take } from "redux-saga/effects";
+import { call, put, select, take } from "redux-saga/effects";
 import { getTeamsApi } from "../../request/TeamRequest";
 import { TEAMS_URL } from "../../utils";
+import { AppState } from "../store";
 import { getTeamListAction } from "./action";
 
 export function* TeamSaga() {
     while (true) {
         const action = yield take("*");
+        const state: AppState = yield select();
         const teamUrlMatch = action.type === LOCATION_CHANGE && TEAMS_URL.match(action.payload.location).isMatched;
 
-        if (teamUrlMatch) {
+        if (teamUrlMatch && state.teamState.teams) {
             yield call(getTeamWorker, action);
         }
 

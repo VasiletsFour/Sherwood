@@ -6,10 +6,9 @@ import "./AllNewsImg.scss";
 interface Props {
     news: Blog[];
     setActuallyNum: (index: number) => void;
-    setActuallyNews: (news: Blog) => void;
 }
 
-export const AllNewsImg = ({ news, setActuallyNews, setActuallyNum }: Props) => {
+export const AllNewsImg = ({ news, setActuallyNum }: Props) => {
     const [allNews, setAllNews] = useState<Blog[]>([]);
     const [paginationImg, setPaginationImg] = useState({ first: 0, last: 2 });
 
@@ -48,13 +47,15 @@ export const AllNewsImg = ({ news, setActuallyNews, setActuallyNum }: Props) => 
                         className="allNewsImg__opacity"
                         onClick={() => {
                             setActuallyNum(index);
-                            setActuallyNews(item);
                         }}
                     />
                     <div className="allNewsImg__info">
                         <h3>{item.title}</h3>
                     </div>
-                    <img src={item.img} alt="img news" />
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSud9bFicE5S9XezjnmMTSW7SU5toRQDoaubg&usqp=CAU"
+                        alt="img news"
+                    />
                 </div>
             ))}
             {news.length - 1 > 2 && (

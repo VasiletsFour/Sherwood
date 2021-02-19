@@ -1,6 +1,9 @@
+import werkzeug
+
 from common.responce.responce import Responce
 from resourse.repositories.AdminBlogRepositories import AdminBlogRepositories
 from resourse.services.Services import Services
+from resourse.validator.BlogImgValidate import ALLOWED_EXTENSIONS
 from resourse.validator.BlogValidate import create, update
 
 
@@ -8,6 +11,15 @@ class AdminBlogServices(Services):
     def __init__(self):
         super().__init__()
         self.repository = AdminBlogRepositories()
+
+    def get(self, file: werkzeug.datastructures.FileStorage, token: str):
+        fileType = file.filename.split(".", 1)[1].lower()
+        validate = fileType in ALLOWED_EXTENSIONS
+
+        if validate and token:
+            return self.repository.get(file, token)
+
+        return Responce(400, {'error': 'Empty file'}).__dict__
 
     def post(self, body: object, token: str):
         res = self.valid.validation(create, body)

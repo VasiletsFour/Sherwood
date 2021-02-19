@@ -7,5 +7,7 @@ export interface TeamApi {
 
 export interface TeamQuery {
     type: string;
-    kind: "asc" | "desc";
+    kind: Kind;
 }
+
+type Kind = "asc" | "desc"

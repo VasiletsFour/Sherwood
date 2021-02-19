@@ -8,6 +8,8 @@ class AdminLeagueRepositories(Repositories):
     @staticmethod
     def post(body: object):
         try:
+            assert db.session.query(Leagues).filter(Leagues.season_id == body["season_id"]).first() is None
+
             leagues = [Leagues("Elite-Лига", body["season_id"])]
 
             for i in range(body["count"]):
@@ -17,8 +19,8 @@ class AdminLeagueRepositories(Repositories):
             db.session.commit()
 
             return Responce(201, "create").__dict__
-        except:
-            return Responce(400, 'Create Error').__dict__
+        except AssertionError:
+            return Responce(400, 'Create Error, this league have leagues').__dict__
 
     @staticmethod
     def put(id: str, body: object):
@@ -38,6 +40,6 @@ class AdminLeagueRepositories(Repositories):
             db.session.query(Leagues).filter(Leagues.id == id).delete()
             db.session.commit()
 
-            return Responce(200, "Delete").__dict__
+            return Responce(201, "Delete").__dict__
         except:
             return Responce(400, 'Delete Error').__dict__

@@ -1,7 +1,9 @@
 import React from "react";
+import {LogoType} from "../../logoType/LogoType";
+import "./AdminHeader.scss";
 
 export const AdminHeader = () => (
-    <header className="header adminHeader">
-        <div>w</div>
+    <header className="adminHeader">
+        <LogoType classname="adminHeader" isAdmin="admin"/>
     </header>
 );

@@ -16,7 +16,7 @@ export const Header = () => {
     return (
         <header className="header">
             <div className="header__wrapper">
-                <LogoType classname={"header"} />
+                <LogoType classname="header" isAdmin={account.data?.role} />
                 <div className="header__menuWrapper">
                     <HeaderMenu />
                     <div className="header__loginContainer">
@@ -29,6 +29,7 @@ export const Header = () => {
                                 firstname={account.data.firstname}
                                 role={account.data.role}
                                 surname={account.data.surname}
+                                avatar={account.data.avatar}
                                 close={() => setOpenMenu(false)}
                             />
                         )}
@@ -39,8 +40,8 @@ export const Header = () => {
                         )}
                         {openLogin && <Authorization setClose={() => setOpenLogin(!openLogin)} />}
                         <div className="header__search">
-                            <FaSearch className="header__icon" onClick={() => setOpenSearch(!openSearch)} />
                             {openSearch && <input className="header__inputSearch" type="text" />}
+                            <FaSearch className="header__icon" onClick={() => setOpenSearch(!openSearch)} />
                         </div>
                     </div>
                 </div>

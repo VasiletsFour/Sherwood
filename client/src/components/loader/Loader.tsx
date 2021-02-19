@@ -1,4 +1,8 @@
 import React from "react";
 import "./Loader.scss";
 
-export const Loader = () => <div className="loader">Loading...</div>;
+interface Props {
+    color?: "white";
+}
+
+export const Loader = ({ color }: Props) => <div className={color ? "loaderWhiteBack" : "loader"}>Loading...</div>;

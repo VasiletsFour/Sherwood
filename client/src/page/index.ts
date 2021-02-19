@@ -9,3 +9,8 @@ export * from "./adminPage/AdminPage";
 export * from "./matchResultPage/MatchResultPage";
 export * from "./applicationListPage/ApplicationListPage";
 export * from "./committeePage/CommitteePage";
+export * from "./adminBlogPage/AdminBlogPage";
+export * from "./adminLeaguePage/AdminLeaguePage";
+export * from "./adminPlayerPage/AdminPlayerPage";
+export * from "./adminSeasonPage/AdminSeasonPage";
+export * from "./adminTeamPage/AdminTeamPage";

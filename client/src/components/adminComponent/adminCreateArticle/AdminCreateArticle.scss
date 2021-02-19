@@ -1,0 +1,125 @@
+.adminCreateArticle {
+  width: 800px;
+  height: 620px;
+  background-color: #a7a7a7;
+  padding-bottom: 40px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 100%;
+    height: 30px;
+    background-color: #7e7e7e;
+  }
+
+  &__headerBtn {
+    padding: 0;
+    height: 100%;
+    font-size: 22px;
+    margin: 3px 10px 0 0;
+    color: #696969;
+    border: 0;
+    background-color: transparent;
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+  }
+
+  &__imgContainer {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    height: 240px;
+    width: 400px;
+  }
+
+  &__img {
+    height: 200px;
+    width: 400px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+
+  &__uploadBtn {
+    border: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #4e525b;
+    color: whitesmoke;
+    position: relative;
+  }
+
+
+  &__inputUpload {
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: flex;
+    color: transparent;
+    width: 100%;
+    height: 100%;
+    opacity: 0.0;
+
+
+    &::-webkit-file-upload-button {
+      display: none;
+    }
+  }
+
+
+  &__inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__inputWrapper {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+  }
+
+  &__wrapperArea {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+  }
+
+  &__inputLabel {
+    font-size: 20px;
+  }
+
+  &__input {
+    height: 24px;
+    border-radius: 4px;
+    border: 0;
+    width: 600px;
+  }
+
+  &__textArea {
+    height: 80px;
+    width: 598px;
+  }
+
+
+
+  &__createBtn {
+    margin-top: 20px;
+    width: 300px;
+  }
+}

@@ -1,12 +1,11 @@
-from flask_restful import Resource, request
-
+from resourse.controller.Controller import Controller
 from resourse.services.BlogServices import BlogServices
 
 
-class Blogs(Resource):
+class Blogs(Controller):
     def __init__(self):
+        super().__init__()
         self.service = BlogServices()
-        self.token = request.headers.get("Authorization")
 
     def get(self):
         service = self.service.get()

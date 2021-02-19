@@ -1,0 +1,14 @@
+.changeInput {
+  display: flex;
+  align-items: center;
+
+  &__penIcon {
+    margin-left: 6px;
+    font-size: 14px;
+    color: #392929;
+  }
+
+  &__input {
+    margin-top: 20px;
+  }
+}

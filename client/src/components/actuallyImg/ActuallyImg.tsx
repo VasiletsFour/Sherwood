@@ -11,7 +11,10 @@ export const ActuallyImg = ({ blog, handleActually }: Props) => (
     <div className="home__blogActualNews">
         <h2>{blog.title}</h2>
         <FaArrowLeft onClick={() => handleActually(-1)} className="home__arrowNews home__arrowLeft" />
-        <img src={blog.img} alt="img news" />
+        <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSud9bFicE5S9XezjnmMTSW7SU5toRQDoaubg&usqp=CAU"
+            alt="img news"
+        />
         <FaArrowRight onClick={() => handleActually(1)} className="home__arrowNews home__arrowRight" />
     </div>
 );

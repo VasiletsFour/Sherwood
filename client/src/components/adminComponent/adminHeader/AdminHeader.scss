@@ -1,0 +1,17 @@
+.adminHeader {
+  background-color: #14151a;
+  display: flex;
+  width: 100%;
+  height: 120px;
+  box-shadow: 10px 5px 5px black;
+
+  &__logotypeContainer {
+    margin-left: 40px;
+    background-color: #14151a;
+  }
+
+  &__logotype {
+    margin: 0 0 5px 0;
+    font-size: 60px;
+  }
+}

@@ -25,4 +25,3 @@ class AdminSeason(Controller):
         service = self.service.delete(id)
 
         return service['message'], service["status"]
-

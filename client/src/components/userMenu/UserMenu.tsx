@@ -10,7 +10,7 @@ interface Props {
     email: string;
     firstname: string;
     surname: string;
-    avatar?: string;
+    avatar: string;
     role: string;
     close: () => void;
 }
@@ -27,6 +27,7 @@ export const UserMenu = ({ firstname, surname, email, avatar, role, close }: Pro
                 <div className="userMenu__container" onClick={() => history.push(url.urlTemplate)}>
                     <div className="userMenu__avatarContainer">
                         {!avatar && <FaUser className="userMenu__avatarMissing" />}
+                        {avatar && <img src={avatar} alt="user avatar" className="userMenu__avatar" />}
                     </div>
                     <p className="userMenu__userName">{`${firstname} ${surname}`}</p>
                     <span className="userMenu__userEmail">{email}</span>
