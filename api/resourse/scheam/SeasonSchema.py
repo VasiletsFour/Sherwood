@@ -5,6 +5,7 @@ class SeasonSchema(Schema):
     id = fields.Int()
     name = fields.Str()
     date = fields.Int()
+    activate = fields.Bool()
 
 
 season_schema = SeasonSchema()

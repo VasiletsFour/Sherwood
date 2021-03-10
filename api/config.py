@@ -14,7 +14,7 @@ class Config(object):
     MYSQL_PASSWORD = environ.get("Hft4150tbc4101f")
     MYSQL_port = 3306
     MYSQL_DATABASE = environ.get("Elite")
-    SQLALCHEMY_DATABASE_URI = "mysql://root:Hft4150tbc4101f@localhost/Elite"
+    SQLALCHEMY_DATABASE_URI = "mysql://root:Hft4150tbc4101f@localhost:3306/Elite"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     # bcrypt-key

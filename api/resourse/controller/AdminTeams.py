@@ -9,14 +9,20 @@ class AdminTeam(Controller):
         self.service = AdminTeamServices()
 
     @common.middleware.admin.login_admin
+    def get(self, *args, **kwargs):
+        service = self.service.get()
+
+        return service['message'], service["status"]
+
+    @common.middleware.admin.login_admin
     def post(self, *args, **kwargs):
         service = self.service.post(self.body)
 
         return service['message'], service["status"]
 
     @common.middleware.admin.login_admin
-    def put(self, id):
-        service = self.service.put(id, self.body)
+    def put(self, id=None):
+        service = self.service.putUpdateName(id, self.body) if id else self.service.put(self.body)
 
         return service['message'], service["status"]
 

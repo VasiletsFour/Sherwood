@@ -15,7 +15,7 @@ class SignUpServices(Services):
 
         return Responce(400, {'error': 'Empty token'}).__dict__
 
-    def post(self, body):
+    def post(self, body: dict):
         res = self.valid.validation(create, body)
 
         if res:

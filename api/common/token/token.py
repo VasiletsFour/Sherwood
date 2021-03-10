@@ -30,11 +30,12 @@ class Token:
     def getToken(self, id, role: str):
         try:
             body = {"role": role, "id": id}
+            refExpiredTime = 9900 if role == 'user' else 3600
 
             if role == 'user' or role == "admin" and id:
                 auth = jwt.encode({"exp": self.__expiredTime(600), **body}, self.__key,
                                   algorithm=self.__algorithms)
-                ref = jwt.encode({"exp": self.__expiredTime(3600), **body}, self.__key,
+                ref = jwt.encode({"exp": self.__expiredTime(refExpiredTime), **body}, self.__key,
                                  algorithm=self.__algorithms)
                 tokens = {'auth': auth.decode("utf-8"), 'ref': ref.decode("utf-8")}
 
@@ -43,3 +44,5 @@ class Token:
             raise Exception()
         except:
             return Responce(400, {'error': 'Token Error'}).__dict__
+
+

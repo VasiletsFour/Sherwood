@@ -1,7 +1,7 @@
 from common.responce.responce import Responce
 from resourse.repositories.AdminTeamRepositories import AdminTeamRepositories
 from resourse.services.Services import Services
-from resourse.validator.TeamValidate import create, update
+from resourse.validator.TeamValidate import create, update, updateName
 
 
 class AdminTeamServices(Services):
@@ -9,7 +9,10 @@ class AdminTeamServices(Services):
         super().__init__()
         self.repository = AdminTeamRepositories()
 
-    def post(self, body: object):
+    def get(self):
+        return self.repository.get()
+
+    def post(self, body: dict):
         res = self.valid.validation(create, body)
 
         if res:
@@ -17,11 +20,19 @@ class AdminTeamServices(Services):
 
         return Responce(400, {'error': 'Not valid'}).__dict__
 
-    def put(self, id: str, body: object):
+    def put(self, body: dict):
         res = self.valid.validation(update, body)
 
+        if res:
+            return self.repository.put(body)
+
+        return Responce(400, {'error': 'Not valid'}).__dict__
+
+    def putUpdateName(self, id: str, body: dict):
+        res = self.valid.validation(updateName, body)
+
         if res and id:
-            return self.repository.put(id, body)
+            return self.repository.putUpdateName(id, body)
 
         return Responce(400, {'error': 'Not valid'}).__dict__
 

@@ -1,4 +1,3 @@
-from operator import __getitem__
 from smtplib import SMTPRecipientsRefused
 
 from jwt import ExpiredSignatureError, DecodeError
@@ -20,7 +19,7 @@ class SignUpRepositories(Repositories):
 
     def get(self, token: str):
         try:
-            decode_token = self.token.decode(token)
+            decode_token = self.token.decodeToken(token)
             user = db.session.query(Users).filter(Users.email == decode_token["user"], Users.confirmEmail == False)
             user.update(dict(confirmEmail=True))
 
@@ -32,10 +31,8 @@ class SignUpRepositories(Repositories):
         except DecodeError:
             return Responce(400, {'error': 'Not a token'}).__dict__
 
-    def post(self, body: {__getitem__}):
+    def post(self, body: dict):
         try:
-            body["password"] = self.bcrypt.passHash(body["password"])
-
             user = Users(**body)
             token = self.token.getConfirmToken(body["email"])
 

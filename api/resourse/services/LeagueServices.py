@@ -8,8 +8,7 @@ class LeagueServices(Services):
         super().__init__()
         self.repository = LeagueRepositories()
 
-    def get(self, id: int):
-        if id:
-            return self.repository.get(id)
+    def get(self, id: str):
+        filter_by = id if id else True
 
-        return Responce(400, {'error': 'Not valid'}).__dict__
+        return self.repository.get(filter_by)

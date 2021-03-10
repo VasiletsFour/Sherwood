@@ -7,7 +7,7 @@ class League(Controller):
         super().__init__()
         self.service = LeagueServices()
 
-    def get(self, id):
-        service = self.service.get(id)
+    def get(self):
+        service = self.service.get(self.league_id)
 
         return service['message'], service["status"]

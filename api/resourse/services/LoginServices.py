@@ -9,7 +9,7 @@ class LoginServices(Services):
         super().__init__()
         self.repository = LoginRepositories()
 
-    def post(self, body):
+    def post(self, body: dict):
         res = self.valid.validation(login, body)
 
         if res:

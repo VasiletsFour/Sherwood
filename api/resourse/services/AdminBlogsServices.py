@@ -21,7 +21,7 @@ class AdminBlogServices(Services):
 
         return Responce(400, {'error': 'Empty file'}).__dict__
 
-    def post(self, body: object, token: str):
+    def post(self, body: dict, token: str):
         res = self.valid.validation(create, body)
 
         if res and token:
@@ -29,7 +29,7 @@ class AdminBlogServices(Services):
 
         return Responce(400, {'error': 'Not valid'}).__dict__
 
-    def put(self, id: str, body: object):
+    def put(self, id: str, body: dict):
         res = self.valid.validation(update, body)
 
         if res and id:

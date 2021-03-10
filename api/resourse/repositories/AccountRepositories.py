@@ -7,8 +7,12 @@ from resourse.scheam.UserSchema import user_schema
 
 class AccountRepositories(Repositories):
     @staticmethod
-    def get(id):
+    def get(id: str):
         user = db.session.query(Users).filter(Users.id == id).first()
+
+        if not user:
+            return Responce(404, {"error": "User not found"})
+
         schema = user_schema.dump(user)
 
         # Temporary picture, delete

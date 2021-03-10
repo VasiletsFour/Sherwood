@@ -9,3 +9,11 @@ class UserNotFound(Exception):
 
 class InvalidPassword(Exception):
     text = "Invalid password"
+
+
+class EmailNotConfirm(Exception):
+    text = "Please, confirm your email"
+
+
+class BanAccount(Exception):
+    text = "Your account has been blocked"

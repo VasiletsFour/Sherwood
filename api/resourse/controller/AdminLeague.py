@@ -15,8 +15,8 @@ class AdminLeague(Controller):
         return service['message'], service["status"]
 
     @common.middleware.admin.login_admin
-    def put(self, id):
-        service = self.service.put(id, self.body)
+    def put(self):
+        service = self.service.put(self.body)
 
         return service['message'], service["status"]
 

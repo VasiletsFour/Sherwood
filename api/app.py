@@ -11,6 +11,7 @@ from resourse.controller.AdminLeague import AdminLeague
 from resourse.controller.AdminPlayer import AdminPlayer
 from resourse.controller.AdminSeasone import AdminSeason
 from resourse.controller.AdminTeams import AdminTeam
+from resourse.controller.AdminUser import AdminUser
 from resourse.controller.Blogs import Blogs
 from resourse.controller.League import League
 from resourse.controller.Login import Login
@@ -67,7 +68,7 @@ def create_app():
         db.session.commit()
 
     api.add_resource(Season, "/season/")
-    api.add_resource(League, "/league/<int:id>")
+    api.add_resource(League, "/league/")
     api.add_resource(Team, "/team/")
     api.add_resource(Player, "/player/")
     api.add_resource(SignUp, "/auth/signUp/", "/auth/confirm/<string:token>")
@@ -80,8 +81,9 @@ def create_app():
     # admin routes
     api.add_resource(AdminBlogs, "/admin/blogs/", "/admin/blogs/<string:id>")
     api.add_resource(AdminTeam, "/admin/team/", "/admin/team/<string:id>")
-    api.add_resource(AdminLeague, "/admin/league", "/admin/league/<string:id>")
-    api.add_resource(AdminPlayer, "/admin/player", "/admin/player/<string:id>")
+    api.add_resource(AdminLeague, "/admin/league/", "/admin/league/<string:id>")
+    api.add_resource(AdminPlayer, "/admin/player/", "/admin/player/<string:id>")
     api.add_resource(AdminSeason, "/admin/season/", "/admin/season/<string:id>")
+    api.add_resource(AdminUser, "/admin/user/", "admin/user/<string:id>")
 
     return app

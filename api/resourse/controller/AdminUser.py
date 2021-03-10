@@ -1,31 +1,24 @@
-import flask_restful
+from flask_restful import request
 
 import common.middleware.admin
 from resourse.controller.Controller import Controller
-from resourse.services.AdminBlogsServices import AdminBlogServices
+from resourse.services.AdminUserServices import AdminUserServices
 
 
-class AdminBlogs(Controller):
+class AdminUser(Controller):
     def __init__(self):
         super().__init__()
-        self.service = AdminBlogServices()
+        self.service = AdminUserServices()
 
     @common.middleware.admin.login_admin
     def get(self):
-        file = flask_restful.request.files["file"]
-        service = self.service.get(file, self.token)
-
-        return service['message'], service["status"]
-
-    @common.middleware.admin.login_admin
-    def post(self):
-        service = self.service.post(self.body, self.token)
+        service = self.service.get()
 
         return service['message'], service["status"]
 
     @common.middleware.admin.login_admin
     def put(self, id):
-        service = self.service.put(id, flask_restful.request.get_json())
+        service = self.service.put(id, request.get_json())
 
         return service['message'], service["status"]
 

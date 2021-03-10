@@ -1,4 +1,4 @@
-from db.models.TeamModel import Team
+from db.models.TeamsModel import Teams
 from resourse.repositories.TeamRepositories import TeamRepositories
 from resourse.services.Services import Services
 
@@ -10,17 +10,17 @@ class TeamServices(Services):
 
     def get(self, **kwargs):
         filters = True
-        order = Team.league_id
+        order = Teams.league_id
 
         if kwargs["kind"] == "asc":
-            if kwargs["type"] == "name": order = Team.name
-            if kwargs["type"] == "league_id": order = Team.league_id
+            if kwargs["type"] == "name": order = Teams.name
+            if kwargs["type"] == "league_id": order = Teams.league_id
 
         if kwargs["kind"] == "desc":
-            if kwargs["type"] == "name": order = Team.name.desc()
-            if kwargs["type"] == "league_id": order = Team.league_id.desc()
+            if kwargs["type"] == "name": order = Teams.name.desc()
+            if kwargs["type"] == "league_id": order = Teams.league_id.desc()
 
         if kwargs["name"] or kwargs["league_id"]:
-            filters = (Team.league_id == kwargs["name"]) | (Team.name == kwargs["name"])
+            filters = (Teams.league_id == kwargs["league_id"]) | (Teams.name == kwargs["name"])
 
         return self.repository.get(filters, order)

@@ -10,7 +10,7 @@ class AccountServices(Services):
         self.repository = AccountRepositories()
         self.token = Token()
 
-    def get(self, auth):
+    def get(self, auth: str):
         decode = self.token.decodeToken(auth)
 
         if decode:

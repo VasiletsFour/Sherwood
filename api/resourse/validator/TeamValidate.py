@@ -2,18 +2,29 @@ create = {
     'name': {
         'type': 'string',
         'required': True
-    },
-    "league_id": {
-        'type': 'integer',
-        'required': True
     }
 }
 
 update = {
-    'name': {
-        'type': 'string'
+    'teams': {
+        'type': 'list',
+        'schema': {'type': "integer"}
     },
-    "league_id": {
+    'league_id': {
         'type': 'integer'
+    }
+}
+
+updateName = {
+    'name': {
+        'type': 'string',
+        'required': True
+    }
+}
+
+updateName = {
+    'name': {
+        'type': 'string',
+        'required': True
     }
 }

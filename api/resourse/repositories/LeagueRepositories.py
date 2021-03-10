@@ -8,10 +8,8 @@ from resourse.scheam.LeagueSchema import leagues_schema
 
 class LeagueRepositories(Repositories):
     @staticmethod
-    def get(id: int):
-        leagues = db.session.query(Leagues.name, Leagues.id, Seasons.name.label("season_name"),
-                                   Seasons.id.label("season_id")).filter_by(
-            season_id=id).join("season").all()
+    def get(filter_by):
+        leagues = db.session.query(Seasons).filter(Seasons.active == True, Leagues.season_id == filter_by).all()
         schema = leagues_schema.dump(leagues)
 
         return Responce(200, {'data': schema}).__dict__

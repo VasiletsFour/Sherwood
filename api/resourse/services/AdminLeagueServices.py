@@ -9,7 +9,7 @@ class AdminLeagueServices(Services):
         super().__init__()
         self.repository = AdminLeagueRepositories()
 
-    def post(self, body):
+    def post(self, body: dict):
         res = self.valid.validation(create, body)
 
         if res:
@@ -17,11 +17,11 @@ class AdminLeagueServices(Services):
 
         return Responce(400, {'error': 'Not valid'}).__dict__
 
-    def put(self, id, body):
+    def put(self, body: dict):
         res = self.valid.validation(update, body)
 
-        if res and id:
-            return self.repository.put(id, body)
+        if res:
+            return self.repository.put(body)
 
         return Responce(400, {'error': 'Not valid'}).__dict__
 

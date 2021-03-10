@@ -1,7 +1,7 @@
 from common.responce.responce import Responce
 from db.connect.connect import db
 from db.models.LeagueModel import Leagues
-from db.models.TeamModel import Team
+from db.models.TeamsModel import Teams
 from resourse.repositories.Repositories import Repositories
 from resourse.scheam.TeamSchema import teams_schema
 
@@ -10,7 +10,7 @@ class TeamRepositories(Repositories):
     @staticmethod
     def get(filters, order):
         try:
-            teams = db.session.query(Team.id, Team.name, Leagues.id.label("league_id"),
+            teams = db.session.query(Teams.id, Teams.name, Leagues.id.label("league_id"),
                                      Leagues.name.label("league_name")).filter(filters).order_by(
                 order).join(
                 "league").all()

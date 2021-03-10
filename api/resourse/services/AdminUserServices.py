@@ -1,21 +1,16 @@
 from common.responce.responce import Responce
-from resourse.repositories.AdminPlayerRepositories import AdminPlayerRepositories
+from resourse.repositories.AdminUserRepositories import AdminUserRepositories
 from resourse.services.Services import Services
-from resourse.validator.PlayerValidate import create, update
+from resourse.validator.BlogValidate import update
 
 
-class AdminPlayerServices(Services):
+class AdminUserServices(Services):
     def __init__(self):
         super().__init__()
-        self.repository = AdminPlayerRepositories()
+        self.repository = AdminUserRepositories()
 
-    def post(self, body: dict):
-        res = self.valid.validation(create, body)
-
-        if res:
-            return self.repository.post(body)
-
-        return Responce(400, {'error': 'Not valid'}).__dict__
+    def get(self):
+        return self.repository.get()
 
     def put(self, id: str, body: dict):
         res = self.valid.validation(update, body)

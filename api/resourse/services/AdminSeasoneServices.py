@@ -9,7 +9,7 @@ class AdminSeasonServices(Services):
         super().__init__()
         self.repository = AdminSeasonRepositories()
 
-    def post(self, body: object):
+    def post(self, body: dict):
         res = self.valid.validation(schema, body)
 
         if res:
@@ -17,7 +17,7 @@ class AdminSeasonServices(Services):
 
         return Responce(400, {'error': 'Not valid'}).__dict__
 
-    def put(self, id: str, body: object):
+    def put(self, id: str, body: dict):
         res = self.valid.validation(schema, body)
 
         if res and id:
