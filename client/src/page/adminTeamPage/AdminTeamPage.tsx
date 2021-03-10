@@ -1,8 +1,9 @@
 import React from "react";
-import { AdminLayout } from "../../layouts";
+import {AdminTeam} from "../../components";
+import {AdminLayout} from "../../layouts";
 
 export const AdminTeamPage = () => (
     <AdminLayout>
-        <div>AdminTeam</div>
+        <AdminTeam/>
     </AdminLayout>
 );

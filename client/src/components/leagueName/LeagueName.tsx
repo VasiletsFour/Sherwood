@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { LeagueApi } from "../../request/LeagueApi";
-import { ChevronDownRight } from "../icon/chevronDownRight/ChevronDownRight";
+import React, {useState} from "react";
+import {ChevronDownRight} from "../";
+import {LeagueApi} from "../../request/LeagueApi";
 import "./LeagueName.scss";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
     children: JSX.Element;
 }
 
-export const LeagueName = ({ data, children }: Props) => {
+export const LeagueName = ({data, children}: Props) => {
     const [openChild, setOpenChild] = useState(false);
 
     return (

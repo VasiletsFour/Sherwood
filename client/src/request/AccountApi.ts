@@ -5,10 +5,10 @@ export interface AccountApi {
     firstname: string;
     b_day: number;
     surname: string;
-    role: AccountRole;
+    role: AccountRoleType;
     number: number;
     password: string;
     avatar: string;
 }
 
-export type AccountRole = "admin" | "user";
+export type AccountRoleType = "admin" | "user";

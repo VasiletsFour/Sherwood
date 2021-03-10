@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { FaCircle, FaSortDown, FaSortUp } from "react-icons/fa";
-import { TournamentTableApi } from "../../../request/TournamentTableApi";
-import { ChevronDownRight } from "../../icon/chevronDownRight/ChevronDownRight";
+import React, {useState} from "react";
+import {FaCircle, FaSortDown, FaSortUp} from "react-icons/fa";
+import {ChevronDownRight} from "../../";
+import {TournamentTableApi} from "../../../request/TournamentTableApi";
 import "./TableBodyTournament.scss";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
     classname: string;
 }
 
-export const TableBodyTournament = ({ team, index, classname }: Props) => {
+export const TableBodyTournament = ({team, index, classname}: Props) => {
     const [open, setOpen] = useState(false);
 
     return (

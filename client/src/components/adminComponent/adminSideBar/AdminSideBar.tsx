@@ -7,6 +7,7 @@ import {
     ADMIN_PLAYER_PAGE,
     ADMIN_SEASON_PAGE,
     ADMIN_TEAM_PAGE,
+    ADMIN_USER_PAGE,
 } from "../../../utils";
 import "./AdminSideBar.scss";
 
@@ -18,6 +19,7 @@ export const AdminSideBar = () => {
     const isAdminLeaguePage = ADMIN_LEAGUE_PAGE.match(history.location).isMatched;
     const isAdminTeamPage = ADMIN_TEAM_PAGE.match(history.location).isMatched;
     const isAdminPlayerPage = ADMIN_PLAYER_PAGE.match(history.location).isMatched;
+    const isAdminUserPage = ADMIN_USER_PAGE.match(history.location).isMatched;
     const staticUrl = false;
 
     return (
@@ -93,6 +95,15 @@ export const AdminSideBar = () => {
                                     }`}
                                     to={ADMIN_BLOG_PAGE.urlTemplate}>
                                     Результаты
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    className={`adminSideBar__menuItem ${
+                                        isAdminUserPage && "adminSideBar__menuItemActivate"
+                                    }`}
+                                    to={ADMIN_USER_PAGE.urlTemplate}>
+                                    Юзери
                                 </Link>
                             </li>
                             <li>

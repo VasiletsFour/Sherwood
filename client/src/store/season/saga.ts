@@ -1,25 +1,36 @@
 import {LOCATION_CHANGE} from "connected-react-router";
 import {call, put, select, take} from "redux-saga/effects";
+import {SeasonCreate} from "../../request/SeasonApi";
 import {delSeasonApi, getSeasonApi, postSeasonApi} from "../../request/SeasonRequest";
+import {ADMIN_SEASON_PAGE} from "../../utils";
 import {AppState} from "../store";
 import {delSeasonAction, getSeasonListAction, postSeasonAction} from "./action";
+
+
+interface Params {
+    params: {
+        body?: SeasonCreate,
+        id?: number
+    }
+}
 
 export function* SeasonSaga() {
     while (true) {
         const action = yield take("*");
         const state: AppState = yield select();
-        const seasonUrlMatch = action.type === LOCATION_CHANGE;
+        const adminSeasonUrlMatch = action.type === LOCATION_CHANGE && ADMIN_SEASON_PAGE.match(action.payload.location).isMatched;
 
-        if (seasonUrlMatch && !state.seasonState.seasons.data) {
+
+        if (adminSeasonUrlMatch && !state.seasonState.seasons.data) {
             yield call(getSeasonWorker);
         }
 
         if (postSeasonAction.trigger.is(action)) {
-            yield call(postSeasonWorker, action);
+            yield call(CRUDSeasonWorker, {params: {body: action.body}}, postSeasonApi);
         }
 
         if (delSeasonAction.trigger.is(action)) {
-            yield call(delSeasonWorker, action);
+            yield call(CRUDSeasonWorker, {params: {id: action.id}}, delSeasonApi);
         }
     }
 }
@@ -35,26 +46,13 @@ function* getSeasonWorker() {
     }
 }
 
-function* postSeasonWorker({body}: typeof postSeasonAction.trigger.typeInterface) {
+function* CRUDSeasonWorker({params}: Params, api: (this: unknown, ...args: any) => Promise<string>) {
     try {
-        if (!body) {
+        if (!params.body && !params.id) {
             return
         }
 
-        yield call(postSeasonApi, body);
-        yield call(getSeasonWorker)
-    } catch (e) {
-        yield call(getSeasonWorker)
-    }
-}
-
-function* delSeasonWorker({id}: typeof delSeasonAction.trigger.typeInterface) {
-    try {
-        if (!id) {
-            return
-        }
-
-        yield call(delSeasonApi, id);
+        yield call(api, params);
         yield call(getSeasonWorker)
     } catch (e) {
         yield call(getSeasonWorker)

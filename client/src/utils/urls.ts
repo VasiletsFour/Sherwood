@@ -14,6 +14,7 @@ export const ACCOUNT_PAGE = createPath("/account");
 export const ADMIN_PAGE = createPath("/admin/account");
 export const ADMIN_BLOG_PAGE = createPath<{ id: string }>("/admin/blog");
 export const ADMIN_SEASON_PAGE = createPath<{ id: string }>("/admin/season");
+export const ADMIN_USER_PAGE = createPath<{ id: string }>("/admin/user");
 export const ADMIN_LEAGUE_PAGE = createPath<{ id: string }>("/admin/league");
 export const ADMIN_TEAM_PAGE = createPath<{ id: string }>("/admin/team");
 export const ADMIN_PLAYER_PAGE = createPath<{ id: string }>("/admin/player");

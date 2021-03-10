@@ -4,11 +4,14 @@
   right: 0;
   left: 0;
   display: flex;
+  min-height: 100%;
+
 
   &_default {
+    min-height: 100vh;
+    height: 100%;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     overflow: hidden;
     background: rgba(205, 205, 205, 0.3);
     z-index: 100000;

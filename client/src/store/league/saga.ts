@@ -1,8 +1,23 @@
 import {LOCATION_CHANGE} from "connected-react-router";
 import {call, put, take} from "redux-saga/effects";
-import {getLeagueApi} from "../../request/LeagueRequest";
-import {ADMIN_LEAGUE_PAGE, SCORER_URL, TEAMS_URL, TIME_TABLE_URL, TOURNAMENT_TABLE_URL} from "../../utils";
-import {getLeagueListAction} from "./action";
+import {CreateLeagues, UpdateLeagues} from "../../request/LeagueApi";
+import {delLeagueApi, getLeagueApi, postLeagueApi, putLeagueApi} from "../../request/LeagueRequest";
+import {
+    ADMIN_LEAGUE_PAGE,
+    ADMIN_TEAM_PAGE,
+    SCORER_URL,
+    TEAMS_URL,
+    TIME_TABLE_URL,
+    TOURNAMENT_TABLE_URL
+} from "../../utils";
+import {delLeagueAction, getLeagueListAction, postLeagueAction, putLeagueAction} from "./action";
+
+interface Params {
+    params: {
+        body?: CreateLeagues | UpdateLeagues,
+        id?: number
+    }
+}
 
 export function* LeagueSaga() {
     while (true) {
@@ -15,9 +30,24 @@ export function* LeagueSaga() {
             action.type === LOCATION_CHANGE && TOURNAMENT_TABLE_URL.match(action.payload.location).isMatched;
         const adminLeagueUrlMatch =
             action.type === LOCATION_CHANGE && ADMIN_LEAGUE_PAGE.match(action.payload.location).isMatched;
+        const adminTeamUrlMatch =
+            action.type === LOCATION_CHANGE && ADMIN_TEAM_PAGE.match(action.payload.location).isMatched;
 
-        if (teamUrlMatch || scoreUrlMatch || timeTableUrlMatch || tournamentUrlMatch || adminLeagueUrlMatch) {
+        if (teamUrlMatch || scoreUrlMatch || timeTableUrlMatch || tournamentUrlMatch || adminLeagueUrlMatch || adminTeamUrlMatch) {
             yield call(getLeagueWorker);
+        }
+
+
+        if (postLeagueAction.trigger.is(action)) {
+            yield call(CRUDLeagueAdminWorker, {params: {body: action.body}}, postLeagueApi);
+        }
+
+        if (putLeagueAction.trigger.is(action)) {
+            yield call(CRUDLeagueAdminWorker, {params: {body: action.body}}, putLeagueApi);
+        }
+
+        if (delLeagueAction.trigger.is(action)) {
+            yield call(CRUDLeagueAdminWorker, {params: {id: action.id}}, delLeagueApi);
         }
     }
 }
@@ -27,8 +57,22 @@ function* getLeagueWorker() {
         yield put(getLeagueListAction.running());
         const response = yield call(getLeagueApi);
 
-        yield put(getLeagueListAction.ok({ params: {}, result: response }));
+        yield put(getLeagueListAction.ok({params: {}, result: response}));
     } catch (e) {
-        yield put(getLeagueListAction.error({ params: {}, error: e }));
+        yield put(getLeagueListAction.error({params: {}, error: e}));
+    }
+}
+
+
+function* CRUDLeagueAdminWorker({params}: Params, api: (this: unknown, ...args: any[]) => Promise<string>) {
+    try {
+        if (!params.id && !params.body) {
+            return
+        }
+
+        yield call(api, params)
+        yield call(getLeagueWorker)
+    } catch (e) {
+        yield call(getLeagueWorker)
     }
 }

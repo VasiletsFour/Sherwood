@@ -1,0 +1,85 @@
+.adminLeague {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &__wrapper {
+    margin-top: 10px;
+  }
+
+  &__block {
+    width: 500px;
+    margin: 8px 0;
+    border: 1px solid black;
+    border-radius: 6px;
+  }
+
+  &__topHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    width: 100%;
+  }
+
+  &__title {
+    padding: 24px;
+    color: white;
+    margin: 0;
+  }
+
+  &__topIcon {
+    font-size: 30px;
+    margin-right: 20px;
+    color: white;
+
+    &:hover {
+      transform: scale(1.4);
+      color: darkgreen;
+    }
+  }
+
+  &__input {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__body {
+    background-color: gray;
+    overflow-x: hidden;
+    max-height: 300px;
+
+    &::-webkit-scrollbar {
+      width: 2px;
+      height: 2px;
+    }
+  }
+
+  &__leagueContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+    position: relative;
+  }
+
+  &__league {
+    font-weight: bold;
+    font-size: 22px;
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+  }
+
+  &__leagueIcon {
+    position: absolute;
+    right: 26px;
+    color: darkred;
+
+    &:hover {
+      transform: scale(1.4);
+      color: red;
+    }
+  }
+}

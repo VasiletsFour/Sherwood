@@ -1,23 +1,19 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { AdminBlogItem, Loader } from "../../";
-import { Blog } from "../../../request/BlogApi";
-import { AppState } from "../../../store/store";
-import { AdminCreateArticle } from "../adminCreateArticle/AdminCreateArticle";
+import React, {useState} from "react";
+import {useSelector} from "react-redux";
+import {AdminCreateArticle} from "../";
+import {AdminBlogItem, AdminCreateBtn, Loader} from "../../";
+import {Blog} from "../../../request/BlogApi";
+import {AppState} from "../../../store/store";
 import "./AdminBlog.scss";
 
 export const AdminBlog = () => {
-    const { blogs } = useSelector((state: AppState) => ({ blogs: state.blogState?.blogs }));
+    const {blogs} = useSelector((state: AppState) => ({blogs: state.blogState?.blogs}));
     const [openArticle, setOpenArticle] = useState(false);
 
     return (
         <div className="adminBlog">
             <div className="adminBlog__wrapper">
-                <div className="adminBlog__btnContainer">
-                    <button className="adminBlog__btn" onClick={() => setOpenArticle(true)}>
-                        Создать Новость
-                    </button>
-                </div>
+                <AdminCreateBtn text="Создать Новость" onClick={() => setOpenArticle(true)}/>
                 {openArticle && <AdminCreateArticle setClose={() => setOpenArticle(false)} />}
                 {blogs.finished && !blogs.loading && blogs.data && (
                     <div className="adminBlog__container">

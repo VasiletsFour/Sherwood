@@ -37,27 +37,35 @@
   }
 
   &__imgContainer {
+    position: relative;
     margin-top: 40px;
     display: flex;
     flex-direction: column;
     height: 240px;
     width: 400px;
+    overflow: hidden;
   }
 
   &__img {
-    height: 200px;
-    width: 400px;
+    display: inline-block;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+    width: auto;
+    min-width: 100%;
+    height: auto;
+    min-height: 100%;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
   }
 
   &__uploadBtn {
     border: 0;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
     background-color: #4e525b;
     color: whitesmoke;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
   }
 
 

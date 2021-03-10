@@ -1,7 +1,7 @@
-import { AxiosRequestConfig, AxiosResponse } from "axios";
-import { getToken, setToken } from "../utils";
+import {AxiosRequestConfig} from "axios";
+import {getToken, setToken} from "../utils";
 import getApi from "./api";
-import { expiredRef } from "./expiredRef";
+import {expiredRef} from "./expiredRef";
 
 export const makeGetRequest = async (url: string, options?: AxiosRequestConfig) => {
     try {
@@ -62,7 +62,7 @@ export const makePostRequest = async <TRequest>(url: string, data: TRequest, opt
     }
 };
 
-export const makePutRequest = async <TRequest, TResponse>(
+export const makePutRequest = async <TRequest>(
     url: string,
     data: TRequest,
     options: AxiosRequestConfig = {},
@@ -70,9 +70,25 @@ export const makePutRequest = async <TRequest, TResponse>(
     try {
         const api = await getApi();
 
-        return await api.put<TRequest, AxiosResponse<TResponse>>(url, {
-            ...(options.headers || {}),
+        let put = await api.put(url, data, {
+            headers: {
+                Authorization: `Bearer ${getToken()?.auth || ""}`,
+                RefreshToken: `Bearer ${getToken()?.ref || ""}`,
+            },
+            ...options,
         });
+
+        if (put.data?.newToken) {
+            put = await api.put(url, data, {
+                headers: {
+                    Authorization: `Bearer ${getToken()?.auth || ""}`,
+                    RefreshToken: `Bearer ${getToken()?.ref || ""}`,
+                },
+                ...options,
+            });
+        }
+
+        return put
     } catch (err) {
         return err.response;
     }

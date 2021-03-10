@@ -1,12 +1,12 @@
 import React from "react";
 import {useHistory} from "react-router-dom";
-import {AccountRole} from "../../request/AccountApi";
+import {AccountRoleType} from "../../request/AccountApi";
 import {ACCOUNT_PAGE, ADMIN_PAGE, HOME_URL} from "../../utils";
 import "./LogoType.scss";
 
 interface Props {
     classname: string;
-    isAdmin?: AccountRole
+    isAdmin?: AccountRoleType
 }
 
 export const LogoType = ({classname, isAdmin}: Props) => {

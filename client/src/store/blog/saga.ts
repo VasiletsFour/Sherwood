@@ -1,9 +1,17 @@
-import { LOCATION_CHANGE } from "connected-react-router";
-import { call, put, select, take } from "redux-saga/effects";
-import { delBlogsApi, getBlogsApi, postBlogsApi } from "../../request/BlogRequest";
-import { ADMIN_BLOG_PAGE, HOME_URL } from "../../utils";
-import { AppState } from "../store";
-import { delArticleAction, getBlogsListAction, postCrateArticleAction } from "./action";
+import {LOCATION_CHANGE} from "connected-react-router";
+import {call, put, select, take} from "redux-saga/effects";
+import {BlogCreate} from "../../request/BlogApi";
+import {delBlogsApi, getBlogsApi, postBlogsApi} from "../../request/BlogRequest";
+import {ADMIN_BLOG_PAGE, HOME_URL} from "../../utils";
+import {AppState} from "../store";
+import {delArticleAction, getBlogsListAction, postCrateArticleAction} from "./action";
+
+interface Params {
+    params: {
+        body?: BlogCreate,
+        id?: number
+    }
+}
 
 export function* BlogSaga() {
     while (true) {
@@ -18,11 +26,11 @@ export function* BlogSaga() {
         }
 
         if (postCrateArticleAction.trigger.is(action)) {
-            yield call(postBlogWorker, action);
+            yield call(CRUDBlogWorker, {params: {body: action.body}}, postBlogsApi);
         }
 
         if (delArticleAction.trigger.is(action)) {
-            yield call(deleteBlogWorker, action);
+            yield call(CRUDBlogWorker, {params: {id: action.id}}, delBlogsApi);
         }
     }
 }
@@ -32,40 +40,22 @@ function* getBlogsWorker() {
         yield put(getBlogsListAction.running());
         const response = yield call(getBlogsApi);
 
-        yield put(getBlogsListAction.ok({ params: {}, result: response }));
+        yield put(getBlogsListAction.ok({params: {}, result: response}));
     } catch (e) {
-        yield put(getBlogsListAction.error({ params: {}, error: e }));
+        yield put(getBlogsListAction.error({params: {}, error: e}));
     }
 }
 
-function* postBlogWorker({ body }: typeof postCrateArticleAction.trigger.typeInterface) {
+function* CRUDBlogWorker({params}: Params, api: (this: unknown, ...args: any[]) => Promise<string>) {
     try {
-        if (!body) {
+        if (!params.id && !params.body) {
             return;
         }
 
-        yield put(postCrateArticleAction.running());
-        const response = yield call(postBlogsApi, body);
-
+        yield call(api, params);
         yield call(getBlogsWorker);
-        yield put(postCrateArticleAction.ok({ params: { body }, result: response }));
     } catch (e) {
-        yield put(postCrateArticleAction.error({ params: { body }, error: e }));
+        yield call(getBlogsWorker);
     }
 }
 
-function* deleteBlogWorker({ id }: typeof delArticleAction.trigger.typeInterface) {
-    try {
-        if (!id) {
-            return;
-        }
-
-        yield put(delArticleAction.running());
-        const response = yield call(delBlogsApi, id);
-
-        yield call(getBlogsWorker);
-        yield put(delArticleAction.ok({ params: { id }, result: response }));
-    } catch (e) {
-        yield put(delArticleAction.error({ params: { id }, error: e }));
-    }
-}

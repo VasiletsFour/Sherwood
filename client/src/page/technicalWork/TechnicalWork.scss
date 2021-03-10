@@ -1,0 +1,17 @@
+.technicalWork {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__icon {
+    font-size: 170px;
+    color: #c4c4c4;
+  }
+
+  &__title{
+    color: #393434;
+    font-size: 40px;
+  }
+}

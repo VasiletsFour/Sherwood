@@ -1,6 +1,7 @@
 .adminHeader {
   background-color: #14151a;
   display: flex;
+  justify-content: space-between;
   width: 100%;
   height: 120px;
   box-shadow: 10px 5px 5px black;
@@ -13,5 +14,16 @@
   &__logotype {
     margin: 0 0 5px 0;
     font-size: 60px;
+  }
+
+  &__logOut{
+    font-family: 'Consolas', 'Monaco', 'Bitstream Vera Sans Mono', monospace;
+    margin-right: 30px;
+    font-size: 40px;
+    color: whitesmoke;
+
+    &:hover{
+      color: #9C1A1C;
+    }
   }
 }

@@ -9,7 +9,6 @@
 
 .adminSideBar {
   position: relative;
-  height: 100%;
   width: 230px;
 
   &__chevronContainer {
@@ -17,7 +16,7 @@
     height: 80px;
     background-color: #14151a;
     right: -14px;
-    top: 40%;
+    top: 360px;
     display: flex;
     justify-content: flex-end;
     align-items: center;

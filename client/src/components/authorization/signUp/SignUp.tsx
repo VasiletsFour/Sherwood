@@ -1,8 +1,7 @@
-import React, { ChangeEvent, useState } from "react";
-import { useDispatch } from "react-redux";
-import { SIGNUP_NEW_USER } from "../../../store/auth";
-import { FormInput } from "../../input/formInput/FormInput";
-import { InputPassword } from "../../input/inputPassword/InputPassword";
+import React, {ChangeEvent, useState} from "react";
+import {useDispatch} from "react-redux";
+import {FormInput, InputPassword} from "../../";
+import {SIGNUP_NEW_USER} from "../../../store/auth";
 
 interface Props {
     close: () => void;

@@ -8,9 +8,10 @@ interface Props {
     btnText?: string;
     okClick?: () => void;
     closeClick: () => void;
+    children?: JSX.Element;
 }
 
-export const Alert = ({title, text, btnText, closeClick, okClick}: Props) => {
+export const Alert = ({title, text, btnText, closeClick, okClick, children}: Props) => {
     const [changeColor, setChange] = useState(false)
 
     useEffect(() => {
@@ -24,6 +25,7 @@ export const Alert = ({title, text, btnText, closeClick, okClick}: Props) => {
             <div className="alert">
                 <h2 className={`alert__title ${changeColor && "alert__titleLight"}`}>{title}</h2>
                 <p className="alert__text">{text}</p>
+                {children && children}
                 <div className="alert__btnContainer">
                     {btnText && okClick && (
                         <button className="alert__btnOk alert__btn" onClick={() => okClick()}>

@@ -1,0 +1,23 @@
+.adminUser {
+  margin-top: 20px;
+  margin-left: 620px;
+
+  &__table {
+    width: 100%;
+    border: 1px solid black;
+  }
+
+  th {
+    padding: 20px;
+    text-align: center;
+    border: 1px solid black;
+  }
+
+  &__body {
+    td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid black;
+    }
+  }
+}

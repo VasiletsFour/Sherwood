@@ -1,0 +1,25 @@
+.account {
+  margin-top: 70px;
+  margin-left: 30px;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__nameBlock {
+    margin-left: 20px;
+  }
+
+  &__fullName {
+    color: whitesmoke;
+    font-size: 40px;
+    margin: 30px 0 0 0;
+  }
+
+  &__email {
+    margin-top: 6px;
+    font-size: 20px;
+    color: #9C1A1C;
+  }
+}

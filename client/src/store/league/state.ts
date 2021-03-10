@@ -1,5 +1,5 @@
-import { LeagueApi } from "../../request/LeagueApi";
-import { defaultState } from "../defaultState";
+import {LeagueApi} from "../../request/LeagueApi";
+import {defaultState} from "../defaultState";
 
 export interface LeagueState {
     league: {

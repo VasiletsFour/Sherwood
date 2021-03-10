@@ -1,5 +1,6 @@
 import {makeDeleteRequest, makeGetRequest, makePostRequest} from "../api/makeRequest";
-import {SeasonApi, SeasonCreate} from "./SeasonApi";
+import {delSeasonAction, postSeasonAction} from "../store/season";
+import {SeasonApi} from "./SeasonApi";
 
 //GET season List
 export const getSeasonApi = async (): Promise<SeasonApi[]> => {
@@ -13,7 +14,7 @@ export const getSeasonApi = async (): Promise<SeasonApi[]> => {
 };
 
 //POST season List
-export const postSeasonApi = async (body: SeasonCreate): Promise<string> => {
+export const postSeasonApi = async ({body}: typeof postSeasonAction.trigger.typeInterface): Promise<string> => {
     const {data, error, status} = await makePostRequest("/admin/season", body);
 
     if (status === 201) {
@@ -24,7 +25,7 @@ export const postSeasonApi = async (body: SeasonCreate): Promise<string> => {
 };
 
 //DELETE season List
-export const delSeasonApi = async (id: number): Promise<string> => {
+export const delSeasonApi = async ({id}: typeof delSeasonAction.trigger.typeInterface): Promise<string> => {
     const {data, error, status} = await makeDeleteRequest(`/admin/season/${id}`);
 
     if (status === 201) {
