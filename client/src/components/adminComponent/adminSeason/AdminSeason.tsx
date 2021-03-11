@@ -48,17 +48,16 @@ export const AdminSeason = () => {
                     text={`${nextSeason}-${year}`}
                     closeClick={() => setCreateAlert(false)}
                     okClick={() => create()}
-                    btnText={"Готово"}
-                />
+                    btnText={"Готово"}/>
             )}
             <div>
                 {season.finished && !season.loading && season.data && (
                     <div className="adminSeason__wrapper">
-                        {season.data.map((item: SeasonApi) => (
-                            <div className="adminSeason__seasonItem" key={"adminSeason" + item.id}>
-                                <p className="adminSeason__seasonItemText">{item.name}</p>
+                        {season.data.map(({name, id}: SeasonApi) => (
+                            <div className="adminSeason__seasonItem" key={"adminSeason" + id}>
+                                <p className="adminSeason__seasonItemText">{name}</p>
                                 <FaTimes className="adminSeason__seasonItemIcon"
-                                         onClick={() => dipatch(delSeasonAction.trigger({id: item.id}))}/>
+                                         onClick={() => dipatch(delSeasonAction.trigger({id}))}/>
                             </div>
                         ))}
                     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { FaChevronDown, FaChevronRight } from "react-icons/fa";
+import {FaChevronDown, FaChevronRight} from "react-icons/fa";
 
 interface Props {
     open: boolean;

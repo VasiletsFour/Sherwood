@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {
     APPLICATION_LIST_PAGE,
     COMMITTEE_PAGE,
@@ -9,6 +9,7 @@ import {
     TIME_TABLE_URL,
     TOURNAMENT_TABLE_URL,
 } from "../../utils";
+import {MenuLink} from "../menuLink/MenuLink";
 import "./HeaderMenu.scss";
 
 export const HeaderMenu = () => {
@@ -23,55 +24,13 @@ export const HeaderMenu = () => {
 
     return (
         <ul className="headerMenu">
-            <li>
-                <Link
-                    className={`headerMenu__menuItem ${isTimeTablePage && "headerMenu__menuItemActivate"}`}
-                    to={TIME_TABLE_URL.urlTemplate}>
-                    Расписание
-                </Link>
-            </li>
-            <li>
-                <Link
-                    className={`headerMenu__menuItem ${isMatchResultPage && "headerMenu__menuItemActivate"}`}
-                    to={MATCH_RESULT_PAGE.urlTemplate}>
-                    Результаты матчей
-                </Link>
-            </li>
-            <li>
-                <Link
-                    className={`headerMenu__menuItem ${isTournamentPage && "headerMenu__menuItemActivate"}`}
-                    to={TOURNAMENT_TABLE_URL.urlTemplate}>
-                    Турнирная таблица
-                </Link>
-            </li>
-            <li>
-                <Link
-                    className={`headerMenu__menuItem ${isTeamPage && "headerMenu__menuItemActivate"}`}
-                    to={TEAMS_URL.urlTemplate}>
-                    Команды
-                </Link>
-            </li>
-            <li>
-                <Link
-                    className={`headerMenu__menuItem ${isScorePage && "headerMenu__menuItemActivate"}`}
-                    to={SCORER_URL.urlTemplate}>
-                    Бомбардиры
-                </Link>
-            </li>
-            <li>
-                <Link
-                    className={`headerMenu__menuItem ${isApplicationListPage && "headerMenu__menuItemActivate"}`}
-                    to={APPLICATION_LIST_PAGE.urlTemplate}>
-                    Заявочный лист
-                </Link>
-            </li>
-            <li>
-                <Link
-                    className={`headerMenu__menuItem ${isCommitteePage && "headerMenu__menuItemActivate"}`}
-                    to={COMMITTEE_PAGE.urlTemplate}>
-                    Комитет
-                </Link>
-            </li>
+            <MenuLink page={isTimeTablePage} link={TIME_TABLE_URL} text="Расписание"/>
+            <MenuLink page={isMatchResultPage} link={MATCH_RESULT_PAGE} text="Результаты матчей"/>
+            <MenuLink page={isTournamentPage} link={TOURNAMENT_TABLE_URL} text="Турнирная таблица"/>
+            <MenuLink page={isTeamPage} link={TEAMS_URL} text="Команды"/>
+            <MenuLink page={isScorePage} link={SCORER_URL} text="Бомбардиры"/>
+            <MenuLink page={isApplicationListPage} link={APPLICATION_LIST_PAGE} text="Заявочный лист"/>
+            <MenuLink page={isCommitteePage} link={COMMITTEE_PAGE} text="Комитет"/>
         </ul>
     );
 };

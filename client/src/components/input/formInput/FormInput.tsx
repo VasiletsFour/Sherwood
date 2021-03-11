@@ -1,5 +1,5 @@
 import React from "react";
-import { InputProps } from "../InputApi";
+import {InputProps} from "../InputApi";
 
 export const FormInput = ({ classname, label, ...props }: InputProps) => (
     <div className={`${classname}__inputWrapper`}>

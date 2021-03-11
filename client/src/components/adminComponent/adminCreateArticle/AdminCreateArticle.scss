@@ -19,14 +19,18 @@
     background-color: #7e7e7e;
   }
 
-  &__headerBtn {
+  &__headerBtnClose {
     padding: 0;
     height: 100%;
-    font-size: 22px;
+    font-size: 16px;
     margin: 3px 10px 0 0;
     color: #696969;
     border: 0;
     background-color: transparent;
+
+    &:hover{
+      color: white;
+    }
   }
 
   &__main {
@@ -67,24 +71,6 @@
     bottom: 0;
     width: 100%;
   }
-
-
-  &__inputUpload {
-    top: 0;
-    left: 0;
-    position: absolute;
-    display: flex;
-    color: transparent;
-    width: 100%;
-    height: 100%;
-    opacity: 0.0;
-
-
-    &::-webkit-file-upload-button {
-      display: none;
-    }
-  }
-
 
   &__inputContainer {
     display: flex;

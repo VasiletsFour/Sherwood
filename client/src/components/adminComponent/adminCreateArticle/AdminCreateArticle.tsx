@@ -1,9 +1,10 @@
-import React, { ChangeEvent, useState } from "react";
-import { FaTimes } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { FormInput, SelectTags, TagsMap, TextArea } from "../../";
-import { ModalLayout } from "../../../layouts";
-import { postCrateArticleAction } from "../../../store/blog";
+import React, {ChangeEvent, useState} from "react";
+import {FaTimes} from "react-icons/fa";
+import {useDispatch} from "react-redux";
+import {FormInput, SelectTags, TagsMap, TextArea, UploadImgBtn} from "../../";
+import {ModalLayout} from "../../../layouts";
+import {postCrateArticleAction} from "../../../store/blog";
+import {uploadImg} from "../../../utils";
 import "./AdminCreateArticle.scss";
 
 interface Props {
@@ -28,17 +29,8 @@ export const AdminCreateArticle = ({ setClose }: Props) => {
     const [imgFile, setImgFile] = useState<File | null>(null);
     const [src, setSrc] = useState<string | undefined>(undefined);
 
-    const handleImg = (event: ChangeEvent<HTMLInputElement>) => {
-        const target = event.target as HTMLInputElement;
-        const file = (target.files as FileList)[0];
-        const img = URL.createObjectURL(file);
-
-        setImgFile(file);
-        setSrc(img);
-    };
-
     const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { value, name } = event.target;
+        const {value, name} = event.target;
 
         setState({
             ...state,
@@ -58,12 +50,10 @@ export const AdminCreateArticle = ({ setClose }: Props) => {
         handleSelect();
     };
 
-    const handleSelect = () => {
-        setState({
-            ...state,
-            tags: state.tags,
-        });
-    };
+    const handleSelect = () => setState({
+        ...state,
+        tags: state.tags,
+    })
 
     const handleClick = () => {
         const arr = Array.from(state.tags);
@@ -85,9 +75,7 @@ export const AdminCreateArticle = ({ setClose }: Props) => {
         <ModalLayout>
             <div className="adminCreateArticle">
                 <div className="adminCreateArticle__header">
-                    <button className="adminCreateArticle__headerBtn" onClick={() => setClose()}>
-                        <FaTimes />
-                    </button>
+                    <FaTimes className="adminCreateArticle__headerBtnClose" onClick={() => setClose()}/>
                 </div>
                 <div className="adminCreateArticle__main">
                     <div className="adminCreateArticle__imgContainer">
@@ -99,15 +87,10 @@ export const AdminCreateArticle = ({ setClose }: Props) => {
                             alt=""
                             className="adminCreateArticle__img"
                         />
-                        <button className="adminCreateArticle__uploadBtn">
-                            Загрузить
-                            <input
-                                type="file"
-                                accept="image/png, image/jpeg"
-                                className="adminCreateArticle__inputUpload"
-                                onChange={(event: ChangeEvent<HTMLInputElement>) => handleImg(event)}
-                            />
-                        </button>
+                        <UploadImgBtn
+                            text="Загрузить"
+                            classname={"adminCreateArticle__uploadBtn"}
+                            onChange={(event: ChangeEvent<HTMLInputElement>) => uploadImg(event, (file: File) => setImgFile(file), (src: string) => setSrc(src))}/>
                     </div>
                     <div className="adminCreateArticle__inputContainer">
                         <FormInput

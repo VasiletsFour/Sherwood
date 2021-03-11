@@ -1,5 +1,10 @@
-import {makeGetRequest, makePostRequest, makePutRequest} from "../api/makeRequest";
-import {postTeamAdminCreateAction, putTeamAdminAddAction, putTeamAdminUpdateAction} from "../store/team";
+import {makeDeleteRequest, makeGetRequest, makePostRequest, makePutRequest} from "../api/makeRequest";
+import {
+    delTeamAdminAction,
+    postTeamAdminCreateAction,
+    putTeamAdminAddAction,
+    putTeamAdminUpdateAction
+} from "../store/team";
 import {TeamApi, TeamQuery} from "./TeamApi";
 
 //GET teams List
@@ -47,13 +52,23 @@ export const putTeamAdminApi = async ({body}: typeof putTeamAdminAddAction.trigg
 };
 
 //PUT update team admin
-export const putTeamUpdateAdminApi = async ({
-                                                id,
-                                                body
-                                            }: typeof putTeamAdminUpdateAction.trigger.typeInterface): Promise<string> => {
+export const putTeamUpdateAdminApi = async ({id, body}
+                                                : typeof putTeamAdminUpdateAction.trigger.typeInterface): Promise<string> => {
     const {data, error, status} = await makePutRequest(`/admin/team/${id}`, body);
 
     if (status === 201) {
+        return data;
+    }
+
+    throw new Error(error);
+};
+
+//DELETE team admin
+export const delTeamAdminApi = async ({id, query}
+                                          : typeof delTeamAdminAction.trigger.typeInterface): Promise<string> => {
+    const {data, error, status} = await makeDeleteRequest(`/admin/team/${id}`, query ? {params: query} : {});
+
+    if (status === 200) {
         return data;
     }
 

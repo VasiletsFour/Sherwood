@@ -1,5 +1,5 @@
 import React from "react";
-import { TextAreaProps } from "../InputApi";
+import {TextAreaProps} from "../InputApi";
 
 export const TextArea = ({ classname, label, ...props }: TextAreaProps) => (
     <div className={`${classname}__wrapperArea`}>

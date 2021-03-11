@@ -1,5 +1,5 @@
-import React, { ChangeEvent } from "react";
-import { FaPen } from "react-icons/fa";
+import React, {ChangeEvent} from "react";
+import {FaPen} from "react-icons/fa";
 import "./ChangeInput.scss";
 
 export interface Props {

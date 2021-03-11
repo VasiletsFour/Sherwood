@@ -1,0 +1,15 @@
+.menuLink {
+  &__menuItem {
+    cursor: pointer;
+    font-size: 18px;
+    color: whitesmoke;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+  }
+
+  &__menuItemActivate {
+    font-size: 22px;
+    color: darkred;
+  }
+}

@@ -6,9 +6,9 @@ interface Props {
     onClick: () => void
 }
 
-export const AdminCreateBtn = ({text, onClick}: Props) => (
+export const AdminCreateBtn = ({text, ...props}: Props) => (
     <div className="adminCreateBtn">
-        <button className="adminCreateBtn__btn" onClick={onClick}>
+        <button className="adminCreateBtn__btn" {...props}>
             {text}
         </button>
     </div>

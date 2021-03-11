@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import {FaUser} from "react-icons/fa";
-import {UploadBtn} from "../";
+import {UploadImgBtn} from "../";
+import {uploadImg} from "../../utils";
 import "./UserAvatar.scss";
 
 interface Props {
@@ -21,11 +22,10 @@ export const UserAvatar = ({avatar}: Props) => {
             {avatar ?
                 <img src={showImg || avatar} className="userAvatar__avatar" alt="user-avatar"/> :
                 <FaUser className="userAvatar__icon"/>}
-            {focusAvatar && <UploadBtn
-                text={"Загрузить Фото"}
-                classname={"userAvatar__uploadBtn"}
-                setShowImg={(arg: string) => setShowImg(arg)}
-                setFile={(arg: File) => setFile(arg)}/>}
+            {focusAvatar && <UploadImgBtn
+                text="Загрузить Фото"
+                classname="userAvatar__uploadBtn"
+                onChange={(event: ChangeEvent<HTMLInputElement>) => uploadImg(event, (file: File) => setFile(file), (src: string) => setShowImg(src))}/>}
         </div>
     );
 };

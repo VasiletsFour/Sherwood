@@ -1,14 +1,12 @@
-import React, { useState } from "react";
-import { FaSearch, FaUser } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { Authorization, HeaderMenu, LogoType, SocialIcon, UserMenu } from "../";
-import { AppState } from "../../store/store";
+import React, {useState} from "react";
+import {FaSearch, FaUser} from "react-icons/fa";
+import {useSelector} from "react-redux";
+import {Authorization, HeaderMenu, LogoType, SocialIcon, UserMenu} from "../";
+import {AppState} from "../../store/store";
 import "./Header.scss";
 
 export const Header = () => {
-    const { account } = useSelector((state: AppState) => ({
-        account: state?.accountState.account,
-    }));
+    const {account} = useSelector((state: AppState) => ({account: state?.accountState.account}));
     const [openSearch, setOpenSearch] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
     const [openMenu, setOpenMenu] = useState(false);
@@ -34,9 +32,7 @@ export const Header = () => {
                             />
                         )}
                         {!account.data && (
-                            <p onClick={() => setOpenLogin(!openLogin)} className="header__login">
-                                Вход
-                            </p>
+                            <p onClick={() => setOpenLogin(!openLogin)} className="header__login">Вход</p>
                         )}
                         {openLogin && <Authorization setClose={() => setOpenLogin(!openLogin)} />}
                         <div className="header__search">

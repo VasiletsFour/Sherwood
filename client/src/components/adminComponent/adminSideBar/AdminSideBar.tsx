@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { FaChevronRight } from "react-icons/fa";
-import { Link, useHistory } from "react-router-dom";
+import React, {useState} from "react";
+import {FaChevronRight} from "react-icons/fa";
+import {useHistory} from "react-router-dom";
+import {MenuLink} from "../../";
 import {
     ADMIN_BLOG_PAGE,
     ADMIN_LEAGUE_PAGE,
@@ -34,87 +35,15 @@ export const AdminSideBar = () => {
                     <h1 className="adminSideBar__title">Meню</h1>
                     <div className="adminSideBar__container">
                         <ul>
-                            <li>
-                                <Link
-                                    className={`adminSideBar__menuItem ${
-                                        isAdminBlogPage && "adminSideBar__menuItemActivate"
-                                    }`}
-                                    to={ADMIN_BLOG_PAGE.urlTemplate}>
-                                    Статьи
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    className={`adminSideBar__menuItem ${
-                                        isAdminSeasonPage && "adminSideBar__menuItemActivate"
-                                    }`}
-                                    to={ADMIN_SEASON_PAGE.urlTemplate}>
-                                    Сезон
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    className={`adminSideBar__menuItem ${
-                                        isAdminLeaguePage && "adminSideBar__menuItemActivate"
-                                    }`}
-                                    to={ADMIN_LEAGUE_PAGE.urlTemplate}>
-                                    Лиги
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    className={`adminSideBar__menuItem ${
-                                        isAdminTeamPage && "adminSideBar__menuItemActivate"
-                                    }`}
-                                    to={ADMIN_TEAM_PAGE.urlTemplate}>
-                                    Команды
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    className={`adminSideBar__menuItem ${
-                                        isAdminPlayerPage && "adminSideBar__menuItemActivate"
-                                    }`}
-                                    to={ADMIN_PLAYER_PAGE.urlTemplate}>
-                                    Игроки
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    className={`adminSideBar__menuItem ${
-                                        staticUrl && "adminSideBar__menuItemActivate"
-                                    }`}
-                                    to={ADMIN_BLOG_PAGE.urlTemplate}>
-                                    Расписание
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    className={`adminSideBar__menuItem ${
-                                        staticUrl && "adminSideBar__menuItemActivate"
-                                    }`}
-                                    to={ADMIN_BLOG_PAGE.urlTemplate}>
-                                    Результаты
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    className={`adminSideBar__menuItem ${
-                                        isAdminUserPage && "adminSideBar__menuItemActivate"
-                                    }`}
-                                    to={ADMIN_USER_PAGE.urlTemplate}>
-                                    Юзери
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    className={`adminSideBar__menuItem ${
-                                        staticUrl && "adminSideBar__menuItemActivate"
-                                    }`}
-                                    to={ADMIN_BLOG_PAGE.urlTemplate}>
-                                    Судьи
-                                </Link>
-                            </li>
+                            <MenuLink page={isAdminBlogPage} link={ADMIN_BLOG_PAGE} text="Статьи"/>
+                            <MenuLink page={isAdminSeasonPage} link={ADMIN_SEASON_PAGE} text="Сезон"/>
+                            <MenuLink page={isAdminLeaguePage} link={ADMIN_LEAGUE_PAGE} text="Лиги"/>
+                            <MenuLink page={isAdminTeamPage} link={ADMIN_TEAM_PAGE} text="Команды"/>
+                            <MenuLink page={isAdminPlayerPage} link={ADMIN_PLAYER_PAGE} text="Игроки"/>
+                            <MenuLink page={staticUrl} link={ADMIN_BLOG_PAGE} text="Расписание"/>
+                            <MenuLink page={staticUrl} link={ADMIN_BLOG_PAGE} text="Результаты"/>
+                            <MenuLink page={isAdminUserPage} link={ADMIN_USER_PAGE} text="Юзери"/>
+                            <MenuLink page={staticUrl} link={ADMIN_BLOG_PAGE} text="Судьи"/>
                         </ul>
                     </div>
                 </div>

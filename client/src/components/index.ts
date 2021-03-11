@@ -25,9 +25,9 @@ export * from "./socialIcon/SocialIcon";
 export * from "./headerMenu/HeaderMenu";
 export * from "./tagsMap/TagsMap";
 export * from "./account/Account";
-export * from "./uploadBtn/UploadBtn";
 export * from "./userAvatar/UserAvatar"
 export * from "./buttons/"
 export * from "./nameOpenChild/NameOpenChild"
 export * from "./dropZone/DropZone"
 export * from "./icon/"
+export * from "./menuLink/MenuLink"

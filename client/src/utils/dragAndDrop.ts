@@ -1,10 +1,9 @@
 import React from "react";
-import {TeamApi} from "../request/TeamApi";
 
 export interface DragAndDropState {
     dropDepth: number
     inDropZone: boolean
-    active: null | TeamApi
+    active: null | number
 }
 
 export const dragAndDropDefault = {

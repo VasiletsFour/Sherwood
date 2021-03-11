@@ -1,7 +1,8 @@
 import {LOCATION_CHANGE} from "connected-react-router";
 import {call, put, select, take} from "redux-saga/effects";
-import {AddTeams, CreateTeam} from "../../request/TeamApi";
+import {AddTeams, CreateTeam, TeamDelQuery} from "../../request/TeamApi";
 import {
+    delTeamAdminApi,
     getAdminTeamsApi,
     getTeamsApi,
     postTeamAdminApi,
@@ -12,6 +13,7 @@ import {ADMIN_TEAM_PAGE, TEAMS_URL} from "../../utils";
 
 import {AppState} from "../store";
 import {
+    delTeamAdminAction,
     getTeamAdminListAction,
     getTeamListAction,
     postTeamAdminCreateAction,
@@ -21,8 +23,10 @@ import {
 
 interface Params {
     params: {
+        query?: TeamDelQuery
         body?: CreateTeam | AddTeams,
-        id?: number
+        id?: number,
+        league_id?: number
     }
 }
 
@@ -35,7 +39,7 @@ export function* TeamSaga() {
 
 
         if (teamUrlMatch && state.teamState.teams) {
-            yield call(getTeamWorker, action);
+            yield call(getTeamWorker, action, true);
         }
 
 
@@ -43,8 +47,8 @@ export function* TeamSaga() {
             yield call(getTeamAdminWorker);
         }
 
-        if (getTeamListAction.trigger(action)) {
-            yield call(getTeamWorker, action, true);
+        if (getTeamListAction.trigger.is(action)) {
+            yield call(getTeamWorker, action);
         }
 
         if (postTeamAdminCreateAction.trigger.is(action)) {
@@ -56,15 +60,31 @@ export function* TeamSaga() {
         }
 
         if (putTeamAdminUpdateAction.trigger.is(action)) {
-            yield call(CRUDTeamWorker, {params: {body: action.body, id: action.id}}, putTeamUpdateAdminApi);
+            yield call(CRUDTeamWorker, {
+                params: {
+                    body: action.body,
+                    id: action.id,
+                    league_id: action.league_id
+                }
+            }, putTeamUpdateAdminApi);
+        }
+
+        if (delTeamAdminAction.trigger.is(action)) {
+            yield call(CRUDTeamWorker, {
+                params: {
+                    query: action.query,
+                    id: action.id,
+                    league_id: action.league_id
+                }
+            }, delTeamAdminApi);
         }
     }
 }
 
 function* getTeamWorker({query}: typeof getTeamListAction.trigger.typeInterface, strictUpdate?: boolean) {
     try {
-        if (!query && strictUpdate) return
-
+        if (!query && !strictUpdate) return
+        
         yield put(getTeamListAction.running());
         const response = yield call(getTeamsApi, query);
 
@@ -85,13 +105,16 @@ function* getTeamAdminWorker() {
     }
 }
 
-function* CRUDTeamWorker({params}: Params, api: (this: unknown, ...args: any) => Promise<string>) {
+function* CRUDTeamWorker({params}: Params, api: (this: unknown, ...args: any[]) => Promise<string>) {
     try {
-        if (!params.body && !params.id) {
-            return
-        }
+        if (!params.body && !params.id && !params.query) return
 
         yield call(api, params);
+
+        if (params.league_id) {
+            yield call(getTeamWorker, {query: {league_id: params.league_id}} as typeof getTeamListAction.trigger.typeInterface)
+        }
+
         yield call(getTeamAdminWorker)
     } catch (e) {
         yield call(getTeamAdminWorker)

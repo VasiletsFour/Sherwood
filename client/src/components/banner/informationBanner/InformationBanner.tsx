@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { ModalLayout } from "../../../layouts";
+import React, {useEffect, useState} from "react";
+import {ModalLayout} from "../../../layouts";
 import "./InformationBanner.scss";
 
 interface Props {
@@ -28,9 +28,7 @@ export const InformationBanner = ({ title, error, text, btnText, click }: Props)
                     <h1 className={errorInfo ? "informationBanner__error" : "informationBanner__title"}>Ошибка</h1>
                 )}
                 <p className="informationBanner__text">{text}</p>
-                <button className="informationBanner__btn" onClick={() => click()}>
-                    {btnText}
-                </button>
+                <button className="informationBanner__btn" onClick={() => click()}>{btnText}</button>
             </div>
         </ModalLayout>
     );

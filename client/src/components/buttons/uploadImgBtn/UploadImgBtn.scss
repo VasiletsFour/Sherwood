@@ -1,0 +1,17 @@
+.uploadImgBtn {
+  &__inputUpload {
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: flex;
+    color: transparent;
+    width: 100%;
+    height: 100%;
+    opacity: 0.0;
+
+
+    &::-webkit-file-upload-button {
+      display: none;
+    }
+  }
+}

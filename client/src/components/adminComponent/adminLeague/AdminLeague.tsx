@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from "react";
-import {FaPlus, FaTimes} from "react-icons/fa";
+import {FaPlus} from "react-icons/fa";
 import {useDispatch, useSelector} from "react-redux";
-import {Alert} from "../../";
+import {Alert, DelTimes} from "../../";
 import {LeagueApi, Leagues} from "../../../request/LeagueApi";
 import {delLeagueAction, postLeagueAction, putLeagueAction} from "../../../store/league";
 import {AppState} from "../../../store/store";
@@ -30,7 +30,7 @@ export const AdminLeague = () => {
         }
 
         setOpenCreateLeague(true)
-        return setSeasonId(id)
+        setSeasonId(id)
     }
 
     const createLeagues = () => {
@@ -59,9 +59,10 @@ export const AdminLeague = () => {
                 text={`Укажите количество лиг`}
                 closeClick={() => handleClose()}
                 okClick={() => createLeagues()}
-                btnText={"Готово"}
-            >{<input className="adminLeague__input" type="number" name="league_count" min={1} max={20}
-                     onChange={(event: ChangeEvent<HTMLInputElement>) => setCountLeague(Number(event.target.value))}/>}</Alert>}
+                btnText={"Готово"}>
+                <input className="adminLeague__input" type="number" name="league_count" min={1} max={20}
+                       onChange={(event: ChangeEvent<HTMLInputElement>) => setCountLeague(Number(event.target.value))}/>
+            </Alert>}
             {league.finished &&
             !league.loading &&
             league.data &&
@@ -73,12 +74,14 @@ export const AdminLeague = () => {
                                 onClick={() => handleClick(item.leagues, item.id)}/>
                     </div>
                     <div className="adminLeague__body">
-                        {item.leagues.map((league: Leagues) => <div className="adminLeague__leagueContainer"
-                                                                    key={page + league.id + "child"}>
-                            <p className="adminLeague__league">{league.name} </p>
-                            <FaTimes className="adminLeague__leagueIcon"
-                                     onClick={() => dispatch(delLeagueAction.trigger({id: league.id}))}/>
-                        </div>)}
+                        {item.leagues.map(({name, id}: Leagues) =>
+                            <div className="adminLeague__leagueContainer" key={page + id + "child"}>
+                                <p className="adminLeague__league">{name} </p>
+                                <DelTimes
+                                    onClick={() => dispatch(delLeagueAction.trigger({id}))}
+                                    classname="adminLeague__leagueIcon"
+                                    name={name}/>
+                            </div>)}
                     </div>
                 </div>)}
             </div>}

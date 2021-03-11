@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { InputProps } from "../InputApi";
+import React, {useState} from "react";
+import {FaEye, FaEyeSlash} from "react-icons/fa";
+import {InputProps} from "../InputApi";
 import "./InputPassword.scss";
 
 export const InputPassword = ({ classname, label, ...props }: InputProps) => {
