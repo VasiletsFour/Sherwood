@@ -8,3 +8,8 @@ export interface UserApi {
     role: AccountRoleType
     ban: boolean
 }
+
+export interface UserAdminUpdate {
+    ban?:boolean
+    role?: AccountRoleType
+}

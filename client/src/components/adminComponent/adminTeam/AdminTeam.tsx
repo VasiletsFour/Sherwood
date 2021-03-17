@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AdminTeamBottom, AdminTeamName} from "../";
-import {AdminCreateBtn, Alert, DropZone, NameOpenChild} from "../../";
+import {AdminCreateBtn, Alert, DropZone, FormInput, NameOpenChild} from "../../";
 import {LeagueApi, Leagues} from "../../../request/LeagueApi";
 import {TeamApi} from "../../../request/TeamApi";
 import {AppState} from "../../../store/store";
@@ -45,6 +45,7 @@ export const AdminTeam = () => {
 
     const handleCreate = () => {
         dispatch(postTeamAdminCreateAction.trigger({body: {name: createTeam}}))
+
         handleCloseCreate()
     }
 
@@ -58,18 +59,16 @@ export const AdminTeam = () => {
     return (
         <div className="adminTeam">
             <AdminCreateBtn text="Создать команду" onClick={() => handleCloseCreate()}/>
-            {openCreateTeam && <Alert
+            <Alert
+                openStatus={openCreateTeam}
                 title="Команда"
                 text="Создать новую команду"
                 closeClick={() => handleCloseCreate()}
                 btnText="Создать"
                 okClick={() => handleCreate()}>
-                <input
-                    className="adminTeam__crateTeamInput"
-                    type="text"
-                    value={createTeam}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) => setCreateTeam(event.target.value)}/>
-            </Alert>}
+                <FormInput onChange={(event: ChangeEvent<HTMLInputElement>) => setCreateTeam(event.target.value)}
+                           classname={"adminTeam"} value={createTeam} placeholder={"Название команды"}/>
+            </Alert>
             <div className="adminTeam__content">
                 {leagues.finished && !leagues.loading && leagues.data && leagues.data.map((item: LeagueApi) => (
                     <div

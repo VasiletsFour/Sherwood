@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import {ActuallyImg, AllNewsImg, BlogNews, Loader} from "../";
+import { Spinner } from 'react-bootstrap';
+import {ActuallyImg, AllNewsImg, BlogNews} from "../";
 import {AppState} from "../../store/store";
 import "./Home.scss";
 
@@ -48,7 +49,7 @@ export const Home = () => {
                     />
                 </div>
             ) : (
-                <Loader />
+                <Spinner animation={"border"} variant={"primary"}/>
             )}
         </div>
     );

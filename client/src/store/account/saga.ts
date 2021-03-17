@@ -1,8 +1,8 @@
-import { call, put, select, take } from "redux-saga/effects";
-import { getAccountApi } from "../../request/AccountRequest";
-import { getToken } from "../../utils";
-import { AppState } from "../store";
-import { getAccountAction } from "./action";
+import {call, put, select, take} from "redux-saga/effects";
+import {getAccountApi} from "../../request/AccountRequest";
+import {getToken, removeToken} from "../../utils";
+import {AppState} from "../store";
+import {getAccountAction} from "./action";
 
 export function* AccountSaga() {
     while (true) {
@@ -22,7 +22,7 @@ function* getAccountWorker() {
     try {
         const state: AppState = yield select();
 
-        if (state.accountState.account.data) {
+        if (state.accountState.account.data || !getToken()) {
             return;
         }
 
@@ -31,6 +31,8 @@ function* getAccountWorker() {
 
         yield put(getAccountAction.ok({ params: {}, result: response }));
     } catch (e) {
-        yield put(getAccountAction.error({ params: {}, error: { error: e.message } }));
+        yield call(removeToken)
+
+        yield put(getAccountAction.error({params: {}, error: {error: e.message}}));
     }
 }

@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
+import {Button} from 'react-bootstrap';
 import {useDispatch} from "react-redux";
 import {FormInput, InputPassword} from "../../";
 import {LOGIN_USER} from "../../../store/auth";
@@ -28,10 +29,10 @@ export const SignIn = ({ signUp, close }: Props) => {
 
     const handleLogin = () => {
         state &&
-            dispatch({
-                type: LOGIN_USER,
-                payload: state,
-            });
+        dispatch({
+            type: LOGIN_USER,
+            payload: state,
+        });
 
         close();
     };
@@ -57,9 +58,9 @@ export const SignIn = ({ signUp, close }: Props) => {
                     onChange={handleInputChange}
                 />
                 <p onClick={signUp}>Зарегестрироваться</p>
-                <button className="authorization__sendBtn" onClick={() => handleLogin()}>
+                <Button variant={"outline-dark"} size={"lg"} className="authorization__sendBtn" onClick={() => handleLogin()}>
                     Войти
-                </button>
+                </Button>
             </div>
         </div>
     );

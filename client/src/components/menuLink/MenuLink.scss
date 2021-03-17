@@ -1,15 +1,19 @@
 .menuLink {
+  padding: 8px 0;
+
   &__menuItem {
+    color: rgba(255, 255, 255, 0.5);
     cursor: pointer;
-    font-size: 18px;
-    color: whitesmoke;
-    font-weight: bold;
-    text-transform: uppercase;
+    font-size: 17px;
     font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+
+    &:hover{
+      text-decoration: none;
+      color: white;
+    }
   }
 
   &__menuItemActivate {
-    font-size: 22px;
-    color: darkred;
+    color: white;
   }
 }

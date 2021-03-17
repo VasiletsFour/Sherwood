@@ -1,6 +1,7 @@
 import React from "react";
+import {Spinner} from 'react-bootstrap';
 import {useSelector} from "react-redux";
-import {Loader, UserAvatar} from "../";
+import {UserAvatar} from "../";
 import {AppState} from "../../store/store";
 import "./Account.scss";
 
@@ -24,7 +25,7 @@ export const Account = () => {
                     {account.data.number && <p>Имя Игрока: {account.data.player_id}</p>}
                 </div>
             ) : (
-                <Loader/>
+                <Spinner animation={"border"} variant={'primary'} size={"sm"}/>
             )}
         </div>
     );

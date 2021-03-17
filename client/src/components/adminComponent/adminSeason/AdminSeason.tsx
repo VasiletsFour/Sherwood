@@ -42,14 +42,13 @@ export const AdminSeason = () => {
     return (
         <div className="adminSeason">
             <AdminCreateBtn text="Создать сезон" onClick={() => handleCreate()}/>
-            {createAlert && (
                 <Alert
+                    openStatus={createAlert}
                     title={"Создать новый сезон"}
                     text={`${nextSeason}-${year}`}
                     closeClick={() => setCreateAlert(false)}
                     okClick={() => create()}
                     btnText={"Готово"}/>
-            )}
             <div>
                 {season.finished && !season.loading && season.data && (
                     <div className="adminSeason__wrapper">

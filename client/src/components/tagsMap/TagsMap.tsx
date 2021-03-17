@@ -1,5 +1,6 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
+import { Badge} from 'react-bootstrap';
 import "./TagsMap.scss";
 
 interface Props {
@@ -10,10 +11,10 @@ interface Props {
 export const TagsMap = ({ handleSelectDel, tags }: Props) => (
     <div className="tagsMap">
         {Array.from(tags).map((item: string, index: number) => (
-            <div key={index + item} className="tagsMap__selectItem">
-                <p> {item}</p>
+            <Badge variant={"light"} key={index + item} className="tagsMap__selectItem">
+                <p>{item}</p>
                 <FaTimes onClick={() => handleSelectDel(item)} />
-            </div>
+            </Badge>
         ))}
     </div>
 );

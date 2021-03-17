@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from 'react-bootstrap';
 import "./AdminCreateBtn.scss"
 
 interface Props {
@@ -8,9 +9,9 @@ interface Props {
 
 export const AdminCreateBtn = ({text, ...props}: Props) => (
     <div className="adminCreateBtn">
-        <button className="adminCreateBtn__btn" {...props}>
+        <Button className="adminCreateBtn__btn" variant={'success'} {...props}>
             {text}
-        </button>
+        </Button>
     </div>
 
 );

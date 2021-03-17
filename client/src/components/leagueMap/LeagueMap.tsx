@@ -1,6 +1,7 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import {LeagueName, Loader} from "../";
+import {LeagueName} from "../";
+import { Spinner } from 'react-bootstrap';
 import {LeagueApi} from "../../request/LeagueApi";
 import {AppState} from "../../store/store";
 import "./LeagueMap.scss";
@@ -17,7 +18,7 @@ export const LeagueMap = ({children}: Props) => {
             {league.finished && !league.loading && league.data ? (
                 league.data.map((item: LeagueApi) => (
                     <LeagueName key={item.id + "LeagueName"} data={item}>{children}</LeagueName>))) : (
-                <Loader/>)}
+                <Spinner animation={"border"} variant={"primary"}/>)}
         </div>
     );
 };

@@ -1,17 +1,16 @@
 .tagsMap {
   width: 600px;
   display: flex;
+  padding: 20px;
   margin-top: 20px;
 
   &__selectItem {
     margin-right: 10px;
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
-    border-radius: 4px;
-    background-color: whitesmoke;
     width: 190px;
-    height: 26px;
+    height: 30px;
   }
 
   &__selectItem:last-child {
@@ -20,6 +19,7 @@
   }
 
   &__selectItem p {
+    margin: 0;
     width: 84%;
     text-align: center;
   }

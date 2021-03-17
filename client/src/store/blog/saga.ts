@@ -48,9 +48,7 @@ function* getBlogsWorker() {
 
 function* CRUDBlogWorker({params}: Params, api: (this: unknown, ...args: any[]) => Promise<string>) {
     try {
-        if (!params.id && !params.body) {
-            return;
-        }
+        if (!params.id && !params.body) return;
 
         yield call(api, params);
         yield call(getBlogsWorker);

@@ -1,7 +1,8 @@
 import React, {useState} from "react";
+import {Spinner} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
-import {Loader, TableHead} from "../../";
+import {TableHead} from "../../";
 import {TeamApi, TeamQuery} from "../../../request/TeamApi";
 import {AppState} from "../../../store/store";
 import {getTeamListAction} from "../../../store/team";
@@ -59,5 +60,5 @@ export const TeamsTable = () => {
         );
     }
 
-    return <Loader />;
+    return <Spinner animation={"border"} variant={"primary"} size={"sm"}/>;
 };

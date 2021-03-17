@@ -1,58 +1,28 @@
 .alert {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 500px;
-  height: 270px;
-  border-radius: 20px;
-  border: 8px solid #2c6b20;
-  box-shadow: 5px 4px 4px #222622;
-  background-color: #dedede;
-
-  &__title {
-    font-size: 30px;
-    margin-top: 50px;
-    font-family: 'Consolas', 'Monaco', 'Bitstream Vera Sans Mono', monospace;
-  }
-
-  &__titleLight {
-    color: #fc5f5f;
-  }
-
-  &__text {
-    color: #1e4a12;
-    font-size: 26px;
-    margin-top: 10px;
-    font-weight: 600;
-    font-family: 'Consolas', 'Monaco', 'Bitstream Vera Sans Mono', monospace;
-  }
-
-  &__btnContainer {
-    display: flex;
-    justify-content: space-around;
+  &__header {
     width: 100%;
-    margin-top: 30px;
+    display: flex;
+    justify-content: center !important;
   }
 
-  &__btn {
-    border: 0;
-    border-radius: 20px;
-    width: 150px;
-    height: 30px;
-    color: whitesmoke;
-    font-weight: bold;
+  &__headerTitle {
+    text-align: center;
+  }
+
+  &__bodyText{
     font-size: 20px;
-
-    &:hover{
-      background-color: #2dc2d9;
-    }
+    text-align: center;
+    font-weight: bold;
   }
 
-  &__btnOk {
-    background-color: #1e4a12;
+  &__footer{
+    display: flex;
+    justify-content: center !important;
   }
 
-  &__btnClose {
-    background-color: #721212;
+  &__footerBtnContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
   }
 }

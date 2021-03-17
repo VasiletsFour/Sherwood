@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
-import {InformationBanner, Loader} from "../";
+import {InformationBanner} from "../";
+import { Spinner} from 'react-bootstrap';
 import {CONFIRM_USER} from "../../store/auth";
 import {AppState} from "../../store/store";
 import {CONFIRM_ACCOUNT_URL, HOME_URL} from "../../utils";
@@ -51,7 +52,7 @@ export const ConfirmAccount = ({location}: Props) => {
                 />
             )}
             {openPopup && <p>work</p>}
-            {!confirm && <Loader />}
+            {!confirm && <Spinner animation={"border"} variant={"primary"} />}
         </div>
     );
 };

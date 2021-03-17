@@ -1,14 +1,5 @@
 .adminBlogItem {
-  position: relative;
-  cursor: pointer;
-  padding: 0 20px;
-  width: 600px;
-  border-radius: 20px;
-  border: 4px solid black;
   margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
   &__icon {
     position: absolute;
@@ -16,6 +7,12 @@
     top: 10px;
     color: darkred;
     font-size: 30px;
+  }
+
+  &__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   &__title {
@@ -40,8 +37,8 @@
   }
 
   &__text {
+    margin: 0;
     font-family: 'Consolas', 'Monaco', 'Bitstream Vera Sans Mono', monospace;
-    font-weight: bold;
     font-size: 20px;
   }
 }

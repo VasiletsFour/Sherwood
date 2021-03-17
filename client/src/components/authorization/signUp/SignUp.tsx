@@ -1,4 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
+import {Button} from 'react-bootstrap';
 import {useDispatch} from "react-redux";
 import {FormInput, InputPassword} from "../../";
 import {SIGNUP_NEW_USER} from "../../../store/auth";
@@ -85,9 +86,10 @@ export const SignUp = ({ close }: Props) => {
                     placeholder="Повтарите пароль"
                     onChange={(event: ChangeEvent<HTMLInputElement>) => setConfirmPassword(event.target.value)}
                 />
-                <button className="authorization__sendBtn" onClick={() => handleRequest()}>
+                <Button variant={"outline-dark"} size={"lg"} className="authorization__sendBtn"
+                        onClick={() => handleRequest()}>
                     Зарегестрироваться
-                </button>
+                </Button>
             </div>
         </div>
     );

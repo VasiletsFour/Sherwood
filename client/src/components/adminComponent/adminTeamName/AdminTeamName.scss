@@ -1,6 +1,9 @@
 .adminTeamName {
-  display: flex;
-  align-items: center;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
 
   &__updatePen {
     margin-left: 10px;

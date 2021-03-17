@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from "react";
 import {FaPlus} from "react-icons/fa";
 import {useDispatch, useSelector} from "react-redux";
-import {Alert, DelTimes} from "../../";
+import {Alert, DelTimes, NumberInput} from "../../";
 import {LeagueApi, Leagues} from "../../../request/LeagueApi";
 import {delLeagueAction, postLeagueAction, putLeagueAction} from "../../../store/league";
 import {AppState} from "../../../store/store";
@@ -47,22 +47,27 @@ export const AdminLeague = () => {
 
     return (
         <div className="adminLeague">
-            {openAddLeague && <Alert
+            <Alert
+                openStatus={openAddLeague}
                 title={"Добавить лигу"}
                 text={`В ${addLeague}`}
                 closeClick={() => handleClose()}
                 okClick={() => addNewLeague()}
                 btnText={"Готово"}
-            />}
-            {openCreateLeague && <Alert
+            />
+            <Alert
+                openStatus={openCreateLeague}
                 title={"Добавить лиги"}
                 text={`Укажите количество лиг`}
                 closeClick={() => handleClose()}
                 okClick={() => createLeagues()}
                 btnText={"Готово"}>
-                <input className="adminLeague__input" type="number" name="league_count" min={1} max={20}
-                       onChange={(event: ChangeEvent<HTMLInputElement>) => setCountLeague(Number(event.target.value))}/>
-            </Alert>}
+                <NumberInput
+                    onChange={(event: ChangeEvent<HTMLInputElement>) => setCountLeague(Number(event.target.value))}
+                    max={20}
+                    min={1}
+                />
+            </Alert>
             {league.finished &&
             !league.loading &&
             league.data &&
@@ -78,9 +83,9 @@ export const AdminLeague = () => {
                             <div className="adminLeague__leagueContainer" key={page + id + "child"}>
                                 <p className="adminLeague__league">{name} </p>
                                 <DelTimes
+                                    text={`Вы хотите удалить эту лигу ${name}?`}
                                     onClick={() => dispatch(delLeagueAction.trigger({id}))}
-                                    classname="adminLeague__leagueIcon"
-                                    name={name}/>
+                                    classname="adminLeague__leagueIcon"/>
                             </div>)}
                     </div>
                 </div>)}

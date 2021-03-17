@@ -5,10 +5,10 @@ import {Alert} from "../../alert/Alert";
 interface Props {
     onClick: () => void
     classname: string
-    name: string
+    text: string
 }
 
-export const DelTimes = ({classname, onClick, name}: Props) => {
+export const DelTimes = ({classname, onClick, text}: Props) => {
     const [openAlert, setOpenAlert] = useState(false)
 
     const handleClick = () => {
@@ -20,12 +20,12 @@ export const DelTimes = ({classname, onClick, name}: Props) => {
     return (
         <div>
             <FaTimes className={classname} onClick={() => setOpenAlert(true)}/>
-            {openAlert &&
             <Alert
+                openStatus={openAlert}
                 title="Удалние"
-                text={`Вы хотите удалить ${name}`}
+                text={text}
                 closeClick={() => setOpenAlert(false)}
-                okClick={() => handleClick()} btnText={"Да"}/>}
+                okClick={() => handleClick()} btnText={"Да"}/>
         </div>)
 }
 

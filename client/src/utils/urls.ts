@@ -1,4 +1,4 @@
-import { createPath } from "rd-url-utils";
+import {createPath} from "rd-url-utils";
 
 export const ROOT_URL = createPath("/");
 export const HOME_URL = createPath("/home-page");
@@ -18,5 +18,6 @@ export const ADMIN_USER_PAGE = createPath<{ id: string }>("/admin/user");
 export const ADMIN_LEAGUE_PAGE = createPath<{ id: string }>("/admin/league");
 export const ADMIN_TEAM_PAGE = createPath<{ id: string }>("/admin/team");
 export const ADMIN_PLAYER_PAGE = createPath<{ id: string }>("/admin/player");
+export const ADMIN_REFEREE_PAGE = createPath("/admin/referee");
 export const INSTAGRAM_URL = createPath("https://www.instagram.com/elit_ka__/?igshid=ae3ph64k86z6");
 export const YOU_TUBE_URL = createPath("https://www.youtube.com/channel/UCaZY7apNSO6de12P6CBoQHA");

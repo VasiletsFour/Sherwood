@@ -3,7 +3,7 @@ import {ChevronDownUp} from "../../";
 import {SortType} from "../teamTable/TeamTable";
 
 interface Props {
-    classname: string;
+    classname?: string;
     rowHead: Array<string>;
     sortType?: SortType;
     setSortType?: (type: string, kind?: "asc" | "desc", kindBool?: boolean) => void;
@@ -12,6 +12,7 @@ interface Props {
 export const TableHead = ({classname, rowHead, sortType, setSortType}: Props) => (
     <thead>
     <tr className={classname}>
+        <th>#</th>
         {rowHead.map((item: string, index: number) => (
             <th
                 onClick={() => sortType && setSortType && setSortType(item, sortType.kind, sortType.kindBool)}

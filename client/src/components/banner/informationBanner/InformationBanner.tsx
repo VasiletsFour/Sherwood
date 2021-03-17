@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {ModalLayout} from "../../../layouts";
 import "./InformationBanner.scss";
 
 interface Props {
@@ -21,7 +20,7 @@ export const InformationBanner = ({ title, error, text, btnText, click }: Props)
     }, [error, errorInfo]);
 
     return (
-        <ModalLayout>
+        // <ModalLayout>
             <div className="informationBanner">
                 {title && <h1 className="informationBanner__title">{title}</h1>}
                 {error && (
@@ -30,6 +29,6 @@ export const InformationBanner = ({ title, error, text, btnText, click }: Props)
                 <p className="informationBanner__text">{text}</p>
                 <button className="informationBanner__btn" onClick={() => click()}>{btnText}</button>
             </div>
-        </ModalLayout>
+        // </ModalLayout>
     );
 };

@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {ModalLayout} from "../../layouts";
+import React from "react";
+import {Button, Modal} from 'react-bootstrap';
 import "./Alert.scss";
 
 interface Props {
+    openStatus: boolean
     title: string;
     text: string;
     btnText?: string;
@@ -11,32 +12,26 @@ interface Props {
     children?: JSX.Element;
 }
 
-export const Alert = ({title, text, btnText, closeClick, okClick, children}: Props) => {
-    const [changeColor, setChange] = useState(false)
-
-    useEffect(() => {
-        const interval = setInterval(() => setChange(!changeColor), 1200)
-
-        return () => clearInterval(interval)
-    }, [changeColor])
-
-    return (
-        <ModalLayout>
-            <div className="alert">
-                <h2 className={`alert__title ${changeColor && "alert__titleLight"}`}>{title}</h2>
-                <p className="alert__text">{text}</p>
-                {children && children}
-                <div className="alert__btnContainer">
-                    {btnText && okClick && (
-                        <button className="alert__btnOk alert__btn" onClick={() => okClick()}>
-                            {btnText}
-                        </button>
-                    )}
-                    <button className="alert__btnClose alert__btn" onClick={() => closeClick()}>
-                        Закрыть
-                    </button>
-                </div>
+export const Alert = ({title, text, btnText, closeClick, okClick, openStatus, children}: Props) => (
+    <Modal
+        className="alert"
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered show={openStatus} onHide={closeClick}>
+        <Modal.Header className="alert__header"><Modal.Title
+            className="alert__headerTitle">{title}</Modal.Title></Modal.Header>
+        <Modal.Body>
+            <p className="alert__bodyText">{text}</p>
+            {children && children}
+        </Modal.Body>
+        <Modal.Footer className="alert__footer">
+            <div className="alert__footerBtnContainer">
+                {btnText && okClick && (
+                    <Button onClick={() => okClick()}>
+                        {btnText}
+                    </Button>
+                )}
+                <Button onClick={() => closeClick()}>Закрыть</Button>
             </div>
-        </ModalLayout>
-    );
-}
+        </Modal.Footer>
+    </Modal>);

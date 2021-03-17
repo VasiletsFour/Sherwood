@@ -1,7 +1,7 @@
-import { ConnectedRouter } from "connected-react-router";
+import {ConnectedRouter} from "connected-react-router";
 import React from "react";
-import { Provider } from "react-redux";
-import { Redirect, Route, Switch } from "react-router-dom";
+import {Provider} from "react-redux";
+import {Redirect, Route, Switch} from "react-router-dom";
 import ErrorBoundary from "./errorBoundary/ErrorBoundary";
 import {
     AccountPage,
@@ -9,6 +9,7 @@ import {
     AdminLeaguePage,
     AdminPage,
     AdminPlayerPage,
+    AdminRefereePage,
     AdminSeasonPage,
     AdminTeamPage,
     AdminUserPage,
@@ -22,8 +23,8 @@ import {
     TimeTablePage,
     TournamentTablePage,
 } from "./page";
-import { AdminRoute, PrivateRoute } from "./routes";
-import { store } from "./store/store";
+import {AdminRoute, PrivateRoute} from "./routes";
+import {store} from "./store/store";
 import "./style/global.scss";
 import {
     ACCOUNT_PAGE,
@@ -31,6 +32,7 @@ import {
     ADMIN_LEAGUE_PAGE,
     ADMIN_PAGE,
     ADMIN_PLAYER_PAGE,
+    ADMIN_REFEREE_PAGE,
     ADMIN_SEASON_PAGE,
     ADMIN_TEAM_PAGE,
     ADMIN_USER_PAGE,
@@ -86,16 +88,19 @@ class App extends React.Component {
                                 <AdminLeaguePage />
                             </AdminRoute>
                             <AdminRoute path={ADMIN_TEAM_PAGE.urlTemplate} excat>
-                                <AdminTeamPage />
+                                <AdminTeamPage/>
                             </AdminRoute>
                             <AdminRoute path={ADMIN_PLAYER_PAGE.urlTemplate} excat>
-                                <AdminPlayerPage />
+                                <AdminPlayerPage/>
                             </AdminRoute>
                             <AdminRoute path={ADMIN_USER_PAGE.urlTemplate} excat>
-                                <AdminUserPage />
+                                <AdminUserPage/>
+                            </AdminRoute>
+                            <AdminRoute path={ADMIN_REFEREE_PAGE.urlTemplate} excat>
+                                <AdminRefereePage/>
                             </AdminRoute>
 
-                            <Redirect from={ROOT_URL.urlTemplate} to={HOME_URL.urlTemplate} />
+                            <Redirect from={ROOT_URL.urlTemplate} to={HOME_URL.urlTemplate}/>
                         </Switch>
                     </ConnectedRouter>
                 </Provider>

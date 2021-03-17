@@ -6,7 +6,6 @@ import {ADMIN_SEASON_PAGE} from "../../utils";
 import {AppState} from "../store";
 import {delSeasonAction, getSeasonListAction, postSeasonAction} from "./action";
 
-
 interface Params {
     params: {
         body?: SeasonCreate,
@@ -48,9 +47,7 @@ function* getSeasonWorker() {
 
 function* CRUDSeasonWorker({params}: Params, api: (this: unknown, ...args: any) => Promise<string>) {
     try {
-        if (!params.body && !params.id) {
-            return
-        }
+        if (!params.body && !params.id) return
 
         yield call(api, params);
         yield call(getSeasonWorker)

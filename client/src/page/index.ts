@@ -16,3 +16,4 @@ export * from "./adminSeasonPage/AdminSeasonPage";
 export * from "./adminTeamPage/AdminTeamPage";
 export * from "./adminUserPage/AdminUserPage";
 export * from "./technicalWork/TechnicalWork";
+export * from "./adminReferee/AdminReferee"

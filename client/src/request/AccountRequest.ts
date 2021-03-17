@@ -8,5 +8,6 @@ export const getAccountApi = async (): Promise<string> => {
         return data;
     }
 
+
     throw new Error("Something wrong");
 }

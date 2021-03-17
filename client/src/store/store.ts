@@ -4,12 +4,14 @@ import createSagaMiddleware from "redux-saga";
 import {all} from "redux-saga/effects";
 import history from "../utils/history";
 import {accountReducer, AccountSaga, AccountState} from "./account";
-import {userReducer, UserSaga, UserState} from "./user";
 import {authReducer, AuthSaga, AuthState} from "./auth";
 import {blogReducer, BlogSaga, BlogState} from "./blog";
 import {leagueReducer, LeagueSaga, LeagueState} from "./league";
+import {playerReducer, PlayerSaga, PlayerState} from "./player";
+import {refereeReducer, RefereeSaga, RefereeState} from "./referee";
 import {seasonReducer, SeasonSaga, SeasonState} from "./season";
 import {teamReducer, TeamSaga, TeamState} from "./team";
+import {userReducer, UserSaga, UserState} from "./user";
 
 export interface AppState {
     accountState: AccountState;
@@ -19,6 +21,8 @@ export interface AppState {
     seasonState: SeasonState;
     teamState: TeamState;
     userState: UserState;
+    refereeState: RefereeState;
+    playerState: PlayerState;
     router: any;
 }
 
@@ -34,7 +38,9 @@ const appReducer = combineReducers<AppState>({
     seasonState: seasonReducer,
     teamState: teamReducer,
     userState: userReducer,
-    router: connectRouter(history),
+    refereeState: refereeReducer,
+    playerState: playerReducer,
+    router: connectRouter(history)
 });
 
 const rootReducer = (state: AppState | undefined, action: AnyAction) => appReducer(state, action);
@@ -52,6 +58,8 @@ export default function* rootSaga() {
         BlogSaga(),
         LeagueSaga(),
         SeasonSaga(),
+        RefereeSaga(),
+        PlayerSaga(),
         TeamSaga()]);
 }
 

@@ -7,9 +7,10 @@ interface Props {
     onClick: (body: CreateTeam) => void
     classname: string
     previousValue: string
+    title: string
 }
 
-export const UpdatePen = ({classname, onClick, previousValue}: Props) => {
+export const UpdatePen = ({classname, onClick, previousValue, title}: Props) => {
     const [value, setValue] = useState(previousValue)
     const [openAlert, setOpenAlert] = useState(false)
 
@@ -22,14 +23,14 @@ export const UpdatePen = ({classname, onClick, previousValue}: Props) => {
     return (
         <div>
             <FaPen className={classname} onClick={() => setOpenAlert(true)}/>
-            {openAlert &&
             <Alert
-                title="Изменить название команды"
+                openStatus={openAlert}
+                title={title}
                 text={`Текущее название ${previousValue}`}
                 closeClick={() => setOpenAlert(false)}
                 okClick={() => handleClick()} btnText={"Ok"}>
                 <input value={value} onChange={(event) => setValue(event.target.value)}/>
-            </Alert>}
+            </Alert>
         </div>)
 }
 

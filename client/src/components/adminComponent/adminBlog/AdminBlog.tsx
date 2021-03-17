@@ -1,7 +1,8 @@
 import React, {useState} from "react";
+import {Spinner} from 'react-bootstrap';
 import {useSelector} from "react-redux";
 import {AdminCreateArticle} from "../";
-import {AdminBlogItem, AdminCreateBtn, Loader} from "../../";
+import {AdminBlogItem, AdminCreateBtn} from "../../";
 import {Blog} from "../../../request/BlogApi";
 import {AppState} from "../../../store/store";
 import "./AdminBlog.scss";
@@ -14,7 +15,7 @@ export const AdminBlog = () => {
         <div className="adminBlog">
             <div className="adminBlog__wrapper">
                 <AdminCreateBtn text="Создать Новость" onClick={() => setOpenArticle(true)}/>
-                {openArticle && <AdminCreateArticle setClose={() => setOpenArticle(false)} />}
+                <AdminCreateArticle setClose={() => setOpenArticle(false)} openStatus={openArticle}/>
                 {blogs.finished && !blogs.loading && blogs.data && (
                     <div className="adminBlog__container">
                         {blogs.data.map((item: Blog) => (
@@ -29,7 +30,7 @@ export const AdminBlog = () => {
                         ))}
                     </div>
                 )}
-                {!blogs.finished && blogs.loading && <Loader color="white" />}
+                {!blogs.finished && blogs.loading && <Spinner animation={"border"} variant={"light"} size={"sm"} />}
             </div>
         </div>
     );

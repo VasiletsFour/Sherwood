@@ -34,7 +34,7 @@ export const Header = () => {
                         {!account.data && (
                             <p onClick={() => setOpenLogin(!openLogin)} className="header__login">Вход</p>
                         )}
-                        {openLogin && <Authorization setClose={() => setOpenLogin(!openLogin)} />}
+                        <Authorization isOpen={openLogin} setClose={() => setOpenLogin(!openLogin)} />
                         <div className="header__search">
                             {openSearch && <input className="header__inputSearch" type="text" />}
                             <FaSearch className="header__icon" onClick={() => setOpenSearch(!openSearch)} />
