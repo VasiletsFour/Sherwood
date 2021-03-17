@@ -12,13 +12,14 @@ interface Props {
 export const TableBodyAdminUser = ({user, index}: Props) => {
     const dispatch = useDispatch();
 
-    const handleUpdateRole = (status: boolean) => dispatch(putAdminUserAction.trigger({
+    const handleUpdateRole = () => dispatch(putAdminUserAction.trigger({
         id: user.id,
-        body: {role: status ? "user" : "admin"}
+        body: {role: user.role === "user" ? "admin" : "user"}
     }))
-    const handleUpdateBan = (status: boolean) => dispatch(putAdminUserAction.trigger({
+
+    const handleUpdateBan = () => dispatch(putAdminUserAction.trigger({
         id: user.id,
-        body: {ban: status}
+        body: {ban: !user.ban}
     }))
 
 
@@ -29,14 +30,16 @@ export const TableBodyAdminUser = ({user, index}: Props) => {
             <td>{user.email}</td>
             <td>
                 <SwitchBtn
-                    onClick={(status: boolean) => handleUpdateRole(status)}
-                    values={["Пользователь", "Админ"]}
-                    status={user.role === "user"}/>
+                    onClick={() => handleUpdateRole()}
+                    id={"updateAdminRoleUser"}
+                    label={"Сделать пользователя админом"}
+                    status={user.role === "admin"}/>
             </td>
             <td>
                 <SwitchBtn
-                    onClick={(status => handleUpdateBan(status))}
-                    values={["Заблокировать", "Разблокировать"]}
+                    onClick={(() => handleUpdateBan())}
+                    id={"updateAdminBanUser"}
+                    label={"Заблокировать Пользователя"}
                     status={user.ban}/>
             </td>
         </tr>

@@ -1,37 +1,33 @@
 import React, {useState} from "react";
+import {Form} from 'react-bootstrap';
 import "./SwitchBtn.scss"
 
 interface Props {
-    values: string[]
     status: boolean
-    onClick: (status: boolean) => void
+    id: string
+    onClick: () => void
+    label: string
 }
 
-export const SwitchBtn = ({status, values, onClick}: Props) => {
-    const [activate, setActivate] = useState(status)
+export const SwitchBtn = ({status, onClick, label, id}: Props) => {
+    const [checked, setChecked] = useState(status)
 
-    const handleClick = (status: boolean) => {
-        setActivate(status)
+    const handleChange = () => {
+        setChecked(!checked)
 
-        return onClick(status)
+        return onClick()
     }
 
     return (
-        <div className="switchBtn">
-            <button
-                disabled={activate}
-                onClick={() => handleClick(true)}
-                className={`switchBtn__btn ${activate && "switchBtn__btnActivate"}`}>
-                {values[0]}
-            </button>
-            <button
-                disabled={!activate}
-                onClick={() => handleClick(false)}
-                className={`switchBtn__btn ${!activate && "switchBtn__btnActivate"}`}>
-                {values[1]}
-            </button>
-        </div>
+        <Form>
+            <Form.Check
+                type="switch"
+                id={id}
+                label={label} onChange={() => handleChange()} checked={checked}
+            />
+        </Form>
     )
-};
+}
+
 
 

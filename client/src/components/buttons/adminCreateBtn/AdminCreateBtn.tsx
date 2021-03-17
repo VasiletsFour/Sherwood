@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import "./AdminCreateBtn.scss"
 
 interface Props {
@@ -8,10 +8,4 @@ interface Props {
 }
 
 export const AdminCreateBtn = ({text, ...props}: Props) => (
-    <div className="adminCreateBtn">
-        <Button className="adminCreateBtn__btn" variant={'success'} {...props}>
-            {text}
-        </Button>
-    </div>
-
-);
+    <Button className={"adminCreateBtn"} variant={'success'} size={"lg"} {...props}>{text}</Button>);
