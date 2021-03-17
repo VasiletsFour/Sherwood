@@ -1,6 +1,6 @@
 from sqlalchemy.exc import IntegrityError
 
-from common.responce.responce import Responce
+from common.responce.responce import Response
 from common.time.time import year
 from db.connect.connect import db
 from db.models.LeagueModel import Leagues
@@ -18,9 +18,9 @@ class AdminSeasonRepositories(Repositories):
             db.session.add(season)
             db.session.commit()
 
-            return Responce(201, {'data': 'create'}).__dict__
+            return Response(status=201, message={'data': 'create'}).__dict__
         except IntegrityError:
-            return Responce(400, {'error': 'Season with this name already exists'}).__dict__
+            return Response(status=400, message={'error': 'Season with this name already exists'}).__dict__
 
     @staticmethod
     def put(id: str, body: dict):
@@ -28,9 +28,9 @@ class AdminSeasonRepositories(Repositories):
             db.session.query(Seasons).filter(Seasons.id == id).update(dict(name=body["name"]))
             db.session.commit()
 
-            return Responce(200, {'data': 'update'}).__dict__
+            return Response(status=200, message={'data': 'update'}).__dict__
         except IntegrityError:
-            return Responce(400, {'error': 'Season with this name already exists'}).__dict__
+            return Response(status=400, message={'error': 'Season with this name already exists'}).__dict__
 
     @staticmethod
     def delete(id: int):
@@ -38,4 +38,4 @@ class AdminSeasonRepositories(Repositories):
         db.session.query(Seasons).filter(Seasons.id == id).delete()
         db.session.commit()
 
-        return Responce(200, {'data': 'Delete'}).__dict__
+        return Response(status=200, message={'data': 'Delete'}).__dict__

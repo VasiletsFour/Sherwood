@@ -1,4 +1,4 @@
-import common.middleware.user
+from common.middleware.middleware import user_login
 from resourse.controller.Controller import Controller
 from resourse.services.AccountServices import AccountServices
 
@@ -8,7 +8,7 @@ class Account(Controller):
         super().__init__()
         self.service = AccountServices()
 
-    @common.middleware.user.login_user
+    @user_login
     def get(self, *args, **kwargs):
         service = self.service.get(self.token)
 

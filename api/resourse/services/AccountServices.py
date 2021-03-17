@@ -1,4 +1,4 @@
-from common.responce.responce import Responce
+from common.responce.responce import Response
 from common.token.token import Token
 from resourse.repositories.AccountRepositories import AccountRepositories
 from resourse.services.Services import Services
@@ -16,4 +16,5 @@ class AccountServices(Services):
         if decode:
             return self.repository.get(decode["id"])
 
-        return Responce(400, {'error': 'Invalid Token'}).__dict__
+        return Response(status=400, message={'error': 'Invalid Token'},
+                        logger_message="Account fail Invalid token").__dict__

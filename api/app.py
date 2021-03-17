@@ -1,3 +1,5 @@
+import logging
+
 from flask import Flask
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -9,6 +11,7 @@ from resourse.controller.Account import Account
 from resourse.controller.AdminBlogs import AdminBlogs
 from resourse.controller.AdminLeague import AdminLeague
 from resourse.controller.AdminPlayer import AdminPlayer
+from resourse.controller.AdminReferee import AdminReferee
 from resourse.controller.AdminSeasone import AdminSeason
 from resourse.controller.AdminTeams import AdminTeam
 from resourse.controller.AdminUser import AdminUser
@@ -16,6 +19,7 @@ from resourse.controller.Blogs import Blogs
 from resourse.controller.League import League
 from resourse.controller.Login import Login
 from resourse.controller.Player import Player
+from resourse.controller.Referee import Referee
 from resourse.controller.Season import Season
 from resourse.controller.SignUp import SignUp
 from resourse.controller.Team import Team
@@ -25,6 +29,8 @@ migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
+
+    logging.basicConfig(filename="log.log", level="INFO")
 
     CORS(app, supports_credentials=True)
     app.config.from_object('config.Config')
@@ -72,8 +78,9 @@ def create_app():
     api.add_resource(Team, "/team/")
     api.add_resource(Player, "/player/")
     api.add_resource(SignUp, "/auth/signUp/", "/auth/confirm/<string:token>")
-    api.add_resource(Login, "/auth/login")
+    api.add_resource(Login, "/auth/login/")
     api.add_resource(Blogs, "/blogs/")
+    api.add_resource(Referee, "/referee/")
 
     # private routes
     api.add_resource(Account, "/account")
@@ -84,6 +91,7 @@ def create_app():
     api.add_resource(AdminLeague, "/admin/league/", "/admin/league/<string:id>")
     api.add_resource(AdminPlayer, "/admin/player/", "/admin/player/<string:id>")
     api.add_resource(AdminSeason, "/admin/season/", "/admin/season/<string:id>")
-    api.add_resource(AdminUser, "/admin/user/", "admin/user/<string:id>")
+    api.add_resource(AdminUser, "/admin/user/", "/admin/user/<string:id>")
+    api.add_resource(AdminReferee, "/admin/referee/", "/admin/referee/<string:id>")
 
     return app

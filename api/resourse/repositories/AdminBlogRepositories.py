@@ -1,6 +1,6 @@
 import werkzeug
 
-from common.responce.responce import Responce
+from common.responce.responce import Response
 from common.token.token import Token
 from db.connect.connect import db
 from db.models.BlogModel import Blogs
@@ -12,39 +12,30 @@ class AdminBlogRepositories(Repositories):
         self.token = Token()
 
     def get(self, file: werkzeug.datastructures.FileStorage, token: str):
-        return Responce(201, {'data': 'Save file'}).__dict__
+        return Response(status=201, message={'data': 'Save file'}).__dict__
 
-    def post(self, body: object, token: str):
-        try:
-            check = self.token.decodeToken(token)
+    def post(self, body: dict, token: str):
+        check = self.token.decodeToken(token)
 
-            blog = Blogs(**body, author_id=check["id"])
+        blog = Blogs(**body, author_id=check["id"])
 
-            db.session.add(blog)
-            db.session.commit()
+        db.session.add(blog)
+        db.session.commit()
 
-            return Responce(201, {'data': 'create'}).__dict__
-        except:
-            return Responce(400, {'error': 'Create Error'}).__dict__
+        return Response(status=201, message={'data': 'create'}).__dict__
 
     @staticmethod
-    def put(id: str, body: object):
-        try:
-            blog = Blogs.query.filter(Blogs.id == id)
-            blog.update(dict(**body))
+    def put(id: str, body: dict):
+        blog = db.session.query(Blogs).filter(Blogs.id == id)
+        blog.update(dict(**body))
 
-            db.session.commit()
+        db.session.commit()
 
-            return Responce(200, {'data': 'update'}).__dict__
-        except:
-            return Responce(400, {'error': 'Update Error'}).__dict__
+        return Response(status=200, message={'data': 'update'}).__dict__
 
     @staticmethod
     def delete(id: str):
-        try:
-            db.session.query(Blogs).filter(Blogs.id == id).delete()
-            db.session.commit()
+        db.session.query(Blogs).filter(Blogs.id == id).delete()
+        db.session.commit()
 
-            return Responce(200, {'data': 'Delete'}).__dict__
-        except:
-            return Responce(400, {'error': 'Delete Error'}).__dict__
+        return Response(status=200, message={'data': 'Delete'}).__dict__

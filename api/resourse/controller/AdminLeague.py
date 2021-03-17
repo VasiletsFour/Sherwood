@@ -1,4 +1,4 @@
-import common.middleware.admin
+from common.middleware.middleware import admin_login
 from resourse.controller.Controller import Controller
 from resourse.services.AdminLeagueServices import AdminLeagueServices
 
@@ -8,19 +8,19 @@ class AdminLeague(Controller):
         super().__init__()
         self.service = AdminLeagueServices()
 
-    @common.middleware.admin.login_admin
+    @admin_login
     def post(self, *args, **kwargs):
         service = self.service.post(self.body)
 
         return service['message'], service["status"]
 
-    @common.middleware.admin.login_admin
+    @admin_login
     def put(self):
         service = self.service.put(self.body)
 
         return service['message'], service["status"]
 
-    @common.middleware.admin.login_admin
+    @admin_login
     def delete(self, id):
         service = self.service.delete(id)
 

@@ -1,4 +1,4 @@
-from common.responce.responce import Responce
+from common.responce.responce import Response
 from db.connect.connect import db
 from db.models.PlayerModel import Players
 from db.models.TeamsModel import Teams
@@ -13,4 +13,4 @@ class PlayerRepositories(Repositories):
             "team").all()
         schema = players_schema.dump(players)
 
-        return Responce(200, {'data': schema}).__dict__
+        return Response(status=200, message={'data': schema}).__dict__

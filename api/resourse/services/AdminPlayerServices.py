@@ -1,4 +1,4 @@
-from common.responce.responce import Responce
+from common.responce.responce import Response
 from resourse.repositories.AdminPlayerRepositories import AdminPlayerRepositories
 from resourse.services.Services import Services
 from resourse.validator.PlayerValidate import create, update
@@ -9,13 +9,16 @@ class AdminPlayerServices(Services):
         super().__init__()
         self.repository = AdminPlayerRepositories()
 
+    def get(self):
+        return self.repository.get()
+
     def post(self, body: dict):
         res = self.valid.validation(create, body)
 
         if res:
             return self.repository.post(body)
 
-        return Responce(400, {'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'}).__dict__
 
     def put(self, id: str, body: dict):
         res = self.valid.validation(update, body)
@@ -23,10 +26,10 @@ class AdminPlayerServices(Services):
         if res and id:
             return self.repository.put(id, body)
 
-        return Responce(400, {'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'}).__dict__
 
     def delete(self, id: str):
         if id:
             return self.repository.delete(id)
 
-        return Responce(400, {'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'}).__dict__

@@ -1,6 +1,6 @@
 from flask_restful import request
 
-import common.middleware.admin
+from common.middleware.middleware import admin_login
 from resourse.controller.Controller import Controller
 from resourse.services.AdminUserServices import AdminUserServices
 
@@ -10,19 +10,19 @@ class AdminUser(Controller):
         super().__init__()
         self.service = AdminUserServices()
 
-    @common.middleware.admin.login_admin
+    @admin_login
     def get(self):
-        service = self.service.get()
+        service = self.service.get(self.token)
 
         return service['message'], service["status"]
 
-    @common.middleware.admin.login_admin
+    @admin_login
     def put(self, id):
         service = self.service.put(id, request.get_json())
 
         return service['message'], service["status"]
 
-    @common.middleware.admin.login_admin
+    @admin_login
     def delete(self, id):
         service = self.service.delete(id)
 

@@ -1,6 +1,6 @@
 from sqlalchemy.exc import IntegrityError
 
-from common.responce.responce import Responce
+from common.responce.responce import Response
 from db.connect.connect import db
 from db.models.LeagueModel import Leagues
 from resourse.repositories.Repositories import Repositories
@@ -20,11 +20,11 @@ class AdminLeagueRepositories(Repositories):
             db.session.bulk_save_objects(leagues)
             db.session.commit()
 
-            return Responce(201, "create").__dict__
+            return Response(status=201, message="create").__dict__
         except AssertionError:
-            return Responce(400, 'Create Error, this season have leagues').__dict__
+            return Response(status=400, message='Create Error, this season have leagues').__dict__
         except IntegrityError:
-            return Responce(400, 'Create Error, wrong id').__dict__
+            return Response(status=400, message='Create Error, wrong id').__dict__
 
     @staticmethod
     def put(body: dict):
@@ -33,11 +33,11 @@ class AdminLeagueRepositories(Repositories):
         db.session.add(league)
         db.session.commit()
 
-        return Responce(201, "update").__dict__
+        return Response(status=201, message="update").__dict__
 
     @staticmethod
     def delete(id: str):
         db.session.query(Leagues).filter(Leagues.id == id).delete()
         db.session.commit()
 
-        return Responce(201, "Delete").__dict__
+        return Response(status=201, message="Delete").__dict__

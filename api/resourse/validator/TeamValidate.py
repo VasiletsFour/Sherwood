@@ -21,10 +21,3 @@ updateName = {
         'required': True
     }
 }
-
-updateName = {
-    'name': {
-        'type': 'string',
-        'required': True
-    }
-}

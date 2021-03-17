@@ -5,7 +5,7 @@ from sqlalchemy.exc import IntegrityError
 
 from common.bcrypt.bcrypt import BcryptPass
 from common.emailSend.emailSend import SendEmail
-from common.responce.responce import Responce
+from common.responce.responce import Response
 from common.token.token import Token
 from db.connect.connect import db
 from db.models.UserModel import Users
@@ -25,11 +25,11 @@ class SignUpRepositories(Repositories):
 
             db.session.commit()
 
-            return Responce(201, {'data': "Account Confirm"}).__dict__
+            return Response(status=201, message={'data': "Account Confirm"}).__dict__
         except ExpiredSignatureError:
-            return Responce(400, {'error': 'Token Expired'}).__dict__
+            return Response(status=400, message={'error': 'Token Expired'}).__dict__
         except DecodeError:
-            return Responce(400, {'error': 'Not a token'}).__dict__
+            return Response(status=400, message={'error': 'Not a token'}).__dict__
 
     def post(self, body: dict):
         try:
@@ -41,10 +41,10 @@ class SignUpRepositories(Repositories):
 
             SendEmail(body["email"], token)
 
-            return Responce(201, {'data': "Please, confirm email"}).__dict__
+            return Response(status=201, message={'data': "Please, confirm email"}).__dict__
         except IntegrityError:
-            return Responce(400, {'error': 'User with this email already exists'}).__dict__
+            return Response(status=400, message={'error': 'User with this email already exists'}).__dict__
         except AttributeError:
-            return Responce(400, {'error': "Try again"}).__dict__
+            return Response(status=400, message={'error': "Try again"}).__dict__
         except SMTPRecipientsRefused:
-            return Responce(400, {'error': "Invalid email"}).__dict__
+            return Response(status=400, message={'error': "Invalid email"}).__dict__

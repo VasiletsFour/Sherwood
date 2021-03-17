@@ -1,16 +1,13 @@
-from common.middleware.middleware import user_login
 from resourse.controller.Controller import Controller
-from resourse.services.PlayerServices import PlayerServices
+from resourse.services.RefereeServices import RefereeServices
 
 
-class Player(Controller):
+class Referee(Controller):
     def __init__(self):
         super().__init__()
-        self.service = PlayerServices()
+        self.service = RefereeServices()
 
-    @user_login
     def get(self, *args, **kwargs):
         service = self.service.get()
 
         return service['message'], service["status"]
-

@@ -1,4 +1,4 @@
-from common.responce.responce import Responce
+from common.responce.responce import Response
 from resourse.repositories.AdminSeasoneRepositories import AdminSeasonRepositories
 from resourse.services.Services import Services
 from resourse.validator.SeasonValidate import schema
@@ -15,7 +15,7 @@ class AdminSeasonServices(Services):
         if res:
             return self.repository.post(body)
 
-        return Responce(400, {'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'}).__dict__
 
     def put(self, id: str, body: dict):
         res = self.valid.validation(schema, body)
@@ -23,10 +23,10 @@ class AdminSeasonServices(Services):
         if res and id:
             return self.repository.put(id, body)
 
-        return Responce(400, {'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'}).__dict__
 
     def delete(self, id: int):
         if id:
             return self.repository.delete(id)
 
-        return Responce(400, {'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'}).__dict__

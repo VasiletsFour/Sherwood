@@ -1,4 +1,4 @@
-from common.responce.responce import Responce
+from common.responce.responce import Response
 from resourse.repositories.SignUpRepositories import SignUpRepositories
 from resourse.services.Services import Services
 from resourse.validator.UserValidate import create
@@ -13,7 +13,7 @@ class SignUpServices(Services):
         if token:
             return self.repository.get(token)
 
-        return Responce(400, {'error': 'Empty token'}).__dict__
+        return Response(status=400, message={'error': 'Empty token'}).__dict__
 
     def post(self, body: dict):
         res = self.valid.validation(create, body)
@@ -21,4 +21,4 @@ class SignUpServices(Services):
         if res:
             return self.repository.post(body)
 
-        return Responce(400, {'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'}).__dict__

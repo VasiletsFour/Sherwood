@@ -1,4 +1,4 @@
-from common.responce.responce import Responce
+from common.responce.responce import Response
 from common.token.token import Token
 from db.connect.connect import db
 from db.models.BlogModel import Blogs
@@ -15,4 +15,4 @@ class BlogRepositories(Repositories):
         blogs = db.session.query(Blogs).all()
         schema = blogs_schema.dump(blogs)
 
-        return Responce(200, {'data': schema}).__dict__
+        return Response(status=200, message={'data': schema}).__dict__

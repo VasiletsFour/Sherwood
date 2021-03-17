@@ -1,4 +1,4 @@
-from common.responce.responce import Responce
+from common.responce.responce import Response
 from db.connect.connect import db
 from db.models.LeagueModel import Leagues
 from db.models.TeamsModel import Teams
@@ -16,6 +16,6 @@ class TeamRepositories(Repositories):
                 "league").all()
             schema = teams_schema.dump(teams)
 
-            return Responce(200, {'data': schema}).__dict__
+            return Response(200, {'data': schema}).__dict__
         except AttributeError:
-            return Responce(400, {'error': "Team get error"}).__dict__
+            return Response(400, {'error': "Team get error"}).__dict__

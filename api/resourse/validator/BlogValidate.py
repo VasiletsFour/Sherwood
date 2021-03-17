@@ -20,6 +20,7 @@ create = {
     },
     'text': {
         'type': 'string',
-        'required': True
+        'required': True,
+        'maxlength': 499
     }
 }

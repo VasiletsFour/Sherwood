@@ -1,4 +1,4 @@
-from common.responce.responce import Responce
+from common.responce.responce import Response
 from resourse.repositories.LoginRepositories import LoginRepositories
 from resourse.services.Services import Services
 from resourse.validator.UserValidate import login
@@ -15,4 +15,5 @@ class LoginServices(Services):
         if res:
             return self.repository.post(body)
 
-        return Responce(400, {'error': 'Invalid body'}).__dict__
+        return Response(status=400, message={'error': 'Invalid body'},
+                        logger_message="Login Invalid body:{body}".format(body=str(body))).__dict__

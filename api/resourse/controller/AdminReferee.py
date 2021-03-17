@@ -1,12 +1,12 @@
 from common.middleware.middleware import admin_login
 from resourse.controller.Controller import Controller
-from resourse.services.AdminSeasoneServices import AdminSeasonServices
+from resourse.services.AdminRefereeServices import AdminRefereeServices
 
 
-class AdminSeason(Controller):
+class AdminReferee(Controller):
     def __init__(self):
         super().__init__()
-        self.service = AdminSeasonServices()
+        self.service = AdminRefereeServices()
 
     @admin_login
     def post(self, *args, **kwargs):

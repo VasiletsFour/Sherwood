@@ -1,19 +1,24 @@
 from common.responce.responce import Response
-from resourse.repositories.AdminUserRepositories import AdminUserRepositories
+from resourse.repositories.AdminRefereeRepositories import AdminRefereeRepositories
 from resourse.services.Services import Services
-from resourse.validator.UserValidate import updateAdmin
+from resourse.validator.RefereeValidate import create
 
 
-class AdminUserServices(Services):
+class AdminRefereeServices(Services):
     def __init__(self):
         super().__init__()
-        self.repository = AdminUserRepositories()
+        self.repository = AdminRefereeRepositories()
 
-    def get(self, token: str):
-        return self.repository.get(token)
+    def post(self, body: dict):
+        res = self.valid.validation(create, body)
+
+        if res:
+            return self.repository.post(body)
+
+        return Response(status=400, message={'error': 'Not valid'}).__dict__
 
     def put(self, id: str, body: dict):
-        res = self.valid.validation(updateAdmin, body)
+        res = self.valid.validation(create, body)
 
         if res and id:
             return self.repository.put(id, body)

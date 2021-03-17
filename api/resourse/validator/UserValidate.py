@@ -18,6 +18,16 @@ create = {
     }
 }
 
+updateAdmin = {
+    'ban': {
+        'type': 'boolean'
+    },
+    "role": {
+        'type': 'string',
+        'allowed': ['admin', 'user']
+    }
+}
+
 login = {
     "email": {
         'type': 'string',
