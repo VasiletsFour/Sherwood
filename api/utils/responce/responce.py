@@ -1,4 +1,4 @@
-from common.logger.logger import Logger
+from utils.logger.logger import Logger
 
 
 class Response(object):

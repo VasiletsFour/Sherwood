@@ -1,7 +1,7 @@
 from sqlalchemy.exc import IntegrityError
 
-from common.responce.responce import Response
-from common.time.time import year
+from utils.responce.responce import Response
+from utils.time.time import year
 from db.connect.connect import db
 from db.models.LeagueModel import Leagues
 from db.models.SeasonsModel import Seasons

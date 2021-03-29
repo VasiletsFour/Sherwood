@@ -1,6 +1,6 @@
 from flask_restful import request
 
-from common.middleware.middleware import admin_login
+from utils.middleware.middleware import admin_login
 from resourse.controller.Controller import Controller
 from resourse.services.AdminUserServices import AdminUserServices
 

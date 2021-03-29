@@ -1,4 +1,4 @@
-from common.validation.validation import Validation
+from utils.validation.validation import Validation
 
 
 class Services:

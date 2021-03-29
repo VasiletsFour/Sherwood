@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 
-from common.errorExcept.erroExcept import NotConnectError
+from utils.errorExcept.erroExcept import NotConnectError
 
 db = SQLAlchemy()
 

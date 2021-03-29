@@ -1,4 +1,4 @@
-from common.responce.responce import Response
+from utils.responce.responce import Response
 from resourse.repositories.AdminRefereeRepositories import AdminRefereeRepositories
 from resourse.services.Services import Services
 from resourse.validator.RefereeValidate import create

@@ -1,4 +1,4 @@
-from common.middleware.middleware import user_login
+from utils.middleware.middleware import user_login
 from resourse.controller.Controller import Controller
 from resourse.services.PlayerServices import PlayerServices
 

@@ -20,7 +20,8 @@ class TeamServices(Services):
             if kwargs["type"] == "name": order = Teams.name.desc()
             if kwargs["type"] == "league_id": order = Teams.league_id.desc()
 
-        if kwargs["name"] or kwargs["league_id"]:
-            filters = (Teams.league_id == kwargs["league_id"]) | (Teams.name == kwargs["name"])
+        if kwargs["league_id"]:
+            filters = (Teams.league_id == kwargs["league_id"])
+            # | (Teams.name.like(kwargs["name"] + "%"))
 
         return self.repository.get(filters, order)

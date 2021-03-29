@@ -1,4 +1,4 @@
-from common.bcrypt.bcrypt import BcryptPass
+from utils.bcrypt.bcrypt import BcryptPass
 from db.connect.connect import db
 
 bcrypt = BcryptPass()

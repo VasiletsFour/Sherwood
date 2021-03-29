@@ -5,7 +5,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_restful import Api
 
-from common.bcrypt.bcrypt import bcrypt
+from utils.bcrypt.bcrypt import bcrypt
 from db.connect.connect import connectDd
 from resourse.controller.Account import Account
 from resourse.controller.AdminBlogs import AdminBlogs
@@ -14,6 +14,7 @@ from resourse.controller.AdminPlayer import AdminPlayer
 from resourse.controller.AdminReferee import AdminReferee
 from resourse.controller.AdminSeasone import AdminSeason
 from resourse.controller.AdminTeams import AdminTeam
+from resourse.controller.AdminTimeTable import AdminTimeTable
 from resourse.controller.AdminUser import AdminUser
 from resourse.controller.Blogs import Blogs
 from resourse.controller.League import League
@@ -93,5 +94,6 @@ def create_app():
     api.add_resource(AdminSeason, "/admin/season/", "/admin/season/<string:id>")
     api.add_resource(AdminUser, "/admin/user/", "/admin/user/<string:id>")
     api.add_resource(AdminReferee, "/admin/referee/", "/admin/referee/<string:id>")
+    api.add_resource(AdminTimeTable, "/admin/time_table/")
 
     return app

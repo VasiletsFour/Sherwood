@@ -6,6 +6,10 @@ class Controller(Resource):
     def __init__(self):
         self.body = request.get_json()
         self.name = request.args.get("name")
+        self.search = request.args.get("search")
+        self.fromDate = request.args.get("fromDate")
+        self.beforeDate = request.args.get("beforeDate")
+        self.tags = request.args.get("tags")
         self.league_id = request.args.get("league_id")
         self.kind = request.args.get("kind")
         self.type = request.args.get("type")

@@ -1,4 +1,4 @@
-from common.responce.responce import Response
+from utils.responce.responce import Response
 from resourse.repositories.AdminPlayerRepositories import AdminPlayerRepositories
 from resourse.services.Services import Services
 from resourse.validator.PlayerValidate import create, update

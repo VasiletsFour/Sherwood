@@ -1,4 +1,4 @@
-from common.responce.responce import Response
+from utils.responce.responce import Response
 from db.connect.connect import db
 from db.models.RefereeModel import Referees
 from resourse.repositories.Repositories import Repositories

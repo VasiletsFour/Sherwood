@@ -1,4 +1,4 @@
-from common.responce.responce import Response
+from utils.responce.responce import Response
 from db.connect.connect import db
 from db.models.LeagueModel import Leagues
 from db.models.TeamsModel import Teams
@@ -14,6 +14,7 @@ class TeamRepositories(Repositories):
                                      Leagues.name.label("league_name")).filter(filters).order_by(
                 order).join(
                 "league").all()
+
             schema = teams_schema.dump(teams)
 
             return Response(200, {'data': schema}).__dict__

@@ -1,7 +1,7 @@
 import werkzeug
 
-from common.responce.responce import Response
-from common.token.token import Token
+from utils.responce.responce import Response
+from utils.token.token import Token
 from db.connect.connect import db
 from db.models.BlogModel import Blogs
 from resourse.repositories.Repositories import Repositories

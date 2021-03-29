@@ -11,7 +11,8 @@ class TimeStamp:
 
     @staticmethod
     def fromTimeStamp(time_stamp: int):
-        try:
-            return datetime.fromtimestamp(time_stamp)
-        except:
-            print("Error")
+        return datetime.fromtimestamp(time_stamp)
+
+    @staticmethod
+    def fromIsoToTimeStamp(date:str):
+        return round(datetime.fromisoformat(date).timestamp())

@@ -1,4 +1,4 @@
-from common.responce.responce import Response
+from utils.responce.responce import Response
 from db.connect.connect import db
 from db.models.LeagueModel import Leagues
 from db.models.SeasonsModel import Seasons

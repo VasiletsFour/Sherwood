@@ -3,10 +3,10 @@ from smtplib import SMTPRecipientsRefused
 from jwt import ExpiredSignatureError, DecodeError
 from sqlalchemy.exc import IntegrityError
 
-from common.bcrypt.bcrypt import BcryptPass
-from common.emailSend.emailSend import SendEmail
-from common.responce.responce import Response
-from common.token.token import Token
+from utils.bcrypt.bcrypt import BcryptPass
+from utils.emailSend.emailSend import SendEmail
+from utils.responce.responce import Response
+from utils.token.token import Token
 from db.connect.connect import db
 from db.models.UserModel import Users
 from resourse.repositories.Repositories import Repositories

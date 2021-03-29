@@ -1,6 +1,6 @@
 import werkzeug
 
-from common.responce.responce import Response
+from utils.responce.responce import Response
 from resourse.repositories.AdminBlogRepositories import AdminBlogRepositories
 from resourse.services.Services import Services
 from resourse.validator.BlogImgValidate import ALLOWED_EXTENSIONS

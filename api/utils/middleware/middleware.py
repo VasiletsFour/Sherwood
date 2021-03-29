@@ -2,8 +2,8 @@ from functools import wraps
 
 from flask import request, abort
 
-from common.logger.logger import Logger
-from common.token.token import Token
+from utils.logger.logger import Logger
+from utils.token.token import Token
 from db.connect.connect import db
 from db.models.UserModel import Users
 

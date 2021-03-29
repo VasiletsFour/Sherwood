@@ -1,4 +1,4 @@
-from common.timestemp.timestamp import TimeStamp
+from utils.timestemp.timestamp import TimeStamp
 from db.connect.connect import db
 
 

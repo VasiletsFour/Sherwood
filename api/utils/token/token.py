@@ -2,7 +2,7 @@ from datetime import datetime
 
 import jwt
 
-from common.responce.responce import Response
+from utils.responce.responce import Response
 from config import Config
 
 
@@ -17,6 +17,7 @@ class Token:
             return jwt.decode(token.replace("Bearer ", ""), self.__key, algorithm=[self.__algorithms])
         except Exception as err:
             print(err)
+
             return None
 
     def getConfirmToken(self, email: str):
