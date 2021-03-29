@@ -5,14 +5,14 @@ import {getTeamListAction} from "../../../store/team";
 import {AdminCreateBtn} from "../../buttons";
 import {AdminSeasonLeagueList} from "../adminSeasonLeagueList/AdminSeasonLeagueList";
 import {AdminTeamName} from "../adminTeamName/AdminTeamName";
-import "./AdminCreateTimeTable.scss"
+import "./AdminTimeTableCreate.scss"
 
 interface OpenChild {
     id: number | null
     openStatus: boolean
 }
 
-export const AdminCreateTimeTable = () => {
+export const AdminTimeTableCreate = () => {
     const dispatch = useDispatch();
     const {teams} = useSelector((state: AppState) => ({teams: state.teamState.teams}));
     const [openSeason, setOpenSeason] = useState<OpenChild>({id: null, openStatus: false})
@@ -36,7 +36,7 @@ export const AdminCreateTimeTable = () => {
     const createTimeTable = () => alert({openLeague})
 
     return (
-        <div className="adminTimeTable">
+        <div className="adminTimeTableCreate">
             <AdminSeasonLeagueList
                 openLeague={openLeague}
                 openSeason={openSeason}
@@ -46,7 +46,7 @@ export const AdminCreateTimeTable = () => {
                 <div>
                     <AdminTeamName/>
                     {teams.finished && !teams.loading && teams.data && teams.data.length !== 0 &&
-                    <div className="adminTimeTable__btnCreateContainer">
+                    <div className="adminTimeTableCreate__btnCreateContainer">
                         <AdminCreateBtn text={"Создать рассписание"} onClick={createTimeTable}/>
                     </div>}
                 </div>
