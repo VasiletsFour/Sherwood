@@ -50,4 +50,26 @@
     border-radius: 20px;
     background-color: #484848;
   }
+
+  &__submenuWrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  &__submenu {
+    display: none;
+    top: 10px;
+    margin-left: 122px;
+    position: absolute;
+    background-color: #a51313;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 0 20px;
+    border-radius: 10px;
+  }
+
+  &__submenuWrapper:hover &__submenu {
+    display: block;
+  }
 }

@@ -12,6 +12,7 @@ import {
     AdminRefereePage,
     AdminSeasonPage,
     AdminTeamPage,
+    AdminTimeTablePage,
     AdminUserPage,
     ApplicationListPage,
     CommitteePage,
@@ -35,6 +36,8 @@ import {
     ADMIN_REFEREE_PAGE,
     ADMIN_SEASON_PAGE,
     ADMIN_TEAM_PAGE,
+    ADMIN_TIME_TABLE_CREATE_PAGE,
+    ADMIN_TIME_TABLE_UPDATE_PAGE,
     ADMIN_USER_PAGE,
     APPLICATION_LIST_PAGE,
     COMMITTEE_PAGE,
@@ -98,6 +101,12 @@ class App extends React.Component {
                             </AdminRoute>
                             <AdminRoute path={ADMIN_REFEREE_PAGE.urlTemplate} excat>
                                 <AdminRefereePage/>
+                            </AdminRoute>
+                            <AdminRoute path={ADMIN_TIME_TABLE_CREATE_PAGE.urlTemplate}>
+                                <AdminTimeTablePage/>
+                            </AdminRoute>
+                            <AdminRoute path={ADMIN_TIME_TABLE_UPDATE_PAGE.urlTemplate}>
+                                <AdminTimeTablePage/>
                             </AdminRoute>
 
                             <Redirect from={ROOT_URL.urlTemplate} to={HOME_URL.urlTemplate}/>

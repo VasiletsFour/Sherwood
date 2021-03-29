@@ -23,7 +23,8 @@ export const SwitchBtn = ({status, onClick, label, id}: Props) => {
             <Form.Check
                 type="switch"
                 id={id}
-                label={label} onChange={() => handleChange()} checked={checked}
+                label={label}
+                onChange={() => handleChange()} checked={checked}
             />
         </Form>
     )

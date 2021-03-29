@@ -9,3 +9,10 @@ export interface Blog extends BlogCreate {
     date: number;
     img?: string;
 }
+
+export interface BlogQuery {
+    beforeDate?: string
+    fromDate?: string
+    search?: string
+    tags?: Array<string>
+}

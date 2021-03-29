@@ -25,3 +25,13 @@ export interface NumberInputProps {
     min: number
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
+
+export interface DateProps {
+    name?: string
+    value: string
+    label?: string,
+    classname: string,
+    max: string
+    min?: string
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+}

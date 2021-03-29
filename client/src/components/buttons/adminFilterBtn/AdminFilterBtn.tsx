@@ -4,8 +4,9 @@ import "./AdminFilterBtn.scss"
 
 interface Props {
     text: string
+    show:boolean
     onClick: () => void
 }
 
-export const AdminFilterBtn = ({text, ...props}: Props) => (
-    <Button className={"adminFilterBtn"} variant='outline-primary' size={"lg"} {...props}>{text}</Button>);
+export const AdminFilterBtn = ({text, show, ...props}: Props) => (show ?
+    <Button className={"adminFilterBtn"} variant='outline-primary' size={"lg"} {...props}>{text}</Button>:null);

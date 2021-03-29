@@ -5,6 +5,7 @@ import {delLeagueApi, getLeagueApi, postLeagueApi, putLeagueApi} from "../../req
 import {
     ADMIN_LEAGUE_PAGE,
     ADMIN_TEAM_PAGE,
+    ADMIN_TIME_TABLE_CREATE_PAGE,
     SCORER_URL,
     TEAMS_URL,
     TIME_TABLE_URL,
@@ -32,8 +33,11 @@ export function* LeagueSaga() {
             action.type === LOCATION_CHANGE && ADMIN_LEAGUE_PAGE.match(action.payload.location).isMatched;
         const adminTeamUrlMatch =
             action.type === LOCATION_CHANGE && ADMIN_TEAM_PAGE.match(action.payload.location).isMatched;
+        const adminTimeTableUrlMatch =
+            action.type === LOCATION_CHANGE && ADMIN_TIME_TABLE_CREATE_PAGE.match(action.payload.location).isMatched;
 
-        if (teamUrlMatch || scoreUrlMatch || timeTableUrlMatch || tournamentUrlMatch || adminLeagueUrlMatch || adminTeamUrlMatch) {
+
+        if (teamUrlMatch || scoreUrlMatch || timeTableUrlMatch || tournamentUrlMatch || adminLeagueUrlMatch || adminTeamUrlMatch || adminTimeTableUrlMatch) {
             yield call(getLeagueWorker);
         }
 

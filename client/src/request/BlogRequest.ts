@@ -1,10 +1,10 @@
 import {makeDeleteRequest, makeGetRequest, makePostRequest} from "../api/makeRequest";
 import {delArticleAction, postCrateArticleAction} from "../store/blog";
-import {Blog} from "./BlogApi";
+import {Blog, BlogQuery} from "./BlogApi";
 
 //GET Blogs List
-export const getBlogsApi = async (): Promise<Blog[]> => {
-    const {data, error, status} = await makeGetRequest("/blogs");
+export const getBlogsApi = async (query: BlogQuery): Promise<Blog[]> => {
+    const {data, error, status} = await makeGetRequest("/blogs", {params: query});
 
     if (status === 200) {
         return data;

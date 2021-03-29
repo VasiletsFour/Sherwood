@@ -1,11 +1,11 @@
 import React, {ChangeEvent, useState} from "react";
+import {Spinner} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
 import {RefereeApi, RefereeBody} from "../../../request/RefereeApi";
 import {delAdminRefereeAction, postAdminRefereeAction, putAdminRefereeAction} from "../../../store/referee";
 import {AppState} from "../../../store/store";
 import {Alert} from "../../alert/Alert";
 import {AdminCreateBtn} from "../../buttons";
-import { Spinner} from 'react-bootstrap';
 import {AdminUpdateDelete} from "../adminUpdateDelete/AdminUpdateDelete";
 import "./AdminReferee.scss"
 
@@ -29,20 +29,22 @@ export const AdminReferee = () => {
 
     return (
         <div className="adminReferee">
-            <AdminCreateBtn text="Добаить судью" onClick={() => setOpenCreate(true)}/>
-             <Alert
-                 openStatus={openCreate}
-                title="Судья"
-                text="Добавить нового судью"
-                closeClick={() => handleCloseCreate()}
-                btnText="Создать"
-                okClick={() => handleCreate()}>
-                <input
-                    className="adminTeam__crateTeamInput"
-                    type="text"
-                    value={newReferee}
-                    onChange={(event: ChangeEvent<HTMLInputElement>) => setNewReferee(event.target.value)}/>
-            </Alert>
+            <div className="adminReferee__top">
+                <AdminCreateBtn text="Добаить судью" onClick={() => setOpenCreate(true)}/>
+                <Alert
+                    openStatus={openCreate}
+                    title="Судья"
+                    text="Добавить нового судью"
+                    closeClick={() => handleCloseCreate()}
+                    btnText="Создать"
+                    okClick={() => handleCreate()}>
+                    <input
+                        className="adminTeam__crateTeamInput"
+                        type="text"
+                        value={newReferee}
+                        onChange={(event: ChangeEvent<HTMLInputElement>) => setNewReferee(event.target.value)}/>
+                </Alert>
+            </div>
             <div className="adminReferee__wrapper">
                 {referees.finished && !referees.loading && referees.data &&
                 referees.data.map(({name, id}: RefereeApi) => (

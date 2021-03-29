@@ -6,35 +6,11 @@
   width: 100%;
   min-height: 100%;
 
-  &__seasonItem {
-    border-radius: 4px;
-    border: 1px solid black;
-
-  }
-
-  &__seasonItemHeader {
-    background-color: #989898;
-    padding: 20px 140px;
+  &__top {
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &__seasonItemBody {
-    border-top: 1px solid darkgray;
-  }
-
-  &__leagueItem {
-    width: 100%;
-    border-top: 1px solid #ffebcd;
-  }
-
-  &__leagueBlock {
-    padding: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    margin-right: 40px;
+    margin-top: 14px;
   }
 }

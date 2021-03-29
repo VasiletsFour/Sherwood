@@ -17,3 +17,4 @@ export * from "./adminTeamPage/AdminTeamPage";
 export * from "./adminUserPage/AdminUserPage";
 export * from "./technicalWork/TechnicalWork";
 export * from "./adminReferee/AdminReferee"
+export * from "./adminTimeTablePage/AdminTimeTable"

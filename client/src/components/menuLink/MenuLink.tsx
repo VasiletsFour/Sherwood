@@ -7,15 +7,18 @@ interface Props {
     page: boolean
     link: UrlPath<{}, {}>
     text: string
+    activateLink: boolean
+    children?: JSX.Element
 }
 
-export const MenuLink = ({page, link, text}: Props) => (
+export const MenuLink = ({page, link, text, activateLink, children}: Props) => (
     <li className="menuLink">
-        <Link
-            className={`menuLink__menuItem ${page && "menuLink__menuItemActivate"}`}
-            to={link.urlTemplate}>
-            {text}
-        </Link>
+        {activateLink ? <Link
+                className={`menuLink__menuItem ${page && "menuLink__menuItemActivate"}`}
+                to={link.urlTemplate}>
+                {text}
+            </Link> :
+            <p className={`menuLink__menuItem ${page && "menuLink__menuItemActivate"}`}>{text} {children && children}</p>}
     </li>
 
 );

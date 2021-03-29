@@ -9,6 +9,7 @@
     "@types/jest": "^26.0.20",
     "@types/node": "^12.19.14",
     "@types/react": "^16.14.2",
+    "@types/react-bootstrap-date-picker": "^4.0.6",
     "@types/react-dom": "^16.9.5",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.7",
@@ -58,6 +59,7 @@
     "bootstrap": "^4.6.0",
     "prettier": "2.2.1",
     "react-bootstrap": "^1.5.2",
+    "react-bootstrap-date-picker": "^5.1.0",
     "sass": "^1.32.4"
   }
 }

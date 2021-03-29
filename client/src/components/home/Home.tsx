@@ -1,6 +1,5 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import { Spinner } from 'react-bootstrap';
 import {ActuallyImg, AllNewsImg, BlogNews} from "../";
 import {AppState} from "../../store/store";
 import "./Home.scss";
@@ -48,9 +47,7 @@ export const Home = () => {
                         text={blogs.data[actuallyNum].text}
                     />
                 </div>
-            ) : (
-                <Spinner animation={"border"} variant={"primary"}/>
-            )}
+            ) : null}
         </div>
     );
 };

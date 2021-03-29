@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Form} from 'react-bootstrap';
+import {Form, InputGroup} from 'react-bootstrap';
 import {FaEye, FaEyeSlash} from "react-icons/fa";
 import {InputProps} from "../InputApi";
 import "./InputPassword.scss";
@@ -11,8 +11,14 @@ export const InputPassword = ({classname, label, ...props}: InputProps) => {
         <Form className={`${classname}__inputWrapper`}>
             {label && <Form.Label className={`${classname}__inputLabel`}>{label}</Form.Label>}
             <div className={`inputPassword`}>
-                <Form.Control type={`${showPass ? "text" : "password"}`} {...props} />
-                <span onClick={() => setShowPass(!showPass)}> {showPass ? <FaEyeSlash/> : <FaEye/>}</span>
+                <InputGroup>
+                    <Form.Control type={`${showPass ? "text" : "password"}`} {...props} />
+                    <InputGroup.Prepend>
+                        <InputGroup.Text onClick={() => setShowPass(!showPass)}>
+                            <span> {showPass ? <FaEyeSlash/> : <FaEye/>}</span>
+                        </InputGroup.Text>
+                    </InputGroup.Prepend>
+                </InputGroup>
             </div>
         </Form>
     )

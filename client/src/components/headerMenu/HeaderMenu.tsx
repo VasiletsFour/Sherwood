@@ -24,13 +24,14 @@ export const HeaderMenu = () => {
 
     return (
         <ul className="headerMenu">
-            <MenuLink page={isTimeTablePage} link={TIME_TABLE_URL} text="Расписание"/>
-            <MenuLink page={isMatchResultPage} link={MATCH_RESULT_PAGE} text="Результаты матчей"/>
-            <MenuLink page={isTournamentPage} link={TOURNAMENT_TABLE_URL} text="Турнирная таблица"/>
-            <MenuLink page={isTeamPage} link={TEAMS_URL} text="Команды"/>
-            <MenuLink page={isScorePage} link={SCORER_URL} text="Бомбардиры"/>
-            <MenuLink page={isApplicationListPage} link={APPLICATION_LIST_PAGE} text="Заявочный лист"/>
-            <MenuLink page={isCommitteePage} link={COMMITTEE_PAGE} text="Комитет"/>
+            <MenuLink activateLink={true} page={isTimeTablePage} link={TIME_TABLE_URL} text="Расписание"/>
+            <MenuLink activateLink={true} page={isMatchResultPage} link={MATCH_RESULT_PAGE} text="Результаты матчей"/>
+            <MenuLink activateLink={true} page={isTournamentPage} link={TOURNAMENT_TABLE_URL} text="Турнирная таблица"/>
+            <MenuLink activateLink={true} page={isTeamPage} link={TEAMS_URL} text="Команды"/>
+            <MenuLink activateLink={true} page={isScorePage} link={SCORER_URL} text="Бомбардиры"/>
+            <MenuLink activateLink={true} page={isApplicationListPage} link={APPLICATION_LIST_PAGE}
+                      text="Заявочный лист"/>
+            <MenuLink activateLink={true} page={isCommitteePage} link={COMMITTEE_PAGE} text="Комитет"/>
         </ul>
     );
 };
