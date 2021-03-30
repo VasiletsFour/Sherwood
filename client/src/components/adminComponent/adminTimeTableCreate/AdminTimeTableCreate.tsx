@@ -2,9 +2,11 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppState} from "../../../store/store";
 import {getTeamListAction} from "../../../store/team";
+import {postTimeTableCreateAdminAction} from "../../../store/timeTable";
 import {AdminCreateBtn} from "../../buttons";
 import {AdminSeasonLeagueList} from "../adminSeasonLeagueList/AdminSeasonLeagueList";
 import {AdminTeamName} from "../adminTeamName/AdminTeamName";
+import {AdminTopBlock} from "../adminTopBlock/AdminTopBlock";
 import "./AdminTimeTableCreate.scss"
 
 interface OpenChild {
@@ -33,10 +35,11 @@ export const AdminTimeTableCreate = () => {
         })
     }
 
-    const createTimeTable = () => alert({openLeague})
+    const createTimeTable = () => openLeague.id && dispatch(postTimeTableCreateAdminAction.trigger({body: {league_id: openLeague.id}}))
 
     return (
         <div className="adminTimeTableCreate">
+            <AdminTopBlock title={"Расписание"} text={"Создать"}/>
             <AdminSeasonLeagueList
                 openLeague={openLeague}
                 openSeason={openSeason}

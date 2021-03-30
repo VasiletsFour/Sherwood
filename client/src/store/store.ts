@@ -11,6 +11,7 @@ import {playerReducer, PlayerSaga, PlayerState} from "./player";
 import {refereeReducer, RefereeSaga, RefereeState} from "./referee";
 import {seasonReducer, SeasonSaga, SeasonState} from "./season";
 import {teamReducer, TeamSaga, TeamState} from "./team";
+import {timeTableReducer, TimeTableSaga, TimeTableState} from "./timeTable"
 import {userReducer, UserSaga, UserState} from "./user";
 
 export interface AppState {
@@ -23,6 +24,7 @@ export interface AppState {
     userState: UserState;
     refereeState: RefereeState;
     playerState: PlayerState;
+    timeTableState: TimeTableState,
     router: any;
 }
 
@@ -40,6 +42,7 @@ const appReducer = combineReducers<AppState>({
     userState: userReducer,
     refereeState: refereeReducer,
     playerState: playerReducer,
+    timeTableState: timeTableReducer,
     router: connectRouter(history)
 });
 
@@ -60,7 +63,9 @@ export default function* rootSaga() {
         SeasonSaga(),
         RefereeSaga(),
         PlayerSaga(),
-        TeamSaga()]);
+        TeamSaga(),
+        TimeTableSaga()
+    ]);
 }
 
 sagaMiddleware.run(rootSaga);

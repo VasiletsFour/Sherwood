@@ -1,0 +1,23 @@
+.adminTopBlock {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 14px;
+  width: 100%;
+  padding: 0 14px;
+
+
+  &__topTitle {
+    margin-top: -10px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 40px;
+    line-height: inherit;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #343a40;
+  }
+
+  &__topText{
+    font-weight: normal;
+    font-size: 30px;
+  }
+}

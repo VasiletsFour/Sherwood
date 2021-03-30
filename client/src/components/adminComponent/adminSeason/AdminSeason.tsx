@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {FaTimes} from "react-icons/fa";
 import {useDispatch, useSelector} from "react-redux";
-import {AdminCreateBtn, Alert} from "../../";
+import {AdminCreateBtn, AdminTopBlock, Alert} from "../../";
 import {SeasonApi} from "../../../request/SeasonApi";
 import {delSeasonAction, postSeasonAction} from "../../../store/season";
 import {AppState} from "../../../store/store";
@@ -41,16 +41,16 @@ export const AdminSeason = () => {
 
     return (
         <div className="adminSeason">
-            <div className="adminSeason__top">
+            <AdminTopBlock title={"Сезон"}>
                 <AdminCreateBtn text="Создать сезон" onClick={() => handleCreate()}/>
-                <Alert
-                    openStatus={createAlert}
-                    title={"Создать новый сезон"}
-                    text={`${nextSeason}-${year}`}
-                    closeClick={() => setCreateAlert(false)}
-                    okClick={() => create()}
-                    btnText={"Готово"}/>
-            </div>
+            </AdminTopBlock>
+            <Alert
+                openStatus={createAlert}
+                title={"Создать новый сезон"}
+                text={`${nextSeason}-${year}`}
+                closeClick={() => setCreateAlert(false)}
+                okClick={() => create()}
+                btnText={"Готово"}/>
             <div>
                 {season.finished && !season.loading && season.data && (
                     <div className="adminSeason__wrapper">

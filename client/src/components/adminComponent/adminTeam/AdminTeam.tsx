@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from "react";
 import {useDispatch} from "react-redux";
-import {AdminSeasonLeagueList, AdminTeamBottom, AdminTeamName} from "../";
+import {AdminSeasonLeagueList, AdminTeamBottom, AdminTeamName, AdminTopBlock} from "../";
 import {AdminCreateBtn, Alert, DropZone, FormInput} from "../../";
 import {TeamApi} from "../../../request/TeamApi";
 import {getTeamListAction, postTeamAdminCreateAction, putTeamAdminAddAction} from "../../../store/team";
@@ -55,19 +55,19 @@ export const AdminTeam = () => {
 
     return (
         <div className="adminTeam">
-            <div className="adminTeam__top">
+            <AdminTopBlock title={"Команды"}>
                 <AdminCreateBtn text="Создать команду" onClick={() => handleCloseCreate()}/>
-                <Alert
-                    openStatus={openCreateTeam}
-                    title="Команда"
-                    text="Создать новую команду"
-                    closeClick={() => handleCloseCreate()}
-                    btnText="Создать"
-                    okClick={() => handleCreate()}>
-                    <FormInput onChange={(event: ChangeEvent<HTMLInputElement>) => setCreateTeam(event.target.value)}
-                               classname={"adminTeam"} value={createTeam} placeholder={"Название команды"}/>
-                </Alert>
-            </div>
+            </AdminTopBlock>
+            <Alert
+                openStatus={openCreateTeam}
+                title="Команда"
+                text="Создать новую команду"
+                closeClick={() => handleCloseCreate()}
+                btnText="Создать"
+                okClick={() => handleCreate()}>
+                <FormInput onChange={(event: ChangeEvent<HTMLInputElement>) => setCreateTeam(event.target.value)}
+                           classname={"adminTeam"} value={createTeam} placeholder={"Название команды"}/>
+            </Alert>
             <div className="adminTeam__content">
                 <AdminSeasonLeagueList
                     openLeague={openLeague}

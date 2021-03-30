@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {AdminTopBlock, AdminUpdateDelete, NameOpenChild} from "../../";
 import {AdminPlayerApi, PlayerApi, PlayerUpdate} from "../../../request/PlayerApi";
 import {delAdminPlayerAction, postAdminPlayerAction, putAdminPlayerAction} from "../../../store/player";
 import {AppState} from "../../../store/store";
-import {NameOpenChild} from "../../nameOpenChild/NameOpenChild";
-import {AdminUpdateDelete} from "../adminUpdateDelete/AdminUpdateDelete";
 import "./AdminPlayer.scss"
 
 interface OpenChild {
@@ -28,6 +27,7 @@ export const AdminPlayer = () => {
 
     return (
         <div className="adminPlayer">
+            <AdminTopBlock title={"Игроки"}/>
             <div className="adminPlayer__container">
                 {players.finished && !players.loading && players.data &&
                 players.data.map(({id, name, players}: AdminPlayerApi) => (

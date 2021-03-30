@@ -1,12 +1,19 @@
 import React from "react";
-import {TableAdminUser} from "../../";
+import {useSelector} from "react-redux";
+import {AdminTopBlock, TableAdminUser} from "../../";
+import {AppState} from "../../../store/store";
 import "./AdminUser.scss"
 
 
-export const AdminUser = () => (
-    <div className="adminUser">
-        <TableAdminUser/>
-    </div>
-);
+export const AdminUser = () => {
+    const {adminUser} = useSelector((state: AppState) => ({adminUser: state.userState?.adminUser}));
+
+    return (
+        <div className="adminUser">
+            <AdminTopBlock title={"Пользователи"}/>
+            {adminUser.finished && !adminUser.loading && adminUser.data && <TableAdminUser/>}
+        </div>
+    )
+};
 
 

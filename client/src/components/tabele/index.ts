@@ -4,4 +4,7 @@ export * from "./tableBodyTournament/TableBodyTournament"
 export * from "./tableHead/TableHead"
 export * from "./teamTable/TeamTable"
 export * from "./tournamentTable/TournamentTable"
+export * from "./adminTimeTable/AdminTimeTable"
 export * from "./tableAdminUser/TableAdminUser"
+export * from "./tableAdminUser/TableAdminUser"
+export * from './adminTimeTableBody/AdminTimeTableBody'

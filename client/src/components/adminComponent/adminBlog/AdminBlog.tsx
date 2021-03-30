@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Spinner} from 'react-bootstrap';
 import {useSelector} from "react-redux";
-import {AdminCreateArticle, AdminFilterBlock} from "../";
+import {AdminCreateArticle, AdminFilterBlock, AdminTopBlock} from "../";
 import {AdminBlogItem, AdminCreateBtn, AdminFilterBtn} from "../../";
 import {Blog} from "../../../request/BlogApi";
 import {getBlogsListAction} from "../../../store/blog";
@@ -16,11 +16,13 @@ export const AdminBlog = () => {
     return (
         <div className="adminBlog">
             <div className="adminBlog__wrapper">
-                <div className="adminBlog__top">
-                    <AdminFilterBtn text={"Сортировать статьи"} onClick={() => setOpenFilter(!openFilter)}
-                                    show={!!(blogs?.data && blogs.data.length > 0)}/>
-                    <AdminCreateBtn text="Создать Новость" onClick={() => setOpenArticle(true)}/>
-                </div>
+                <AdminTopBlock title={"Статьи"}>
+                    <div>
+                        <AdminFilterBtn text={"Сортировать статьи"} onClick={() => setOpenFilter(!openFilter)}
+                                        show={!!(blogs?.data && blogs.data.length > 0)}/>
+                        <AdminCreateBtn text="Создать Новость" onClick={() => setOpenArticle(true)}/>
+                    </div>
+                </AdminTopBlock>
                 <AdminFilterBlock openStatus={openFilter} handleClose={() => setOpenFilter(false)} withDate={true}
                                   withSelect={true} action={getBlogsListAction}/>
                 <AdminCreateArticle setClose={() => setOpenArticle(false)} openStatus={openArticle}/>

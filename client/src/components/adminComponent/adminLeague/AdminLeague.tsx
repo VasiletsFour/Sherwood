@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from "react";
 import {FaPlus} from "react-icons/fa";
 import {useDispatch, useSelector} from "react-redux";
-import {Alert, DelTimes, NumberInput} from "../../";
+import {AdminTopBlock, Alert, DelTimes, NumberInput} from "../../";
 import {LeagueApi, Leagues} from "../../../request/LeagueApi";
 import {delLeagueAction, postLeagueAction, putLeagueAction} from "../../../store/league";
 import {AppState} from "../../../store/store";
@@ -47,6 +47,7 @@ export const AdminLeague = () => {
 
     return (
         <div className="adminLeague">
+            <AdminTopBlock title={"Лиги"}/>
             <Alert
                 openStatus={openAddLeague}
                 title={"Добавить лигу"}

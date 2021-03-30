@@ -1,14 +1,6 @@
 .adminBlog {
   width: 100%;
   min-height: 100%;
-  padding: 0 10px;
-
-  &__top{
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 14px;
-    width: 100%;
-  }
 
   &__wrapper {
     display: flex;

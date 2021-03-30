@@ -6,6 +6,7 @@ import {delAdminRefereeAction, postAdminRefereeAction, putAdminRefereeAction} fr
 import {AppState} from "../../../store/store";
 import {Alert} from "../../alert/Alert";
 import {AdminCreateBtn} from "../../buttons";
+import {AdminTopBlock} from "../adminTopBlock/AdminTopBlock";
 import {AdminUpdateDelete} from "../adminUpdateDelete/AdminUpdateDelete";
 import "./AdminReferee.scss"
 
@@ -29,22 +30,22 @@ export const AdminReferee = () => {
 
     return (
         <div className="adminReferee">
-            <div className="adminReferee__top">
+            <AdminTopBlock title={"Судьи"}>
                 <AdminCreateBtn text="Добаить судью" onClick={() => setOpenCreate(true)}/>
-                <Alert
-                    openStatus={openCreate}
-                    title="Судья"
-                    text="Добавить нового судью"
-                    closeClick={() => handleCloseCreate()}
-                    btnText="Создать"
-                    okClick={() => handleCreate()}>
-                    <input
-                        className="adminTeam__crateTeamInput"
-                        type="text"
+            </AdminTopBlock>
+            <Alert
+                openStatus={openCreate}
+                title="Судья"
+                text="Добавить нового судью"
+                closeClick={() => handleCloseCreate()}
+                btnText="Создать"
+                okClick={() => handleCreate()}>
+                <input
+                    className="adminTeam__crateTeamInput"
+                    type="text"
                         value={newReferee}
                         onChange={(event: ChangeEvent<HTMLInputElement>) => setNewReferee(event.target.value)}/>
                 </Alert>
-            </div>
             <div className="adminReferee__wrapper">
                 {referees.finished && !referees.loading && referees.data &&
                 referees.data.map(({name, id}: RefereeApi) => (

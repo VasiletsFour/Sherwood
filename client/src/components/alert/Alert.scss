@@ -15,6 +15,12 @@
     font-weight: bold;
   }
 
+  &__bodyContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
   &__footer{
     display: flex;
     justify-content: center !important;

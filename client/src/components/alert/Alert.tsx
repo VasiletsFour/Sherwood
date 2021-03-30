@@ -22,7 +22,7 @@ export const Alert = ({title, text, btnText, closeClick, okClick, openStatus, ch
             className="alert__headerTitle">{title}</Modal.Title></Modal.Header>
         <Modal.Body>
             <p className="alert__bodyText">{text}</p>
-            {children && children}
+            {children && <div className="alert__bodyContainer">{children}</div>}
         </Modal.Body>
         <Modal.Footer className="alert__footer">
             <div className="alert__footerBtnContainer">
