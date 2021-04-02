@@ -8,3 +8,5 @@ export * from "./adminTimeTable/AdminTimeTable"
 export * from "./tableAdminUser/TableAdminUser"
 export * from "./tableAdminUser/TableAdminUser"
 export * from './adminTimeTableBody/AdminTimeTableBody'
+export * from "./adminResultTable/AdminResultTable"
+export * from "./adminResultBody/AdminResultBody"

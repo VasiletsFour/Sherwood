@@ -11,9 +11,7 @@ import {TeamApi, TeamQuery} from "./TeamApi";
 export const getTeamsApi = async (query: TeamQuery): Promise<TeamApi[]> => {
     const {data, error, status} = await makeGetRequest("/team", {params: query});
 
-    if (status === 200) {
-        return data;
-    }
+    if (status === 200) return data;
 
     throw new Error(error);
 };
@@ -22,9 +20,7 @@ export const getTeamsApi = async (query: TeamQuery): Promise<TeamApi[]> => {
 export const getAdminTeamsApi = async (): Promise<TeamApi[]> => {
     const {data, error, status} = await makeGetRequest("/admin/team");
 
-    if (status === 200) {
-        return data;
-    }
+    if (status === 200) return data;
 
     throw new Error(error);
 };
@@ -33,9 +29,7 @@ export const getAdminTeamsApi = async (): Promise<TeamApi[]> => {
 export const postTeamAdminApi = async ({body}: typeof postTeamAdminCreateAction.trigger.typeInterface): Promise<string> => {
     const {data, error, status} = await makePostRequest("/admin/team", body);
 
-    if (status === 201) {
-        return data;
-    }
+    if (status === 201) return data;
 
     throw new Error(error);
 };
@@ -44,9 +38,7 @@ export const postTeamAdminApi = async ({body}: typeof postTeamAdminCreateAction.
 export const putTeamAdminApi = async ({body}: typeof putTeamAdminAddAction.trigger.typeInterface): Promise<string> => {
     const {data, error, status} = await makePutRequest("/admin/team", body);
 
-    if (status === 201) {
-        return data;
-    }
+    if (status === 201) return data;
 
     throw new Error(error);
 };
@@ -56,9 +48,7 @@ export const putTeamUpdateAdminApi = async ({id, body}
                                                 : typeof putTeamAdminUpdateAction.trigger.typeInterface): Promise<string> => {
     const {data, error, status} = await makePutRequest(`/admin/team/${id}`, body);
 
-    if (status === 201) {
-        return data;
-    }
+    if (status === 201) return data;
 
     throw new Error(error);
 };
@@ -68,9 +58,7 @@ export const delTeamAdminApi = async ({id, query}
                                           : typeof delTeamAdminAction.trigger.typeInterface): Promise<string> => {
     const {data, error, status} = await makeDeleteRequest(`/admin/team/${id}`, query ? {params: query} : {});
 
-    if (status === 200) {
-        return data;
-    }
+    if (status === 200) return data;
 
     throw new Error(error);
 };

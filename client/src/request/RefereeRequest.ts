@@ -6,9 +6,7 @@ import {RefereeApi} from "./RefereeApi";
 export const getRefereeApi = async (): Promise<RefereeApi[]> => {
     const {data, error, status} = await makeGetRequest("/referee");
 
-    if (status === 200) {
-        return data;
-    }
+    if (status === 200) return data;
 
     throw new Error(error);
 };
@@ -17,9 +15,7 @@ export const getRefereeApi = async (): Promise<RefereeApi[]> => {
 export const postAdminRefereeApi = async ({body}: typeof postAdminRefereeAction.trigger.typeInterface): Promise<string> => {
     const {data, error, status} = await makePostRequest("/admin/referee", body);
 
-    if (status === 201) {
-        return data;
-    }
+    if (status === 201) return data;
 
     throw new Error(error);
 };
@@ -31,9 +27,7 @@ export const putAdminRefereeApi = async ({
                                          }: typeof putAdminRefereeAction.trigger.typeInterface): Promise<string> => {
     const {data, error, status} = await makePutRequest(`/admin/referee/${id}`, body);
 
-    if (status === 201) {
-        return data;
-    }
+    if (status === 201) return data;
 
     throw new Error(error);
 };
@@ -42,9 +36,7 @@ export const putAdminRefereeApi = async ({
 export const delAdminRefereeApi = async ({id}: typeof delAdminRefereeAction.trigger.typeInterface): Promise<string> => {
     const {data, error, status} = await makeDeleteRequest(`/admin/referee/${id}`);
 
-    if (status === 201) {
-        return data;
-    }
+    if (status === 201) return data;
 
     throw new Error(error);
 };

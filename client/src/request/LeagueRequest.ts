@@ -6,9 +6,7 @@ import {LeagueApi} from "./LeagueApi";
 export const getLeagueApi = async (): Promise<LeagueApi[]> => {
     const {data, error, status} = await makeGetRequest("/league");
 
-    if (status === 200) {
-        return data;
-    }
+    if (status === 200) return data;
 
     throw new Error(error);
 };
@@ -17,9 +15,7 @@ export const getLeagueApi = async (): Promise<LeagueApi[]> => {
 export const postLeagueApi = async ({body}: typeof postLeagueAction.trigger.typeInterface): Promise<string> => {
     const {data, error, status} = await makePostRequest("/admin/league", body);
 
-    if (status === 201) {
-        return data;
-    }
+    if (status === 201) return data;
 
     throw new Error(error);
 };
@@ -28,9 +24,7 @@ export const postLeagueApi = async ({body}: typeof postLeagueAction.trigger.type
 export const putLeagueApi = async ({body}: typeof putLeagueAction.trigger.typeInterface): Promise<string> => {
     const {data, error, status} = await makePutRequest("/admin/league/", body);
 
-    if (status === 201) {
-        return data;
-    }
+    if (status === 201) return data;
 
     throw new Error(error);
 };
@@ -39,9 +33,7 @@ export const putLeagueApi = async ({body}: typeof putLeagueAction.trigger.typeIn
 export const delLeagueApi = async ({id}: typeof delLeagueAction.trigger.typeInterface): Promise<string> => {
     const {data, error, status} = await makeDeleteRequest(`/admin/league/${id}`);
 
-    if (status === 201) {
-        return data;
-    }
+    if (status === 201) return data;
 
     throw new Error(error);
 };

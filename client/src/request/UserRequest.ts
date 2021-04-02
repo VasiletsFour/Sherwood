@@ -6,9 +6,7 @@ import {UserApi} from "./UserApi";
 export const getAdminUserApi = async (): Promise<UserApi[]> => {
     const {data, error, status} = await makeGetRequest("/admin/user");
 
-    if (status === 200) {
-        return data;
-    }
+    if (status === 200) return data;
 
     throw new Error(error);
 };
@@ -17,9 +15,7 @@ export const getAdminUserApi = async (): Promise<UserApi[]> => {
 export const putAdminUserApi = async ({id, body}: typeof putAdminUserAction.trigger.typeInterface): Promise<string> => {
     const {data, error, status} = await makePutRequest(`/admin/user/${id}`, body);
 
-    if (status === 201) {
-        return data;
-    }
+    if (status === 201) return data;
 
     throw new Error(error);
 };
