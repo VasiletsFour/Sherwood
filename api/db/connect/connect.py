@@ -5,10 +5,10 @@ from utils.errorExcept.erroExcept import NotConnectError
 db = SQLAlchemy()
 
 
-def connectDd(app, msg=print(" -Database connect")):
+def connectDd(app, msg=" -Database connect"):
     try:
         db.init_app(app)
-        msg
+        print(msg)
 
         return db
     except:

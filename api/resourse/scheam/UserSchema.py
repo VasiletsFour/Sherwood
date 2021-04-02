@@ -1,7 +1,9 @@
-from marshmallow import Schema, fields
+from marshmallow import fields
+
+from resourse.scheam.Schema import BaseSchema
 
 
-class UserSchema(Schema):
+class UserSchema(BaseSchema):
     id = fields.Int()
     firstname = fields.Str()
     surname = fields.Str()

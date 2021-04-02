@@ -3,10 +3,10 @@ from marshmallow import fields
 from resourse.scheam.Schema import BaseSchema
 
 
-class RefereeSchema(BaseSchema):
+class PlaceSchema(BaseSchema):
     id = fields.Int()
     name = fields.Str()
 
 
-referee_schema = RefereeSchema()
-referees_schema = RefereeSchema(many=True)
+place_schema = PlaceSchema()
+places_schema = PlaceSchema(many=True)

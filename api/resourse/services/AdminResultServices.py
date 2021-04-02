@@ -1,13 +1,13 @@
-from resourse.repositories.AdminTeamRepositories import AdminTeamRepositories
+from resourse.repositories.AdminResultRepositories import AdminResultRepositories
 from resourse.services.Services import Services
 from resourse.validator.TeamValidate import create, update, updateName
 from utils.responce.responce import Response
 
 
-class AdminTeamServices(Services):
+class AdminResultServices(Services):
     def __init__(self):
         super().__init__()
-        self.repository = AdminTeamRepositories()
+        self.repository = AdminResultRepositories()
 
     def get(self):
         return self.repository.get()

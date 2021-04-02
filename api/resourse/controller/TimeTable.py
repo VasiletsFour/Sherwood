@@ -1,14 +1,12 @@
 from resourse.controller.Controller import Controller
-from resourse.services.PlayerServices import PlayerServices
-from utils.middleware.middleware import user_login
+from resourse.services.TimeTable import TimeTableServices
 
 
-class Player(Controller):
+class TimeTable(Controller):
     def __init__(self):
         super().__init__()
-        self.service = PlayerServices()
+        self.service = TimeTableServices()
 
-    @user_login
     def get(self, *args, **kwargs):
         service = self.service.get()
 

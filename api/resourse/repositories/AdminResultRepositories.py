@@ -1,14 +1,16 @@
 from db.models.TeamsModel import Teams
+from db.models.TimeTableModel import TimeTables
 from resourse.repositories.Repositories import Repositories
-from resourse.scheam.TeamSchema import teams_schema
+from resourse.scheam.TimeTableSchema import time_tables_schema
 from utils.responce.responce import Response
 
 
-class AdminTeamRepositories(Repositories):
+class AdminResultRepositories(Repositories):
     def get(self):
         try:
-            teams = self.session.query(Teams.id, Teams.name).filter(Teams.league_id == None).all()
-            schema = teams_schema.dump(teams)
+            timeTable = self.session.query(TimeTables).join("place", isouter=True).filter(
+                TimeTables.date > self.timeStamp).all()
+            schema = time_tables_schema.dump(timeTable)
 
             return Response(status=200, message={'data': schema}).__dict__
         except AttributeError:

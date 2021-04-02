@@ -1,16 +1,19 @@
+from db.connect.connect import db
+from utils.bcrypt.bcrypt import BcryptPass
+from utils.timestemp.timestamp import TimeStamp
+from utils.token.token import Token
+
+
 class Repositories:
-    @staticmethod
-    def get(*args, **kwargs):
-        pass
+    def __init__(self):
+        token = Token()
 
-    @staticmethod
-    def post(*args, **kwargs):
-        pass
+        self.session = db.session
 
-    @staticmethod
-    def put(*args, **kwargs):
-        pass
+        self.timeStamp = lambda: TimeStamp().toTimeStamp()
 
-    @staticmethod
-    def delete(*args, **kwargs):
-        pass
+        self.getToken = lambda id, role: token.getToken(id, role)
+        self.getConfirmToken = lambda email: token.getConfirmToken(email)
+        self.decode = lambda decode_token: token.decodeToken(decode_token)
+
+        self.checkPass = lambda body_pass, bd_pass: BcryptPass().checkPass(body_pass, bd_pass)

@@ -1,6 +1,6 @@
-from utils.middleware.middleware import user_login
 from resourse.controller.Controller import Controller
 from resourse.services.AccountServices import AccountServices
+from utils.middleware.middleware import user_login
 
 
 class Account(Controller):

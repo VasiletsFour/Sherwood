@@ -1,30 +1,23 @@
-from utils.bcrypt.bcrypt import BcryptPass
-from utils.errorExcept.erroExcept import UserNotFound, InvalidPassword, EmailNotConfirm, BanAccount
-from utils.responce.responce import Response
-from utils.token.token import Token
-from db.connect.connect import db
 from db.models.UserModel import Users
 from resourse.repositories.Repositories import Repositories
+from utils.errorExcept.erroExcept import UserNotFound, InvalidPassword, EmailNotConfirm, BanAccount
+from utils.responce.responce import Response
 
 
 class LoginRepositories(Repositories):
-    def __init__(self):
-        self.bcrypt = BcryptPass()
-        self.token = Token()
-
     def post(self, body: dict):
         try:
-            user = db.session.query(Users).filter(Users.email == body["email"]).first()
+            user = self.session.query(Users).filter(Users.email == body["email"]).first()
 
             if not user: raise UserNotFound()
             if user.__dict__["ban"]: raise BanAccount()
             if not user.__dict__["confirmEmail"]: raise EmailNotConfirm()
 
-            checkPass = self.bcrypt.checkPass(body["password"], user.__dict__["password"])
+            checkPass = self.checkPass(body["password"], user.__dict__["password"])
 
             if not checkPass: raise InvalidPassword()
 
-            token = self.token.getToken(user.__dict__["id"], user.__dict__["role"])
+            token = self.getToken(user.__dict__["id"], user.__dict__["role"])
 
             return Response(status=201, message={'data': token}).__dict__
         except UserNotFound:

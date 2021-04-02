@@ -1,8 +1,6 @@
-from flask_restful import request
-
-from utils.middleware.middleware import admin_login
 from resourse.controller.Controller import Controller
 from resourse.services.AdminUserServices import AdminUserServices
+from utils.middleware.middleware import admin_login
 
 
 class AdminUser(Controller):
@@ -18,7 +16,7 @@ class AdminUser(Controller):
 
     @admin_login
     def put(self, id):
-        service = self.service.put(id, request.get_json())
+        service = self.service.put(id, self.body)
 
         return service['message'], service["status"]
 

@@ -1,11 +1,13 @@
-from marshmallow import Schema, fields
+from marshmallow import fields
+
+from resourse.scheam.Schema import BaseSchema
 
 
-class BlogSchema(Schema):
+class BlogSchema(BaseSchema):
     id = fields.Int()
-    title = fields.String()
-    tags = fields.List(fields.String)
-    text = fields.String()
+    title = fields.Str()
+    tags = fields.List(fields.Str())
+    text = fields.Str()
     date = fields.Int()
     # img = fields.String()
     author_id = fields.Int()

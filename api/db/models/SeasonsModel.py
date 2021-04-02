@@ -1,5 +1,5 @@
-from utils.timestemp.timestamp import TimeStamp
 from db.connect.connect import db
+from utils.timestemp.timestamp import TimeStamp
 
 
 class Seasons(db.Model):
@@ -11,6 +11,6 @@ class Seasons(db.Model):
     active = db.Column(db.Boolean, default=True)
     leagues = db.relationship("Leagues", backref="season")
 
-    def __init__(self, name):
+    def __init__(self, name: str):
         self.name = name
         self.date = TimeStamp().toTimeStamp()

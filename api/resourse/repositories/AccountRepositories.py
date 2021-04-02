@@ -1,14 +1,12 @@
-from utils.responce.responce import Response
-from db.connect.connect import db
 from db.models.UserModel import Users
 from resourse.repositories.Repositories import Repositories
 from resourse.scheam.UserSchema import user_schema
+from utils.responce.responce import Response
 
 
 class AccountRepositories(Repositories):
-    @staticmethod
-    def get(id: str):
-        user = db.session.query(Users).filter(Users.id == id).first()
+    def get(self, id: str):
+        user = self.session.query(Users).filter(Users.id == id).first()
 
         if not user:
             return Response(status=404, message={"error": "User not found"}).__dict__

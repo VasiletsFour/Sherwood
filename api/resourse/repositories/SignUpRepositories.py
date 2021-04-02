@@ -3,27 +3,20 @@ from smtplib import SMTPRecipientsRefused
 from jwt import ExpiredSignatureError, DecodeError
 from sqlalchemy.exc import IntegrityError
 
-from utils.bcrypt.bcrypt import BcryptPass
-from utils.emailSend.emailSend import SendEmail
-from utils.responce.responce import Response
-from utils.token.token import Token
-from db.connect.connect import db
 from db.models.UserModel import Users
 from resourse.repositories.Repositories import Repositories
+from utils.emailSend.emailSend import SendEmail
+from utils.responce.responce import Response
 
 
 class SignUpRepositories(Repositories):
-    def __init__(self):
-        self.bcrypt = BcryptPass()
-        self.token = Token()
-
     def get(self, token: str):
         try:
-            decode_token = self.token.decodeToken(token)
-            user = db.session.query(Users).filter(Users.email == decode_token["user"], Users.confirmEmail == False)
+            decode_token = self.decode(token)
+            user = self.session.query(Users).filter(Users.email == decode_token["user"], Users.confirmEmail == False)
             user.update(dict(confirmEmail=True))
 
-            db.session.commit()
+            self.session.commit()
 
             return Response(status=201, message={'data': "Account Confirm"}).__dict__
         except ExpiredSignatureError:
@@ -34,10 +27,10 @@ class SignUpRepositories(Repositories):
     def post(self, body: dict):
         try:
             user = Users(**body)
-            token = self.token.getConfirmToken(body["email"])
+            token = self.getConfirmToken(body["email"])
 
-            db.session.add(user)
-            db.session.commit()
+            self.session.add(user)
+            self.session.commit()
 
             SendEmail(body["email"], token)
 

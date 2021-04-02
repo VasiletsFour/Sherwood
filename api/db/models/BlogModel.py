@@ -1,5 +1,5 @@
-from utils.timestemp.timestamp import TimeStamp
 from db.connect.connect import db
+from utils.timestemp.timestamp import TimeStamp
 
 
 class Blogs(db.Model):
@@ -13,7 +13,7 @@ class Blogs(db.Model):
     # img = db.Column(db.String(700), nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey('Users.id'), nullable=False)
 
-    def __init__(self, title, tags, text, author_id):
+    def __init__(self, title: str, tags, text: str, author_id: int):
         self.title = title
         self.tags = tags
         self.text = text

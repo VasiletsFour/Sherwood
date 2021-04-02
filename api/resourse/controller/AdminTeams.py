@@ -1,6 +1,6 @@
-from utils.middleware.middleware import admin_login
 from resourse.controller.Controller import Controller
 from resourse.services.AdminTeamService import AdminTeamServices
+from utils.middleware.middleware import admin_login
 
 
 class AdminTeam(Controller):

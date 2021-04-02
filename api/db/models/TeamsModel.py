@@ -9,5 +9,5 @@ class Teams(db.Model):
     league_id = db.Column(db.Integer, db.ForeignKey('Leagues.id'))
     players = db.relationship("Players", backref="team")
 
-    def __init__(self, name):
+    def __init__(self, name: str):
         self.name = name

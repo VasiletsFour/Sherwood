@@ -1,7 +1,9 @@
-from marshmallow import Schema, fields
+from marshmallow import fields
+
+from resourse.scheam.Schema import BaseSchema
 
 
-class SeasonSchema(Schema):
+class SeasonSchema(BaseSchema):
     id = fields.Int()
     name = fields.Str()
     date = fields.Int()

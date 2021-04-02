@@ -1,12 +1,12 @@
 from resourse.controller.Controller import Controller
-from resourse.services.AdminPlayerServices import AdminPlayerServices
+from resourse.services.AdminPlaceServices import AdminPlaceServices
 from utils.middleware.middleware import admin_login
 
 
-class AdminPlayer(Controller):
+class AdminPlace(Controller):
     def __init__(self):
         super().__init__()
-        self.service = AdminPlayerServices()
+        self.service = AdminPlaceServices()
 
     @admin_login
     def get(self, *args, **kwargs):

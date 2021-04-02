@@ -1,5 +1,5 @@
-from utils.bcrypt.bcrypt import BcryptPass
 from db.connect.connect import db
+from utils.bcrypt.bcrypt import BcryptPass
 
 bcrypt = BcryptPass()
 
@@ -19,7 +19,7 @@ class Users(db.Model):
     role = db.Column(db.String(6), default="user", nullable=False)
     ban = db.Column(db.Boolean, default=False, nullable=False)
 
-    def __init__(self, firstname, surname, email, password, role="user"):
+    def __init__(self, firstname: str, surname: str, email: str, password: str, role="user"):
         self.firstname = firstname
         self.surname = surname
         self.email = email

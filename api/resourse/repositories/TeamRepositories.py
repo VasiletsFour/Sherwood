@@ -1,17 +1,15 @@
-from utils.responce.responce import Response
-from db.connect.connect import db
 from db.models.LeagueModel import Leagues
 from db.models.TeamsModel import Teams
 from resourse.repositories.Repositories import Repositories
 from resourse.scheam.TeamSchema import teams_schema
+from utils.responce.responce import Response
 
 
 class TeamRepositories(Repositories):
-    @staticmethod
-    def get(filters, order):
+    def get(self, filters, order):
         try:
-            teams = db.session.query(Teams.id, Teams.name, Leagues.id.label("league_id"),
-                                     Leagues.name.label("league_name")).filter(filters).order_by(
+            teams = self.session.query(Teams.id, Teams.name, Leagues.id.label("league_id"),
+                                       Leagues.name.label("league_name")).filter(filters).order_by(
                 order).join(
                 "league").all()
 

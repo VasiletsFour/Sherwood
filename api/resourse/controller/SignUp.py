@@ -16,4 +16,3 @@ class SignUp(Controller):
         service = self.service.post(self.body)
 
         return service['message'], service["status"]
-

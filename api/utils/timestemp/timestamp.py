@@ -14,5 +14,5 @@ class TimeStamp:
         return datetime.fromtimestamp(time_stamp)
 
     @staticmethod
-    def fromIsoToTimeStamp(date:str):
+    def fromIsoToTimeStamp(date: str):
         return round(datetime.fromisoformat(date).timestamp())

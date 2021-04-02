@@ -1,7 +1,7 @@
-from utils.timestemp.timestamp import TimeStamp
 from db.models.BlogModel import Blogs
 from resourse.repositories.BlogRepositories import BlogRepositories
 from resourse.services.Services import Services
+from utils.timestemp.timestamp import TimeStamp
 
 
 class BlogServices(Services):

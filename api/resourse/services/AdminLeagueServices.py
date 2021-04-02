@@ -1,7 +1,7 @@
-from utils.responce.responce import Response
 from resourse.repositories.AdminLeagueRepositories import AdminLeagueRepositories
 from resourse.services.Services import Services
 from resourse.validator.LeagueValidate import update, create
+from utils.responce.responce import Response
 
 
 class AdminLeagueServices(Services):

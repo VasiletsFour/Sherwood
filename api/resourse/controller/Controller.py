@@ -13,6 +13,7 @@ class Controller(Resource):
         self.league_id = request.args.get("league_id")
         self.kind = request.args.get("kind")
         self.type = request.args.get("type")
+        self.tour = request.args.get("tour")
         self.delFromLeague = request.args.get("deleteFromLeague")
         self.token = request.headers.get("Authorization")
 

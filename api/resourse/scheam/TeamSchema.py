@@ -1,7 +1,9 @@
-from marshmallow import Schema, fields
+from marshmallow import fields
+
+from resourse.scheam.Schema import BaseSchema
 
 
-class TeamSchema(Schema):
+class TeamSchema(BaseSchema):
     id = fields.Int()
     name = fields.Str()
     league_id = fields.Int()

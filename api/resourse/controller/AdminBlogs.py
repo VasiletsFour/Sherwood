@@ -1,8 +1,8 @@
 import flask_restful
 
-from utils.middleware.middleware import admin_login
 from resourse.controller.Controller import Controller
 from resourse.services.AdminBlogsServices import AdminBlogServices
+from utils.middleware.middleware import admin_login
 
 
 class AdminBlogs(Controller):
