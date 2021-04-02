@@ -5,13 +5,14 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_restful import Api
 
-from utils.bcrypt.bcrypt import bcrypt
 from db.connect.connect import connectDd
 from resourse.controller.Account import Account
 from resourse.controller.AdminBlogs import AdminBlogs
 from resourse.controller.AdminLeague import AdminLeague
+from resourse.controller.AdminPlace import AdminPlace
 from resourse.controller.AdminPlayer import AdminPlayer
 from resourse.controller.AdminReferee import AdminReferee
+from resourse.controller.AdminResult import AdminResult
 from resourse.controller.AdminSeasone import AdminSeason
 from resourse.controller.AdminTeams import AdminTeam
 from resourse.controller.AdminTimeTable import AdminTimeTable
@@ -24,6 +25,8 @@ from resourse.controller.Referee import Referee
 from resourse.controller.Season import Season
 from resourse.controller.SignUp import SignUp
 from resourse.controller.Team import Team
+from resourse.controller.TimeTable import TimeTable
+from utils.bcrypt.bcrypt import bcrypt
 
 migrate = Migrate()
 
@@ -61,19 +64,13 @@ def create_app():
 
     @app.before_first_request
     def create_tables():
-        # from db.models.PlayerModel import Players
-        # from db.models.TeamModel import Team
-        # from db.models.SeasonsModel import Seasons
         # from db.models.PlayerStatisticsModel import PlayersStatistics
         # from db.models.TeamStatistics import TeamStatistics
-        # from db.models.TimeTableModel import TimeTables
-        # from db.models.LeagueModel import Leagues
-        # from db.models.UserModel import Users
-        # from db.models.BlogModel import Blogs
 
         db.create_all()
         db.session.commit()
 
+    # open routes
     api.add_resource(Season, "/season/")
     api.add_resource(League, "/league/")
     api.add_resource(Team, "/team/")
@@ -82,6 +79,7 @@ def create_app():
     api.add_resource(Login, "/auth/login/")
     api.add_resource(Blogs, "/blogs/")
     api.add_resource(Referee, "/referee/")
+    api.add_resource(TimeTable, "/time_table")
 
     # private routes
     api.add_resource(Account, "/account")
@@ -94,6 +92,8 @@ def create_app():
     api.add_resource(AdminSeason, "/admin/season/", "/admin/season/<string:id>")
     api.add_resource(AdminUser, "/admin/user/", "/admin/user/<string:id>")
     api.add_resource(AdminReferee, "/admin/referee/", "/admin/referee/<string:id>")
-    api.add_resource(AdminTimeTable, "/admin/time_table/")
+    api.add_resource(AdminTimeTable, "/admin/time_table/", "/admin/time_table/<string:id>")
+    api.add_resource(AdminPlace, "/admin/place/", "/admin/place/<string:id>")
+    api.add_resource(AdminResult, "/admin/result", "/admin/result/<string:id>")
 
     return app
