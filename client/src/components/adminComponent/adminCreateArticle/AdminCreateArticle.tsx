@@ -8,6 +8,8 @@ import {FormInput, SelectTags, TextArea} from "../../input";
 import {TagsMap} from "../../tagsMap/TagsMap";
 import "./AdminCreateArticle.scss";
 
+const selectValue = [1, 2, 3]
+
 interface Props {
     setClose: () => void;
     openStatus: boolean
@@ -32,7 +34,7 @@ export const AdminCreateArticle = ({setClose, openStatus}: Props) => {
     const [src, setSrc] = useState<string | undefined>(undefined);
 
     const handleClose = () => {
-        setState(initialState)
+        setState({...initialState, tags: new Set()})
         setClose()
     }
 
@@ -120,7 +122,7 @@ export const AdminCreateArticle = ({setClose, openStatus}: Props) => {
                             rows={3}
                             cols={10}
                         />
-                        <SelectTags handleSelectAdd={(event) => handleSelectAdd(event)}/>
+                        <SelectTags handleSelectAdd={(event) => handleSelectAdd(event)} option={selectValue}/>
                         <TagsMap handleSelectDel={(item: string) => handleSelectDel(item)} tags={state.tags}/>
                     </div>
                 </div>

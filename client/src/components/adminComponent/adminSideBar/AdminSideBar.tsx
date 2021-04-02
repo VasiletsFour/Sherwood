@@ -5,8 +5,10 @@ import {useHistory} from "react-router-dom";
 import {
     ADMIN_BLOG_PAGE,
     ADMIN_LEAGUE_PAGE,
+    ADMIN_PLACE_PAGE,
     ADMIN_PLAYER_PAGE,
     ADMIN_REFEREE_PAGE,
+    ADMIN_RESULT_PAGE,
     ADMIN_SEASON_PAGE,
     ADMIN_TEAM_PAGE,
     ADMIN_TIME_TABLE_CREATE_PAGE,
@@ -28,7 +30,8 @@ export const AdminSideBar = () => {
     const isAdminRefereePage = ADMIN_REFEREE_PAGE.match(history.location).isMatched;
     const isAdminTimeTableCreatePage = ADMIN_TIME_TABLE_CREATE_PAGE.match(history.location).isMatched;
     const isAdminTimeTableUpdatePage = ADMIN_TIME_TABLE_UPDATE_PAGE.match(history.location).isMatched;
-    const staticUrl = false;
+    const isAdminResultPage = ADMIN_RESULT_PAGE.match(history.location).isMatched;
+    const isAdminPlacePage = ADMIN_PLACE_PAGE.match(history.location).isMatched;
 
     return (
         <aside className={`adminSideBar ${close && "adminSideBarClose"}`}>
@@ -62,9 +65,11 @@ export const AdminSideBar = () => {
                                           text="Редактировать"/>
                             </ul>
                         </div>
-                        <MenuLink activateLink={true} page={staticUrl} link={ADMIN_BLOG_PAGE} text="Результаты"/>
+                        <MenuLink activateLink={true} page={isAdminResultPage} link={ADMIN_RESULT_PAGE}
+                                  text="Результаты"/>
                         <MenuLink activateLink={true} page={isAdminUserPage} link={ADMIN_USER_PAGE} text="Юзери"/>
                         <MenuLink activateLink={true} page={isAdminRefereePage} link={ADMIN_REFEREE_PAGE} text="Судьи"/>
+                        <MenuLink activateLink={true} page={isAdminPlacePage} link={ADMIN_PLACE_PAGE} text="Поля"/>
                     </Nav>
                 </Navbar>
             )}

@@ -1,8 +1,15 @@
 .adminReferee {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &__referee{
     display: flex;
     align-items: center;
+  }
+
+  &__list{
+    width: 98%;
   }
 }

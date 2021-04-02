@@ -1,0 +1,11 @@
+.adminUpdateDelete {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  &__iconContainer{
+    width: 60px;
+    display: flex;
+    justify-content: space-between;
+  }
+}

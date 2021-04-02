@@ -22,7 +22,6 @@ class ResultSchema(BaseSchema):
     guest = fields.Nested(TimeTableNestedSchema())
     tour = fields.Int()
     place = fields.Nested(TimeTableNestedSchema())
-    status = fields.Str()
     date = fields.Int()
 
 

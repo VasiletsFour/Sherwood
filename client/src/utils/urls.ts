@@ -21,5 +21,7 @@ export const ADMIN_TIME_TABLE_UPDATE_PAGE = createPath("/admin/time_table/update
 export const ADMIN_TEAM_PAGE = createPath<{ id: string }>("/admin/team");
 export const ADMIN_PLAYER_PAGE = createPath<{ id: string }>("/admin/player");
 export const ADMIN_REFEREE_PAGE = createPath("/admin/referee");
+export const ADMIN_RESULT_PAGE = createPath("/admin/result")
+export const ADMIN_PLACE_PAGE = createPath("/admin/place")
 export const INSTAGRAM_URL = createPath("https://www.instagram.com/elit_ka__/?igshid=ae3ph64k86z6");
 export const YOU_TUBE_URL = createPath("https://www.youtube.com/channel/UCaZY7apNSO6de12P6CBoQHA");

@@ -3,15 +3,16 @@ import {Form} from 'react-bootstrap';
 import "./SelectTags.scss";
 
 interface Props {
+    option: Array<any>
     handleSelectAdd: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export const SelectTags = ({ handleSelectAdd }: Props) => (
+export const SelectTags = ({handleSelectAdd, option}: Props) => (
     <Form>
         <Form.Control as={"select"} onChange={(event: ChangeEvent<HTMLSelectElement>) => handleSelectAdd(event)}>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+            <option disabled={true} hidden={true}>Выбирете значение</option>
+            {option.map((item) => <option key={item?.id + "selectTags"}
+                                          value={item?.id}>{item?.name}</option>)}
         </Form.Control>
     </Form>
 );

@@ -15,7 +15,7 @@ interface Params {
 export function* UserSaga() {
     while (true) {
         const action = yield take("*");
-        const adminUserUrlMatch: any = action.type === LOCATION_CHANGE && ADMIN_USER_PAGE.match(action.payload.location).isMatched;
+        const adminUserUrlMatch = action.type === LOCATION_CHANGE && ADMIN_USER_PAGE.match(action.payload.location).isMatched;
 
         if (adminUserUrlMatch) {
             yield call(getAdminUserWorker);

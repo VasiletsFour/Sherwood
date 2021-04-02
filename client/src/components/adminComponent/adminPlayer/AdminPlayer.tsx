@@ -1,7 +1,8 @@
 import React, {useState} from "react";
+import {ListGroup} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
 import {AdminTopBlock, AdminUpdateDelete, NameOpenChild} from "../../";
-import {AdminPlayerApi, PlayerApi, PlayerUpdate} from "../../../request/PlayerApi";
+import {AdminPlayerApi, PlayerApi} from "../../../request/PlayerApi";
 import {delAdminPlayerAction, postAdminPlayerAction, putAdminPlayerAction} from "../../../store/player";
 import {AppState} from "../../../store/store";
 import "./AdminPlayer.scss"
@@ -42,19 +43,22 @@ export const AdminPlayer = () => {
                             onClickAdd={(name: string) => handleAddPlayer(name, id)}
                         />
                         {openTeam.openStatus && openTeam.id === id &&
-                        <div>
+                        <ListGroup>
                             {players.map((item: PlayerApi, index: number) => (
                                 <AdminUpdateDelete key={item.id + "adminPlayerPlayer"} id={item.id} index={index}
                                                    title={"Изминить Имя"}
                                                    text={`Вы хотите игрока ${item.name}?`}
                                                    name={item.name}
-                                                   handleUpdate={(body: PlayerUpdate) => {
-                                                       dispatch(putAdminPlayerAction.trigger({id: item.id, body}))
+                                                   handleUpdate={(name: string) => {
+                                                       dispatch(putAdminPlayerAction.trigger({
+                                                           id: item.id,
+                                                           body: {name}
+                                                       }))
                                                    }}
                                                    handleDelete={() => dispatch(delAdminPlayerAction.trigger({id: item.id}))}
-                                                   classname={"adminPlayer"}/>
+                                />
                             ))}
-                        </div>}
+                        </ListGroup>}
                     </div>
                 ))}
             </div>

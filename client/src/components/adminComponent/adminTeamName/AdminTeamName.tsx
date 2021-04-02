@@ -1,6 +1,7 @@
 import React from "react";
+import {ListGroup} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
-import {CreateTeam, TeamApi} from "../../../request/TeamApi";
+import {TeamApi} from "../../../request/TeamApi";
 import {AppState} from "../../../store/store";
 import {delTeamAdminAction, putTeamAdminUpdateAction} from "../../../store/team";
 import {AdminUpdateDelete} from "../adminUpdateDelete/AdminUpdateDelete";
@@ -11,11 +12,11 @@ export const AdminTeamName = () => {
     const dispatch = useDispatch();
     const {teams} = useSelector((state: AppState) => ({teams: state.teamState.teams}));
 
-    const handleUpdate = (id: number, league_id: number, body: CreateTeam) => {
+    const handleUpdate = (id: number, league_id: number, name: string) => {
         dispatch(putTeamAdminUpdateAction.trigger({
             id,
             league_id,
-            body
+            body: {name}
         }))
     }
 
@@ -28,7 +29,7 @@ export const AdminTeamName = () => {
     }
 
     return (
-        <div className={"adminTeamName"}>
+        <ListGroup className={"adminTeamName"}>
             {teams.data &&
             teams.finished &&
             !teams.loading &&
@@ -39,10 +40,10 @@ export const AdminTeamName = () => {
                     index={index}
                     title={"Изминить название команды"} text={`Вы хотите удалить эту команду ${name}?`}
                     name={name}
-                    handleUpdate={(body: CreateTeam) => handleUpdate(id, league_id, body)}
+                    handleUpdate={(name: string) => handleUpdate(id, league_id, name)}
                     handleDelete={() => handleDelete(id, league_id)}
-                    classname={"adminTeamName"}/>
+                />
             )}
-        </div>
+        </ListGroup>
     );
 };

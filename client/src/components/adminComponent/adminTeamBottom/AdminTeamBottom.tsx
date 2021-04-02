@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {CreateTeam, TeamApi} from "../../../request/TeamApi";
+import {TeamApi} from "../../../request/TeamApi";
 import {AppState} from "../../../store/store";
 import {delTeamAdminAction, putTeamAdminUpdateAction} from "../../../store/team";
 import {dragAndDropDefault, DragAndDropState, handleDragEnter} from "../../../utils";
@@ -33,9 +33,9 @@ export const AdminTeamBottom = ({setDragAndDrop}: Props) => {
                         <UpdatePen
                             title={"Изменить название команды"}
                             classname="adminTeamBottom__updatePen"
-                            onClick={(body: CreateTeam) => dispatch(putTeamAdminUpdateAction.trigger({
+                            onClick={(name: string) => dispatch(putTeamAdminUpdateAction.trigger({
                                 id: item.id,
-                                body
+                                body: {name}
                             }))}
                             previousValue={item.name}/>
                         <DelTimes onClick={() => dispatch(delTeamAdminAction.trigger({id: item.id, query: {}}))}

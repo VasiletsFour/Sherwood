@@ -6,6 +6,8 @@ import {FormInput, InputDate, SelectTags} from "../../input";
 import {TagsMap} from "../../tagsMap/TagsMap";
 import "./AdminFilterBlock.scss"
 
+const selectValue = [1, 2, 3]
+
 interface InitialState {
     search?: string
     fromDate?: string
@@ -88,7 +90,7 @@ export const AdminFilterBlock = ({openStatus, withDate, handleClose, action}: Pr
                             onChange={event => handleInputChange(event.target)}
                             value={state.beforeDate || ""}/>
                     </div>}
-                    <SelectTags handleSelectAdd={(event) => handleAddSelect(event)}/>
+                    <SelectTags handleSelectAdd={(event) => handleAddSelect(event)} option={selectValue}/>
                     <TagsMap handleSelectDel={(item: string) => handleDelSelect(item)} tags={state.tags}/>
                 </div>
                 <div className="adminFilterBlock__btnContainer">

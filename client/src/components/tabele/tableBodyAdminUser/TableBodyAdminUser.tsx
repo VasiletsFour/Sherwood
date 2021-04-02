@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import {UserApi} from "../../../request/UserApi";
 import {putAdminUserAction} from "../../../store/user";
@@ -11,16 +11,27 @@ interface Props {
 
 export const TableBodyAdminUser = ({user, index}: Props) => {
     const dispatch = useDispatch();
+    const [role, setRole] = useState(user.role)
+    const [ban, setBan] = useState(user.ban)
 
-    const handleUpdateRole = () => dispatch(putAdminUserAction.trigger({
-        id: user.id,
-        body: {role: user.role === "user" ? "admin" : "user"}
-    }))
+    const handleUpdateRole = () => {
+        const newRole = role === "user" ? "admin" : "user"
+        setRole(newRole)
 
-    const handleUpdateBan = () => dispatch(putAdminUserAction.trigger({
-        id: user.id,
-        body: {ban: !user.ban}
-    }))
+        dispatch(putAdminUserAction.trigger({
+            id: user.id,
+            body: {role: newRole}
+        }))
+    }
+
+    const handleUpdateBan = () => {
+        setBan(!ban)
+
+        dispatch(putAdminUserAction.trigger({
+            id: user.id,
+            body: {ban: !ban}
+        }))
+    }
 
 
     return (
@@ -33,14 +44,14 @@ export const TableBodyAdminUser = ({user, index}: Props) => {
                     onClick={() => handleUpdateRole()}
                     id={"updateAdminRoleUser"}
                     label={"Сделать пользователя админом"}
-                    status={user.role === "admin"}/>
+                    status={role === "admin"}/>
             </td>
             <td>
                 <SwitchBtn
                     onClick={(() => handleUpdateBan())}
                     id={"updateAdminBanUser"}
                     label={"Заблокировать Пользователя"}
-                    status={user.ban}/>
+                    status={ban}/>
             </td>
         </tr>
     )

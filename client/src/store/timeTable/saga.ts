@@ -1,13 +1,13 @@
 import {LOCATION_CHANGE} from "connected-react-router";
 import {call, put, take} from "redux-saga/effects";
-import {TimeTableCreate} from "../../request/TimeTableApi";
-import {getTimeTableApi, postTimeTableCreateAdminApi} from "../../request/TimeTableRequest";
+import {TimeTableCreate, TimeTableUpdate} from "../../request/TimeTableApi";
+import {getTimeTableApi, postTimeTableCreateAdminApi, putTimeTableUpdateAdminApi} from "../../request/TimeTableRequest";
 import {ADMIN_TIME_TABLE_UPDATE_PAGE} from "../../utils";
-import {getTimeTableAction, postTimeTableCreateAdminAction} from "./action";
+import {getTimeTableAction, postTimeTableCreateAdminAction, putTimeTableUpdateAdminAction} from "./action";
 
 interface Params {
     params: {
-        body?: TimeTableCreate
+        body?: TimeTableCreate | TimeTableUpdate
         id?: number
     }
 }
@@ -22,7 +22,11 @@ export function* TimeTableSaga() {
         }
 
         if (postTimeTableCreateAdminAction.trigger.is(action)) {
-            yield call(CRUDUserWorker, {params: {body: action.body}}, postTimeTableCreateAdminApi);
+            yield call(CRUDTimeTableWorker, {params: {body: action.body}}, postTimeTableCreateAdminApi);
+        }
+
+        if (putTimeTableUpdateAdminAction.trigger.is(action)) {
+            yield call(CRUDTimeTableWorker, {params: {id: action.id, body: action.body}}, putTimeTableUpdateAdminApi);
         }
     }
 }
@@ -38,11 +42,12 @@ function* getTimeTableWorker() {
     }
 }
 
-function* CRUDUserWorker({params}: Params, api: (this: unknown, ...args: any) => Promise<string>) {
+function* CRUDTimeTableWorker({params}: Params, api: (this: unknown, ...args: any) => Promise<string>) {
     try {
         if (!params.body && !params.id) return
 
         yield call(api, params);
+        yield call(getTimeTableWorker)
     } catch (e) {
         yield call(getTimeTableWorker)
     }

@@ -1,5 +1,7 @@
 import React from "react";
+import {ListGroup} from 'react-bootstrap';
 import {DelTimes, UpdatePen} from "../../icon";
+import "./AdminUpdateDelete.scss"
 
 interface Props {
     id: number
@@ -7,24 +9,27 @@ interface Props {
     title: string
     text: string
     name: string
-    handleUpdate: (body: { name: string }) => void
+    handleUpdate: (name: string) => void
     handleDelete: (id: number) => void
-    classname: string
 }
 
-export const AdminUpdateDelete = ({id, index, name, handleUpdate, handleDelete, title, text, classname}: Props) => (
-    <div className={`${classname}__wrapper`}>
-        <p>{(index === null || index !== undefined) && <span>{(index + 1).toString()})</span>}{name}</p>
-        <UpdatePen
-            title={title}
-            classname={`${classname}__updatePen`}
-            onClick={body => handleUpdate(body)}
-            previousValue={name}
-        />
-        <DelTimes
-            classname={`${classname}__delTimes`}
-            onClick={() => handleDelete(id)}
-            text={text}/>
-    </div>
+export const AdminUpdateDelete = ({id, index, name, handleUpdate, handleDelete, title, text,}: Props) => (
+    <ListGroup.Item>
+        <div className={`adminUpdateDelete`}>
+            <p>{(index === null || index !== undefined) && <span>{(index + 1).toString()})</span>}{name}</p>
+            <div className={`adminUpdateDelete__iconContainer`}>
+                <UpdatePen
+                    title={title}
+                    classname={`adminUpdateDelete__updatePen`}
+                    onClick={name => handleUpdate(name)}
+                    previousValue={name}
+                />
+                <DelTimes
+                    classname={`adminUpdateDelete__delTimes`}
+                    onClick={() => handleDelete(id)}
+                    text={text}/>
+            </div>
+        </div>
+    </ListGroup.Item>
 );
 

@@ -8,8 +8,10 @@ import {
     AdminBlogPage,
     AdminLeaguePage,
     AdminPage,
+    AdminPlacePage,
     AdminPlayerPage,
     AdminRefereePage,
+    AdminResultPage,
     AdminSeasonPage,
     AdminTeamPage,
     AdminTimeTablePage,
@@ -32,8 +34,10 @@ import {
     ADMIN_BLOG_PAGE,
     ADMIN_LEAGUE_PAGE,
     ADMIN_PAGE,
+    ADMIN_PLACE_PAGE,
     ADMIN_PLAYER_PAGE,
     ADMIN_REFEREE_PAGE,
+    ADMIN_RESULT_PAGE,
     ADMIN_SEASON_PAGE,
     ADMIN_TEAM_PAGE,
     ADMIN_TIME_TABLE_CREATE_PAGE,
@@ -59,36 +63,36 @@ class App extends React.Component {
                 <Provider store={store}>
                     <ConnectedRouter history={history}>
                         <Switch>
-                            <Route path={HOME_URL.urlTemplate} component={HomePage} />
-                            <Route path={TIME_TABLE_URL.urlTemplate} component={TimeTablePage} />
-                            <Route path={TOURNAMENT_TABLE_URL.urlTemplate} component={TournamentTablePage} />
-                            <Route path={CONFIRM_ACCOUNT_URL.urlTemplate} component={ConfirmAccountPage} />
-                            <Route path={SCORER_URL.urlTemplate} component={ScorerPage} />
-                            <Route path={TEAMS_URL.urlTemplate} component={TeamsPage} />
-                            <Route path={MATCH_RESULT_PAGE.urlTemplate} component={MatchResultPage} />
-                            <Route path={APPLICATION_LIST_PAGE.urlTemplate} component={ApplicationListPage} />
-                            <Route path={COMMITTEE_PAGE.urlTemplate} component={CommitteePage} />
+                            <Route path={HOME_URL.urlTemplate} component={HomePage}/>
+                            <Route path={TIME_TABLE_URL.urlTemplate} component={TimeTablePage}/>
+                            <Route path={TOURNAMENT_TABLE_URL.urlTemplate} component={TournamentTablePage}/>
+                            <Route path={CONFIRM_ACCOUNT_URL.urlTemplate} component={ConfirmAccountPage}/>
+                            <Route path={SCORER_URL.urlTemplate} component={ScorerPage}/>
+                            <Route path={TEAMS_URL.urlTemplate} component={TeamsPage}/>
+                            <Route path={MATCH_RESULT_PAGE.urlTemplate} component={MatchResultPage}/>
+                            <Route path={APPLICATION_LIST_PAGE.urlTemplate} component={ApplicationListPage}/>
+                            <Route path={COMMITTEE_PAGE.urlTemplate} component={CommitteePage}/>
 
                             {/*PRIVATE*/}
                             <PrivateRoute path={ACCOUNT_PAGE.urlTemplate}>
-                                <AccountPage />
+                                <AccountPage/>
                             </PrivateRoute>
 
                             {/*ADMIN*/}
                             <AdminRoute path={ADMIN_PAGE.urlTemplate} excat>
-                                <AdminPage />
+                                <AdminPage/>
                             </AdminRoute>
                             <AdminRoute path={ADMIN_BLOG_PAGE.urlTemplate} excat>
-                                <AdminBlogPage />
+                                <AdminBlogPage/>
                             </AdminRoute>
                             <AdminRoute path={ADMIN_SEASON_PAGE.urlTemplate} excat>
-                                <AdminSeasonPage />
+                                <AdminSeasonPage/>
                             </AdminRoute>
                             <AdminRoute path={ADMIN_SEASON_PAGE.urlTemplate} excat>
-                                <AdminSeasonPage />
+                                <AdminSeasonPage/>
                             </AdminRoute>
                             <AdminRoute path={ADMIN_LEAGUE_PAGE.urlTemplate} excat>
-                                <AdminLeaguePage />
+                                <AdminLeaguePage/>
                             </AdminRoute>
                             <AdminRoute path={ADMIN_TEAM_PAGE.urlTemplate} excat>
                                 <AdminTeamPage/>
@@ -105,9 +109,16 @@ class App extends React.Component {
                             <AdminRoute path={ADMIN_TIME_TABLE_CREATE_PAGE.urlTemplate}>
                                 <AdminTimeTablePage/>
                             </AdminRoute>
+                            <AdminRoute path={ADMIN_PLACE_PAGE.urlTemplate}>
+                                <AdminPlacePage/>
+                            </AdminRoute>
                             <AdminRoute path={ADMIN_TIME_TABLE_UPDATE_PAGE.urlTemplate}>
                                 <AdminTimeTablePage/>
                             </AdminRoute>
+                            <AdminRoute path={ADMIN_RESULT_PAGE.urlTemplate}>
+                                <AdminResultPage/>
+                            </AdminRoute>
+
 
                             <Redirect from={ROOT_URL.urlTemplate} to={HOME_URL.urlTemplate}/>
                         </Switch>

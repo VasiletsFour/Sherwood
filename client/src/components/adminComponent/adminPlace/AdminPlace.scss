@@ -1,0 +1,14 @@
+.adminPlace {
+  width: 100%;
+
+  &__container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__place{
+    display: flex;
+    align-items: center;
+  }
+}

@@ -1,23 +1,27 @@
 import React, {useState} from "react";
 import {FaPen} from "react-icons/fa";
-import {CreateTeam} from "../../../request/TeamApi";
+import {PlaceApi} from "../../../request/PlaceApi";
 import {Alert} from "../../alert/Alert";
+import {SelectTags} from "../../input";
 
 interface Props {
-    onClick: (body: CreateTeam) => void
+    onClick: (value: string) => void
     classname: string
     previousValue: string
     title: string
+    isSelect?: boolean
+    option?: number[] | PlaceApi[]
+    isDate?: boolean
 }
 
-export const UpdatePen = ({classname, onClick, previousValue, title}: Props) => {
+export const UpdatePen = ({classname, onClick, previousValue, title, isDate, isSelect, option}: Props) => {
     const [value, setValue] = useState(previousValue)
     const [openAlert, setOpenAlert] = useState(false)
 
     const handleClick = () => {
         setOpenAlert(false)
 
-        return onClick({name: value})
+        return onClick(value)
     }
 
     return (
@@ -26,10 +30,13 @@ export const UpdatePen = ({classname, onClick, previousValue, title}: Props) => 
             <Alert
                 openStatus={openAlert}
                 title={title}
-                text={`Текущее название ${previousValue}`}
+                text={`Текущее значение ${previousValue}`}
                 closeClick={() => setOpenAlert(false)}
                 okClick={() => handleClick()} btnText={"Ok"}>
-                <input value={value} onChange={(event) => setValue(event.target.value)}/>
+                {isSelect && option ?
+                    <SelectTags handleSelectAdd={(event) => setValue(event.target.value)} option={option}/> :
+                    <input type={isDate ? "date" : "text"} value={value}
+                           onChange={(event) => setValue(event.target.value)}/>}
             </Alert>
         </div>)
 }

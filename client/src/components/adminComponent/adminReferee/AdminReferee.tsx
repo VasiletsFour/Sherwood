@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from "react";
-import {Spinner} from 'react-bootstrap';
+import {ListGroup, Spinner} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
-import {RefereeApi, RefereeBody} from "../../../request/RefereeApi";
+import {RefereeApi} from "../../../request/RefereeApi";
 import {delAdminRefereeAction, postAdminRefereeAction, putAdminRefereeAction} from "../../../store/referee";
 import {AppState} from "../../../store/store";
 import {Alert} from "../../alert/Alert";
@@ -41,25 +41,26 @@ export const AdminReferee = () => {
                 btnText="Создать"
                 okClick={() => handleCreate()}>
                 <input
-                    className="adminTeam__crateTeamInput"
+                    className="adminReferee__crateTeamInput"
                     type="text"
-                        value={newReferee}
-                        onChange={(event: ChangeEvent<HTMLInputElement>) => setNewReferee(event.target.value)}/>
-                </Alert>
-            <div className="adminReferee__wrapper">
+                    value={newReferee}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) => setNewReferee(event.target.value)}/>
+            </Alert>
+            <ListGroup className="adminReferee__list">
                 {referees.finished && !referees.loading && referees.data &&
                 referees.data.map(({name, id}: RefereeApi) => (
                     <AdminUpdateDelete key={id + "AdminReferee"} id={id}
                                        title={"Изминить имя судьи"}
                                        text={`Вы хотите удалить этого судью ${name}?`}
                                        name={name}
-                                       handleUpdate={(body: RefereeBody) => {
-                                           dispatch(dispatch(putAdminRefereeAction.trigger({id, body})))
+                                       handleUpdate={(name: string) => {
+                                           dispatch(dispatch(putAdminRefereeAction.trigger({id, body: {name}})))
                                        }}
                                        handleDelete={() => dispatch(delAdminRefereeAction.trigger({id}))}
-                                       classname={"adminTeamName"}/>))}
-                {!referees.finished && referees.loading && !referees.data && <Spinner animation={"border"} variant={"light"} size={"sm"}/>}
-            </div>
+                    />))}
+                {!referees.finished && referees.loading && !referees.data &&
+                <Spinner animation={"border"} variant={"light"} size={"sm"}/>}
+            </ListGroup>
         </div>
     )
 };

@@ -16,5 +16,7 @@ export * from "./adminSeasonPage/AdminSeasonPage";
 export * from "./adminTeamPage/AdminTeamPage";
 export * from "./adminUserPage/AdminUserPage";
 export * from "./technicalWork/TechnicalWork";
-export * from "./adminReferee/AdminReferee"
+export * from "./adminRefereePage/AdminRefereePage"
 export * from "./adminTimeTablePage/AdminTimeTable"
+export * from "./adminResultPage/AdminResultPage"
+export * from "./adminPlacePage/AdminPlacePage"

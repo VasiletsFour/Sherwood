@@ -8,6 +8,8 @@ import {delArticleAction} from "../../../store/blog";
 import {timeStampToDate} from "../../../utils";
 import "./AdminBlogItem.scss";
 
+const selectValue = [1, 2, 3]
+
 export const AdminBlogItem = ({title, text, date, tags, id}: Blog) => {
     const dipatch = useDispatch();
     const [state, setState] = useState({title: title, text: text, tags: new Set(tags)});
@@ -69,7 +71,7 @@ export const AdminBlogItem = ({title, text, date, tags, id}: Blog) => {
                 {tags && (
                     <div className="adminBlogItem__tagsContainer">
                         {changeTags ? (
-                            <SelectTags handleSelectAdd={(event) => handleSelectAdd(event)}/>
+                            <SelectTags handleSelectAdd={(event) => handleSelectAdd(event)} option={selectValue}/>
                         ) : (
                             <TagsMap handleSelectDel={(item: string) => handleSelectDel(item)} tags={state.tags}/>
                         )}

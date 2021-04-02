@@ -12,7 +12,8 @@ class AdminResultRepositories(Repositories):
     def get(self):
         try:
             timeTable = self.session.query(TimeTables).join("place", isouter=True).filter(
-                TimeTables.date > self.timeStamp).order_by(TimeTables.tour, Places.name).all()
+                TimeTables.date > self.timeStamp, TimeTables.status == None).order_by(TimeTables.tour,
+                                                                                      Places.name).all()
             schema = results_schema.dump(timeTable)
 
             return Response(status=200, message={'data': schema}).__dict__
