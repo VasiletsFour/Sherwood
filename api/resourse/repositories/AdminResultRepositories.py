@@ -1,7 +1,10 @@
+from db.models.MatchAwayTeamModel import MatchAwayTeams
+from db.models.MatchHomeTeamModel import MatchHomeTeams
+from db.models.PlaceModel import Places
 from db.models.TeamsModel import Teams
 from db.models.TimeTableModel import TimeTables
 from resourse.repositories.Repositories import Repositories
-from resourse.scheam.TimeTableSchema import time_tables_schema
+from resourse.scheam.ResultSchema import results_schema
 from utils.responce.responce import Response
 
 
@@ -9,17 +12,18 @@ class AdminResultRepositories(Repositories):
     def get(self):
         try:
             timeTable = self.session.query(TimeTables).join("place", isouter=True).filter(
-                TimeTables.date > self.timeStamp).all()
-            schema = time_tables_schema.dump(timeTable)
+                TimeTables.date > self.timeStamp).order_by(TimeTables.tour, Places.name).all()
+            schema = results_schema.dump(timeTable)
 
             return Response(status=200, message={'data': schema}).__dict__
         except AttributeError:
-            return Response(status=400, message={'error': "Team get error"}).__dict__
+            return Response(status=400, message={'error': "AdminResult get error"}).__dict__
 
     def post(self, body: dict):
-        team = Teams(**body)
+        result = [MatchHomeTeams(body["match"], body["goalHome"], body["homeResult"]),
+                  MatchAwayTeams(body["match"], body["goalVisitors"], body["visitorsResult"])]
 
-        self.session.add(team)
+        self.session.bulk_save_objects(result)
         self.session.commit()
 
         return Response(status=201, message={'data': 'create'}).__dict__

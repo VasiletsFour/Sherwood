@@ -21,13 +21,13 @@ class AdminResult(Controller):
         return service['message'], service["status"]
 
     @admin_login
-    def put(self, id=None):
-        service = self.service.putUpdateName(id, self.body) if id else self.service.put(self.body)
+    def put(self, id):
+        service = self.service.put(id, self.body)
 
         return service['message'], service["status"]
 
     @admin_login
     def delete(self, id):
-        service = self.service.deleteFromLeague(id) if self.delFromLeague else self.service.delete(id)
+        service = self.service.delete(id)
 
         return service['message'], service["status"]

@@ -1,6 +1,7 @@
 from resourse.repositories.AdminResultRepositories import AdminResultRepositories
 from resourse.services.Services import Services
-from resourse.validator.TeamValidate import create, update, updateName
+from resourse.validator.ResultValidate import create
+from resourse.validator.TeamValidate import update
 from utils.responce.responce import Response
 
 
@@ -15,30 +16,21 @@ class AdminResultServices(Services):
     def post(self, body: dict):
         res = self.valid.validation(create, body)
 
+        if body["homeResult"] == "win" and body["visitorsResult"] != "lose" \
+                or body["visitorsResult"] == "win" and body["homeResult"] != "lose" \
+                or body["visitorsResult"] == "draw" and body["homeResult"] != body["visitorsResult"]:
+            return Response(status=400, message={'error': 'Not valid'}).__dict__
+
         if res:
             return self.repository.post(body)
 
         return Response(status=400, message={'error': 'Not valid'}).__dict__
 
-    def put(self, body: dict):
+    def put(self, id: str, body: dict):
         res = self.valid.validation(update, body)
 
-        if res:
-            return self.repository.put(body)
-
-        return Response(status=400, message={'error': 'Not valid'}).__dict__
-
-    def putUpdateName(self, id: str, body: dict):
-        res = self.valid.validation(updateName, body)
-
         if res and id:
-            return self.repository.putUpdateName(id, body)
-
-        return Response(status=400, message={'error': 'Not valid'}).__dict__
-
-    def deleteFromLeague(self, id: str):
-        if id:
-            return self.repository.deleteFromLeague(id)
+            return self.repository.put(body)
 
         return Response(status=400, message={'error': 'Not valid'}).__dict__
 
