@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {ListGroup} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
-import {AdminTopBlock, AdminUpdateDelete, NameOpenChild} from "../../";
+import {AdminCreateBtn, AdminTopBlock, AdminUpdateDelete, NameOpenChild} from "../../";
 import {AdminPlayerApi, PlayerApi} from "../../../request/PlayerApi";
 import {delAdminPlayerAction, postAdminPlayerAction, putAdminPlayerAction} from "../../../store/player";
 import {AppState} from "../../../store/store";
@@ -17,22 +17,33 @@ export const AdminPlayer = () => {
     const players = useSelector((state: AppState) => (state.playerState?.adminPlayer));
     const [openTeam, setOpenTeam] = useState<OpenChild>({id: null, openStatus: false})
 
-    const handleOpenTeam = (id: number) => setOpenTeam({
+    const handleOpenTeam = (id: number) => (setOpenTeam({
         id,
         openStatus: openTeam.id === id ? !openTeam.openStatus : true
-    })
+    }))
 
-    const handleAddPlayer = (name: string, team_id: number) => {
+    const handleAddPlayer = (name: string, team_id: number) => (
         dispatch(postAdminPlayerAction.trigger({body: {name, team_id}}))
-    }
+    )
+
+    const handleUpdate = (name: string, id: number) => (
+        dispatch(putAdminPlayerAction.trigger({
+            id,
+            body: {name}
+        }))
+    )
+
+    const handleDelete = (id: number) => dispatch(delAdminPlayerAction.trigger({id}))
 
     return (
         <div className="adminPlayer">
-            <AdminTopBlock title={"Игроки"}/>
-            <div className="adminPlayer__container">
+            <AdminTopBlock title="Игроки">
+                <AdminCreateBtn text="Создать Игрока" onClick={() => alert(true)}/>
+            </AdminTopBlock>
+            <ListGroup className="adminPlayer__container">
                 {players.finished && !players.loading && players.data &&
                 players.data.map(({id, name, players}: AdminPlayerApi) => (
-                    <div className="adminPlayer__team" key={id + "adminPlayer"}>
+                    <ListGroup.Item className="adminPlayer__team" key={id + "adminPlayer"}>
                         <NameOpenChild
                             name={name}
                             onClick={() => handleOpenTeam(id)}
@@ -40,28 +51,23 @@ export const AdminPlayer = () => {
                             classname="adminPlayer__teamName"
                             addBtn={true}
                             text={`Добавить игрока в ${name}?`}
-                            onClickAdd={(name: string) => handleAddPlayer(name, id)}
-                        />
+                            onClickAdd={(name: string) => handleAddPlayer(name, id)}/>
                         {openTeam.openStatus && openTeam.id === id &&
                         <ListGroup>
                             {players.map((item: PlayerApi, index: number) => (
-                                <AdminUpdateDelete key={item.id + "adminPlayerPlayer"} id={item.id} index={index}
-                                                   title={"Изминить Имя"}
-                                                   text={`Вы хотите игрока ${item.name}?`}
-                                                   name={item.name}
-                                                   handleUpdate={(name: string) => {
-                                                       dispatch(putAdminPlayerAction.trigger({
-                                                           id: item.id,
-                                                           body: {name}
-                                                       }))
-                                                   }}
-                                                   handleDelete={() => dispatch(delAdminPlayerAction.trigger({id: item.id}))}
-                                />
+                                <AdminUpdateDelete
+                                    key={item.id + "adminPlayerPlayer"}
+                                    id={item.id}
+                                    index={index}
+                                    title={"Изминить Имя"}
+                                    text={`Вы хотите игрока ${item.name}?`}
+                                    name={item.name}
+                                    handleUpdate={(name: string) => handleUpdate(name, item.id)}
+                                    handleDelete={() => handleDelete(item.id)}/>
                             ))}
                         </ListGroup>}
-                    </div>
-                ))}
-            </div>
+                    </ListGroup.Item>))}
+            </ListGroup>
         </div>
     );
 };

@@ -1,0 +1,68 @@
+.matchResult {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 70px;
+
+  &__item {
+    width: 500px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__itemNames {
+    display: flex;
+  }
+
+  &__itemResult {
+    display: flex;
+  }
+
+  &__itemName {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  &__itemTeamwin {
+    color: #004300;
+  }
+
+  &__itemTeamlose {
+    color: #530000;
+  }
+
+  &__itemTeamdraw {
+    color: black;
+  }
+
+  &__itemDash {
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  &__itemDate {
+    color: #9d9d9d;
+  }
+
+  &__itemResultGoals {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  &__itemResult {
+    padding: 4px;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+}

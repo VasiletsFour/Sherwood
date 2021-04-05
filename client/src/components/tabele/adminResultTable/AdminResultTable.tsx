@@ -8,7 +8,7 @@ import {AppState} from "../../../store/store";
 const headRow = ["Тур", "Хозява", "Госсти", "Дата", "Место", "Результат", "Редактировать"]
 
 export const AdminResultTable = () => {
-    const {finished, data, loading} = useSelector((state: AppState) => (state.resultState.adminResult));
+    const {finished, data, loading} = useSelector((state: AppState) => (state.resultState.result));
 
     return (
         <Table striped bordered hover>

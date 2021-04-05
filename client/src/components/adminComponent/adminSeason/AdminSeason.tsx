@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {ListGroup} from "react-bootstrap";
 import {FaTimes} from "react-icons/fa";
 import {useDispatch, useSelector} from "react-redux";
 import {AdminCreateBtn, AdminTopBlock, Alert} from "../../";
@@ -53,15 +54,17 @@ export const AdminSeason = () => {
                 btnText={"Готово"}/>
             <div>
                 {season.finished && !season.loading && season.data && (
-                    <div className="adminSeason__wrapper">
+                    <ListGroup className="adminSeason__wrapper">
                         {season.data.map(({name, id}: SeasonApi) => (
-                            <div className="adminSeason__seasonItem" key={"adminSeason" + id}>
-                                <p className="adminSeason__seasonItemText">{name}</p>
-                                <FaTimes className="adminSeason__seasonItemIcon"
-                                         onClick={() => dipatch(delSeasonAction.trigger({id}))}/>
-                            </div>
+                            <ListGroup.Item variant={"info"} key={"adminSeason" + id}>
+                                <div className="adminSeason__seasonItem">
+                                    <p className="adminSeason__seasonItemText">{name}</p>
+                                    <FaTimes className="adminSeason__seasonItemIcon"
+                                             onClick={() => dipatch(delSeasonAction.trigger({id}))}/>
+                                </div>
+                            </ListGroup.Item>
                         ))}
-                    </div>
+                    </ListGroup>
                 )}
             </div>
         </div>

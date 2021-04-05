@@ -13,11 +13,18 @@
   }
 
   &__blog {
+    overflow: hidden;
+    border-radius: 10px;
+    padding: 20px;
     margin-top: 100px;
     position: relative;
-    background: linear-gradient(270deg, #8c0000 40%, #280654);
+    background: #393939;
     display: flex;
     width: 60%;
+  }
+
+  &__blogActualTitle{
+
   }
 
   &__arrowNews {
@@ -46,7 +53,7 @@
 
   &__blogWrapper {
     width: 70%;
-    height: 600px;
+    height: 550px;
     display: flex;
     flex-direction: column;
   }

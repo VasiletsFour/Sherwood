@@ -2,7 +2,7 @@ import {LOCATION_CHANGE} from "connected-react-router";
 import {call, put, take} from "redux-saga/effects";
 import {ResultCreate, ResultUpdate} from "../../request/ResultApi";
 import {getResultAdminApi, postResultAdminApi, putResultAdminApi} from "../../request/ResultRequest";
-import {ADMIN_RESULT_PAGE} from "../../utils";
+import {ADMIN_RESULT_PAGE, MATCH_RESULT_PAGE} from "../../utils";
 import {getResultAdminAction, postResultAdminAction, putResultAdminAction} from "./action";
 
 interface Params {
@@ -15,9 +15,10 @@ interface Params {
 export function* ResultSaga() {
     while (true) {
         const action = yield take("*");
+        const resultUrlMatch = action.type === LOCATION_CHANGE && MATCH_RESULT_PAGE.match(action.payload.location).isMatched
         const adminResultUrlMatch = action.type === LOCATION_CHANGE && ADMIN_RESULT_PAGE.match(action.payload.location).isMatched;
 
-        if (adminResultUrlMatch) {
+        if (resultUrlMatch || adminResultUrlMatch) {
             yield call(getResultAdminWorker);
         }
 
@@ -26,7 +27,7 @@ export function* ResultSaga() {
         }
 
         if (putResultAdminAction.trigger.is(action)) {
-            yield call(CRUDResultAdminWorker, {params: {id:action.id,body: action.body}}, putResultAdminApi);
+            yield call(CRUDResultAdminWorker, {params: {id: action.id, body: action.body}}, putResultAdminApi);
         }
     }
 }

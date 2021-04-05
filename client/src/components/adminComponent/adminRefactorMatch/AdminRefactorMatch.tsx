@@ -1,20 +1,19 @@
 import React, {useState} from "react";
 import {Button, Modal} from 'react-bootstrap';
 import {useDispatch} from "react-redux";
-import {ResultCreate} from "../../../request/ResultApi";
+import {postResultAdminAction, putResultAdminAction} from "../../../store/result";
 import {NumberInput} from "../../input";
 import "./AdminRefactorMatch.scss";
 
 interface Props {
     match: number
-    action: {
-        trigger: (params: { body: ResultCreate }) => void;
-    }
+    home: number | undefined
+    away: number | undefined
     setClose: () => void;
     openStatus: boolean
 }
 
-export const AdminRefactorMatch = ({setClose, openStatus, match, action}: Props) => {
+export const AdminRefactorMatch = ({setClose, openStatus, match, home, away}: Props) => {
     const dipatch = useDispatch();
     const [goalHome, setGoalHome] = useState(0)
     const [goalVisitors, setGoalVisitors] = useState(0)
@@ -28,11 +27,25 @@ export const AdminRefactorMatch = ({setClose, openStatus, match, action}: Props)
     const handleClick = () => {
         const homeResult = goalHome > goalVisitors ? "win" : goalHome === goalVisitors ? "draw" : "lose"
         const visitorsResult = goalHome < goalVisitors ? "win" : goalHome === goalVisitors ? "draw" : "lose"
-        const bodyCreate: ResultCreate = {goalHome, goalVisitors, match, homeResult, visitorsResult}
-
-        dipatch(action.trigger({body: bodyCreate}));
 
         handleClose()
+
+        if (typeof (home) !== "number" && typeof (away) !== "number") {
+            return dipatch(postResultAdminAction.trigger({
+                body: {
+                    goalHome,
+                    goalVisitors,
+                    match,
+                    homeResult,
+                    visitorsResult
+                }
+            }))
+        }
+
+        return dipatch(putResultAdminAction.trigger({
+            id: match,
+            body: {goalHome, goalVisitors, homeResult, visitorsResult}
+        }))
     };
 
     return (
@@ -42,19 +55,19 @@ export const AdminRefactorMatch = ({setClose, openStatus, match, action}: Props)
             aria-labelledby="contained-modal-title-vcenter"
             centered show={openStatus} onHide={handleClose}>
             <Modal.Header closeButton={openStatus}/>
+            <Modal.Title className="adminRefactorMatch__title">Счет матча</Modal.Title>
             <Modal.Body className="adminRefactorMatch__body">
-                <div className="adminCreateArticle__main">
-                    <div className="adminCreateArticle__inputContainer">
-                        <NumberInput max={40} min={0} onChange={(event) => setGoalHome(Number(event.target.value))}/>
-                    </div>
-                    <div className="adminCreateArticle__inputContainer">
-                        <NumberInput max={40} min={0}
-                                     onChange={(event) => setGoalVisitors(Number(event.target.value))}/>
-                    </div>
+                <div className="adminRefactorMatch__inputContainer">
+                    <NumberInput max={40} min={0} onChange={(event) => setGoalHome(Number(event.target.value))}/>
+                </div>
+                <span className={"adminRefactorMatch__dash"}>-</span>
+                <div className="adminRefactorMatch__inputContainer">
+                    <NumberInput max={40} min={0}
+                                 onChange={(event) => setGoalVisitors(Number(event.target.value))}/>
                 </div>
             </Modal.Body>
-            <Modal.Footer className="adminCreateArticle__footer">
-                <Button className="adminCreateArticle__createBtn" onClick={() => handleClick()}>
+            <Modal.Footer className="adminRefactorMatch__footer">
+                <Button className="adminRefactorMatch__createBtn" onClick={() => handleClick()}>
                     Готово
                 </Button>
             </Modal.Footer>

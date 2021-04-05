@@ -11,13 +11,13 @@ export function resultReducer(
     if (getResultAdminAction.trigger.is(action)) {
         return {
             ...state,
-            adminResult: {...triggerReducer},
+            result: {...triggerReducer},
         };
     }
     if (getResultAdminAction.running.is(action)) {
         return {
             ...state,
-            adminResult: {...runningReducer},
+            result: {...runningReducer},
         };
     }
     if (getResultAdminAction.ok.is(action)) {
@@ -25,7 +25,7 @@ export function resultReducer(
 
         return {
             ...state,
-            adminResult: {data, ...okReducer},
+            result: {data, ...okReducer},
         };
     }
     if (getResultAdminAction.error.is(action)) {
@@ -33,7 +33,7 @@ export function resultReducer(
 
         return {
             ...state,
-            adminResult: {error, ...errorReducer},
+            result: {error, ...errorReducer},
         };
     }
 

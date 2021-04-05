@@ -20,7 +20,7 @@ export * from "./banner/";
 export * from "./userMenu/UserMenu";
 export * from "./alert/Alert";
 export * from "./adminComponent";
-export * from "./socialIcon/SocialIcon";
+export * from "./icon/socialIcon/SocialIcon";
 export * from "./headerMenu/HeaderMenu";
 export * from "./tagsMap/TagsMap";
 export * from "./account/Account";
@@ -30,3 +30,4 @@ export * from "./nameOpenChild/NameOpenChild"
 export * from "./dropZone/DropZone"
 export * from "./icon/"
 export * from "./menuLink/MenuLink"
+export * from "./matchResult/MatchResult"

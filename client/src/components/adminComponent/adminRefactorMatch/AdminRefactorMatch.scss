@@ -1,0 +1,18 @@
+.adminRefactorMatch {
+  &__body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__dash{
+    padding: 0 10px;
+    margin-top: -8px;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  &__title{
+    text-align: center;
+  }
+}

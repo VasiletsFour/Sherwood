@@ -30,24 +30,23 @@ export const Home = () => {
 
     return (
         <div className="home">
-            {blogs.finished && !blogs.loading && blogs.data && blogs.data.length !== 0 ? (
-                <div className="home__blog">
-                    <div className="home__blogWrapper">
-                        <ActuallyImg
-                            blog={blogs.data[actuallyNum]}
-                            handleActually={(index: number) => handleActually(index)}
-                        />
-                        <AllNewsImg news={blogs.data} setActuallyNum={(index: number) => setActuallyNum(index)}/>
-                    </div>
-                    <BlogNews
-                        id={blogs.data[actuallyNum].id}
-                        title={blogs.data[actuallyNum].title}
-                        tags={blogs.data[actuallyNum].tags}
-                        date={blogs.data[actuallyNum].date}
-                        text={blogs.data[actuallyNum].text}
+            {blogs.finished && !blogs.loading && blogs.data && blogs.data.length !== 0 &&
+            <div className="home__blog">
+                <div className="home__blogWrapper">
+                    <ActuallyImg
+                        blog={blogs.data[actuallyNum]}
+                        handleActually={(index: number) => handleActually(index)}
                     />
+                    <AllNewsImg news={blogs.data} setActuallyNum={(index: number) => setActuallyNum(index)}/>
                 </div>
-            ) : null}
+                <BlogNews
+                    id={blogs.data[actuallyNum].id}
+                    title={blogs.data[actuallyNum].title}
+                    tags={blogs.data[actuallyNum].tags}
+                    date={blogs.data[actuallyNum].date}
+                    text={blogs.data[actuallyNum].text}
+                />
+            </div>}
         </div>
     );
 };

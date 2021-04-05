@@ -1,10 +1,9 @@
 import React from "react";
-import { TableBodyTournament, TableHead } from "../../";
-import { TournamentTableApi } from "../../../request/TournamentTableApi";
+import {TableBodyTournament, TableHead} from "../../";
+import {TournamentTableApi} from "../../../request/TournamentTableApi";
 import "./TournamentTable.scss";
 
 const headRow = [
-    "Инфо",
     "Позиция",
     "Имя",
     "Игр",
