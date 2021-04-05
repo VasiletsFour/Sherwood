@@ -1,8 +1,9 @@
 import React from 'react';
+import {MatchResult} from "../../components";
 import {MainLayout} from "../../layouts"
 
 export const MatchResultPage = () => (
     <MainLayout>
-        <div>Match result</div>
+        <MatchResult/>
     </MainLayout>
 );
