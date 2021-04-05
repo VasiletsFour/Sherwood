@@ -1,7 +1,6 @@
 from db.models.MatchAwayTeamModel import MatchAwayTeams
 from db.models.MatchHomeTeamModel import MatchHomeTeams
 from db.models.PlaceModel import Places
-from db.models.TeamsModel import Teams
 from db.models.TimeTableModel import TimeTables
 from resourse.repositories.Repositories import Repositories
 from resourse.scheam.ResultSchema import results_schema
@@ -29,27 +28,20 @@ class AdminResultRepositories(Repositories):
 
         return Response(status=201, message={'data': 'create'}).__dict__
 
-    def put(self, body: object):
-        self.session.query(Teams).filter(Teams.id.in_(body["teams"])).update(dict(league_id=body["league_id"]),
-                                                                             synchronize_session=False)
+    def put(self, id: str, body: dict):
+        self.session.query(MatchHomeTeams).filter(MatchHomeTeams.id == id).update(
+            dict(goal_for=body["goalHome"], status=body["homeResult"]),
+            synchronize_session=False)
+        self.session.query(MatchAwayTeams).filter(MatchAwayTeams.id == id).update(
+            dict(dict(goal_for=body["goalVisitors"], status=body["visitorsResult"])),
+            synchronize_session=False)
         self.session.commit()
 
         return Response(status=201, message={'data': 'update'}).__dict__
-
-    def putUpdateName(self, id: str, body: dict):
-        self.session.query(Teams).filter(Teams.id == id).update(dict(**body))
-        self.session.commit()
-
-        return Response(status=201, message={'data': 'update'}).__dict__
-
-    def deleteFromLeague(self, id: str):
-        self.session.query(Teams).filter(Teams.id == id).update({'league_id': None})
-        self.session.commit()
-
-        return Response(status=200, message={'data': 'Delete team'}).__dict__
 
     def delete(self, id: str):
-        self.session.query(Teams).filter(Teams.id == id).delete()
+        self.session.query(MatchHomeTeams).filter(MatchHomeTeams.id == id).delete()
+        self.session.query(MatchAwayTeams).filter(MatchAwayTeams.id == id).delete()
         self.session.commit()
 
         return Response(status=200, message={'data': 'Delete'}).__dict__

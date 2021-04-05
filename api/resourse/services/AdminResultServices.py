@@ -1,7 +1,6 @@
 from resourse.repositories.AdminResultRepositories import AdminResultRepositories
 from resourse.services.Services import Services
-from resourse.validator.ResultValidate import create
-from resourse.validator.TeamValidate import update
+from resourse.validator.ResultValidate import create, update
 from utils.responce.responce import Response
 
 
@@ -30,7 +29,7 @@ class AdminResultServices(Services):
         res = self.valid.validation(update, body)
 
         if res and id:
-            return self.repository.put(body)
+            return self.repository.put(id, body)
 
         return Response(status=400, message={'error': 'Not valid'}).__dict__
 
