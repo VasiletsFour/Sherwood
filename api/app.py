@@ -49,28 +49,11 @@ def create_app():
     migrate.init_app(app, db, render_as_batch=True)
     bcrypt.init_app(app)
 
-    @app.after_request
-    def after_request(response):
-        response.headers.add('Access-Control-Allow-Origin', '*')
-        response.headers.add('Access-Control-Allow-Methods', '*')
-        response.headers.add('Access-Control-Allow-Headers', ' *')
-        response.headers.add('Access-Control-Expose-Headers', '*')
-        #
-        return response
-
     with app.app_context():
         if db.engine.url.drivername == 'sqlite':
             migrate.init_app(app, db, render_as_batch=True)
         else:
             migrate.init_app(app, db)
-
-    @app.before_first_request
-    def create_tables():
-        # from db.models.PlayerStatisticsModel import PlayersStatistics
-        # from db.models.TeamStatistics import TeamStatistics
-
-        db.create_all()
-        db.session.commit()
 
     # open routes
     api.add_resource(Season, "/season/")
