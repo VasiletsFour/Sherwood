@@ -10,15 +10,16 @@ class TimeTableNestedSchema(BaseSchema):
 
 class MatchSchema(BaseSchema):
     id = fields.Int()
-    goal_for = fields.Int()
-    status = fields.Str()
+    goal_host = fields.Int()
+    goal_guest = fields.Int()
+    status_host = fields.Str()
+    status_guest = fields.Str()
 
 
 class ResultSchema(BaseSchema):
     id = fields.Int()
     host = fields.Nested(TimeTableNestedSchema())
-    matchHomeTeams = fields.Nested(MatchSchema())
-    matchAwayTeams = fields.Nested(MatchSchema())
+    matchResult = fields.Nested(MatchSchema())
     guest = fields.Nested(TimeTableNestedSchema())
     tour = fields.Int()
     place = fields.Nested(TimeTableNestedSchema())

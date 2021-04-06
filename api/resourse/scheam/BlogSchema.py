@@ -10,7 +10,7 @@ class BlogSchema(BaseSchema):
     text = fields.Str()
     date = fields.Int()
     # img = fields.String()
-    author_id = fields.Int()
+    author = fields.Str()
 
 
 blog_schema = BlogSchema()
