@@ -1,8 +1,9 @@
 import {LOCATION_CHANGE} from "connected-react-router";
-import {call, put, take} from "redux-saga/effects";
+import {call, put, select, take} from "redux-saga/effects";
 import {PlayerBody, PlayerUpdate} from "../../request/PlayerApi";
 import {delAdminPlayerApi, getAdminPlayerApi, postAdminPlayerApi, putAdminPlayerApi} from "../../request/PlayerRequest";
 import {ADMIN_PLAYER_PAGE} from "../../utils";
+import {AppState} from "../store";
 import {delAdminPlayerAction, getAdminPlayerListAction, postAdminPlayerAction, putAdminPlayerAction} from "./action";
 
 interface Params {
@@ -15,9 +16,10 @@ interface Params {
 export function* PlayerSaga() {
     while (true) {
         const action = yield take("*");
+        const state: AppState = yield select();
         const adminPlayerUrlMatch = action.type === LOCATION_CHANGE && ADMIN_PLAYER_PAGE.match(action.payload.location).isMatched;
 
-        if (adminPlayerUrlMatch) {
+        if (adminPlayerUrlMatch && !state.playerState.adminPlayer.data) {
             yield call(getPlayerAdminWorker);
         }
 

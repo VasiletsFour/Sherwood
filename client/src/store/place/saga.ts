@@ -20,7 +20,7 @@ export function* PlaceSaga() {
         const adminPlaceUrlMatch = action.type === LOCATION_CHANGE && ADMIN_PLACE_PAGE.match(action.payload.location).isMatched;
         const adminTimeTableUrlMatch = action.type === LOCATION_CHANGE && ADMIN_TIME_TABLE_UPDATE_PAGE.match(action.payload.location).isMatched;
 
-        if (!state.placeState.placeAdmin.finished && (adminPlaceUrlMatch || adminTimeTableUrlMatch)) {
+        if (!state.placeState.placeAdmin.data && (adminPlaceUrlMatch || adminTimeTableUrlMatch)) {
             yield call(getPlaceAdminWorker);
         }
 

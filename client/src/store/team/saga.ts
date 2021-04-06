@@ -38,12 +38,12 @@ export function* TeamSaga() {
         const adminTeamUrlMatch = action.type === LOCATION_CHANGE && ADMIN_TEAM_PAGE.match(action.payload.location).isMatched;
 
 
-        if (teamUrlMatch && state.teamState.teams) {
+        if (teamUrlMatch && !state.teamState.teams.data) {
             yield call(getTeamWorker, action, true);
         }
 
 
-        if (adminTeamUrlMatch) {
+        if (adminTeamUrlMatch && !state.teamState.teamsAdmin.data) {
             yield call(getTeamAdminWorker);
         }
 

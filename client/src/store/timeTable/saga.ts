@@ -1,8 +1,9 @@
 import {LOCATION_CHANGE} from "connected-react-router";
-import {call, put, take} from "redux-saga/effects";
+import {call, put, select, take} from "redux-saga/effects";
 import {TimeTableCreate, TimeTableUpdate} from "../../request/TimeTableApi";
 import {getTimeTableApi, postTimeTableCreateAdminApi, putTimeTableUpdateAdminApi} from "../../request/TimeTableRequest";
 import {ADMIN_TIME_TABLE_UPDATE_PAGE} from "../../utils";
+import {AppState} from "../store";
 import {getTimeTableAction, postTimeTableCreateAdminAction, putTimeTableUpdateAdminAction} from "./action";
 
 interface Params {
@@ -15,9 +16,10 @@ interface Params {
 export function* TimeTableSaga() {
     while (true) {
         const action = yield take("*");
-        const adminTimeTableUpdateUrlMatch: any = action.type === LOCATION_CHANGE && ADMIN_TIME_TABLE_UPDATE_PAGE.match(action.payload.location).isMatched;
+        const state: AppState = yield select();
+        const adminTimeTableUpdateUrlMatch = action.type === LOCATION_CHANGE && ADMIN_TIME_TABLE_UPDATE_PAGE.match(action.payload.location).isMatched;
 
-        if (adminTimeTableUpdateUrlMatch) {
+        if (adminTimeTableUpdateUrlMatch && !state.timeTableState.timeTable.data) {
             yield call(getTimeTableWorker);
         }
 

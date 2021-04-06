@@ -1,8 +1,9 @@
 import {LOCATION_CHANGE} from "connected-react-router";
-import {call, put, take} from "redux-saga/effects";
+import {call, put, select, take} from "redux-saga/effects";
 import {RefereeBody} from "../../request/RefereeApi";
 import {delAdminRefereeApi, getRefereeApi, postAdminRefereeApi, putAdminRefereeApi} from "../../request/RefereeRequest";
 import {ADMIN_REFEREE_PAGE} from "../../utils";
+import {AppState} from "../store";
 import {delAdminRefereeAction, getRefereeAction, postAdminRefereeAction, putAdminRefereeAction} from "./action";
 
 interface Params {
@@ -15,9 +16,10 @@ interface Params {
 export function* RefereeSaga() {
     while (true) {
         const action = yield take("*");
+        const state: AppState = yield select();
         const adminRefereeUrlMatch = action.type === LOCATION_CHANGE && ADMIN_REFEREE_PAGE.match(action.payload.location).isMatched;
 
-        if (adminRefereeUrlMatch) {
+        if (adminRefereeUrlMatch && !state.refereeState.referee.data) {
             yield call(getRefereeWorker);
         }
 

@@ -21,7 +21,7 @@ export function* BlogSaga() {
         const adminBlogUrlMatch =
             action.type === LOCATION_CHANGE && ADMIN_BLOG_PAGE.match(action.payload.location).isMatched;
 
-        if ((homeUrlMatch || adminBlogUrlMatch) && action.payload.isFirstRendering && !state.blogState.blogs.data) {
+        if ((homeUrlMatch || adminBlogUrlMatch) && !state.blogState.blogs.data) {
             yield call(getBlogsWorker, action.query);
         }
 
