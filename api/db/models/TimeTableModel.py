@@ -12,8 +12,7 @@ class TimeTables(db.Model):
     status = db.Column(db.String(30))
     date = db.Column(db.Integer)
 
-    matchHomeTeams = db.relationship("MatchHomeTeams", uselist=False, back_populates="timeTables")
-    matchAwayTeams = db.relationship("MatchAwayTeams", uselist=False, back_populates="timeTables")
+    matchResult = db.relationship("MatchResult", uselist=False, back_populates="timeTables")
 
     host = db.relationship("Teams", foreign_keys=[host_id])
     guest = db.relationship("Teams", foreign_keys=[guest_id])

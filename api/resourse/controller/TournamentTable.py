@@ -1,11 +1,11 @@
 from resourse.controller.Controller import Controller
-from resourse.services.TimeTableServices import TimeTableServices
+from resourse.services.TournamentTableServices import TournamentTableServices
 
 
-class TimeTable(Controller):
+class TournamentTable(Controller):
     def __init__(self):
         super().__init__()
-        self.service = TimeTableServices()
+        self.service = TournamentTableServices()
 
     def get(self, *args, **kwargs):
         service = self.service.get()

@@ -1,43 +1,47 @@
 allowedResult = ['win', 'draw', 'lose']
 
 create = {
-    'match': {
+    'match_id': {
         'type': 'integer',
         'required': True
     },
-    'homeResult': {
+    'status_host': {
         'type': 'string',
         'allowed': allowedResult,
         'required': True
     },
-    'goalHome': {
+    'goal_host': {
         'type': 'integer',
         'required': True
     },
-    'visitorsResult': {
+    'status_guest': {
         'type': 'string',
         'allowed': allowedResult,
         'required': True
     },
-    'goalVisitors': {
+    'goal_guest': {
         'type': 'integer',
         'required': True
     }
 }
 
 update = {
-    'homeResult': {
+    'status_host': {
         'type': 'string',
         'allowed': allowedResult,
+        'required': True
     },
-    'goalHome': {
+    'goal_host': {
         'type': 'integer',
+        'required': True
     },
-    'visitorsResult': {
+    'status_guest': {
         'type': 'string',
         'allowed': allowedResult,
+        'required': True
     },
-    'goalVisitors': {
+    'goal_guest': {
         'type': 'integer',
+        'required': True
     }
 }

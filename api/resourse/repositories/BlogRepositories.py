@@ -1,4 +1,5 @@
 from db.models.BlogModel import Blogs
+from db.models.UserModel import Users
 from resourse.repositories.Repositories import Repositories
 from resourse.scheam.BlogSchema import blogs_schema
 from utils.responce.responce import Response
@@ -6,8 +7,13 @@ from utils.responce.responce import Response
 
 class BlogRepositories(Repositories):
     def get(self, **kwargs):
-        blogs = self.session.query(Blogs).filter(kwargs["search"], kwargs["beforeDate"], kwargs["fromDate"]).order_by(
-            Blogs.date.desc()).all()
+        blogs = self.session.query(Blogs.id, Blogs.title, Blogs.tags, Blogs.text, Blogs.date,
+                                   (Users.surname + " " + Users.firstname).label("author")).filter(
+            Blogs.author_id == Users.id, kwargs["search"],
+            kwargs["beforeDate"],
+            kwargs["fromDate"]).order_by(
+            Blogs.date.desc()).join(Users).all()
+
         schema = blogs_schema.dump(blogs)
 
         return Response(status=200, message={'data': schema}).__dict__

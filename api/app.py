@@ -22,10 +22,12 @@ from resourse.controller.League import League
 from resourse.controller.Login import Login
 from resourse.controller.Player import Player
 from resourse.controller.Referee import Referee
+from resourse.controller.Result import Result
 from resourse.controller.Season import Season
 from resourse.controller.SignUp import SignUp
 from resourse.controller.Team import Team
 from resourse.controller.TimeTable import TimeTable
+from resourse.controller.TournamentTable import TournamentTable
 from utils.bcrypt.bcrypt import bcrypt
 
 migrate = Migrate()
@@ -79,7 +81,9 @@ def create_app():
     api.add_resource(Login, "/auth/login/")
     api.add_resource(Blogs, "/blogs/")
     api.add_resource(Referee, "/referee/")
-    api.add_resource(TimeTable, "/time_table")
+    api.add_resource(Result, "/result/")
+    api.add_resource(TimeTable, "/time_table/")
+    api.add_resource(TournamentTable, "/tournament_table/")
 
     # private routes
     api.add_resource(Account, "/account")

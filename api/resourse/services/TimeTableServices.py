@@ -1,4 +1,4 @@
-from resourse.repositories.TimeTablerepositories import TimeTableRepositories
+from resourse.repositories.TimeTableRepositories import TimeTableRepositories
 from resourse.services.Services import Services
 
 

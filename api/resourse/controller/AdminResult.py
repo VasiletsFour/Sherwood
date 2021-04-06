@@ -9,12 +9,6 @@ class AdminResult(Controller):
         self.service = AdminResultServices()
 
     @admin_login
-    def get(self, *args, **kwargs):
-        service = self.service.get()
-
-        return service['message'], service["status"]
-
-    @admin_login
     def post(self, *args, **kwargs):
         service = self.service.post(self.body)
 
