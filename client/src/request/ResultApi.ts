@@ -9,8 +9,10 @@ interface Place extends Team {
 }
 
 interface Result {
-    goal_for: number
-    status: resultType
+    goal_guest: number
+    goal_host: number
+    status_host: resultType
+    status_guest: resultType
     id: number
 }
 
@@ -19,6 +21,7 @@ export interface ResultApi {
     date: number
     host: Team
     guest: Team
+    matchResult?: Result
     matchAwayTeams?: Result
     matchHomeTeams?: Result
     place: Place
@@ -26,13 +29,13 @@ export interface ResultApi {
 }
 
 export interface ResultUpdate {
-    homeResult: resultType,
-    goalHome: number,
-    visitorsResult: resultType,
-    goalVisitors: number
+    status_host: resultType,
+    goal_host: number,
+    status_guest: resultType,
+    goal_guest: number
 }
 
 export interface ResultCreate extends ResultUpdate {
-    match: number
+    match_id: number
 }
 

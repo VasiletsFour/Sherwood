@@ -17,11 +17,11 @@ export function* BlogSaga() {
     while (true) {
         const action = yield take("*");
         const state: AppState = yield select();
-        const homeUrlMatch: any = action.type === LOCATION_CHANGE && HOME_URL.match(action.payload.location);
-        const adminBlogUrlMatch: any =
-            action.type === LOCATION_CHANGE && ADMIN_BLOG_PAGE.match(action.payload.location);
+        const homeUrlMatch = action.type === LOCATION_CHANGE && HOME_URL.match(action.payload.location).isMatched;
+        const adminBlogUrlMatch =
+            action.type === LOCATION_CHANGE && ADMIN_BLOG_PAGE.match(action.payload.location).isMatched;
 
-        if ((homeUrlMatch.isMatched || adminBlogUrlMatch) && action.payload.isFirstRendering && state.blogState.blogs) {
+        if ((homeUrlMatch || adminBlogUrlMatch) && action.payload.isFirstRendering && !state.blogState.blogs.data) {
             yield call(getBlogsWorker, action.query);
         }
 

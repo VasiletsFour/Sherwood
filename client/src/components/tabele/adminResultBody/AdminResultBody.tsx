@@ -21,15 +21,15 @@ export const AdminResultBody = ({index, match}: Props) => {
             <td>{match.date ? timeStampToDate(match?.date) : "-"}</td>
             <td>{match?.place?.name || "-"}</td>
             <td>
-                {typeof (match?.matchHomeTeams?.goal_for) === "number" && typeof (match?.matchAwayTeams?.goal_for) === "number" ? match?.matchHomeTeams?.goal_for + "-" + match?.matchAwayTeams?.goal_for : "-"}
+                {match?.matchResult ? match?.matchResult?.goal_host + "-" + match?.matchResult.goal_guest : "-"}
             </td>
             <td>
                 <AdminCreateBtn text={"Редактировать"} onClick={() => setOpenModal(true)}/>
             </td>
             <AdminRefactorMatch
-                match={match.id}
-                home={match?.matchHomeTeams?.goal_for}
-                away={match?.matchAwayTeams?.goal_for}
+                match_id={match.id}
+                home={match?.matchResult?.goal_host}
+                away={match?.matchResult?.goal_guest}
                 setClose={() => setOpenModal(false)}
                 openStatus={openModal}/>
         </tr>

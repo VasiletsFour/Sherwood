@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { Blog } from "../../request/BlogApi";
+import React, {useEffect, useState} from "react";
+import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
+import {Blog} from "../../request/BlogApi";
 import "./AllNewsImg.scss";
 
 interface Props {
@@ -8,9 +8,9 @@ interface Props {
     setActuallyNum: (index: number) => void;
 }
 
-export const AllNewsImg = ({ news, setActuallyNum }: Props) => {
+export const AllNewsImg = ({news, setActuallyNum}: Props) => {
     const [allNews, setAllNews] = useState<Blog[]>([]);
-    const [paginationImg, setPaginationImg] = useState({ first: 0, last: 2 });
+    const [paginationImg, setPaginationImg] = useState({first: 0, last: 2});
 
     const handleArrow = () => {
         const first = paginationImg.first === news.length - 1 ? 0 : paginationImg.first + 1;

@@ -119,7 +119,6 @@ class App extends React.Component {
                                 <AdminResultPage/>
                             </AdminRoute>
 
-
                             <Redirect from={ROOT_URL.urlTemplate} to={HOME_URL.urlTemplate}/>
                         </Switch>
                     </ConnectedRouter>
