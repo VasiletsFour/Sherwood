@@ -52,8 +52,8 @@ export const TeamsTable = () => {
                 />
                 <tbody className="team__tableBody">
                     {list &&
-                        list.map((item: TeamApi) => (
-                            <TableBodyTeam key={item.id + "teamTable"} team={item} classname="team" />
+                        list.map((item: TeamApi, index:number) => (
+                            <TableBodyTeam key={item.id + "teamTable"} index={index} team={item} classname="team" />
                         ))}
                 </tbody>
             </table>
