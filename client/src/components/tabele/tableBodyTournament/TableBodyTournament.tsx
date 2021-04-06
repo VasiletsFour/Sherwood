@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {FaCircle, FaSortDown, FaSortUp} from "react-icons/fa";
+import {FaCircle} from "react-icons/fa";
 import {ChevronDownRight} from "../../";
 import {TournamentTableApi} from "../../../request/TournamentTableApi";
 import "./TableBodyTournament.scss";
@@ -20,13 +20,13 @@ export const TableBodyTournament = ({team, index, classname}: Props) => {
             </td>
             <td>
                 {index + 1}{" "}
-                {index + 1 > team.previousPosition ? (
-                    <FaSortDown className="tableBody__down" />
-                ) : index + 1 === team.previousPosition ? (
+                {/*{index + 1 > team.previousPosition ? (*/}
+                {/*    <FaSortDown className="tableBody__down" />*/}
+                {/*) : index + 1 === team.previousPosition ? (*/}
                     <FaCircle className="tableBody__circle" />
-                ) : (
-                    <FaSortUp className="tableBody__up" />
-                )}
+                {/*) : (*/}
+                {/*    <FaSortUp className="tableBody__up" />*/}
+                {/*)}*/}
             </td>
             <td>{team.name}</td>
             <td>{team.win + team.draw + team.lose}</td>
