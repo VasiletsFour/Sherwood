@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {FaSearch, FaUser} from "react-icons/fa";
 import {useSelector} from "react-redux";
-import {Authorization, HeaderMenu, LogoType, SocialIcon, UserMenu} from "../";
+import {Authorization, HeaderNav, LogoType, SocialIcon, UserMenu} from "../";
 import {AppState} from "../../store/store";
 import "./Header.scss";
 
@@ -16,10 +16,10 @@ export const Header = () => {
             <div className="header__wrapper">
                 <LogoType classname="header" isAdmin={account.data?.role} />
                 <div className="header__menuWrapper">
-                    <HeaderMenu />
+                    <HeaderNav/>
                     <div className="header__loginContainer">
                         {account.finished && !account.loading && account.data && (
-                            <FaUser className="header__userIcon" onClick={() => setOpenMenu(!openMenu)} />
+                            <FaUser className="header__userIcon" onClick={() => setOpenMenu(!openMenu)}/>
                         )}
                         {account.finished && !account.loading && account.data && openMenu && account.data.role && (
                             <UserMenu

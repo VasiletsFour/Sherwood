@@ -57,9 +57,9 @@ export const AdminPlace = () => {
                     value={newPlace}
                     onChange={(event: ChangeEvent<HTMLInputElement>) => setNewPlace(event.target.value)}/>
             </Alert>
+            {places.finished && !places.loading && places.data &&
             <ListGroup className="adminPlace__container">
-                {places.finished && !places.loading && places.data &&
-                places.data.map(({id, name}: PlaceApi) =>
+                {places.data.map(({id, name}: PlaceApi) =>
                     <AdminUpdateDelete
                         key={id + "AdminPlacePage"}
                         id={id}
@@ -69,7 +69,7 @@ export const AdminPlace = () => {
                         handleDelete={() => handleDelPlace(id)}
                     />
                 )}
-            </ListGroup>
+            </ListGroup>}
         </div>
     );
 }

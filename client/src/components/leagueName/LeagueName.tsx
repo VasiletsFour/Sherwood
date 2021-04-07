@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {ListGroup} from 'react-bootstrap';
 import {ChevronDownRight} from "../";
 import {LeagueApi} from "../../request/LeagueApi";
 import "./LeagueName.scss";
@@ -12,12 +13,12 @@ export const LeagueName = ({data, children}: Props) => {
     const [openChild, setOpenChild] = useState(false);
 
     return (
-        <div className="leagueName">
+        <ListGroup.Item variant={"light"} className="leagueName">
             <div className="leagueName__nameContainer" onClick={() => setOpenChild(!openChild)}>
-                <ChevronDownRight open={openChild} />
                 <p className="leagueName__name">{data.name}</p>
+                <ChevronDownRight classname="leagueName__icon" open={openChild}/>
             </div>
             <div className="leagueName__childWrapper">{openChild && children}</div>
-        </div>
+        </ListGroup.Item>
     );
 };

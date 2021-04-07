@@ -1,15 +1,15 @@
 import React, {ChangeEvent, useState} from "react";
-import {FaPlus} from "react-icons/fa";
+import {ListGroup} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
-import {AdminTopBlock, Alert, DelTimes, NumberInput} from "../../";
+import {AdminLeagueBody, AdminLeagueHead, AdminTopBlock, Alert, NumberInput} from "../../";
 import {LeagueApi, Leagues} from "../../../request/LeagueApi";
-import {delLeagueAction, postLeagueAction, putLeagueAction} from "../../../store/league";
+import {postLeagueAction, putLeagueAction} from "../../../store/league";
 import {AppState} from "../../../store/store";
 import "./AdminLeague.scss"
 
 export const AdminLeague = () => {
     const dispatch = useDispatch();
-    const {league} = useSelector((state: AppState) => ({league: state.leagueState?.league}));
+    const {data, finished, loading} = useSelector((state: AppState) => (state.leagueState?.league));
     const [openCreateLeague, setOpenCreateLeague] = useState(false)
     const [addLeague, setAddLeague] = useState<string>("")
     const [openAddLeague, setOpenAddLeague] = useState(false)
@@ -69,27 +69,18 @@ export const AdminLeague = () => {
                     min={1}
                 />
             </Alert>
-            {league.finished &&
-            !league.loading &&
-            league.data &&
-            <div className="adminLeague__wrapper">
-                {league.data.map((item: LeagueApi) => <div className="adminLeague__block" key={page + item.id}>
-                    <div className="adminLeague__topHead">
-                        <h2 className="adminLeague__title">{item.name}</h2>
-                        <FaPlus className="adminLeague__topIcon"
-                                onClick={() => handleClick(item.leagues, item.id)}/>
-                    </div>
+            {finished && !loading && data && <div className="adminLeague__wrapper">
+                {data.map(({id, name, leagues}: LeagueApi) => <ListGroup className="adminLeague__block" key={page + id}>
+                    <AdminLeagueHead
+                        name={name}
+                        leagues={leagues}
+                        id={id}
+                        handleClick={(league, id) => handleClick(league, id)}/>
                     <div className="adminLeague__body">
-                        {item.leagues.map(({name, id}: Leagues) =>
-                            <div className="adminLeague__leagueContainer" key={page + id + "child"}>
-                                <p className="adminLeague__league">{name} </p>
-                                <DelTimes
-                                    text={`Вы хотите удалить эту лигу ${name}?`}
-                                    onClick={() => dispatch(delLeagueAction.trigger({id}))}
-                                    classname="adminLeague__leagueIcon"/>
-                            </div>)}
+                        {leagues.map((props: Leagues) =>
+                            <AdminLeagueBody id={props.id} name={props.name} key={page + props.id + "child"}/>)}
                     </div>
-                </div>)}
+                </ListGroup>)}
             </div>}
         </div>
     );

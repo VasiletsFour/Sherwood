@@ -1,4 +1,5 @@
 import React from "react";
+import {Table} from 'react-bootstrap';
 import {useSelector} from "react-redux";
 import {TableBodyTournament, TableHead} from "../../";
 import {TournamentTableApi} from "../../../request/TournamentTableApi";
@@ -22,7 +23,7 @@ export const TournamentTable = () => {
     const {data, finished, loading} = useSelector((state: AppState) => (state?.tournamentTable?.tournamentTable));
 
     return (
-        <table className="tournamentTable">
+        <Table striped bordered hover variant="dark" className="tournamentTable">
             <TableHead classname="tournamentTable__tableCol tournamentTable__tableColHead" rowHead={headRow}/>
             <tbody className="tournamentTable__tableBody">
             {finished && !loading && data && data.map((item: TournamentTableApi, index: number) => (
@@ -34,6 +35,6 @@ export const TournamentTable = () => {
                 />
             ))}
             </tbody>
-        </table>
+        </Table>
     );
 };

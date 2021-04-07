@@ -46,21 +46,20 @@ export const AdminReferee = () => {
                     value={newReferee}
                     onChange={(event: ChangeEvent<HTMLInputElement>) => setNewReferee(event.target.value)}/>
             </Alert>
+            {referees.finished && !referees.loading && referees.data &&
             <ListGroup className="adminReferee__list">
-                {referees.finished && !referees.loading && referees.data &&
-                referees.data.map(({name, id}: RefereeApi) => (
-                    <AdminUpdateDelete key={id + "AdminReferee"} id={id}
-                                       title={"Изминить имя судьи"}
-                                       text={`Вы хотите удалить этого судью ${name}?`}
-                                       name={name}
-                                       handleUpdate={(name: string) => {
-                                           dispatch(dispatch(putAdminRefereeAction.trigger({id, body: {name}})))
-                                       }}
-                                       handleDelete={() => dispatch(delAdminRefereeAction.trigger({id}))}
+                {referees.data.map(({name, id}: RefereeApi) => (
+                    <AdminUpdateDelete
+                        key={id + "AdminReferee"} id={id}
+                        title={"Изминить имя судьи"}
+                        text={`Вы хотите удалить этого судью ${name}?`}
+                        name={name}
+                        handleUpdate={(name: string) => dispatch(putAdminRefereeAction.trigger({id, body: {name}}))}
+                        handleDelete={() => dispatch(delAdminRefereeAction.trigger({id}))}
                     />))}
                 {!referees.finished && referees.loading && !referees.data &&
                 <Spinner animation={"border"} variant={"light"} size={"sm"}/>}
-            </ListGroup>
+            </ListGroup>}
         </div>
     )
 };

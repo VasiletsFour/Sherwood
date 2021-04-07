@@ -10,9 +10,9 @@ import {
     TOURNAMENT_TABLE_URL,
 } from "../../utils";
 import {MenuLink} from "../menuLink/MenuLink";
-import "./HeaderMenu.scss";
+import "./HeaderNav.scss";
 
-export const HeaderMenu = () => {
+export const HeaderNav = () => {
     const history = useHistory();
     const isTimeTablePage = TIME_TABLE_URL.match(history.location).isMatched;
     const isTournamentPage = TOURNAMENT_TABLE_URL.match(history.location).isMatched;

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Spinner} from 'react-bootstrap';
+import {Spinner, Table} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import {TableHead} from "../../";
@@ -41,7 +41,7 @@ export const TeamsTable = () => {
 
     if (teams.finished && !teams.loading && teams.data) {
         return (
-            <table className="teamTable">
+            <Table striped bordered hover variant="dark" className="teamTable">
                 <TableHead
                     classname="team__tableCol team__tableColHead"
                     rowHead={headRow}
@@ -51,12 +51,12 @@ export const TeamsTable = () => {
                     }
                 />
                 <tbody className="team__tableBody">
-                    {list &&
-                        list.map((item: TeamApi, index:number) => (
-                            <TableBodyTeam key={item.id + "teamTable"} index={index} team={item} classname="team" />
-                        ))}
+                {list &&
+                list.map((item: TeamApi, index: number) => (
+                    <TableBodyTeam key={item.id + "teamTable"} index={index} team={item} classname="team"/>
+                ))}
                 </tbody>
-            </table>
+            </Table>
         );
     }
 

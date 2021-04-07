@@ -21,7 +21,7 @@ export * from "./userMenu/UserMenu";
 export * from "./alert/Alert";
 export * from "./adminComponent";
 export * from "./icon/socialIcon/SocialIcon";
-export * from "./headerMenu/HeaderMenu";
+export * from "./headerNav/HeaderNav";
 export * from "./tagsMap/TagsMap";
 export * from "./account/Account";
 export * from "./userAvatar/UserAvatar"

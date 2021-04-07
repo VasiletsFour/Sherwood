@@ -2,10 +2,7 @@
   &__nameContainer {
     display: flex;
     align-items: center;
-    background: -webkit-linear-gradient(left, grey, darkgrey);
-    border-top: 1px solid whitesmoke;
-    border-bottom: 1px solid whitesmoke;
-    height: 90px;
+    height: 80px;
     z-index: 4;
     cursor: pointer;
   }
@@ -13,7 +10,13 @@
   &__name{
     font-size: 26px;
     font-weight: 700;
-    margin-left: 50px;
+    width: 97%;
+    text-align: center;
+  }
+
+  &__icon{
+    margin-right: 10px;
+    font-size: 40px;
   }
 
   &__childWrapper{
