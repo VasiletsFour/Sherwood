@@ -32,6 +32,9 @@ class Config(object):
     # google drive
     GOOGLE_CLIENT_ID = "470984271265-g94r7f1h7nvdv05qpgrcmn8g4scaqf98.apps.googleusercontent.com"
     GOOGLE_CLIENT_SECRET = "jd51qjmf0ghxf59bvQJgPbKU"
+    GOOGLE_API_NAME = 'drive'
+    GOOGLE_API_VERSION = "v3"
+    SCOPES = ['https://www.googleapis.com/auth/drive']
 
 
 class ProductionConfig(Config):

@@ -12,7 +12,7 @@ class AdminBlogs(Controller):
 
     @admin_login
     def get(self):
-        file = flask_restful.request.files["file"]
+        file = flask_restful.request.files["blog_img"]
         service = self.service.get(file, self.token)
 
         return service['message'], service["status"]
