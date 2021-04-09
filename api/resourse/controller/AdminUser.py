@@ -10,7 +10,7 @@ class AdminUser(Controller):
 
     @admin_login
     def get(self):
-        service = self.service.get(self.token)
+        service = self.service.get(self.token, self.search)
 
         return service['message'], service["status"]
 

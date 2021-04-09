@@ -5,9 +5,9 @@ from utils.responce.responce import Response
 
 
 class AdminUserRepositories(Repositories):
-    def get(self, auth: str):
+    def get(self, auth: str, filters):
         authToken = self.decode(auth)
-        users = self.session.query(Users).filter(Users.confirmEmail == True, Users.id != authToken["id"]).all()
+        users = self.session.query(Users).filter(Users.confirmEmail == True, Users.id != authToken["id"], filters).all()
         schema = admin_users_schema.dump(users)
 
         return Response(status=200, message={'data': schema}).__dict__
