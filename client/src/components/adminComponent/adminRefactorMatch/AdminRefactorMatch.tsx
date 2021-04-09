@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {Modal} from 'react-bootstrap';
 import {useDispatch} from "react-redux";
+import {MatchAdminQuery} from "../../../request/MatchApi";
+import {getAdminMatchAction} from "../../../store/match";
 import {postResultAdminAction, putResultAdminAction} from "../../../store/result";
 import "./AdminRefactorMatch.scss";
 import {FirstStep} from "./step/FirstStep";
@@ -8,19 +10,20 @@ import {SecondStep} from "./step/SecondStep";
 
 interface Props {
     match_id: number
+    teamsId: MatchAdminQuery
     home: number | undefined
     away: number | undefined
     setClose: () => void;
     openStatus: boolean
 }
 
-export const AdminRefactorMatch = ({setClose, openStatus, match_id, home, away}: Props) => {
+export const AdminRefactorMatch = ({setClose, openStatus, match_id, home, away, teamsId}: Props) => {
     const dipatch = useDispatch();
 
     const [step, setStep] = useState(1)
     const [goalHome, setGoalHome] = useState(0)
     const [goalVisitors, setGoalVisitors] = useState(0)
-    const [slaughtered, setSlaughtered] = useState(1)
+    const [slaughtered, setSlaughtered] = useState<number[]>([])
 
     const handleClose = () => {
         setGoalHome(0)
@@ -29,7 +32,10 @@ export const AdminRefactorMatch = ({setClose, openStatus, match_id, home, away}:
     }
 
     const handleBack = () => setStep(step - 1)
-    const handleNextStep = () => setStep(step + 1)
+    const handleNextStep = () => {
+        dipatch(getAdminMatchAction.trigger({query: teamsId}))
+        setStep(step + 1)
+    }
 
     const handleFinish = () => {
         const status_host = goalHome > goalVisitors ? "win" : goalHome === goalVisitors ? "draw" : "lose"
@@ -63,12 +69,14 @@ export const AdminRefactorMatch = ({setClose, openStatus, match_id, home, away}:
             centered show={openStatus} onHide={handleClose}>
             <Modal.Header closeButton={openStatus}/>
             {renderStep({
+                teamsId,
                 step,
                 goalHome,
                 goalVisitors,
                 setGoalHome,
                 setGoalVisitors,
                 handleNextStep,
+                slaughtered,
                 setSlaughtered,
                 handleBack,
                 handleFinish
@@ -78,24 +86,28 @@ export const AdminRefactorMatch = ({setClose, openStatus, match_id, home, away}:
 };
 
 interface RenderProps {
+    teamsId: MatchAdminQuery
     step: number,
     goalHome: number
     goalVisitors: number
     setGoalHome: (arg: number) => void,
     setGoalVisitors: (arg: number) => void,
     handleNextStep: () => void,
-    setSlaughtered: (arg: number) => void,
+    slaughtered: number[]
+    setSlaughtered: (arg: number[]) => void,
     handleBack: () => void,
     handleFinish: () => void
 }
 
 
 const renderStep = ({
+                        teamsId,
                         step,
                         goalHome, goalVisitors,
                         setGoalHome,
                         setGoalVisitors,
                         handleNextStep,
+                        slaughtered,
                         setSlaughtered,
                         handleBack,
                         handleFinish
@@ -109,7 +121,9 @@ const renderStep = ({
 
     if (step === 2) {
         return <SecondStep
-            setSlaughtered={(id: number) => setSlaughtered(id)}
+            teamsId={teamsId}
+            slaughtered={slaughtered}
+            setSlaughtered={(listId: number[]) => setSlaughtered(listId)}
             handleBack={handleBack}
             handleFinish={handleFinish}
             goalHome={goalHome}

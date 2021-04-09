@@ -1,5 +1,5 @@
 import {LOCATION_CHANGE} from "connected-react-router";
-import {call, put, select, take} from "redux-saga/effects";
+import {call, put, take} from "redux-saga/effects";
 import {CreateLeagues, UpdateLeagues} from "../../request/LeagueApi";
 import {delLeagueApi, getLeagueApi, postLeagueApi, putLeagueApi} from "../../request/LeagueRequest";
 import {
@@ -11,7 +11,6 @@ import {
     TIME_TABLE_URL,
     TOURNAMENT_TABLE_URL
 } from "../../utils";
-import {AppState} from "../store";
 import {delLeagueAction, getLeagueListAction, postLeagueAction, putLeagueAction} from "./action";
 
 interface Params {
@@ -24,7 +23,6 @@ interface Params {
 export function* LeagueSaga() {
     while (true) {
         const action = yield take("*");
-        const state: AppState = yield select();
         const teamUrlMatch = action.type === LOCATION_CHANGE && TEAMS_URL.match(action.payload.location).isMatched;
         const scoreUrlMatch = action.type === LOCATION_CHANGE && SCORER_URL.match(action.payload.location).isMatched;
         const timeTableUrlMatch =
@@ -40,7 +38,7 @@ export function* LeagueSaga() {
 
         const urlMatch = teamUrlMatch || scoreUrlMatch || timeTableUrlMatch || tournamentUrlMatch || adminLeagueUrlMatch || adminTeamUrlMatch || adminTimeTableUrlMatch
 
-        if (urlMatch && !state.leagueState.league.data) {
+        if (urlMatch) {
             yield call(getLeagueWorker);
         }
 

@@ -13,6 +13,7 @@ export const TableBodyAdminUser = ({user, index}: Props) => {
     const dispatch = useDispatch();
     const [role, setRole] = useState(user.role)
     const [ban, setBan] = useState(user.ban)
+    const empty = "-Пусто-"
 
     const handleUpdateRole = () => {
         const newRole = role === "user" ? "admin" : "user"
@@ -39,6 +40,8 @@ export const TableBodyAdminUser = ({user, index}: Props) => {
             <th>{index + 1}</th>
             <td>{user.firstname} {user.surname}</td>
             <td>{user.email}</td>
+            <td>{user.b_day || empty}</td>
+            <td>{user.number || empty}</td>
             <td>
                 <SwitchBtn
                     onClick={() => handleUpdateRole()}

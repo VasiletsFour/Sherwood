@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {ListGroup} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
-import {AdminCreateBtn, AdminTopBlock, AdminUpdateDelete, NameOpenChild} from "../../";
+import {AdminFilterBtn, AdminFilterTeam, AdminTopBlock, AdminUpdateDelete, NameOpenChild} from "../../";
 import {AdminPlayerApi, PlayerApi} from "../../../request/PlayerApi";
 import {delAdminPlayerAction, postAdminPlayerAction, putAdminPlayerAction} from "../../../store/player";
 import {AppState} from "../../../store/store";
@@ -15,7 +15,8 @@ interface OpenChild {
 export const AdminPlayer = () => {
     const dispatch = useDispatch();
     const players = useSelector((state: AppState) => (state.playerState?.adminPlayer));
-    const [openTeam, setOpenTeam] = useState<OpenChild>({id: null, openStatus: false})
+    const [openTeam, setOpenTeam] = useState<OpenChild>({id: null, openStatus: false});
+    const [openFilter, setOpenFilter] = useState(false)
 
     const handleOpenTeam = (id: number) => (setOpenTeam({
         id,
@@ -38,8 +39,9 @@ export const AdminPlayer = () => {
     return (
         <div className="adminPlayer">
             <AdminTopBlock title="Игроки">
-                <AdminCreateBtn text="Создать Игрока" onClick={() => alert(true)}/>
+                <AdminFilterBtn text={"Сортировать Команды"} onClick={() => setOpenFilter(!openFilter)}/>
             </AdminTopBlock>
+            <AdminFilterTeam openStatus={openFilter} handleClose={()=>setOpenFilter(false)}/>
             <ListGroup className="adminPlayer__container">
                 {players.finished && !players.loading && players.data &&
                 players.data.map(({id, name, players}: AdminPlayerApi) => (

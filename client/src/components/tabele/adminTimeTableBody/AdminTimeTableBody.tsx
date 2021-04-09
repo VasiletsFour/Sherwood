@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {TimeTableApi} from "../../../request/TimeTableApi";
+import {TimeTableAdminApi} from "../../../request/TimeTableApi";
 import {AppState} from "../../../store/store";
 import {putTimeTableUpdateAdminAction} from "../../../store/timeTable";
 import {dateToTimeStamp, timeStampToDate} from "../../../utils";
@@ -9,7 +9,7 @@ import "./AdminTimeTableBody.scss"
 
 interface Props {
     index: number
-    match: TimeTableApi;
+    match: TimeTableAdminApi;
 }
 
 export const AdminTimeTableBody = ({index, match}: Props) => {

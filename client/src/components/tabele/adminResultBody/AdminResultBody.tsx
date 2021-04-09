@@ -28,6 +28,7 @@ export const AdminResultBody = ({index, match}: Props) => {
             </td>
             <AdminRefactorMatch
                 match_id={match.id}
+                teamsId={{team_one: match.host.id, team_two: match.guest.id}}
                 home={match?.matchResult?.goal_host}
                 away={match?.matchResult?.goal_guest}
                 setClose={() => setOpenModal(false)}

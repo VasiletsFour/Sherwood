@@ -6,12 +6,12 @@ import {AdminTopBlock} from "../adminTopBlock/AdminTopBlock";
 import "./AdminTimeTableUpdate.scss"
 
 export const AdminTimeTableUpdate = () => {
-    const {timeTable} = useSelector((state: AppState) => ({timeTable: state.timeTableState.timeTable}));
+    const {data, finished, loading} = useSelector((state: AppState) => (state.timeTableState.timeTableAdmin));
 
     return (
         <div className="adminTimeTableUpdate">
             <AdminTopBlock title={"Расписание"} text={"Редактировать"}/>
-            {timeTable.finished && !timeTable.loading && timeTable.data && <AdminTimeTable/>}
+            {finished && !loading && data && <AdminTimeTable/>}
         </div>
     )
 };

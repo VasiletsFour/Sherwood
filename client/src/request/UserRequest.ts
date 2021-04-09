@@ -1,10 +1,10 @@
 import {makeGetRequest, makePutRequest} from "../api/makeRequest";
 import {putAdminUserAction} from "../store/user";
-import {UserApi} from "./UserApi";
+import {UserAdminQuery, UserApi} from "./UserApi";
 
 //GET AdminUser List
-export const getAdminUserApi = async (): Promise<UserApi[]> => {
-    const {data, error, status} = await makeGetRequest("/admin/user");
+export const getAdminUserApi = async (query?: UserAdminQuery): Promise<UserApi[]> => {
+    const {data, error, status} = await makeGetRequest("/admin/user", query ? {params: query} : {});
 
     if (status === 200) return data;
 

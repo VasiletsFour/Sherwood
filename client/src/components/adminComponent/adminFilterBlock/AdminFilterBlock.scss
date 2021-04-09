@@ -27,6 +27,14 @@
     justify-content: space-around;
   }
 
+  &__children{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
   &__inputWrapper {
     margin-top: 10px;
   }

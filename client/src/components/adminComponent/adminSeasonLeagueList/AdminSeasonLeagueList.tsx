@@ -1,4 +1,5 @@
 import React from "react";
+import {ListGroup} from "react-bootstrap";
 import {useSelector} from "react-redux";
 import {LeagueApi, Leagues} from "../../../request/LeagueApi";
 import {AppState} from "../../../store/store";
@@ -33,37 +34,37 @@ export const AdminSeasonLeagueList = (
     const {leagues} = useSelector((state: AppState) => ({leagues: state.leagueState.league}));
 
     return (
-        <div className="adminSeasonLeagueList">
+        <ListGroup className="adminSeasonLeagueList">
             {leagues.finished && !leagues.loading && leagues.data && leagues.data.map((item: LeagueApi) => (
-                <div
-                    key={item.id + "adminTeamPage season"}
-                    className="adminSeasonLeagueList__seasonItem"
-                    onDragOver={event => onDragOverSeason && onDragOverSeason(event, item.id)}>
-                    <NameOpenChild
-                        name={item.name}
-                        openStatus={openSeason.openStatus && item.id === openSeason.id}
-                        onClick={() => handleOpenSeason(item.id)}
-                        classname="adminSeasonLeagueList__seasonItemHeader"/>
-                    {openSeason.openStatus && item.id === openSeason.id &&
-                    <div className="adminSeasonLeagueList__seasonItemBody">
-                        {item.leagues.map((league: Leagues) =>
-                            (<div
-                                    className="adminSeasonLeagueList__leagueItem"
-                                    key={league.id + "adminTeamPage league"}>
-                                    <div onDragOver={event => onDragOverLeague && onDragOverLeague(event, item.id)}>
-                                        <NameOpenChild
-                                            name={league.name}
-                                            openStatus={openLeague.openStatus && league.id === openLeague.id}
-                                            onClick={() => handleOpenLeague(league.id)}
-                                            classname="adminSeasonLeagueList__leagueBlock"
-                                        />
-                                    </div>
-                                    {openLeague.openStatus && league.id === openLeague.id && children}
-                                </div>
-                            ))}
-                    </div>}
-                </div>))}
-        </div>
+                <ListGroup.Item variant={"dark"} key={item.id + "adminTeamPage season"}>
+                    <div
+                        onDragOver={event => onDragOverSeason && onDragOverSeason(event, item.id)}>
+                        <NameOpenChild
+                            name={item.name}
+                            openStatus={openSeason.openStatus && item.id === openSeason.id}
+                            onClick={() => handleOpenSeason(item.id)}
+                            classname="adminSeasonLeagueList__seasonItemHeader"/>
+                        {openSeason.openStatus && item.id === openSeason.id &&
+                        <ListGroup className="adminSeasonLeagueList__seasonItemBody">
+                            {item.leagues.map((league: Leagues) =>
+                                (<ListGroup.Item variant={"secondary"}
+                                                 className="adminSeasonLeagueList__leagueItem"
+                                                 key={league.id + "adminTeamPage league"}>
+                                        <div onDragOver={event => onDragOverLeague && onDragOverLeague(event, item.id)}>
+                                            <NameOpenChild
+                                                name={league.name}
+                                                openStatus={openLeague.openStatus && league.id === openLeague.id}
+                                                onClick={() => handleOpenLeague(league.id)}
+                                                classname="adminSeasonLeagueList__leagueBlock"
+                                            />
+                                        </div>
+                                        {openLeague.openStatus && league.id === openLeague.id && children}
+                                    </ListGroup.Item>
+                                ))}
+                        </ListGroup>}
+                    </div>
+                </ListGroup.Item>))}
+        </ListGroup>
     )
 };
 

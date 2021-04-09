@@ -15,3 +15,7 @@ export interface UserAdminUpdate {
     ban?:boolean
     role?: AccountRoleType
 }
+
+export interface UserAdminQuery {
+    search?:string
+}

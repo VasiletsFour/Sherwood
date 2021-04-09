@@ -15,13 +15,15 @@ interface Props {
 }
 
 export const UpdatePen = ({classname, onClick, previousValue, title, isDate, isSelect, option}: Props) => {
+    const [time, setTime] = useState("")
     const [value, setValue] = useState(previousValue)
     const [openAlert, setOpenAlert] = useState(false)
 
     const handleClick = () => {
+        const result = time ? `${value}  ${time}` : value
         setOpenAlert(false)
 
-        return onClick(value)
+        return onClick(result)
     }
 
     return (
@@ -35,8 +37,11 @@ export const UpdatePen = ({classname, onClick, previousValue, title, isDate, isS
                 okClick={() => handleClick()} btnText={"Ok"}>
                 {isSelect && option ?
                     <SelectTags handleSelectAdd={(event) => setValue(event.target.value)} option={option}/> :
-                    <input type={isDate ? "date" : "text"} value={value}
-                           onChange={(event) => setValue(event.target.value)}/>}
+                    <div>
+                        <input type={isDate ? "date" : "text"} value={value}
+                               onChange={(event) => setValue(event.target.value)}/>
+                        <input type="time" value={time} onChange={(event) => setTime(event.target.value)}/>
+                    </div>}
             </Alert>
         </div>)
 }

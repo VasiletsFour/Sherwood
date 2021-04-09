@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import {Spinner} from 'react-bootstrap';
 import {useSelector} from "react-redux";
-import {AdminCreateArticle, AdminFilterBlock, AdminTopBlock} from "../";
+import {AdminCreateArticle, AdminFilterArticle, AdminTopBlock} from "../";
 import {AdminBlogItem, AdminCreateBtn, AdminFilterBtn} from "../../";
 import {Blog} from "../../../request/BlogApi";
-import {getBlogsListAction} from "../../../store/blog";
 import {AppState} from "../../../store/store";
 import "./AdminBlog.scss";
 
@@ -22,8 +21,8 @@ export const AdminBlog = () => {
                         <AdminCreateBtn text="Создать Новость" onClick={() => setOpenArticle(true)}/>
                     </div>
                 </AdminTopBlock>
-                <AdminFilterBlock openStatus={openFilter} handleClose={() => setOpenFilter(false)} withDate={true}
-                                  withSelect={true} action={getBlogsListAction}/>
+                <AdminFilterArticle openStatus={openFilter} handleClose={() => setOpenFilter(false)} withDate={true}
+                                    withSelect={true}/>
                 <AdminCreateArticle setClose={() => setOpenArticle(false)} openStatus={openArticle}/>
                 {finished && !loading && data && (
                     <div className="adminBlog__container">

@@ -20,7 +20,7 @@ const headRow = [
 ];
 
 export const TournamentTable = () => {
-    const {data, finished, loading} = useSelector((state: AppState) => (state?.tournamentTable?.tournamentTable));
+    const {data, finished, loading} = useSelector((state: AppState) => (state?.tournamentTableState?.tournamentTable));
 
     return (
         <Table striped bordered hover variant="dark" className="tournamentTable">
