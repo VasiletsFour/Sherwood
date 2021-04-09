@@ -6,8 +6,8 @@ from utils.responce.responce import Response
 
 
 class AdminPlayerRepositories(Repositories):
-    def get(self):
-        player = self.session.query(Teams).all()
+    def get(self, filters):
+        player = self.session.query(Teams).filter(filters).all()
         schema = players_team_schema.dump(player)
 
         return Response(status=200, message={'data': schema}).__dict__

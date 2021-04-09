@@ -1,3 +1,4 @@
+from db.models.TeamsModel import Teams
 from resourse.repositories.AdminPlayerRepositories import AdminPlayerRepositories
 from resourse.services.Services import Services
 from resourse.validator.PlayerValidate import create, update
@@ -9,8 +10,10 @@ class AdminPlayerServices(Services):
         super().__init__()
         self.repository = AdminPlayerRepositories()
 
-    def get(self):
-        return self.repository.get()
+    def get(self, search=None):
+        filters = Teams.name == search if search else True
+
+        return self.repository.get(filters)
 
     def post(self, body: dict):
         res = self.valid.validation(create, body)

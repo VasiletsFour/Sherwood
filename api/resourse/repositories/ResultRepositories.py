@@ -9,8 +9,10 @@ class ResultRepositories(Repositories):
     def get(self):
         try:
             timeTable = self.session.query(TimeTables).join("place", isouter=True).filter(
-                TimeTables.date > self.timeStamp, TimeTables.status == None).order_by(TimeTables.tour,
-                                                                                      Places.name).all()
+                TimeTables.date > self.timeStamp, TimeTables.status.is_(None),
+                TimeTables.matchResult != None).order_by(
+                TimeTables.tour,
+                Places.name).all()
 
             schema = results_schema.dump(timeTable)
 

@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 from flask_restful import Api
 
 from db.connect.connect import connectDd
+from resourse.controller.AdminMatch import AdminMatch
 from resourse.controller.Account import Account
 from resourse.controller.AdminBlogs import AdminBlogs
 from resourse.controller.AdminLeague import AdminLeague
@@ -78,6 +79,7 @@ def create_app():
     api.add_resource(AdminPlayer, "/admin/player/", "/admin/player/<string:id>")
     api.add_resource(AdminSeason, "/admin/season/", "/admin/season/<string:id>")
     api.add_resource(AdminUser, "/admin/user/", "/admin/user/<string:id>")
+    api.add_resource(AdminMatch, "/admin/match/")
     api.add_resource(AdminReferee, "/admin/referee/", "/admin/referee/<string:id>")
     api.add_resource(AdminTimeTable, "/admin/time_table/", "/admin/time_table/<string:id>")
     api.add_resource(AdminPlace, "/admin/place/", "/admin/place/<string:id>")

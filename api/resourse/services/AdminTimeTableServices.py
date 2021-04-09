@@ -9,6 +9,9 @@ class AdminTimeTableServices(Services):
         super().__init__()
         self.repository = AdminTimeTableRepositories()
 
+    def get(self, **kwargs):
+        return self.repository.get()
+
     def post(self, body: dict):
         res = self.valid.validation(create, body)
 

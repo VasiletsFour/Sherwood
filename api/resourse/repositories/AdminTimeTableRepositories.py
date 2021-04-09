@@ -4,10 +4,21 @@ from db.models.TeamsModel import Teams
 from db.models.TimeTableModel import TimeTables
 from resourse.repositories.Repositories import Repositories
 from resourse.scheam.TeamSchema import teams_schema
+from resourse.scheam.TimeTableSchema import time_tables_schema
 from utils.responce.responce import Response
 
 
 class AdminTimeTableRepositories(Repositories):
+    def get(self):
+        try:
+            timeTable = self.session.query(TimeTables).filter(TimeTables.matchResult == None).join("place",
+                                                                                                   isouter=True).all()
+            schema = time_tables_schema.dump(timeTable)
+
+            return Response(200, {'data': schema}).__dict__
+        except AttributeError:
+            return Response(400, {'error': "Team get error"}).__dict__
+
     def post(self, body: dict):
         teams = self.session.query(Teams).filter(Teams.league_id == body["league_id"]).order_by(Teams.id.desc())
         schema = teams_schema.dump(teams)

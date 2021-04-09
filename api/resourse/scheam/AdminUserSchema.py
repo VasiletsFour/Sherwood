@@ -8,6 +8,8 @@ class AdminUserSchema(BaseSchema):
     firstname = fields.Str()
     surname = fields.Str()
     email = fields.Str()
+    b_day = fields.Int()
+    number = fields.Int()
     role = fields.Str()
     ban = fields.Bool()
 

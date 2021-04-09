@@ -9,6 +9,9 @@ class AdminResultServices(Services):
         super().__init__()
         self.repository = AdminResultRepositories()
 
+    def get(self):
+        return self.repository.get()
+
     def post(self, body: dict):
         res = self.valid.validation(create, body)
 

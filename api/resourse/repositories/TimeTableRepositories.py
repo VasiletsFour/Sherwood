@@ -7,7 +7,7 @@ from utils.responce.responce import Response
 class TimeTableRepositories(Repositories):
     def get(self):
         try:
-            timeTable = self.session.query(TimeTables).join("place", isouter=True).all()
+            timeTable = self.session.query(TimeTables).filter(TimeTables.matchResult == None).join("place").all()
             schema = time_tables_schema.dump(timeTable)
 
             return Response(200, {'data': schema}).__dict__

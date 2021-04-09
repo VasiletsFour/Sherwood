@@ -5,6 +5,8 @@ from flask_restful import Resource, request
 class Controller(Resource):
     def __init__(self):
         self.body = request.get_json()
+        self.team_one = request.args.get("team_one")
+        self.team_two = request.args.get("team_two")
         self.name = request.args.get("name")
         self.search = request.args.get("search")
         self.fromDate = request.args.get("fromDate")

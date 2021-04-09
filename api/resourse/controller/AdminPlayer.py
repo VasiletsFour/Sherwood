@@ -10,7 +10,7 @@ class AdminPlayer(Controller):
 
     @admin_login
     def get(self, *args, **kwargs):
-        service = self.service.get()
+        service = self.service.get(self.search)
 
         return service['message'], service["status"]
 
