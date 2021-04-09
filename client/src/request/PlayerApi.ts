@@ -16,3 +16,8 @@ export interface PlayerApi extends PlayerBody {
 export interface PlayerUpdate {
     name?: string
 }
+
+export interface PlayerAdminQuery {
+    search?: string
+    sort?: "asc" | "desc"
+}

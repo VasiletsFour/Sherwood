@@ -1,8 +1,17 @@
 import {makeGetRequest, makePostRequest, makePutRequest} from "../api/makeRequest";
 import {postTimeTableCreateAdminAction, putTimeTableUpdateAdminAction} from "../store/timeTable";
-import {TimeTableApi} from "./TimeTableApi";
+import {TimeTableAdminApi, TimeTableApi} from "./TimeTableApi";
 
-//GET Time table
+//GET Admin Time table
+export const getTimeTableAdminApi = async (): Promise<TimeTableAdminApi[]> => {
+    const {data, error, status} = await makeGetRequest("/admin/time_table");
+
+    if (status === 200) return data;
+
+    throw new Error(error);
+};
+
+//GET Admin Time table
 export const getTimeTableApi = async (): Promise<TimeTableApi[]> => {
     const {data, error, status} = await makeGetRequest("/time_table");
 

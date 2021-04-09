@@ -1,10 +1,10 @@
 import {makeDeleteRequest, makeGetRequest, makePostRequest, makePutRequest} from "../api/makeRequest";
 import {delAdminPlayerAction, postAdminPlayerAction, putAdminPlayerAction} from "../store/player";
-import {AdminPlayerApi} from "./PlayerApi";
+import {AdminPlayerApi, PlayerAdminQuery} from "./PlayerApi";
 
 //GET AdminPlayer List
-export const getAdminPlayerApi = async (): Promise<AdminPlayerApi[]> => {
-    const {data, error, status} = await makeGetRequest("/admin/player");
+export const getAdminPlayerApi = async (query?: PlayerAdminQuery): Promise<AdminPlayerApi[]> => {
+    const {data, error, status} = await makeGetRequest("/admin/player", query ? {params: query} : {});
 
     if (status === 200) return data;
 

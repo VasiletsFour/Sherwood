@@ -22,8 +22,6 @@ export interface ResultApi {
     host: Team
     guest: Team
     matchResult?: Result
-    matchAwayTeams?: Result
-    matchHomeTeams?: Result
     place: Place
     tour: number
 }

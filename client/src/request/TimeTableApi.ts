@@ -4,14 +4,24 @@ export interface TimeTableUpdate {
     date?: number
 }
 
-export interface TimeTableApi {
+interface TimeTable {
     id: number;
     host: TimeTableTeam
     guest: TimeTableTeam;
     tour: string;
+
+}
+
+export interface TimeTableAdminApi extends TimeTable {
     place?: TimeTableTeam
     status?: string
     date?: number
+}
+
+export interface TimeTableApi extends TimeTable {
+    place: TimeTableTeam
+    status: string
+    date: number
 }
 
 interface TimeTableTeam {

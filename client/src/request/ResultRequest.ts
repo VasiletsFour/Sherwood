@@ -4,6 +4,15 @@ import {ResultApi} from "./ResultApi";
 
 //GET result List for admin
 export const getResultAdminApi = async (): Promise<ResultApi[]> => {
+    const {data, error, status} = await makeGetRequest("/admin/result");
+
+    if (status === 200) return data;
+
+    throw new Error(error);
+};
+
+//GET result List
+export const getResultApi = async (): Promise<ResultApi[]> => {
     const {data, error, status} = await makeGetRequest("/result");
 
     if (status === 200) return data;

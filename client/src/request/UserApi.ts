@@ -7,6 +7,8 @@ export interface UserApi {
     email: string
     role: AccountRoleType
     ban: boolean
+    number?: number
+    b_day?: number
 }
 
 export interface UserAdminUpdate {
