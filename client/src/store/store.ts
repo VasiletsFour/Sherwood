@@ -7,6 +7,7 @@ import {accountReducer, AccountSaga, AccountState} from "./account";
 import {authReducer, AuthSaga, AuthState} from "./auth";
 import {blogReducer, BlogSaga, BlogState} from "./blog";
 import {leagueReducer, LeagueSaga, LeagueState} from "./league";
+import {matchReducer, MatchSaga, MatchState} from "./match"
 import {placeReducer, PlaceSaga, PlaceState} from "./place";
 import {playerReducer, PlayerSaga, PlayerState} from "./player";
 import {refereeReducer, RefereeSaga, RefereeState} from "./referee";
@@ -30,7 +31,8 @@ export interface AppState {
     timeTableState: TimeTableState;
     placeState: PlaceState;
     resultState: ResultState;
-    tournamentTable: TournamentTableState;
+    tournamentTableState: TournamentTableState;
+    matchState: MatchState;
     router: any;
 }
 
@@ -51,7 +53,8 @@ const appReducer = combineReducers<AppState>({
     timeTableState: timeTableReducer,
     placeState: placeReducer,
     resultState: resultReducer,
-    tournamentTable: tournamentTableReducer,
+    tournamentTableState: tournamentTableReducer,
+    matchState: matchReducer,
     router: connectRouter(history)
 });
 
@@ -76,7 +79,8 @@ export default function* rootSaga() {
         TimeTableSaga(),
         PlaceSaga(),
         ResultSaga(),
-        TournamentTableSaga()
+        TournamentTableSaga(),
+        MatchSaga()
     ]);
 }
 

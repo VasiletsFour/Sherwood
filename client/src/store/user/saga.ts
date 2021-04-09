@@ -1,9 +1,8 @@
 import {LOCATION_CHANGE} from "connected-react-router";
-import {call, put, select, take} from "redux-saga/effects";
+import {call, put, take} from "redux-saga/effects";
 import {UserAdminUpdate} from "../../request/UserApi";
 import {getAdminUserApi, putAdminUserApi} from "../../request/UserRequest";
 import {ADMIN_USER_PAGE} from "../../utils";
-import {AppState} from "../store";
 import {getAdminUserAction, putAdminUserAction} from "./action";
 
 interface Params {
@@ -16,10 +15,9 @@ interface Params {
 export function* UserSaga() {
     while (true) {
         const action = yield take("*");
-        const state: AppState = yield select();
         const adminUserUrlMatch = action.type === LOCATION_CHANGE && ADMIN_USER_PAGE.match(action.payload.location).isMatched;
 
-        if (adminUserUrlMatch && !state.userState.adminUser.data) {
+        if (adminUserUrlMatch) {
             yield call(getAdminUserWorker);
         }
 

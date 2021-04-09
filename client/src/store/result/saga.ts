@@ -1,10 +1,10 @@
 import {LOCATION_CHANGE} from "connected-react-router";
 import {call, put, select, take} from "redux-saga/effects";
-import {ResultCreate, ResultUpdate} from "../../request/ResultApi";
-import {getResultAdminApi, postResultAdminApi, putResultAdminApi} from "../../request/ResultRequest";
+import {ResultApi, ResultCreate, ResultUpdate} from "../../request/ResultApi";
+import {getResultAdminApi, getResultApi, postResultAdminApi, putResultAdminApi} from "../../request/ResultRequest";
 import {ADMIN_RESULT_PAGE, MATCH_RESULT_PAGE} from "../../utils";
 import {AppState} from "../store";
-import {getResultAdminAction, postResultAdminAction, putResultAdminAction} from "./action";
+import {getResultAction, getResultAdminAction, postResultAdminAction, putResultAdminAction} from "./action";
 
 interface Params {
     params: {
@@ -20,8 +20,12 @@ export function* ResultSaga() {
         const resultUrlMatch = action.type === LOCATION_CHANGE && MATCH_RESULT_PAGE.match(action.payload.location).isMatched
         const adminResultUrlMatch = action.type === LOCATION_CHANGE && ADMIN_RESULT_PAGE.match(action.payload.location).isMatched;
 
-        if ((resultUrlMatch || adminResultUrlMatch) && !state.resultState.result.data) {
-            yield call(getResultAdminWorker);
+        if (adminResultUrlMatch && !state.resultState.resultAdmin.data) {
+            yield call(getResultWorker, getResultAdminAction, getResultAdminApi);
+        }
+
+        if (resultUrlMatch) {
+            yield call(getResultWorker, getResultAction, getResultApi);
         }
 
         if (postResultAdminAction.trigger.is(action)) {
@@ -34,14 +38,15 @@ export function* ResultSaga() {
     }
 }
 
-function* getResultAdminWorker() {
-    try {
-        yield put(getResultAdminAction.running());
-        const response = yield call(getResultAdminApi);
 
-        yield put(getResultAdminAction.ok({params: {}, result: response}));
+function* getResultWorker(action: typeof getResultAdminAction | typeof getResultAction, api: (this: unknown, ...args: any) => Promise<ResultApi[]>) {
+    try {
+        yield put(action.running());
+        const response = yield call(api);
+
+        yield put(action.ok({params: {}, result: response}));
     } catch (e) {
-        yield put(getResultAdminAction.error({params: {}, error: e}));
+        yield put(action.error({params: {}, error: e}));
     }
 }
 
@@ -50,8 +55,8 @@ function* CRUDResultAdminWorker({params}: Params, api: (this: unknown, ...args: 
         if (!params.id && !params.body) return
 
         yield call(api, params)
-        yield call(getResultAdminWorker)
+        yield call(getResultWorker, getResultAdminAction, getResultAdminApi)
     } catch (e) {
-        yield call(getResultAdminWorker)
+        yield call(getResultWorker, getResultAdminAction, getResultAdminApi)
     }
 }

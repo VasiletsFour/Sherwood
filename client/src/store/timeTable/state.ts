@@ -1,7 +1,13 @@
-import {TimeTableApi} from "../../request/TimeTableApi";
+import {TimeTableAdminApi, TimeTableApi} from "../../request/TimeTableApi";
 import {defaultState} from "../defaultState";
 
 export interface TimeTableState {
+    timeTableAdmin: {
+        finished: boolean;
+        loading: boolean;
+        error: string | null;
+        data: TimeTableAdminApi[] | null;
+    };
     timeTable: {
         finished: boolean;
         loading: boolean;
@@ -11,5 +17,6 @@ export interface TimeTableState {
 }
 
 export const initialTimeTableState: TimeTableState = {
+    timeTableAdmin: defaultState,
     timeTable: defaultState,
 };

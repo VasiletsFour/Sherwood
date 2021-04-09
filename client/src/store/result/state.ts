@@ -2,6 +2,12 @@ import {ResultApi} from "../../request/ResultApi";
 import {defaultState} from "../defaultState";
 
 export interface ResultState {
+    resultAdmin: {
+        finished: boolean;
+        loading: boolean;
+        error: string | null;
+        data: ResultApi[] | null;
+    };
     result: {
         finished: boolean;
         loading: boolean;
@@ -11,5 +17,6 @@ export interface ResultState {
 }
 
 export const initialResultState: ResultState = {
-    result: defaultState,
+    resultAdmin: defaultState,
+    result: defaultState
 };
