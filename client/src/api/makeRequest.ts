@@ -58,6 +58,7 @@ export const makePostRequest = async <TRequest>(url: string, data: TRequest, opt
 
         return post;
     } catch (err) {
+        expiredRef(err.response.status);
         return err.response;
     }
 };
@@ -90,6 +91,7 @@ export const makePutRequest = async <TRequest>(
 
         return put
     } catch (err) {
+        expiredRef(err.response.status);
         return err.response;
     }
 };
@@ -118,6 +120,7 @@ export const makeDeleteRequest = async (url: string, options?: AxiosRequestConfi
         }
         return del;
     } catch (err) {
+        expiredRef(err.response.status);
         return err.response;
     }
 };
