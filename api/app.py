@@ -6,10 +6,10 @@ from flask_migrate import Migrate
 from flask_restful import Api
 
 from db.connect.connect import connectDd
-from resourse.controller.AdminMatch import AdminMatch
 from resourse.controller.Account import Account
 from resourse.controller.AdminBlogs import AdminBlogs
 from resourse.controller.AdminLeague import AdminLeague
+from resourse.controller.AdminMatch import AdminMatch
 from resourse.controller.AdminPlace import AdminPlace
 from resourse.controller.AdminPlayer import AdminPlayer
 from resourse.controller.AdminReferee import AdminReferee
@@ -18,6 +18,7 @@ from resourse.controller.AdminSeasone import AdminSeason
 from resourse.controller.AdminTeams import AdminTeam
 from resourse.controller.AdminTimeTable import AdminTimeTable
 from resourse.controller.AdminUser import AdminUser
+from resourse.controller.ApplicationList import ApplicationList
 from resourse.controller.Blogs import Blogs
 from resourse.controller.League import League
 from resourse.controller.Login import Login
@@ -68,6 +69,7 @@ def create_app():
     api.add_resource(Result, "/result/")
     api.add_resource(TimeTable, "/time_table/")
     api.add_resource(TournamentTable, "/tournament_table/")
+    api.add_resource(ApplicationList, "/application_list/")
 
     # private routes
     api.add_resource(Account, "/account")

@@ -36,6 +36,8 @@ class Config(object):
     GOOGLE_API_VERSION = "v3"
     SCOPES = ['https://www.googleapis.com/auth/drive']
 
+    GOOGLE_URL_FOR_DOC = "https://docs.google.com/document/d/1tfLcofc9WRWc_WTknEkzXldUEExRxgnFD-d8qsCzW5c/edit"
+
 
 class ProductionConfig(Config):
     CLIENT = "//"
