@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
-import {Button} from 'react-bootstrap';
+import {Button, Modal} from 'react-bootstrap';
 import {useDispatch} from "react-redux";
 import {FormInput, InputPassword} from "../../";
 import {SIGNUP_NEW_USER} from "../../../store/auth";
@@ -45,7 +45,7 @@ export const SignUp = ({ close }: Props) => {
 
     return (
         <div className="authorization__signIn">
-            <h1 className="authorization__title">Регестрация</h1>
+            <Modal.Title className="authorization__title">Регестрация</Modal.Title>
             <div className="authorization__inputContainer">
                 <FormInput
                     classname="authorization"

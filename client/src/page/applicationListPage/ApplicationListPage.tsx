@@ -1,8 +1,9 @@
 import React from 'react';
+import {ApplicationList} from "../../components";
 import {MainLayout} from "../../layouts"
 
 export const ApplicationListPage = () => (
     <MainLayout>
-        <div>ApplicationListPage</div>
+        <ApplicationList/>
     </MainLayout>
 );

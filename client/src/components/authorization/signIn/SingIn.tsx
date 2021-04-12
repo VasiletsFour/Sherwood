@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
-import {Button} from 'react-bootstrap';
+import {Button, InputGroup, Modal} from 'react-bootstrap';
 import {useDispatch} from "react-redux";
 import {FormInput, InputPassword} from "../../";
 import {LOGIN_USER} from "../../../store/auth";
@@ -39,29 +39,32 @@ export const SignIn = ({ signUp, close }: Props) => {
 
     return (
         <div className="authorization__signIn">
-            <h1 className="authorization__title">Вxод</h1>
-            <div className="authorization__inputContainer">
-                <FormInput
-                    classname="authorization"
-                    value={state.email}
-                    name="email"
-                    onChange={handleInputChange}
-                    label="Почта"
-                    placeholder="Почта"
-                />
-                <InputPassword
-                    classname="authorization"
-                    label="Пароль"
-                    value={state.password}
-                    name="password"
-                    placeholder="Пароль"
-                    onChange={handleInputChange}
-                />
-                <p onClick={signUp}>Зарегестрироваться</p>
-                <Button variant={"outline-dark"} size={"lg"} className="authorization__sendBtn" onClick={() => handleLogin()}>
-                    Войти
-                </Button>
-            </div>
+            <Modal.Title className="authorization__title">Вxод</Modal.Title>
+            <InputGroup>
+                <div className="authorization__inputContainer">
+                    <FormInput
+                        classname="authorization"
+                        value={state.email}
+                        name="email"
+                        onChange={handleInputChange}
+                        label="Почта"
+                        placeholder="Почта"
+                    />
+                    <InputPassword
+                        classname="authorization"
+                        label="Пароль"
+                        value={state.password}
+                        name="password"
+                        placeholder="Пароль"
+                        onChange={handleInputChange}
+                    />
+                    <p onClick={signUp}>Зарегестрироваться</p>
+                    <Button variant={"outline-dark"} size={"lg"} className="authorization__sendBtn"
+                            onClick={() => handleLogin()}>
+                        Войти
+                    </Button>
+                </div>
+            </InputGroup>
         </div>
     );
 };

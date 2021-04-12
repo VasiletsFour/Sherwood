@@ -1,6 +1,6 @@
 import React, {useState} from "react";
+import {Modal} from 'react-bootstrap';
 import {FaTimes, FaUser} from "react-icons/fa";
-import {ModalLayout} from "../../layouts";
 import "./Authorization.scss";
 import {SignIn} from "./signIn/SingIn";
 import {SignUp} from "./signUp/SignUp";
@@ -15,26 +15,26 @@ export const Authorization = ({setClose, isOpen}: Props) => {
 
     const handleClose = () => (!signUp ? setClose() : setSignUp(false));
 
-    if (isOpen) {
         return (
-            <ModalLayout>
-                <div className="authorization">
+            <Modal show={isOpen} size="lg"
+                   aria-labelledby="contained-modal-title-vcenter"
+                   centered onHide={handleClose}>
+                <Modal.Header>
                     <div className="authorization__header">
                         <button className="authorization__headerBtn" onClick={() => handleClose()}>
                             <FaTimes/>
                         </button>
                     </div>
+                </Modal.Header>
+                <Modal.Body className="authorization">
                     <div className="authorization__main">
                         <div className="authorization__userContainer">
-                            <FaUser/>
+                            <FaUser className="authorization__userContainerIcon"/>
                         </div>
                         {!signUp && <SignIn close={() => handleClose()} signUp={() => setSignUp(!signUp)}/>}
                         {signUp && <SignUp close={() => handleClose()}/>}
                     </div>
-                </div>
-            </ModalLayout>
+                </Modal.Body>
+            </Modal>
         );
-    }
-
-    return null
 };

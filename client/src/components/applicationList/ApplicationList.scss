@@ -1,0 +1,12 @@
+.applicationList {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+
+  &__btn {
+    margin-top: 4px;
+    font-size: 26px !important;
+    padding: 10px !important;
+  }
+}
