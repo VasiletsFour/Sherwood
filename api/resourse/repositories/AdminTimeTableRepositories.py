@@ -9,9 +9,10 @@ from utils.responce.responce import Response
 
 
 class AdminTimeTableRepositories(Repositories):
+    @property
     def get(self):
         try:
-            timeTable = self.session.query(TimeTables).filter(TimeTables.matchResult == None).join("place",
+            timeTable = self.session.query(TimeTables).filter(None == TimeTables.matchResult).join("place",
                                                                                                    isouter=True).all()
             schema = time_tables_schema.dump(timeTable)
 

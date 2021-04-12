@@ -11,31 +11,29 @@ from utils.responce.responce import Response
 class TournamentTableRepositories(Repositories):
     def get(self):
         try:
-            tournamentTable = self.session.query(Teams.id, Teams.name, TimeTables, MatchResult, func.sum(
-                func.IF(Teams.id == TimeTables.host_id, MatchResult.status_host == "win",
-                        MatchResult.status_guest == "win")).label("win"), func.sum(
-                func.IF(Teams.id == TimeTables.host_id, MatchResult.status_host == "draw",
-                        MatchResult.status_guest == "draw")).label("draw"), func.sum(
-                func.IF(Teams.id == TimeTables.host_id, MatchResult.status_host == "lose",
-                        MatchResult.status_guest == "lose")).label("lose"),
-                                                 func.sum(func.IF(Teams.id == TimeTables.host_id, MatchResult.goal_host,
-                                                                  MatchResult.goal_guest)).label("goalFor"),
-                                                 func.sum(
-                                                     func.IF(Teams.id == TimeTables.host_id, MatchResult.goal_guest,
-                                                             MatchResult.goal_host)).label("goalAgainst"),
-                                                 func.sum(case([(and_(Teams.id == TimeTables.host_id,
-                                                                      MatchResult.status_host == "win"), 3),
-                                                                (and_(Teams.id == TimeTables.host_id,
-                                                                      MatchResult.status_host == "draw"), 1),
-                                                                (and_(Teams.id == TimeTables.guest_id,
-                                                                      MatchResult.status_guest == "win"), 3),
-                                                                (and_(Teams.id == TimeTables.guest_id,
-                                                                      MatchResult.status_guest == "draw"), 1),
-                                                                ], else_=0)).label("points")).filter(
+            queries = (Teams.id, Teams.name, TimeTables, MatchResult,
+                       func.sum(func.IF(Teams.id == TimeTables.host_id, MatchResult.status_host == "win",
+                                        MatchResult.status_guest == "win")).label("win"),
+                       func.sum(func.IF(Teams.id == TimeTables.host_id, MatchResult.status_host == "draw",
+                                        MatchResult.status_guest == "draw")).label("draw"),
+                       func.sum(func.IF(Teams.id == TimeTables.host_id, MatchResult.status_host == "lose",
+                                        MatchResult.status_guest == "lose")).label("lose"),
+                       func.sum(func.IF(Teams.id == TimeTables.host_id, MatchResult.goal_host,
+                                        MatchResult.goal_guest)).label("goalFor"),
+                       func.sum(func.IF(Teams.id == TimeTables.host_id, MatchResult.goal_guest,
+                                        MatchResult.goal_host)).label("goalAgainst"),
+                       func.sum(case(
+                           [(and_(Teams.id == TimeTables.host_id, MatchResult.status_host == "win"), 3),
+                            (and_(Teams.id == TimeTables.host_id, MatchResult.status_host == "draw"), 1),
+                            (and_(Teams.id == TimeTables.guest_id, MatchResult.status_guest == "win"), 3),
+                            (and_(Teams.id == TimeTables.guest_id, MatchResult.status_guest == "draw"), 1), ],
+                           else_=0)).label("points"))
+            filters = (
                 or_(Teams.id == TimeTables.host_id, Teams.id == TimeTables.guest_id),
-                TimeTables.id == MatchResult.match_id).group_by(Teams.id).order_by(desc("win"), desc("draw"), "lose",
-                                                                                   Teams.name, desc("goalFor"),
-                                                                                   "goalAgainst").all()
+                TimeTables.id == MatchResult.match_id)
+            orders = (desc("win"), desc("draw"), "lose", Teams.name, desc("goalFor"), "goalAgainst")
+
+            tournamentTable = self.session.query(*queries).filter(*filters).group_by(Teams.id).order_by(*orders).all()
 
             schema = tournament_tables_schema.dump(tournamentTable)
 

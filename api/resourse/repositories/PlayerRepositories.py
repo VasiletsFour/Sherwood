@@ -7,8 +7,8 @@ from utils.responce.responce import Response
 
 class PlayerRepositories(Repositories):
     def get(self):
-        players = self.session.query(Players.id, Players.name, Players.team_id, Teams.name.label("team_name")).join(
-            "team").all()
+        queries = (Players.id, Players.name, Players.team_id, Teams.name.label("team_name"))
+        players = self.session.query(*queries).join("team").all()
         schema = players_schema.dump(players)
 
         return Response(status=200, message={'data': schema}).__dict__

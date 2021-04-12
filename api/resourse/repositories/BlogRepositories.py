@@ -7,12 +7,10 @@ from utils.responce.responce import Response
 
 class BlogRepositories(Repositories):
     def get(self, **kwargs):
-        blogs = self.session.query(Blogs.id, Blogs.title, Blogs.tags, Blogs.text, Blogs.date,
-                                   (Users.surname + " " + Users.firstname).label("author")).filter(
-            Blogs.author_id == Users.id, kwargs["search"],
-            kwargs["beforeDate"],
-            kwargs["fromDate"]).order_by(
-            Blogs.date.desc()).join(Users).all()
+        quires = (Blogs.id, Blogs.title, Blogs.tags, Blogs.text, Blogs.date,
+                  (Users.surname + " " + Users.firstname).label("author"))
+        filters = (Blogs.author_id == Users.id, kwargs["search"], kwargs["beforeDate"], kwargs["fromDate"])
+        blogs = self.session.query(*quires).filter(*filters).order_by(Blogs.date.desc()).join(Users).all()
 
         schema = blogs_schema.dump(blogs)
 

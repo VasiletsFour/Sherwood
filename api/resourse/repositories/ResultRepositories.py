@@ -8,12 +8,10 @@ from utils.responce.responce import Response
 class ResultRepositories(Repositories):
     def get(self):
         try:
-            timeTable = self.session.query(TimeTables).join("place", isouter=True).filter(
-                TimeTables.date > self.timeStamp, TimeTables.status.is_(None),
-                TimeTables.matchResult != None).order_by(
-                TimeTables.tour,
-                Places.name).all()
-
+            filters = (TimeTables.date > self.timeStamp, TimeTables.status == None, None != TimeTables.matchResult)
+            orders = (TimeTables.tour, Places.name)
+            timeTable = self.session.query(TimeTables).join("place", isouter=True).filter(*filters).order_by(
+                *orders).all()
             schema = results_schema.dump(timeTable)
 
             return Response(status=200, message={'data': schema}).__dict__
