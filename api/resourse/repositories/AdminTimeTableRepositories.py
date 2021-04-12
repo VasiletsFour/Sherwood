@@ -9,7 +9,6 @@ from utils.responce.responce import Response
 
 
 class AdminTimeTableRepositories(Repositories):
-    @property
     def get(self):
         try:
             timeTable = self.session.query(TimeTables).filter(None == TimeTables.matchResult).join("place",
