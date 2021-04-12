@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {FaChevronUp} from "react-icons/fa";
+import {CSSTransition} from 'react-transition-group';
 import {AdminHeader, AdminSideBar} from "../../components";
 import "./AdminLayout.scss";
 
@@ -34,7 +35,9 @@ export const AdminLayout = ({children}: Props) => {
             <main>
                 <AdminSideBar/>
                 {children}
-                {showArrow && <FaChevronUp onClick={() => handleScroll()} className={"adminLayout__icon"}/>}
+                <CSSTransition unmountOnExit in={showArrow} timeout={190}><FaChevronUp onClick={() => handleScroll()}
+                                                                                       className="adminLayout__icon"/>
+                </CSSTransition>
             </main>
         </div>
     )

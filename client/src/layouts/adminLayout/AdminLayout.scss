@@ -7,12 +7,14 @@
   flex-direction: column;
 
   main {
-    height: 100vmin;
+    height: 100%;
+    min-height: 100vmin;
     display: flex;
     width: 100%;
   }
 
   &__icon {
+    transition: .15s;
     right: 20px;
     bottom: 20px;
     position: fixed;
