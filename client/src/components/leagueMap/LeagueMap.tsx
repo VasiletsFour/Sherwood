@@ -1,6 +1,6 @@
 import React from "react";
-import {useSelector} from "react-redux";
 import {ListGroup, Spinner} from 'react-bootstrap';
+import {useSelector} from "react-redux";
 import {LeagueName} from "../";
 import {LeagueApi} from "../../request/LeagueApi";
 import {AppState} from "../../store/store";
@@ -16,8 +16,8 @@ export const LeagueMap = ({children}: Props) => {
     return (
         <ListGroup className="leagueMap">
             {league.finished && !league.loading && league.data ? (
-                league.data.map((item: LeagueApi) => (
-                    <LeagueName key={item.id + "LeagueName"} data={item}>{children}</LeagueName>))) : (
+                league.data.map((item: LeagueApi) => <LeagueName key={item.id + "LeagueName"}
+                                                                 data={item}>{children}</LeagueName>)) : (
                 <Spinner animation={"border"} variant={"primary"}/>)}
         </ListGroup>
     );

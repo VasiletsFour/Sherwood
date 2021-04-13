@@ -26,6 +26,7 @@ export const AdminLeague = () => {
         if (leagues.length > 0) {
             setOpenAddLeague(true);
             setAddLeague("Лига-" + leagues.length)
+
             return setSeasonId(id)
         }
 
@@ -36,13 +37,13 @@ export const AdminLeague = () => {
     const createLeagues = () => {
         seasonId && dispatch(postLeagueAction.trigger({body: {season_id: seasonId, count: countLeague}}));
 
-        handleClose()
+        return handleClose()
     }
 
     const addNewLeague = () => {
         seasonId && dispatch(putLeagueAction.trigger({body: {season_id: seasonId, name: addLeague}}));
 
-        handleClose()
+        return handleClose()
     }
 
     return (

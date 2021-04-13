@@ -35,7 +35,8 @@ export const AdminCreateArticle = ({setClose, openStatus}: Props) => {
 
     const handleClose = () => {
         setState({...initialState, tags: new Set()})
-        setClose()
+
+        return setClose()
     }
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

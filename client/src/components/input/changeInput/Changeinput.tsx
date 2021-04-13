@@ -15,6 +15,6 @@ export const ChangeInput = ({ children, open, onClick, ...props }: Props) => (
     <div className="changeInput">
         {!open && children}
         {open && <input className="changeInput__input" type="text" {...props} />}
-        <FaPen className="changeInput__penIcon" onClick={() => onClick()} />
+        <FaPen className="changeInput__penIcon" onClick={onClick}/>
     </div>
 );

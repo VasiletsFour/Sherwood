@@ -12,7 +12,7 @@ import "./AdminPlace.scss"
 
 export const AdminPlace = () => {
     const dispatch = useDispatch()
-    const places = useSelector((state: AppState) => (state.placeState?.placeAdmin));
+    const {data, finished, loading} = useSelector((state: AppState) => (state.placeState?.placeAdmin));
     const [newPlace, setNewPlace] = useState("")
     const [openPlace, setOpenPlace] = useState(false)
 
@@ -24,19 +24,19 @@ export const AdminPlace = () => {
     const handleCreatePlace = () => {
         newPlace.length >= 0 && dispatch(postPlaceAdminAction.trigger({body: {name: newPlace}}))
 
-        handleCloseAlert()
+        return handleCloseAlert()
     }
 
     const handleUpdatePlace = (place: string, id: number) => {
         dispatch(putPlaceAdminAction.trigger({id, body: {name: place}}))
 
-        handleCloseAlert()
+        return handleCloseAlert()
     }
 
     const handleDelPlace = (id: number) => {
         dispatch(delPlaceAdminAction.trigger({id,}))
 
-        handleCloseAlert()
+        return handleCloseAlert()
     }
 
     return (
@@ -57,9 +57,9 @@ export const AdminPlace = () => {
                     value={newPlace}
                     onChange={(event: ChangeEvent<HTMLInputElement>) => setNewPlace(event.target.value)}/>
             </Alert>
-            {places.finished && !places.loading && places.data &&
+            {finished && !loading && data &&
             <ListGroup className="adminPlace__container">
-                {places.data.map(({id, name}: PlaceApi) =>
+                {data.map(({id, name}: PlaceApi) =>
                     <AdminUpdateDelete
                         key={id + "AdminPlacePage"}
                         id={id}

@@ -11,11 +11,12 @@ interface Props {
 export const AllNewsImg = ({news, setActuallyNum}: Props) => {
     const [allNews, setAllNews] = useState<Blog[]>([]);
     const [paginationImg, setPaginationImg] = useState({first: 0, last: 2});
+    const showArrow = news.length - 1 > 2
 
     const handleArrow = () => {
         const first = paginationImg.first === news.length - 1 ? 0 : paginationImg.first + 1;
         const last = paginationImg.last === news.length - 1 ? 0 : paginationImg.last + 1;
-        const newPagination = { first: first, last: last };
+        const newPagination = {first: first, last: last};
 
         setPaginationImg(newPagination);
 
@@ -44,9 +45,7 @@ export const AllNewsImg = ({news, setActuallyNum}: Props) => {
 
     return (
         <div className="allNewsImg">
-            {news.length - 1 > 2 && (
-                <FaArrowLeft onClick={() => handleArrow()} className="home__arrowNews home__arrowLeft"/>
-            )}
+            {showArrow && <FaArrowLeft onClick={() => handleArrow()} className="home__arrowNews home__arrowLeft"/>}
             {allNews.map((item: Blog, index: number) => (
                 <div key={String(index) + item.id} className="allNewsImg__imgContainer">
                     <div
@@ -62,9 +61,7 @@ export const AllNewsImg = ({news, setActuallyNum}: Props) => {
                     />
                 </div>
             ))}
-            {news.length - 1 > 2 && (
-                <FaArrowRight onClick={() => handleArrow()} className="home__arrowNews home__arrowRight" />
-            )}
+            {showArrow && <FaArrowRight onClick={() => handleArrow()} className="home__arrowNews home__arrowRight"/>}
         </div>
     );
 };

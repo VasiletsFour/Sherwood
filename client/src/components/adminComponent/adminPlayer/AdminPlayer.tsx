@@ -14,7 +14,7 @@ interface OpenChild {
 
 export const AdminPlayer = () => {
     const dispatch = useDispatch();
-    const players = useSelector((state: AppState) => (state.playerState?.adminPlayer));
+    const {data, finished, loading} = useSelector((state: AppState) => (state.playerState?.adminPlayer));
     const [openTeam, setOpenTeam] = useState<OpenChild>({id: null, openStatus: false});
     const [openFilter, setOpenFilter] = useState(false)
 
@@ -41,10 +41,9 @@ export const AdminPlayer = () => {
             <AdminTopBlock title="Игроки">
                 <AdminFilterBtn text={"Сортировать Команды"} onClick={() => setOpenFilter(!openFilter)}/>
             </AdminTopBlock>
-            <AdminFilterTeam openStatus={openFilter} handleClose={()=>setOpenFilter(false)}/>
+            <AdminFilterTeam openStatus={openFilter} handleClose={() => setOpenFilter(false)}/>
             <ListGroup className="adminPlayer__container">
-                {players.finished && !players.loading && players.data &&
-                players.data.map(({id, name, players}: AdminPlayerApi) => (
+                {finished && !loading && data && data.map(({id, name, players}: AdminPlayerApi) => (
                     <ListGroup.Item className="adminPlayer__team" key={id + "adminPlayer"}>
                         <NameOpenChild
                             name={name}

@@ -31,11 +31,11 @@ export const AdminSeasonLeagueList = (
         onDragOverSeason,
         onDragOverLeague
     }: Props) => {
-    const {leagues} = useSelector((state: AppState) => ({leagues: state.leagueState.league}));
+    const {data, finished, loading} = useSelector((state: AppState) => (state.leagueState.league));
 
     return (
         <ListGroup className="adminSeasonLeagueList">
-            {leagues.finished && !leagues.loading && leagues.data && leagues.data.map((item: LeagueApi) => (
+            {finished && !loading && data && data.map((item: LeagueApi) => (
                 <ListGroup.Item variant={"dark"} key={item.id + "adminTeamPage season"}>
                     <div
                         onDragOver={event => onDragOverSeason && onDragOverSeason(event, item.id)}>

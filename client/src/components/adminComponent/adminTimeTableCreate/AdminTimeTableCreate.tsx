@@ -16,7 +16,7 @@ interface OpenChild {
 
 export const AdminTimeTableCreate = () => {
     const dispatch = useDispatch();
-    const {teams} = useSelector((state: AppState) => ({teams: state.teamState.teams}));
+    const {data, finished, loading} = useSelector((state: AppState) => (state.teamState.teams));
     const [openSeason, setOpenSeason] = useState<OpenChild>({id: null, openStatus: false})
     const [openLeague, setOpenLeague] = useState<OpenChild>({id: null, openStatus: false})
 
@@ -48,7 +48,7 @@ export const AdminTimeTableCreate = () => {
             >
                 <div>
                     <AdminTeamName/>
-                    {teams.finished && !teams.loading && teams.data && teams.data.length !== 0 &&
+                    {finished && !loading && data && data.length !== 0 &&
                     <div className="adminTimeTableCreate__btnCreateContainer">
                         <AdminCreateBtn text={"Создать рассписание"} onClick={createTimeTable}/>
                     </div>}

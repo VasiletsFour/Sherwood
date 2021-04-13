@@ -17,19 +17,17 @@ export const Header = () => {
                 <div className="header__menuWrapper">
                     <HeaderNav/>
                     <div className="header__loginContainer">
-                        {account.finished && !account.loading && account.data && (
-                            <FaUser className="header__userIcon" onClick={() => setOpenMenu(!openMenu)}/>
-                        )}
-                        {account.finished && !account.loading && account.data && openMenu && account.data.role && (
-                            <UserMenu
-                                email={account.data.email}
-                                firstname={account.data.firstname}
-                                role={account.data.role}
-                                surname={account.data.surname}
-                                avatar={account.data.avatar}
-                                close={() => setOpenMenu(false)}
-                            />
-                        )}
+                        {account.finished && !account.loading && account.data &&
+                        <FaUser className="header__userIcon" onClick={() => setOpenMenu(!openMenu)}/>}
+                        {account.finished && !account.loading && account.data && openMenu && account.data.role &&
+                        <UserMenu
+                            email={account.data.email}
+                            firstname={account.data.firstname}
+                            role={account.data.role}
+                            surname={account.data.surname}
+                            avatar={account.data.avatar}
+                            close={() => setOpenMenu(false)}
+                        />}
                         {!account.data && (
                             <p onClick={() => setOpenLogin(!openLogin)} className="header__login">Вход</p>
                         )}

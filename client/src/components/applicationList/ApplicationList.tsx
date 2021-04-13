@@ -4,19 +4,12 @@ import {FaDownload} from "react-icons/fa";
 import {downloadApplicationList} from "../../request/DownloadFileRequest";
 import "./ApplicationList.scss";
 
-type listType = "application list" | "additional application list"
-
-
-export const ApplicationList = () => {
-
-
-    return (
-        <div className="applicationList">
-            <Button className="applicationList__btn" variant="primary" onClick={() => downloadApplicationList()}>Заявочный
-                лист <FaDownload/></Button>
-            <Button className="applicationList__btn" variant="light"
-                    onClick={() => downloadApplicationList()}>Дозаявочный
-                лист <FaDownload/></Button>
-        </div>
-    );
-};
+export const ApplicationList = () => (
+    <div className="applicationList">
+        <Button className="applicationList__btn" variant="primary" onClick={() => downloadApplicationList()}>Заявочный
+            лист <FaDownload/></Button>
+        <Button className="applicationList__btn" variant="light"
+                onClick={() => downloadApplicationList()}>Дозаявочный
+            лист <FaDownload/></Button>
+    </div>
+);

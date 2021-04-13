@@ -10,7 +10,7 @@ import "./AdminSeason.scss"
 
 export const AdminSeason = () => {
     const dipatch = useDispatch();
-    const {season} = useSelector((state: AppState) => ({season: state.seasonState?.seasons}));
+    const {data, finished, loading} = useSelector((state: AppState) => (state.seasonState?.seasons));
     const [createAlert, setCreateAlert] = useState(false);
     const [nextSeason, setNextSeason] = useState("");
     const year = new Date().getFullYear();
@@ -21,7 +21,7 @@ export const AdminSeason = () => {
     };
 
     const handleCreate = () => {
-        const previousSeason = season.data && season?.data[season.data.length - 1]?.name?.replace(`-${year}`, "");
+        const previousSeason = data && data[data.length - 1]?.name?.replace(`-${year}`, "");
 
         switch (previousSeason) {
             case "Весна":
@@ -53,9 +53,9 @@ export const AdminSeason = () => {
                 okClick={() => create()}
                 btnText={"Готово"}/>
             <div>
-                {season.finished && !season.loading && season.data && (
+                {finished && !loading && data && (
                     <ListGroup className="adminSeason__wrapper">
-                        {season.data.map(({name, id}: SeasonApi) => (
+                        {data.map(({name, id}: SeasonApi) => (
                             <ListGroup.Item variant={"info"} key={"adminSeason" + id}>
                                 <div className="adminSeason__seasonItem">
                                     <p className="adminSeason__seasonItemText">{name}</p>

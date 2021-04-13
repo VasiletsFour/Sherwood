@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
+import {Spinner} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import {InformationBanner} from "../";
-import { Spinner} from 'react-bootstrap';
 import {CONFIRM_USER} from "../../store/auth";
 import {AppState} from "../../store/store";
 import {CONFIRM_ACCOUNT_URL, HOME_URL} from "../../utils";
@@ -19,38 +19,36 @@ export const ConfirmAccount = ({location}: Props) => {
     const [openPopup, setOpenPopup] = useState(false);
 
     useEffect(() => {
-        !confirm &&
-            dispatch({
-                type: CONFIRM_USER,
-                payload: token,
-            });
+        !confirm && dispatch({
+            type: CONFIRM_USER,
+            payload: token,
+        });
     });
 
     return (
         <div>
-            {confirm && confirm.type !== "Error" && (
                 <InformationBanner
+                    show={!!(confirm && confirm.type !== "Error")}
                     title={"Потверждено"}
                     text={"Аккаунт готов к работе"}
                     btnText={"ОК"}
                     click={() => history.push(HOME_URL.urlTemplate)}
                 />
-            )}
-            {confirm && confirm.type === "Error" && (
                 <InformationBanner
+                    show={!!(confirm && confirm.type === "Error")}
                     error={true}
                     text={
-                        confirm.message === "Not a token"
+                        confirm?.message === "Not a token"
                             ? "Произашла ошибка, даные не потверждены"
                             : "Время ожидания вышло, повторно отправте сообщение"
                     }
                     btnText={"ОК"}
                     click={() => {
-                        confirm.message === "Not a token" && history.push(HOME_URL.urlTemplate);
-                        confirm.message === "Token Expired" && setOpenPopup(true);
+                        confirm?.message === "Not a token" && history.push(HOME_URL.urlTemplate);
+                        confirm?.message === "Token Expired" && setOpenPopup(true);
                     }}
                 />
-            )}
+
             {openPopup && <p>work</p>}
             {!confirm && <Spinner animation={"border"} variant={"primary"} />}
         </div>

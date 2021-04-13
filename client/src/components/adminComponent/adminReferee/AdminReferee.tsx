@@ -12,7 +12,7 @@ import "./AdminReferee.scss"
 
 export const AdminReferee = () => {
     const dispatch = useDispatch();
-    const referees = useSelector((state: AppState) => (state.refereeState?.referee));
+    const {data, finished, loading} = useSelector((state: AppState) => (state.refereeState?.referee));
     const [newReferee, setNewReferee] = useState("")
     const [openCreate, setOpenCreate] = useState(false)
 
@@ -46,9 +46,9 @@ export const AdminReferee = () => {
                     value={newReferee}
                     onChange={(event: ChangeEvent<HTMLInputElement>) => setNewReferee(event.target.value)}/>
             </Alert>
-            {referees.finished && !referees.loading && referees.data &&
+            {finished && !loading && data &&
             <ListGroup className="adminReferee__list">
-                {referees.data.map(({name, id}: RefereeApi) => (
+                {data.map(({name, id}: RefereeApi) => (
                     <AdminUpdateDelete
                         key={id + "AdminReferee"} id={id}
                         title={"Изминить имя судьи"}
@@ -57,7 +57,7 @@ export const AdminReferee = () => {
                         handleUpdate={(name: string) => dispatch(putAdminRefereeAction.trigger({id, body: {name}}))}
                         handleDelete={() => dispatch(delAdminRefereeAction.trigger({id}))}
                     />))}
-                {!referees.finished && referees.loading && !referees.data &&
+                {!finished && loading && !data &&
                 <Spinner animation={"border"} variant={"light"} size={"sm"}/>}
             </ListGroup>}
         </div>

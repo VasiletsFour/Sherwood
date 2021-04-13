@@ -13,12 +13,12 @@ interface Props {
 
 export const AdminTeamBottom = ({setDragAndDrop}: Props) => {
     const dispatch = useDispatch();
-    const {adminTeam} = useSelector((state: AppState) => ({adminTeam: state.teamState.teamsAdmin}));
+    const {data, finished, loading} = useSelector((state: AppState) => (state.teamState.teamsAdmin));
 
     return (
         <div className="adminTeamBottom">
-            {adminTeam.finished && !adminTeam.loading && adminTeam.data && <aside className="adminTeamBottom__aside">
-                {adminTeam.data.map((item: TeamApi) => (
+            {finished && !loading && data && <aside className="adminTeamBottom__aside">
+                {data.map((item: TeamApi) => (
                     <div
                         className="adminTeamBottom__item"
                         key={item.id + "adminTeamBottom"}

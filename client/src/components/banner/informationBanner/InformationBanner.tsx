@@ -7,20 +7,22 @@ interface Props {
     text: string;
     btnText: string;
     click: () => void;
+    show: boolean
 }
 
-export const InformationBanner = ({ title, error, text, btnText, click }: Props) => {
+export const InformationBanner = ({title, error, text, btnText, click, show}: Props) => {
     const [errorInfo, setErrorInfo] = useState(true);
 
     useEffect(() => {
-        error &&
-            setTimeout(() => {
-                setErrorInfo(!errorInfo);
-            }, 800);
-    }, [error, errorInfo]);
+        error && show &&
+        setTimeout(() => {
+            setErrorInfo(!errorInfo);
+        }, 800);
+    }, [error, errorInfo, show]);
 
-    return (
-        // <ModalLayout>
+    if (show) {
+        return (
+            // <ModalLayout>
             <div className="informationBanner">
                 {title && <h1 className="informationBanner__title">{title}</h1>}
                 {error && (
@@ -29,6 +31,9 @@ export const InformationBanner = ({ title, error, text, btnText, click }: Props)
                 <p className="informationBanner__text">{text}</p>
                 <button className="informationBanner__btn" onClick={() => click()}>{btnText}</button>
             </div>
-        // </ModalLayout>
-    );
+            // </ModalLayout>
+        );
+    }
+
+    return null
 };

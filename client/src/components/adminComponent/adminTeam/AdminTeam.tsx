@@ -43,7 +43,7 @@ export const AdminTeam = () => {
     const handleCreate = () => {
         dispatch(postTeamAdminCreateAction.trigger({body: {name: createTeam}}))
 
-        handleCloseCreate()
+        return handleCloseCreate()
     }
 
     const handleAdd = (teams: TeamApi[]) => {
