@@ -8,14 +8,14 @@ type listType = "application list" | "additional application list"
 
 
 export const ApplicationList = () => {
-    const handleDownload = (list: listType) => alert(list)
+
 
     return (
         <div className="applicationList">
             <Button className="applicationList__btn" variant="primary" onClick={() => downloadApplicationList()}>Заявочный
                 лист <FaDownload/></Button>
             <Button className="applicationList__btn" variant="light"
-                    onClick={() => handleDownload("additional application list")}>Дозаявочный
+                    onClick={() => downloadApplicationList()}>Дозаявочный
                 лист <FaDownload/></Button>
         </div>
     );
