@@ -1,4 +1,6 @@
-from flask import send_file, make_response
+import io
+
+from flask import send_file
 
 from resourse.controller.Controller import Controller
 from resourse.services.ApplicationListServices import ApplicationListServices
@@ -10,10 +12,7 @@ class ApplicationList(Controller):
         self.service = ApplicationListServices()
 
     def get(self):
-        print("w")
         service = self.service.get(search=self.search, beforeDate=self.beforeDate, fromDate=self.fromDate)
-        response = make_response(service["message"]['data'])
-        response.headers.set('Content-Type', 'application/msword')
-        response.headers.set(
-            'Content-Disposition', 'attachment', filename='test.docx')
-        return response
+
+        return send_file(io.BytesIO(service["message"]['data']), mimetype="text/xmlx", as_attachment=True,
+                         attachment_filename='test.xmlx')
