@@ -31,6 +31,12 @@ export const AllNewsImg = ({news, setActuallyNum}: Props) => {
         setAllNews(firstNews.concat(lastNews));
     };
 
+    const handleClick = (id: number) => {
+        const index = news.findIndex((elem) => elem.id === id)
+
+        setActuallyNum(index)
+    }
+
     useEffect(() => {
         filterArr(paginationImg.last, paginationImg.first);
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,15 +45,13 @@ export const AllNewsImg = ({news, setActuallyNum}: Props) => {
     return (
         <div className="allNewsImg">
             {news.length - 1 > 2 && (
-                <FaArrowLeft onClick={() => handleArrow()} className="home__arrowNews home__arrowLeft" />
+                <FaArrowLeft onClick={() => handleArrow()} className="home__arrowNews home__arrowLeft"/>
             )}
             {allNews.map((item: Blog, index: number) => (
                 <div key={String(index) + item.id} className="allNewsImg__imgContainer">
                     <div
                         className="allNewsImg__opacity"
-                        onClick={() => {
-                            setActuallyNum(index);
-                        }}
+                        onClick={() => handleClick(item.id)}
                     />
                     <div className="allNewsImg__info">
                         <h3>{item.title}</h3>

@@ -6,7 +6,7 @@ import "./Home.scss";
 
 export const Home = () => {
     const {finished, loading, data} = useSelector((state: AppState) => (state?.blogState?.blogs));
-    const [actuallyNum, setActuallyNum] = useState(0);
+    const [actuallyNum, setActuallyNum] = useState(1);
 
     const handleActually = useCallback(
         (index: number) => {
