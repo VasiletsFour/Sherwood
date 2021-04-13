@@ -1,0 +1,22 @@
+.searchAndInput {
+  margin-right: 4px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+
+  &__inputSearch {
+    margin-right: 10px;
+    border: 0;
+    border-radius: 4px;
+  }
+
+  &__icon {
+    margin-right: 10px;
+    color: #bebebe;
+
+    &:hover {
+      color: #dd5a12;
+    }
+  }
+}
