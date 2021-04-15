@@ -15,9 +15,9 @@ class AdminResultRepositories(Repositories):
                 *orders).all()
             schema = results_schema.dump(timeTable)
 
-            return Response(status=200, message={'data': schema}).__dict__
+            return Response(status=200, message={'data': schema})
         except AttributeError:
-            return Response(status=400, message={'error': "AdminResult get error"}).__dict__
+            return Response(status=400, message={'error': "AdminResult get error"})
 
     def post(self, body: dict):
         matchResult = MatchResult(**body)
@@ -25,16 +25,16 @@ class AdminResultRepositories(Repositories):
         self.session.add(matchResult)
         self.session.commit()
 
-        return Response(status=201, message={'data': 'create'}).__dict__
+        return Response(status=201, message={'data': 'create'})
 
     def put(self, id: str, body: dict):
         self.session.query(MatchResult).filter(MatchResult.match_id == id).update(dict(**body))
         self.session.commit()
 
-        return Response(status=201, message={'data': 'update'}).__dict__
+        return Response(status=201, message={'data': 'update'})
 
     def delete(self, id: str):
         self.session.query(MatchResult).filter(MatchResult.id == id).delete()
         self.session.commit()
 
-        return Response(status=200, message={'data': 'Delete'}).__dict__
+        return Response(status=200, message={'data': 'Delete'})

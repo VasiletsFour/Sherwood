@@ -10,9 +10,9 @@ class SignUp(Controller):
     def get(self, token=None):
         service = self.service.get(token)
 
-        return service['message'], service["status"]
+        return service.message, service.status
 
     def post(self, *args, **kwargs):
         service = self.service.post(self.body)
 
-        return service['message'], service["status"]
+        return service.message, service.status

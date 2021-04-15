@@ -9,4 +9,4 @@ class SeasonRepositories(Repositories):
         season = self.session.query(Seasons).filter(filters).order_by(Seasons.date).all()
         schema = seasons_schema.dump(season)
 
-        return Response(status=200, message={'data': schema}).__dict__
+        return Response(status=200, message={'data': schema})

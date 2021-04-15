@@ -18,11 +18,11 @@ class AdminLeagueRepositories(Repositories):
             self.session.bulk_save_objects(leagues)
             self.session.commit()
 
-            return Response(status=201, message={"data": "create"}).__dict__
+            return Response(status=201, message={"data": "create"})
         except AssertionError:
-            return Response(status=400, message={"error": 'Create Error, this season have leagues'}).__dict__
+            return Response(status=400, message={"error": 'Create Error, this season have leagues'})
         except IntegrityError:
-            return Response(status=400, message={"error": 'Create Error, wrong id'}).__dict__
+            return Response(status=400, message={"error": 'Create Error, wrong id'})
 
     def put(self, body: dict):
         league = Leagues(**body)
@@ -30,10 +30,10 @@ class AdminLeagueRepositories(Repositories):
         self.session.add(league)
         self.session.commit()
 
-        return Response(status=201, message={"data": "update"}).__dict__
+        return Response(status=201, message={"data": "update"})
 
     def delete(self, id: str):
         self.session.query(Leagues).filter(Leagues.id == id).delete()
         self.session.commit()
 
-        return Response(status=201, message={'data': "Delete"}).__dict__
+        return Response(status=201, message={'data': "Delete"})

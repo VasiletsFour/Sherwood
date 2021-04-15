@@ -14,4 +14,4 @@ class BlogRepositories(Repositories):
 
         schema = blogs_schema.dump(blogs)
 
-        return Response(status=200, message={'data': schema}).__dict__
+        return Response(status=200, message={'data': schema})

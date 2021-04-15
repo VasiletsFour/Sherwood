@@ -10,16 +10,16 @@ class AdminUserRepositories(Repositories):
         users = self.session.query(Users).filter(Users.confirmEmail == True, Users.id != authToken["id"], filters).all()
         schema = admin_users_schema.dump(users)
 
-        return Response(status=200, message={'data': schema}).__dict__
+        return Response(status=200, message={'data': schema})
 
     def put(self, id: str, body: dict):
         self.session.query(Users).filter(Users.id == id).update(dict(**body))
         self.session.commit()
 
-        return Response(status=201, message={'data': 'update'}).__dict__
+        return Response(status=201, message={'data': 'update'})
 
     def delete(self, id: str):
         self.session.query(Users).filter(Users.id == id).delete()
         self.session.commit()
 
-        return Response(status=200, message={'data': 'Delete'}).__dict__
+        return Response(status=200, message={'data': 'Delete'})

@@ -13,7 +13,7 @@ class SignUpServices(Services):
         if token:
             return self.repository.get(token)
 
-        return Response(status=400, message={'error': 'Empty token'}).__dict__
+        return Response(status=400, message={'error': 'Empty token'})
 
     def post(self, body: dict):
         res = self.valid.validation(create, body)
@@ -21,4 +21,4 @@ class SignUpServices(Services):
         if res:
             return self.repository.post(body)
 
-        return Response(status=400, message={'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'})

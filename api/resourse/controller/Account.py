@@ -12,4 +12,4 @@ class Account(Controller):
     def get(self, *args, **kwargs):
         service = self.service.get(self.token)
 
-        return service['message'], service["status"]
+        return service.message, service.status

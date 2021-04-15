@@ -12,6 +12,6 @@ class TeamRepositories(Repositories):
             teams = self.session.query(*queries).filter(filters).order_by(order).join("league").all()
             schema = teams_schema.dump(teams)
 
-            return Response(200, {'data': schema}).__dict__
+            return Response(200, {'data': schema})
         except AttributeError:
-            return Response(400, {'error': "Team get error"}).__dict__
+            return Response(400, {'error': "Team get error"})

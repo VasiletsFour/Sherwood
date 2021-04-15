@@ -10,4 +10,4 @@ class Season(Controller):
     def get(self, *args, **kwargs):
         service = self.service.get(self.name)
 
-        return service['message'], service["status"]
+        return service.message, service.status

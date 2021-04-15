@@ -10,4 +10,4 @@ class LeagueRepositories(Repositories):
         leagues = self.session.query(Seasons).filter(Seasons.active == True, Leagues.season_id == filter_by).all()
         schema = leagues_schema.dump(leagues)
 
-        return Response(status=200, message={'data': schema}).__dict__
+        return Response(status=200, message={'data': schema})

@@ -15,7 +15,7 @@ class AdminLeagueServices(Services):
         if res:
             return self.repository.post(body)
 
-        return Response(status=400, message={'error': 'Invalid League Create'}).__dict__
+        return Response(status=400, message={'error': 'Invalid League Create'})
 
     def put(self, body: dict):
         res = self.valid.validation(update, body)
@@ -23,10 +23,10 @@ class AdminLeagueServices(Services):
         if res:
             return self.repository.put(body)
 
-        return Response(status=400, message={'error': 'Failed League update'}).__dict__
+        return Response(status=400, message={'error': 'Failed League update'})
 
     def delete(self, id):
         if id:
             return self.repository.delete(id)
 
-        return Response(status=400, message={'error': 'Failed League delete'}).__dict__
+        return Response(status=400, message={'error': 'Failed League delete'})

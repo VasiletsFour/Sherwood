@@ -37,6 +37,6 @@ class TournamentTableRepositories(Repositories):
 
             schema = tournament_tables_schema.dump(tournamentTable)
 
-            return Response(200, {'data': schema}).__dict__
+            return Response(200, {'data': schema})
         except AttributeError:
-            return Response(400, {'error': "Team get error"}).__dict__
+            return Response(400, {'error': "Team get error"})

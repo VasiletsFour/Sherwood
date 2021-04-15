@@ -24,10 +24,10 @@ class AdminUserServices(Services):
         if res and id:
             return self.repository.put(id, body)
 
-        return Response(status=400, message={'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'})
 
     def delete(self, id: str):
         if id:
             return self.repository.delete(id)
 
-        return Response(status=400, message={'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'})

@@ -18,7 +18,7 @@ class AdminTimeTableServices(Services):
         if res:
             return self.repository.post(body)
 
-        return Response(status=400, message={'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'})
 
     def put(self, id, body):
         res = self.valid.validation(update, body)
@@ -26,4 +26,4 @@ class AdminTimeTableServices(Services):
         if res and id:
             return self.repository.put(id, body)
 
-        return Response(status=400, message={'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'})

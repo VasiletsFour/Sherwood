@@ -10,7 +10,7 @@ class AdminPlayerRepositories(Repositories):
         player = self.session.query(Teams).filter(filters).all()
         schema = players_team_schema.dump(player)
 
-        return Response(status=200, message={'data': schema}).__dict__
+        return Response(status=200, message={'data': schema})
 
     def post(self, body: dict):
         player = Players(**body)
@@ -18,16 +18,16 @@ class AdminPlayerRepositories(Repositories):
         self.session.add(player)
         self.session.commit()
 
-        return Response(status=201, message={'data': 'create'}).__dict__
+        return Response(status=201, message={'data': 'create'})
 
     def put(self, id: str, body: object):
         self.session.query(Players).filter(Players.id == id).update(dict(name=body["name"]))
         self.session.commit()
 
-        return Response(status=200, message={'data': 'update'}).__dict__
+        return Response(status=200, message={'data': 'update'})
 
     def delete(self, id: str):
         self.session.query(Players).filter(Players.id == id).delete()
         self.session.commit()
 
-        return Response(status=200, message={'data': 'Delete'}).__dict__
+        return Response(status=200, message={'data': 'Delete'})

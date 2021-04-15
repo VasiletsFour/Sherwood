@@ -10,4 +10,4 @@ class Team(Controller):
     def get(self, *args, **kwargs):
         service = self.service.get(name=self.name, league_id=self.league_id, kind=self.kind, type=self.type)
 
-        return service['message'], service["status"]
+        return service.message, service.status

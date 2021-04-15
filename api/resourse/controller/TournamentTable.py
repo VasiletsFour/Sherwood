@@ -10,4 +10,4 @@ class TournamentTable(Controller):
     def get(self, *args, **kwargs):
         service = self.service.get()
 
-        return service['message'], service["status"]
+        return service.message, service.status

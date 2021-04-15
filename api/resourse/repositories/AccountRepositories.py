@@ -9,11 +9,11 @@ class AccountRepositories(Repositories):
         user = self.session.query(Users).filter(Users.id == id).first()
 
         if not user:
-            return Response(status=404, message={"error": "User not found"}).__dict__
+            return Response(status=404, message={"error": "User not found"})
 
         schema = user_schema.dump(user)
 
         # Temporary picture, delete
         schema["avatar"] = "https://pbs.twimg.com/profile_images/1208234904405757953/mT0cFOVQ_400x400.jpg"
 
-        return Response(200, {'data': schema}).__dict__
+        return Response(200, {'data': schema})

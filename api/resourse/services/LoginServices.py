@@ -16,4 +16,4 @@ class LoginServices(Services):
             return self.repository.post(body)
 
         return Response(status=400, message={'error': 'Invalid body'},
-                        logger_message="Login Invalid body:{body}".format(body=str(body))).__dict__
+                        logger_message="Login Invalid body:{body}".format(body=str(body)))

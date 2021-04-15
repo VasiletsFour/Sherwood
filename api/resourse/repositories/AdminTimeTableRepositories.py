@@ -15,9 +15,9 @@ class AdminTimeTableRepositories(Repositories):
                                                                                                    isouter=True).all()
             schema = time_tables_schema.dump(timeTable)
 
-            return Response(200, {'data': schema}).__dict__
+            return Response(200, {'data': schema})
         except AttributeError:
-            return Response(400, {'error': "Team get error"}).__dict__
+            return Response(400, {'error': "Team get error"})
 
     def post(self, body: dict):
         teams = self.session.query(Teams).filter(Teams.league_id == body["league_id"]).order_by(Teams.id.desc())
@@ -50,10 +50,10 @@ class AdminTimeTableRepositories(Repositories):
         self.session.bulk_save_objects(result)
         self.session.commit()
 
-        return Response(status=201, message={'data': "Create"}).__dict__
+        return Response(status=201, message={'data': "Create"})
 
     def put(self, id, body):
         self.session.query(TimeTables).filter(TimeTables.id == id).update(body)
         self.session.commit()
 
-        return Response(status=201, message={'data': 'Update'}).__dict__
+        return Response(status=201, message={'data': 'Update'})

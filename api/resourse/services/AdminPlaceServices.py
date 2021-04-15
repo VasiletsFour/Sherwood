@@ -18,7 +18,7 @@ class AdminPlaceServices(Services):
         if res:
             return self.repository.post(body)
 
-        return Response(status=400, message={'error': 'Invalid Place Create'}).__dict__
+        return Response(status=400, message={'error': 'Invalid Place Create'})
 
     def put(self, id, body: dict):
         res = self.valid.validation(create, body)
@@ -26,10 +26,10 @@ class AdminPlaceServices(Services):
         if res and id:
             return self.repository.put(id, body)
 
-        return Response(status=400, message={'error': 'Failed Place update'}).__dict__
+        return Response(status=400, message={'error': 'Failed Place update'})
 
     def delete(self, id):
         if id:
             return self.repository.delete(id)
 
-        return Response(status=400, message={'error': 'Failed Place delete'}).__dict__
+        return Response(status=400, message={'error': 'Failed Place delete'})

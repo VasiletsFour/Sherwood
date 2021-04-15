@@ -10,4 +10,4 @@ class Login(Controller):
     def post(self, *args, **kwargs):
         service = self.service.post(self.body)
 
-        return service['message'], service["status"]
+        return service.message, service.status

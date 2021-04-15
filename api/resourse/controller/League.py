@@ -10,4 +10,4 @@ class League(Controller):
     def get(self):
         service = self.service.get(self.league_id)
 
-        return service['message'], service["status"]
+        return service.message, service.status

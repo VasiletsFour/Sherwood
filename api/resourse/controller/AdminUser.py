@@ -12,16 +12,16 @@ class AdminUser(Controller):
     def get(self):
         service = self.service.get(self.token, self.search)
 
-        return service['message'], service["status"]
+        return service.message, service.status
 
     @admin_login
     def put(self, id):
         service = self.service.put(id, self.body)
 
-        return service['message'], service["status"]
+        return service.message, service.status
 
     @admin_login
     def delete(self, id):
         service = self.service.delete(id)
 
-        return service['message'], service["status"]
+        return service.message, service.status

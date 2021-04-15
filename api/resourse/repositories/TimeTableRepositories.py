@@ -10,6 +10,6 @@ class TimeTableRepositories(Repositories):
             timeTable = self.session.query(TimeTables).filter(None == TimeTables.matchResult).join("place").all()
             schema = time_tables_schema.dump(timeTable)
 
-            return Response(200, {'data': schema}).__dict__
+            return Response(200, {'data': schema})
         except AttributeError:
-            return Response(400, {'error': "Team get error"}).__dict__
+            return Response(400, {'error': "Team get error"})

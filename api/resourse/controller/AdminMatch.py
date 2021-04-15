@@ -12,4 +12,4 @@ class AdminMatch(Controller):
     def get(self, *args, **kwargs):
         service = self.service.get(self.team_one, self.team_two)
 
-        return service['message'], service["status"]
+        return service.message, service.status

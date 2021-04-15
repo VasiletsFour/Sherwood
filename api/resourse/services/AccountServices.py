@@ -17,4 +17,4 @@ class AccountServices(Services):
             return self.repository.get(decode["id"])
 
         return Response(status=400, message={'error': 'Invalid Token'},
-                        logger_message="Account fail Invalid token").__dict__
+                        logger_message="Account fail Invalid token")

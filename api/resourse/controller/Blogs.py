@@ -10,4 +10,4 @@ class Blogs(Controller):
     def get(self):
         service = self.service.get(search=self.search, beforeDate=self.beforeDate, fromDate=self.fromDate)
 
-        return service['message'], service["status"]
+        return service.message, service.status

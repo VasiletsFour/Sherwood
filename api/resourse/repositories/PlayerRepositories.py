@@ -11,4 +11,4 @@ class PlayerRepositories(Repositories):
         players = self.session.query(*queries).join("team").all()
         schema = players_schema.dump(players)
 
-        return Response(status=200, message={'data': schema}).__dict__
+        return Response(status=200, message={'data': schema})

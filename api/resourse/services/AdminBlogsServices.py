@@ -20,7 +20,7 @@ class AdminBlogServices(Services):
             return self.repository.get(file, token)
 
         return Response(status=400, message={'error': 'Empty file'},
-                        logger_message="Blog wrong file format or empty file").__dict__
+                        logger_message="Blog wrong file format or empty file")
 
     def post(self, body: dict, token: str):
         res = self.valid.validation(create, body)
@@ -29,7 +29,7 @@ class AdminBlogServices(Services):
             return self.repository.post(body, token)
 
         return Response(status=400, message={'error': 'Invalid create article'},
-                        logger_message="Blog invalid body:{body}".format(body=body)).__dict__
+                        logger_message="Blog invalid body:{body}".format(body=body))
 
     def put(self, id: str, body: dict):
         res = self.valid.validation(update, body)
@@ -38,10 +38,10 @@ class AdminBlogServices(Services):
             return self.repository.put(id, body)
 
         return Response(status=400, message={'error': 'Invalid update article'},
-                        logger_message="Invalid update article body:{body}".format(body=body)).__dict__
+                        logger_message="Invalid update article body:{body}".format(body=body))
 
     def delete(self, id: str):
         if id:
             return self.repository.delete(id)
 
-        return Response(status=400, message={'error': 'Failed delete article'}).__dict__
+        return Response(status=400, message={'error': 'Failed delete article'})

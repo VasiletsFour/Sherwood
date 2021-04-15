@@ -9,4 +9,4 @@ class RefereeRepositories(Repositories):
         referee = self.session.query(Referees).all()
         schema = referees_schema.dump(referee)
 
-        return Response(status=200, message={'data': schema}).__dict__
+        return Response(status=200, message={'data': schema})

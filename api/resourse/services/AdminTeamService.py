@@ -18,7 +18,7 @@ class AdminTeamServices(Services):
         if res:
             return self.repository.post(body)
 
-        return Response(status=400, message={'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'})
 
     def put(self, body: dict):
         res = self.valid.validation(update, body)
@@ -26,7 +26,7 @@ class AdminTeamServices(Services):
         if res:
             return self.repository.put(body)
 
-        return Response(status=400, message={'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'})
 
     def putUpdateName(self, id: str, body: dict):
         res = self.valid.validation(updateName, body)
@@ -34,16 +34,16 @@ class AdminTeamServices(Services):
         if res and id:
             return self.repository.putUpdateName(id, body)
 
-        return Response(status=400, message={'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'})
 
     def deleteFromLeague(self, id: str):
         if id:
             return self.repository.deleteFromLeague(id)
 
-        return Response(status=400, message={'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'})
 
     def delete(self, id: str):
         if id:
             return self.repository.delete(id)
 
-        return Response(status=400, message={'error': 'Not valid'}).__dict__
+        return Response(status=400, message={'error': 'Not valid'})
