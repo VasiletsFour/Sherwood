@@ -9,7 +9,7 @@ class Player(Controller):
         self.service = PlayerServices()
 
     @user_login
-    def get(self, *args, **kwargs):
+    def get(self):
         service = self.service.get()
 
         return service.message, service.status

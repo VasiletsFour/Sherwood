@@ -7,7 +7,7 @@ class Season(Controller):
         super().__init__()
         self.service = SeasonServices()
 
-    def get(self, *args, **kwargs):
+    def get(self):
         service = self.service.get(self.name)
 
         return service.message, service.status

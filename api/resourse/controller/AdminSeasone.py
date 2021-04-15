@@ -9,7 +9,7 @@ class AdminSeason(Controller):
         self.service = AdminSeasonServices()
 
     @admin_login
-    def post(self, *args, **kwargs):
+    def post(self):
         service = self.service.post(self.body)
 
         return service.message, service.status

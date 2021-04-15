@@ -9,7 +9,7 @@ class AdminMatch(Controller):
         self.service = AdminMatchServices()
 
     @admin_login
-    def get(self, *args, **kwargs):
+    def get(self):
         service = self.service.get(self.team_one, self.team_two)
 
         return service.message, service.status

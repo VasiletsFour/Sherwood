@@ -12,7 +12,7 @@ class SignUp(Controller):
 
         return service.message, service.status
 
-    def post(self, *args, **kwargs):
+    def post(self):
         service = self.service.post(self.body)
 
         return service.message, service.status

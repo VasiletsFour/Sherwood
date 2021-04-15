@@ -7,7 +7,7 @@ class TournamentTable(Controller):
         super().__init__()
         self.service = TournamentTableServices()
 
-    def get(self, *args, **kwargs):
+    def get(self):
         service = self.service.get()
 
         return service.message, service.status

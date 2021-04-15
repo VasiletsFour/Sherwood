@@ -7,7 +7,7 @@ class Team(Controller):
         super().__init__()
         self.service = TeamServices()
 
-    def get(self, *args, **kwargs):
+    def get(self):
         service = self.service.get(name=self.name, league_id=self.league_id, kind=self.kind, type=self.type)
 
         return service.message, service.status

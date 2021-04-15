@@ -7,7 +7,7 @@ class Login(Controller):
         super().__init__()
         self.service = LoginServices()
 
-    def post(self, *args, **kwargs):
+    def post(self):
         service = self.service.post(self.body)
 
         return service.message, service.status

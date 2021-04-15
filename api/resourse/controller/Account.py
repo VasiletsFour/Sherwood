@@ -9,7 +9,7 @@ class Account(Controller):
         self.service = AccountServices()
 
     @user_login
-    def get(self, *args, **kwargs):
+    def get(self):
         service = self.service.get(self.token)
 
         return service.message, service.status
