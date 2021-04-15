@@ -29,8 +29,11 @@ export const makeGetRequest = async (url: string, options?: AxiosRequestConfig) 
 
         return get;
     } catch (err) {
-        expiredRef(err.response.status);
-        return err.response;
+        expiredRef(err.response?.status);
+
+        if (err.message === "Network Error") throw new Error(err.message);
+
+        return err
     }
 };
 
@@ -58,7 +61,7 @@ export const makePostRequest = async <TRequest>(url: string, data: TRequest, opt
 
         return post;
     } catch (err) {
-        expiredRef(err.response.status);
+        expiredRef(err.response?.status);
         return err.response;
     }
 };
@@ -91,7 +94,7 @@ export const makePutRequest = async <TRequest>(
 
         return put
     } catch (err) {
-        expiredRef(err.response.status);
+        expiredRef(err.response?.status);
         return err.response;
     }
 };
@@ -120,7 +123,7 @@ export const makeDeleteRequest = async (url: string, options?: AxiosRequestConfi
         }
         return del;
     } catch (err) {
-        expiredRef(err.response.status);
+        expiredRef(err.response?.status);
         return err.response;
     }
 };

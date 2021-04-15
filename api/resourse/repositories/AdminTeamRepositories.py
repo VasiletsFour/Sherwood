@@ -22,7 +22,7 @@ class AdminTeamRepositories(Repositories):
 
         return Response(status=201, message={'data': 'create'})
 
-    def put(self, body: object):
+    def put(self, body: dict):
         self.session.query(Teams).filter(Teams.id.in_(body["teams"])).update(dict(league_id=body["league_id"]),
                                                                              synchronize_session=False)
         self.session.commit()

@@ -14,6 +14,6 @@ class ResultRepositories(Repositories):
                 *orders).all()
             schema = results_schema.dump(timeTable)
 
-            return Response(status=200, message={'data': schema}).__dict__
+            return Response(status=200, message={'data': schema})
         except AttributeError:
-            return Response(status=400, message={'error': "AdminResult get error"}).__dict__
+            return Response(status=400, message={'error': "AdminResult get error"})

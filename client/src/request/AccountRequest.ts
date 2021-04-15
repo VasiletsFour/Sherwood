@@ -6,5 +6,5 @@ export const getAccountApi = async (): Promise<string> => {
 
     if (status === 200) return data;
 
-    throw new Error("Something wrong");
+    throw new Error("Request error");
 }

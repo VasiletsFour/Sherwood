@@ -2,8 +2,8 @@ from datetime import datetime
 
 import jwt
 
-from utils.responce.responce import Response
 from config import Config
+from utils.responce.responce import Response
 
 
 class Token:
@@ -45,4 +45,4 @@ class Token:
 
             raise Exception()
         except:
-            return Response(status=400, message={'error': 'Token Error'}).__dict__
+            return Response(status=400, message={'error': 'Token Error'})

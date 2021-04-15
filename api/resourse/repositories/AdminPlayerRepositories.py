@@ -20,7 +20,7 @@ class AdminPlayerRepositories(Repositories):
 
         return Response(status=201, message={'data': 'create'})
 
-    def put(self, id: str, body: object):
+    def put(self, id: str, body: dict):
         self.session.query(Players).filter(Players.id == id).update(dict(name=body["name"]))
         self.session.commit()
 

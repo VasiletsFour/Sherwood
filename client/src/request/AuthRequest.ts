@@ -27,5 +27,5 @@ export const getConfirmAccountApi = async (token: string): Promise<string> => {
 
     if (status === 400) throw new Error(data.error);
 
-    throw new Error("Something wrong");
+    throw new Error("Request error");
 };
