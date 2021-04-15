@@ -2,7 +2,11 @@ from flask import current_app
 
 
 class Logger:
-    @staticmethod
-    def logger(status: int, message: str):
-        if status >= 400:
-            return current_app.logger.error(message)
+    def __init__(self):
+        self.logger = lambda status, message: current_app.logger.error(message) if status >= 400 else None
+
+    def __new__(cls):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(Logger, cls).__new__(cls)
+
+        return cls.instance

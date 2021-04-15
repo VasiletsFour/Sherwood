@@ -1,7 +1,9 @@
 import datetime
 
 
-def year():
-    time = datetime.datetime.now()
+class ConvertTime:
+    @staticmethod
+    def year():
+        time = datetime.datetime.now()
 
-    return str(time.year)
+        return str(time.year)

@@ -4,11 +4,6 @@ bcrypt = Bcrypt()
 
 
 class BcryptPass:
-    @staticmethod
-    def passHash(password):
-        password = bcrypt.generate_password_hash(password)
-        return password
-
-    @staticmethod
-    def checkPass(password: str, hash_pass: str):
-        return bcrypt.check_password_hash(hash_pass, password)
+    def __init__(self):
+        self.checkPass = lambda password, hash_pass: bcrypt.check_password_hash(hash_pass, password)
+        self.passHash = lambda password: bcrypt.generate_password_hash(password)

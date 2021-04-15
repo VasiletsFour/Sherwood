@@ -4,13 +4,13 @@ from db.models.LeagueModel import Leagues
 from db.models.SeasonsModel import Seasons
 from resourse.repositories.Repositories import Repositories
 from utils.responce.responce import Response
-from utils.time.time import year
+from utils.time.time import ConvertTime
 
 
 class AdminSeasonRepositories(Repositories):
     def post(self, body: dict):
         try:
-            season_name = body["name"] + "-" + year()
+            season_name = body["name"] + "-" + ConvertTime.year()
             season = Seasons(season_name)
 
             self.session.add(season)
