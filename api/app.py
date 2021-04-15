@@ -10,14 +10,13 @@ from View import View
 from db.connect.connect import DBConnect
 from utils.bcrypt.bcrypt import bcrypt
 
-migrate = Migrate()
 
-
-class CreateApp:
+class App:
     def __init__(self):
         self.app = Flask(__name__)
         self.cors = CORS(self.app)
         self.manager = Manager(self.app)
+        self.migrate = Migrate()
 
     def create(self):
         self.manager.add_command('db', MigrateCommand)
@@ -31,21 +30,26 @@ class CreateApp:
         db = DBConnect().connectDd(self.app)
 
         Migrate(self.app, db)
-        migrate.init_app(self.app, db, render_as_batch=True)
+        self.migrate.init_app(self.app, db, render_as_batch=True)
         bcrypt.init_app(self.app)
 
         View(self.app).get_view()
 
         with self.app.app_context():
             if db.engine.url.drivername == 'sqlite':
-                migrate.init_app(self.app, db, render_as_batch=True)
+                self.migrate.init_app(self.app, db, render_as_batch=True)
             else:
-                migrate.init_app(self.app, db)
+                self.migrate.init_app(self.app, db)
 
         return self.app
 
+    def __new__(cls):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(App, cls).__new__(cls)
+        return cls.instance
 
-app = CreateApp().create()
+
+app = App().create()
 
 if __name__ == '__main__':
     app.run()
