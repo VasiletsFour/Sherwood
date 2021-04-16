@@ -1,6 +1,6 @@
 from db.models.SeasonsModel import Seasons
 from resourse.repositories.Repositories import Repositories
-from resourse.serialization.Seasonserialization import seasons_serialization
+from resourse.serialization.SeasonSerialization import seasons_serialization
 from utils.responce.responce import Response
 
 

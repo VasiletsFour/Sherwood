@@ -1,4 +1,4 @@
-from marshmallow import Serialization, fields
+from marshmallow import Schema, fields
 
 from resourse.serialization.Serialization import BaseSerialization
 
@@ -10,7 +10,7 @@ class PlayerSerialization(BaseSerialization):
     team_name = fields.Str()
 
 
-class PlayerTeamSerialization(Serialization):
+class PlayerTeamSerialization(Schema):
     id = fields.Int()
     name = fields.Str()
     players = fields.Nested(PlayerSerialization(many=True))
