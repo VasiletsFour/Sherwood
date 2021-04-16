@@ -4,7 +4,7 @@ from db.models.MatchResultModel import MatchResult
 from db.models.TeamsModel import Teams
 from db.models.TimeTableModel import TimeTables
 from resourse.repositories.Repositories import Repositories
-from resourse.scheam.TournamentTable import tournament_tables_schema
+from resourse.serialization.TournamentTableSerialization import tournament_tables_serialization
 from utils.responce.responce import Response
 
 
@@ -35,8 +35,8 @@ class TournamentTableRepositories(Repositories):
 
             tournamentTable = self.session.query(*queries).filter(*filters).group_by(Teams.id).order_by(*orders).all()
 
-            schema = tournament_tables_schema.dump(tournamentTable)
+            serialization = tournament_tables_serialization.dump(tournamentTable)
 
-            return Response(200, {'data': schema})
+            return Response(200, {'data': serialization})
         except AttributeError:
             return Response(400, {'error': "Team get error"})

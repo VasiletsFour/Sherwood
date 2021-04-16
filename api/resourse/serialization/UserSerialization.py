@@ -1,9 +1,9 @@
 from marshmallow import fields
 
-from resourse.scheam.Schema import BaseSchema
+from resourse.serialization.Serialization import BaseSerialization
 
 
-class UserSchema(BaseSchema):
+class UserSerialization(BaseSerialization):
     id = fields.Int()
     firstname = fields.Str()
     surname = fields.Str()
@@ -14,5 +14,5 @@ class UserSchema(BaseSchema):
     role = fields.Str()
 
 
-user_schema = UserSchema()
-users_schema = UserSchema(many=True)
+user_serialization = UserSerialization()
+users_serialization = UserSerialization(many=True)

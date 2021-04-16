@@ -1,6 +1,6 @@
 from db.models.TeamsModel import Teams
 from resourse.repositories.Repositories import Repositories
-from resourse.scheam.TeamSchema import teams_schema
+from resourse.serialization.TeamSerialization import teams_serialization
 from utils.responce.responce import Response
 
 
@@ -8,9 +8,9 @@ class AdminTeamRepositories(Repositories):
     def get(self):
         try:
             teams = self.session.query(Teams.id, Teams.name).filter(Teams.league_id == None).all()
-            schema = teams_schema.dump(teams)
+            serialization = teams_serialization.dump(teams)
 
-            return Response(status=200, message={'data': schema})
+            return Response(status=200, message={'data': serialization})
         except AttributeError:
             return Response(status=400, message={'error': "Team get error"})
 

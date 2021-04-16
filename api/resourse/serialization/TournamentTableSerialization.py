@@ -1,9 +1,9 @@
 from marshmallow import fields
 
-from resourse.scheam.Schema import BaseSchema
+from resourse.serialization.Serialization import BaseSerialization
 
 
-class TournamentTableSchema(BaseSchema):
+class TournamentTableSerialization(BaseSerialization):
     id = fields.Int()
     name = fields.Str()
     points = fields.Int()
@@ -15,5 +15,5 @@ class TournamentTableSchema(BaseSchema):
     difference = fields.Int()
 
 
-tournament_table_schema = TournamentTableSchema()
-tournament_tables_schema = TournamentTableSchema(many=True)
+tournament_table_serialization = TournamentTableSerialization()
+tournament_tables_serialization = TournamentTableSerialization(many=True)

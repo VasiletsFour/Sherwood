@@ -3,8 +3,8 @@ from math import ceil
 from db.models.TeamsModel import Teams
 from db.models.TimeTableModel import TimeTables
 from resourse.repositories.Repositories import Repositories
-from resourse.scheam.TeamSchema import teams_schema
-from resourse.scheam.TimeTableSchema import time_tables_schema
+from resourse.serialization.TeamSerialization import teams_serialization
+from resourse.serialization.TimeTableSerialization import time_tables_serialization
 from utils.responce.responce import Response
 
 
@@ -13,37 +13,37 @@ class AdminTimeTableRepositories(Repositories):
         try:
             timeTable = self.session.query(TimeTables).filter(None == TimeTables.matchResult).join("place",
                                                                                                    isouter=True).all()
-            schema = time_tables_schema.dump(timeTable)
+            serialization = time_tables_serialization.dump(timeTable)
 
-            return Response(200, {'data': schema})
+            return Response(200, {'data': serialization})
         except AttributeError:
             return Response(400, {'error': "Team get error"})
 
     def post(self, body: dict):
         teams = self.session.query(Teams).filter(Teams.league_id == body["league_id"]).order_by(Teams.id.desc())
-        schema = teams_schema.dump(teams)
+        serialization = teams_serialization.dump(teams)
 
         result = []
         isHost = True
 
-        if len(schema) % 2 == 1: schema.append(False)
+        if len(serialization) % 2 == 1: serialization.append(False)
 
-        for i in range(len(schema) - 1):
-            teamsCount = len(schema)
+        for i in range(len(serialization) - 1):
+            teamsCount = len(serialization)
 
             if i > 0:
-                lastChild = schema[teamsCount - 1]
+                lastChild = serialization[teamsCount - 1]
 
                 isHost = not isHost
 
-                schema.remove(lastChild)
-                schema.insert(1, lastChild)
+                serialization.remove(lastChild)
+                serialization.insert(1, lastChild)
 
-            for k in range(ceil(len(schema) / 2)):
-                if schema[k] == False or schema[teamsCount - k - 1] == False: continue
+            for k in range(ceil(len(serialization) / 2)):
+                if serialization[k] == False or serialization[teamsCount - k - 1] == False: continue
 
-                host = schema[k] if isHost else schema[teamsCount - k - 1]
-                guest = schema[teamsCount - k - 1] if isHost else schema[k]
+                host = serialization[k] if isHost else serialization[teamsCount - k - 1]
+                guest = serialization[teamsCount - k - 1] if isHost else serialization[k]
 
                 result.append(TimeTables(host["id"], guest["id"], i + 1))
 

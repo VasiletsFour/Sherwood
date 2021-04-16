@@ -1,9 +1,9 @@
 from marshmallow import fields
 
-from resourse.scheam.Schema import BaseSchema
+from resourse.serialization.Serialization import BaseSerialization
 
 
-class AdminUserSchema(BaseSchema):
+class AdminUserSerialization(BaseSerialization):
     id = fields.Int()
     firstname = fields.Str()
     surname = fields.Str()
@@ -14,5 +14,5 @@ class AdminUserSchema(BaseSchema):
     ban = fields.Bool()
 
 
-admin_user_schema = AdminUserSchema()
-admin_users_schema = AdminUserSchema(many=True)
+admin_user_serialization = AdminUserSerialization()
+admin_users_serialization = AdminUserSerialization(many=True)

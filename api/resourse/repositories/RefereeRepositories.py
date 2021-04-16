@@ -1,12 +1,12 @@
 from db.models.RefereeModel import Referees
 from resourse.repositories.Repositories import Repositories
-from resourse.scheam.RefereeScheama import referees_schema
+from resourse.serialization.RefereeSerialization import referees_serialization
 from utils.responce.responce import Response
 
 
 class RefereeRepositories(Repositories):
     def get(self):
         referee = self.session.query(Referees).all()
-        schema = referees_schema.dump(referee)
+        serialization = referees_serialization.dump(referee)
 
-        return Response(status=200, message={'data': schema})
+        return Response(status=200, message={'data': serialization})

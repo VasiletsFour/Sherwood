@@ -1,6 +1,6 @@
 from db.models.UserModel import Users
 from resourse.repositories.Repositories import Repositories
-from resourse.scheam.UserSchema import user_schema
+from resourse.serialization.UserSerialization import user_serialization
 from utils.responce.responce import Response
 
 
@@ -11,9 +11,9 @@ class AccountRepositories(Repositories):
         if not user:
             return Response(status=404, message={"error": "User not found"})
 
-        schema = user_schema.dump(user)
+        serialization = user_serialization.dump(user)
 
         # Temporary picture, delete
-        schema["avatar"] = "https://pbs.twimg.com/profile_images/1208234904405757953/mT0cFOVQ_400x400.jpg"
+        serialization["avatar"] = "https://pbs.twimg.com/profile_images/1208234904405757953/mT0cFOVQ_400x400.jpg"
 
-        return Response(200, {'data': schema})
+        return Response(200, {'data': serialization})

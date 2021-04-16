@@ -1,9 +1,9 @@
 from marshmallow import fields
 
-from resourse.scheam.Schema import BaseSchema
+from resourse.serialization.Serialization import BaseSerialization
 
 
-class BlogSchema(BaseSchema):
+class BlogSerialization(BaseSerialization):
     id = fields.Int()
     title = fields.Str()
     tags = fields.List(fields.Str())
@@ -13,5 +13,5 @@ class BlogSchema(BaseSchema):
     author = fields.Str()
 
 
-blog_schema = BlogSchema()
-blogs_schema = BlogSchema(many=True)
+blog_serialization = BlogSerialization()
+blogs_serialization = BlogSerialization(many=True)

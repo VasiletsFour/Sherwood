@@ -2,16 +2,16 @@ from sqlalchemy.exc import IntegrityError
 
 from db.models.PlaceModel import Places
 from resourse.repositories.Repositories import Repositories
-from resourse.scheam.PlaceSchema import places_schema
+from resourse.serialization.PlaceSerialization import places_serialization
 from utils.responce.responce import Response
 
 
 class AdminPlaceRepositories(Repositories):
     def get(self):
         places = self.session.query(Places).all()
-        schema = places_schema.dump(places)
+        serialization = places_serialization.dump(places)
 
-        return Response(status=200, message={'data': schema})
+        return Response(status=200, message={'data': serialization})
 
     def post(self, body: dict):
         try:

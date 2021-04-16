@@ -1,7 +1,7 @@
 from marshmallow import Schema, post_dump
 
 
-class BaseSchema(Schema):
+class BaseSerialization(Schema):
     SKIP_VALUES = {None}
 
     @post_dump

@@ -30,9 +30,6 @@ class BanAccount(ErrorHandler):
         super(BanAccount, self).__init__(message="Your account has been blocked")
 
 
-class ValidateError(ErrorHandler):
-    def __init__(self, route: str, body: dict):
-        self.rote = route
-        self.body = body
-
-        super(ValidateError, self).__init__(message="Validate error in %, body:%s".format(self, route, self, body))
+class JWTException(ErrorHandler):
+    def __init__(self):
+        super(JWTException, self).__init__(message="Fake token")

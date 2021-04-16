@@ -20,20 +20,19 @@ class App:
 
     def create(self):
         self.manager.add_command('db', MigrateCommand)
-
-        logging.basicConfig(filename="log.log", level="INFO")
-
-        CORS(self.app, supports_credentials=True)
         self.app.config.from_object('config.Config')
         self.app.url_map.strict_slashes = False
 
+        logging.basicConfig(filename="log.log", level="INFO")
+
         db = DBConnect().connectDd(self.app)
 
+        CORS(self.app, supports_credentials=True)
+        View(self.app).get_view()
         Migrate(self.app, db)
+
         self.migrate.init_app(self.app, db, render_as_batch=True)
         bcrypt.init_app(self.app)
-
-        View(self.app).get_view()
 
         with self.app.app_context():
             if db.engine.url.drivername == 'sqlite':
