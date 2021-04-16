@@ -24,9 +24,10 @@ class AdminBlogServices(Services):
 
     def post(self, body: dict, token: str):
         res = self.valid.validation(create, body)
+        check = self.decode(token)
 
-        if res and token:
-            return self.repository.post(body, token)
+        if res and check:
+            return self.repository.post(body, check)
 
         return Response(status=400, message={'error': 'Invalid create article'},
                         logger_message="Blog invalid body:{body}".format(body=body))

@@ -1,6 +1,6 @@
 from resourse.controller.Controller import Controller
 from resourse.services.AdminTimeTableServices import AdminTimeTableServices
-from utils.middleware.middleware import admin_login
+from middleware.Middleware import admin_login
 
 
 class AdminTimeTable(Controller):

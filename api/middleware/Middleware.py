@@ -2,10 +2,10 @@ from functools import wraps
 
 from flask import request, abort
 
-from utils.logger.logger import Logger
-from utils.token.token import Token
 from db.connect.connect import db
 from db.models.UserModel import Users
+from utils.logger.logger import Logger
+from utils.token.token import Token
 
 
 def admin_login(f):

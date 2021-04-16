@@ -14,12 +14,16 @@ class Token:
         self.__key = Config.JWT_SECRET_KEY
         self.__algorithms = "HS256"
 
+    def __new__(cls):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(Token, cls).__new__(cls)
+        return cls.instance
+
     def decodeToken(self, token: str):
         try:
             return jwt.decode(token.replace("Bearer ", ""), self.__key, algorithm=[self.__algorithms])
-        except ExpiredSignatureError as err:
-            print(err, type(err))
-            return Response(status=400, message={'error': 'Token Error'})
+        except ExpiredSignatureError:
+            return None
 
     def getConfirmToken(self, email: str):
         if not id:

@@ -37,6 +37,6 @@ class TournamentTableRepositories(Repositories):
 
             serialization = tournament_tables_serialization.dump(tournamentTable)
 
-            return Response(200, {'data': serialization})
+            return Response(status=200, message={'data': serialization})
         except AttributeError:
-            return Response(400, {'error': "Team get error"})
+            return Response(status=400, message={'error': "Team get error"})

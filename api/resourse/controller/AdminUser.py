@@ -1,6 +1,6 @@
 from resourse.controller.Controller import Controller
 from resourse.services.AdminUserServices import AdminUserServices
-from utils.middleware.middleware import admin_login
+from middleware.Middleware import admin_login
 
 
 class AdminUser(Controller):

@@ -1,6 +1,5 @@
 from resourse.controller.Controller import Controller
 from resourse.services.ResultServices import ResultServices
-from utils.middleware.middleware import admin_login
 
 
 class Result(Controller):

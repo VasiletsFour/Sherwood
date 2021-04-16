@@ -10,10 +10,12 @@ class SignUpServices(Services):
         self.repository = SignUpRepositories()
 
     def get(self, token: str):
-        if token:
-            return self.repository.get(token)
+        decode_token = self.decode(token)
 
-        return Response(status=400, message={'error': 'Empty token'})
+        if decode_token:
+            return self.repository.get(decode_token)
+
+        return Response(status=400, message={'error': 'Not a token'})
 
     def post(self, body: dict):
         res = self.valid.validation(create, body)

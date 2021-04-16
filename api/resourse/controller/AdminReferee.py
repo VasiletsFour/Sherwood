@@ -1,6 +1,6 @@
 from resourse.controller.Controller import Controller
 from resourse.services.AdminRefereeServices import AdminRefereeServices
-from utils.middleware.middleware import admin_login
+from middleware.Middleware import admin_login
 
 
 class AdminReferee(Controller):

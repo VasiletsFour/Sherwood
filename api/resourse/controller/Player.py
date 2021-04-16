@@ -1,6 +1,6 @@
 from resourse.controller.Controller import Controller
 from resourse.services.PlayerServices import PlayerServices
-from utils.middleware.middleware import user_login
+from middleware.Middleware import user_login
 
 
 class Player(Controller):

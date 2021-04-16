@@ -13,10 +13,14 @@ class AdminUserServices(Services):
         self.repository = AdminUserRepositories()
 
     def get(self, token: str, search=None):
+        authToken = self.decode(token)
         filters = or_(Users.surname.like(search + "%"), Users.email.like(search + "%"),
                       Users.firstname.like(search + "%")) if search else True
 
-        return self.repository.get(token, filters)
+        if authToken:
+            return self.repository.get(authToken, filters)
+
+        return Response(status=400, message={'error': 'Invalid Token'})
 
     def put(self, id: str, body: dict):
         res = self.valid.validation(updateAdmin, body)

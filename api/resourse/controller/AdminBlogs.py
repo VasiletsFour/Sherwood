@@ -2,7 +2,7 @@ import flask_restful
 
 from resourse.controller.Controller import Controller
 from resourse.services.AdminBlogsServices import AdminBlogServices
-from utils.middleware.middleware import admin_login
+from middleware.Middleware import admin_login
 
 
 class AdminBlogs(Controller):

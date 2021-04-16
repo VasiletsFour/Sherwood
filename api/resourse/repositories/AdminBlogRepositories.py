@@ -9,10 +9,8 @@ class AdminBlogRepositories(Repositories):
     def get(self, file: werkzeug.datastructures.FileStorage, token: str):
         return Response(status=201, message={'data': 'Save file'})
 
-    def post(self, body: dict, token: str):
-        check = self.decode(token)
-
-        blog = Blogs(**body, author_id=check["id"])
+    def post(self, body: dict, token: dict):
+        blog = Blogs(**body, author_id=token["id"])
 
         self.session.add(blog)
         self.session.commit()

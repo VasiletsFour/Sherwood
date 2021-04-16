@@ -14,6 +14,5 @@ class Repositories:
 
         self.getToken = lambda id, role: token.getToken(id, role)
         self.getConfirmToken = lambda email: token.getConfirmToken(email)
-        self.decode = lambda decode_token: token.decodeToken(decode_token)
 
         self.checkPass = lambda body_pass, bd_pass: BcryptPass().checkPass(body_pass, bd_pass)

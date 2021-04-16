@@ -6,6 +6,11 @@ db = SQLAlchemy()
 
 
 class DBConnect:
+    def __new__(cls):
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(DBConnect, cls).__new__(cls)
+        return cls.instance
+
     @staticmethod
     def connectDd(app, msg=" -Database connect"):
         try:
@@ -15,8 +20,3 @@ class DBConnect:
             return db
         except:
             raise NotConnectError("Connect database Error")
-
-    def __new__(cls):
-        if not hasattr(cls, 'instance'):
-            cls.instance = super(DBConnect, cls).__new__(cls)
-        return cls.instance

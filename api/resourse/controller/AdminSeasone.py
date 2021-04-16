@@ -1,6 +1,6 @@
 from resourse.controller.Controller import Controller
 from resourse.services.AdminSeasoneServices import AdminSeasonServices
-from utils.middleware.middleware import admin_login
+from middleware.Middleware import admin_login
 
 
 class AdminSeason(Controller):

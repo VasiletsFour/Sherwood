@@ -1,6 +1,6 @@
 from resourse.controller.Controller import Controller
 from resourse.services.AdminMatchServices import AdminMatchServices
-from utils.middleware.middleware import admin_login
+from middleware.Middleware import admin_login
 
 
 class AdminMatch(Controller):

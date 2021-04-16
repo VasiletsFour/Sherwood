@@ -1,6 +1,6 @@
 from smtplib import SMTPRecipientsRefused
 
-from jwt import ExpiredSignatureError, DecodeError
+from jwt import ExpiredSignatureError
 from sqlalchemy.exc import IntegrityError
 
 from db.models.UserModel import Users
@@ -10,13 +10,9 @@ from utils.responce.responce import Response
 
 
 class SignUpRepositories(Repositories):
-    def get(self, token: str):
+    def get(self, token: dict):
         try:
-            decode_token = self.decode(token)
-
-            assert decode_token is not None
-
-            user = self.session.query(Users).filter(Users.email == decode_token["user"], Users.confirmEmail == False)
+            user = self.session.query(Users).filter(Users.email == token["user"], Users.confirmEmail == False)
             user.update(dict(confirmEmail=True))
 
             self.session.commit()
@@ -24,8 +20,6 @@ class SignUpRepositories(Repositories):
             return Response(status=201, message={'data': "Account Confirm"})
         except ExpiredSignatureError:
             return Response(status=400, message={'error': 'Token Expired'})
-        except DecodeError:
-            return Response(status=400, message={'error': 'Not a token'})
         except AssertionError:
             return Response(status=400, message={"error": 'Not a token'})
 
