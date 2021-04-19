@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import {Table} from 'react-bootstrap';
 import {useSelector} from "react-redux";
 import {SortType, TableBodyAdminUser, TableHead} from "../../";
-import {TeamQuery} from "../../../request/TeamApi";
 import {UserApi} from "../../../request/UserApi";
 import {AppState} from "../../../store/store";
 
@@ -14,17 +13,23 @@ export const TableAdminUser = () => {
     const [sortType, setSortType] = useState<SortType>({type: "", kind: "asc", kindBool: false});
 
     const handleSort = (type: string, kind?: "asc" | "desc", kindBool?: boolean) => {
-        const params: TeamQuery = {
-            kind: kind === "desc" && type === sortType.type ? "asc" : "desc",
-            type: type === "Имя" ? "name" : "league_id",
-        };
+        let sortBy: string
+        const kindType = type === sortType.type && kind === "desc" ? "asc" : "desc"
 
-        // dispatch(getTeamListAction.trigger({query: params}));
-        // history.push(TEAMS_URL.format({}, params), params);
+        switch (type) {
+            case "Пользователь":
+                sortBy = "name"
+                break
+            case "Почта":
+                sortBy = "email"
+                break
+        }
+        console.log(type)
+        adminUser.data && adminUser.data.sort((first: any, second: any) => first[sortBy].localeCompare(second[sortBy]))
 
         setSortType({
             type,
-            kind: params.kind,
+            kind: kindType,
             kindBool: !kindBool,
         });
     };

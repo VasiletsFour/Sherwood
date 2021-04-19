@@ -28,9 +28,11 @@ class TournamentTableRepositories(Repositories):
                             (and_(Teams.id == TimeTables.guest_id, MatchResult.status_guest == "win"), 3),
                             (and_(Teams.id == TimeTables.guest_id, MatchResult.status_guest == "draw"), 1), ],
                            else_=0)).label("points"))
+
             filters = (
                 or_(Teams.id == TimeTables.host_id, Teams.id == TimeTables.guest_id),
                 TimeTables.id == MatchResult.match_id)
+
             orders = (desc("win"), desc("draw"), "lose", Teams.name, desc("goalFor"), "goalAgainst")
 
             tournamentTable = self.session.query(*queries).filter(*filters).group_by(Teams.id).order_by(*orders).all()

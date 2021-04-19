@@ -20,7 +20,7 @@ export const TableHead = ({classname, rowHead, sortType, setSortType}: Props) =>
                 {item}
                 {sortType && (
                     <span>
-                            <ChevronDownUp open={sortType.kindBool && sortType?.type === item}/>
+                            <ChevronDownUp open={sortType.kind === "desc" && sortType?.type === item}/>
                         </span>
                     )}
                 </th>

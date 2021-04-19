@@ -9,6 +9,12 @@
     border-radius: 4px;
   }
 
+  &__seasonItemWrapper {
+    border: 3px black solid !important;
+    margin-top: 20px;
+    border-radius: 14px !important;
+  }
+
   &__seasonItem {
     display: flex;
     justify-content: space-between;

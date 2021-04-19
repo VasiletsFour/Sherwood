@@ -56,7 +56,7 @@ export const AdminSeason = () => {
                 {finished && !loading && data && (
                     <ListGroup className="adminSeason__wrapper">
                         {data.map(({name, id}: SeasonApi) => (
-                            <ListGroup.Item variant={"info"} key={"adminSeason" + id}>
+                            <ListGroup.Item className="adminSeason__seasonItemWrapper" variant={"dark"} key={"adminSeason" + id}>
                                 <div className="adminSeason__seasonItem">
                                     <p className="adminSeason__seasonItemText">{name}</p>
                                     <FaTimes className="adminSeason__seasonItemIcon"
