@@ -1,16 +1,19 @@
 from db.connect.connect import db
 
 
-class MatchHomeTeams(db.Model):
-    __tablename__ = 'MatchHomeTeams'
+class Scorers(db.Model):
+    __tablename__ = 'Scorers'
 
     id = db.Column(db.Integer, primary_key=True)
-    goal_for = db.Column(db.Integer)
-    status = db.Column(db.String(15), nullable=False)
-    match_id = db.Column(db.Integer, db.ForeignKey('TimeTables.id'), unique=True, nullable=False)
-    timeTables = db.relationship("TimeTables", back_populates="matchHomeTeams")
+    own_goal = db.Column(db.Boolean, default=False)
 
-    def __init__(self, match_id: str, goal_for: int, status: str):
+    match_id = db.Column(db.Integer, db.ForeignKey('TimeTables.id'), unique=True, nullable=False)
+    player_id = db.Column(db.Integer, db.ForeignKey('Players.id'), unique=True, nullable=False)
+
+    timeTables = db.relationship("TimeTables", back_populates="scorers")
+    player = db.relationship("Players", back_populates="scorers")
+
+    def __init__(self, match_id: int, player_id: int, status: str):
         self.match_id = match_id
-        self.goal_for = goal_for
         self.status = status
+        self.player_id = player_id

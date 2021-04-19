@@ -8,6 +8,7 @@ from resourse.controller.AdminPlace import AdminPlace
 from resourse.controller.AdminPlayer import AdminPlayer
 from resourse.controller.AdminReferee import AdminReferee
 from resourse.controller.AdminResult import AdminResult
+from resourse.controller.AdminScorer import AdminScorer
 from resourse.controller.AdminSeasone import AdminSeason
 from resourse.controller.AdminTeams import AdminTeam
 from resourse.controller.AdminTimeTable import AdminTimeTable
@@ -59,4 +60,5 @@ class View:
         self.api.add_resource(AdminReferee, "/admin/referee/", "/admin/referee/<string:id>")
         self.api.add_resource(AdminTimeTable, "/admin/time_table/", "/admin/time_table/<string:id>")
         self.api.add_resource(AdminPlace, "/admin/place/", "/admin/place/<string:id>")
-        self.api.add_resource(AdminResult, "/admin/result", "/admin/result/<string:id>")
+        self.api.add_resource(AdminResult, "/admin/result/", "/admin/result/<string:id>")
+        self.api.add_resource(AdminScorer, "/admin/scorer/", "/admin/scorer/<string:id>")
