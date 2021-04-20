@@ -1,7 +1,7 @@
 from datetime import datetime
 
 import jwt
-from jwt import ExpiredSignatureError
+from jwt import ExpiredSignatureError, DecodeError
 
 from config import Config
 from utils.errorExcept.erroExcept import JWTException
@@ -23,6 +23,8 @@ class Token:
         try:
             return jwt.decode(token.replace("Bearer ", ""), self.__key, algorithm=[self.__algorithms])
         except ExpiredSignatureError:
+            return None
+        except DecodeError:
             return None
 
     def getConfirmToken(self, email: str):
