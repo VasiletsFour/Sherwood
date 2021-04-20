@@ -1,13 +1,9 @@
 import React from "react";
-import { ConfirmAccount } from "../../components";
-import { MainLayout } from "../../layouts";
+import {ConfirmAccount} from "../../components";
+import {MainLayout} from "../../layouts";
 
-interface Props {
-    location: Location;
-}
-
-export const ConfirmAccountPage = ({ location }: Props) => (
+export const ConfirmAccountPage = () => (
     <MainLayout>
-        <ConfirmAccount location={location} />
+        <ConfirmAccount/>
     </MainLayout>
 );
