@@ -1,5 +1,8 @@
-export interface SignInBody {
-    email: string;
+export interface ConfirmAgain {
+    email: string
+}
+
+export interface SignInBody extends ConfirmAgain {
     password: string;
 }
 
@@ -12,3 +15,5 @@ export interface Token {
     auth: string;
     ref: string;
 }
+
+
