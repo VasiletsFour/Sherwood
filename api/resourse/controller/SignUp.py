@@ -7,11 +7,6 @@ class SignUp(Controller):
         super().__init__()
         self.service = SignUpServices()
 
-    def get(self, token=None):
-        service = self.service.get(token)
-
-        return service.message, service.status
-
     def post(self):
         service = self.service.post(self.body)
 

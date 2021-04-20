@@ -10,19 +10,6 @@ from utils.responce.responce import Response
 
 
 class SignUpRepositories(Repositories):
-    def get(self, token: dict):
-        try:
-            user = self.session.query(Users).filter(Users.email == token["user"], Users.confirmEmail == False)
-            user.update(dict(confirmEmail=True))
-
-            self.session.commit()
-
-            return Response(status=201, message={'data': "Account Confirm"})
-        except ExpiredSignatureError:
-            return Response(status=400, message={'error': 'Token Expired'})
-        except AssertionError:
-            return Response(status=400, message={"error": 'Not a token'})
-
     def post(self, body: dict):
         try:
             user = Users(**body)

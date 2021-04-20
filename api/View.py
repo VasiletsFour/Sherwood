@@ -15,6 +15,7 @@ from resourse.controller.AdminTimeTable import AdminTimeTable
 from resourse.controller.AdminUser import AdminUser
 from resourse.controller.ApplicationList import ApplicationList
 from resourse.controller.Blogs import Blogs
+from resourse.controller.ConfirmEmail import ConfirmEmail
 from resourse.controller.League import League
 from resourse.controller.Login import Login
 from resourse.controller.Player import Player
@@ -37,8 +38,9 @@ class View:
         self.api.add_resource(League, "/league/")
         self.api.add_resource(Team, "/team/")
         self.api.add_resource(Player, "/player/")
-        self.api.add_resource(SignUp, "/auth/signUp/", "/auth/confirm/<string:token>")
+        self.api.add_resource(SignUp, "/auth/signUp/")
         self.api.add_resource(Login, "/auth/login/")
+        self.api.add_resource(ConfirmEmail, "/auth/confirm/", "/auth/confirm/<string:token>")
         self.api.add_resource(Blogs, "/blogs/")
         self.api.add_resource(Referee, "/referee/")
         self.api.add_resource(Result, "/result/")

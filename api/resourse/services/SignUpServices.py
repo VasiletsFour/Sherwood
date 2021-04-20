@@ -9,18 +9,10 @@ class SignUpServices(Services):
         super().__init__()
         self.repository = SignUpRepositories()
 
-    def get(self, token: str):
-        decode_token = self.decode(token)
-
-        if decode_token:
-            return self.repository.get(decode_token)
-
-        return Response(status=400, message={'error': 'Not a token'})
-
     def post(self, body: dict):
         res = self.valid.validation(create, body)
 
         if res:
             return self.repository.post(body)
 
-        return Response(status=400, message={'error': 'Not valid'})
+        return Response(status=400, message={'error': 'Not valid'}, logger_message="Sign Up Invalid Body")
