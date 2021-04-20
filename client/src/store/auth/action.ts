@@ -1,9 +1,10 @@
-import { SignInBody, SignUpBody } from "../../request/AuthApi";
+import {SignInBody, SignUpBody} from "../../request/AuthApi";
 
 export const SIGNUP_NEW_USER = "signup-new-user";
 export const LOGIN_USER = "login-user";
 export const CONFIRM_USER = "confirm-user";
 export const LOGOUT_USER = "logout-user";
+export const CONFIRM_AGAIN = "confirm-again"
 
 interface SignupNewUserAction {
     type: typeof SIGNUP_NEW_USER;
@@ -20,9 +21,19 @@ interface ConfirmAccountAction {
     payload: string;
 }
 
+interface ConfirmAccountAgainAction {
+    type: typeof CONFIRM_AGAIN;
+    payload: string;
+}
+
 interface LogoutAction {
     type: typeof LOGOUT_USER;
     payload: string;
 }
 
-export type AuthActionTypes = SignupNewUserAction | LoginUserAction | ConfirmAccountAction | LogoutAction;
+export type AuthActionTypes =
+    SignupNewUserAction
+    | LoginUserAction
+    | ConfirmAccountAction
+    | LogoutAction
+    | ConfirmAccountAgainAction;

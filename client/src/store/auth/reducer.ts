@@ -1,5 +1,5 @@
-import { CONFIRM_USER, LOGIN_USER, LOGOUT_USER, SIGNUP_NEW_USER } from "./action";
-import { AuthState, initialAuthStateState } from "./state";
+import {CONFIRM_AGAIN, CONFIRM_USER, LOGIN_USER, LOGOUT_USER, SIGNUP_NEW_USER} from "./action";
+import {AuthState, initialAuthStateState} from "./state";
 
 export function authReducer(state: AuthState = initialAuthStateState as AuthState, action: any): AuthState {
     switch (action.type) {
@@ -22,6 +22,11 @@ export function authReducer(state: AuthState = initialAuthStateState as AuthStat
             return {
                 ...state,
                 logoutUser: action.message
+            };
+        case CONFIRM_AGAIN:
+            return {
+                ...state,
+                confirmAgain: action.message
             };
     }
 
