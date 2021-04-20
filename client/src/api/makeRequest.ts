@@ -33,7 +33,7 @@ export const makeGetRequest = async (url: string, options?: AxiosRequestConfig) 
 
         if (err.message === "Network Error") throw new Error(err.message);
 
-        return err
+        return err.response
     }
 };
 
