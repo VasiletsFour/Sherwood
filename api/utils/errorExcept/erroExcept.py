@@ -12,7 +12,7 @@ class NotConnectError(Exception):
 
 class UserNotFound(ErrorHandler):
     def __init__(self):
-        super(UserNotFound, self).__init__(message="User not found")
+        super(UserNotFound, self).__init__(message="Invalid Email")
 
 
 class InvalidPassword(ErrorHandler):
