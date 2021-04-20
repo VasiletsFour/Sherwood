@@ -1,7 +1,6 @@
 import React from "react";
 import {ListGroup} from "react-bootstrap";
 import {useSelector} from "react-redux";
-import {PageTitle} from "../";
 import {TimeTableApi} from "../../request/TimeTableApi";
 import {AppState} from "../../store/store";
 import {timeStampToDate} from "../../utils";
@@ -12,7 +11,6 @@ export const TimeTable = () => {
 
     return (
         <div className="timeTable">
-            <PageTitle title="Расписание"/>
             <ListGroup>
                 {data && finished && !loading && data.map(({date, host, guest, id, place}: TimeTableApi) =>
                     <ListGroup.Item

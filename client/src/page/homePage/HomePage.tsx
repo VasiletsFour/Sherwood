@@ -3,7 +3,7 @@ import {Home} from "../../components/"
 import {MainLayout} from "../../layouts"
 
 export const HomePage = () => (
-    <MainLayout>
+    <MainLayout title={"Новости"}>
         <Home/>
     </MainLayout>
 );

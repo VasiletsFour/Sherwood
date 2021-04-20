@@ -1,9 +1,9 @@
 import React from "react";
-import { MainLayout } from "../../layouts";
-import { Tournament } from "../../components";
+import {Tournament} from "../../components";
+import {MainLayout} from "../../layouts";
 
 export const TournamentTablePage = () => (
-    <MainLayout>
-        <Tournament />
+    <MainLayout title="Турнирная таблица">
+        <Tournament/>
     </MainLayout>
 );

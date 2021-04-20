@@ -14,7 +14,6 @@ export * from "./teams/Teams";
 export * from "./authorization/Authorization";
 export * from "./input/";
 export * from "./logoType/LogoType";
-export * from "./pageTitle/PageTitle";
 export * from "./confirmAccount/ConfirmAccount";
 export * from "./banner/";
 export * from "./userMenu/UserMenu";

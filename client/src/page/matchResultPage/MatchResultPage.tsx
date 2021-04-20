@@ -3,7 +3,7 @@ import {MatchResult} from "../../components";
 import {MainLayout} from "../../layouts"
 
 export const MatchResultPage = () => (
-    <MainLayout>
+    <MainLayout title="Результаты матчей">
         <MatchResult/>
     </MainLayout>
 );

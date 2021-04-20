@@ -3,7 +3,7 @@ import {ApplicationList} from "../../components";
 import {MainLayout} from "../../layouts"
 
 export const ApplicationListPage = () => (
-    <MainLayout>
+    <MainLayout title="Заявочный лист">
         <ApplicationList/>
     </MainLayout>
 );

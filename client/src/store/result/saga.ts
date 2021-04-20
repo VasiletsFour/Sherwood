@@ -1,9 +1,8 @@
 import {LOCATION_CHANGE} from "connected-react-router";
-import {call, put, select, take} from "redux-saga/effects";
+import {call, put, take} from "redux-saga/effects";
 import {ResultApi, ResultCreate, ResultUpdate} from "../../request/ResultApi";
 import {getResultAdminApi, getResultApi, postResultAdminApi, putResultAdminApi} from "../../request/ResultRequest";
 import {ADMIN_RESULT_PAGE, MATCH_RESULT_PAGE} from "../../utils";
-import {AppState} from "../store";
 import {getResultAction, getResultAdminAction, postResultAdminAction, putResultAdminAction} from "./action";
 
 interface Params {
@@ -16,11 +15,10 @@ interface Params {
 export function* ResultSaga() {
     while (true) {
         const action = yield take("*");
-        const state: AppState = yield select();
         const resultUrlMatch = action.type === LOCATION_CHANGE && MATCH_RESULT_PAGE.match(action.payload.location).isMatched
         const adminResultUrlMatch = action.type === LOCATION_CHANGE && ADMIN_RESULT_PAGE.match(action.payload.location).isMatched;
 
-        if (adminResultUrlMatch && !state.resultState.resultAdmin.data) {
+        if (adminResultUrlMatch) {
             yield call(getResultWorker, getResultAdminAction, getResultAdminApi);
         }
 
