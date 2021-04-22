@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import {Button, InputGroup} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
 import {AuthTop, FormInput, InputPassword} from "../../";
@@ -18,14 +18,8 @@ interface Props {
 export const SignIn = ({ signUp, close }: Props) => {
     const dispatch = useDispatch();
     const login = useSelector((state: AppState) => (state?.authState?.login));
-    const [err, setErr] = useState(false)
+    const [err, setErr] = useState({status: false, msg: ""})
     const [state, setState] = useState(initialState);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => {
-        if (login?.err) return setErr(true)
-        if (login?.data) return close()
-    })
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const {value, name} = event.target;
@@ -37,15 +31,22 @@ export const SignIn = ({ signUp, close }: Props) => {
     };
 
     const handleLogin = () => {
+        if (state === initialState) {
+            return setErr({status: true, msg: "Empty Field"})
+        }
+
         state && dispatch({
             type: LOGIN_USER,
             payload: state,
         });
+
+        if (login?.data) return close()
+        if (login?.err) return setErr({status: true, msg: login?.err})
     };
 
     return (
         <div className="authorization__signIn">
-            <AuthTop err={err} setErr={() => setErr(false)} title={"Вxод"} message={login?.err}/>
+            <AuthTop err={err.status} setErr={() => setErr({status: false, msg: ""})} title={"Вxод"} message={err.msg}/>
             <InputGroup>
                 <div className="authorization__inputContainer">
                     <FormInput

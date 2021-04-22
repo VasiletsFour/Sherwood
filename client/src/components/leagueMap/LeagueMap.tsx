@@ -1,7 +1,7 @@
 import React from "react";
-import {ListGroup, Spinner} from 'react-bootstrap';
+import {ListGroup} from 'react-bootstrap';
 import {useSelector} from "react-redux";
-import {LeagueName} from "../";
+import {EmptyContentBanner, LeagueName} from "../";
 import {LeagueApi} from "../../request/LeagueApi";
 import {AppState} from "../../store/store";
 import "./LeagueMap.scss";
@@ -11,14 +11,16 @@ interface Props {
 }
 
 export const LeagueMap = ({children}: Props) => {
-    const {league} = useSelector((state: AppState) => ({league: state?.leagueState.league}));
+    const {data, finished, loading} = useSelector((state: AppState) => (state?.leagueState.league));
 
-    return (
-        <ListGroup className="leagueMap">
-            {league.finished && !league.loading && league.data ? (
-                league.data.map((item: LeagueApi) => <LeagueName key={item.id + "LeagueName"}
-                                                                 data={item}>{children}</LeagueName>)) : (
-                <Spinner animation={"border"} variant={"primary"}/>)}
-        </ListGroup>
-    );
+    if (finished && !loading && data && data.length > 0) {
+        return (
+            <ListGroup className="leagueMap">
+                {data.map((item: LeagueApi) => <LeagueName key={item.id + "LeagueName"}
+                                                           data={item}>{children}</LeagueName>)
+                }</ListGroup>
+        );
+    }
+
+    return <EmptyContentBanner text={"Some text"} show={!!(data && data.length === 0 && !loading && finished)}/>
 };

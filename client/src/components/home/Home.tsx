@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import {ActuallyImg, AllNewsImg, BlogNews} from "../";
+import {ActuallyImg, AllNewsImg, BlogNews, EmptyContentBanner} from "../";
 import {AppState} from "../../store/store";
 import "./Home.scss";
 
@@ -21,32 +21,34 @@ export const Home = () => {
 
     useEffect(() => {
         if (finished && data && data.length > 1) {
-            let mSecond = 8000;
-            const interval = setInterval(() => handleActually(1), mSecond);
+            const interval = setInterval(() => handleActually(1), 8000);
 
             return () => clearInterval(interval);
         }
     }, [handleActually, actuallyNum, finished, data]);
 
-    return (
-        <div className="home">
-            {finished && !loading && data && data.length !== 0 &&
-            <div className="home__blog">
-                <div className="home__blogWrapper">
-                    <ActuallyImg
-                        blog={data[actuallyNum]}
-                        handleActually={(index: number) => handleActually(index)}
+    if (finished && !loading && data && data.length !== 0) {
+        return (
+            <div className="home">
+                <div className="home__blog">
+                    <div className="home__blogWrapper">
+                        <ActuallyImg
+                            blog={data[actuallyNum]}
+                            handleActually={(index: number) => handleActually(index)}
+                        />
+                        <AllNewsImg news={data} setActuallyNum={(index: number) => setActuallyNum(index)}/>
+                    </div>
+                    <BlogNews
+                        id={data[actuallyNum].id}
+                        title={data[actuallyNum].title}
+                        tags={data[actuallyNum].tags}
+                        date={data[actuallyNum].date}
+                        text={data[actuallyNum].text}
                     />
-                    <AllNewsImg news={data} setActuallyNum={(index: number) => setActuallyNum(index)}/>
                 </div>
-                <BlogNews
-                    id={data[actuallyNum].id}
-                    title={data[actuallyNum].title}
-                    tags={data[actuallyNum].tags}
-                    date={data[actuallyNum].date}
-                    text={data[actuallyNum].text}
-                />
-            </div>}
-        </div>
-    );
+            </div>
+        );
+    }
+
+    return <EmptyContentBanner text="Пока нет команд" show={!!(!loading && finished && data?.length === 0 && data)}/>
 };

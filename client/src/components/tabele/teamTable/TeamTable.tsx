@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import {Spinner, Table} from 'react-bootstrap';
+import {Table} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
-import {TableHead} from "../../";
+import {EmptyContentBanner, TableHead} from "../../";
 import {TeamApi, TeamQuery} from "../../../request/TeamApi";
 import {AppState} from "../../../store/store";
 import {getTeamListAction} from "../../../store/team";
@@ -39,7 +39,7 @@ export const TeamsTable = () => {
         });
     };
 
-    if (teams.finished && !teams.loading && teams.data) {
+    if (teams.finished && !teams.loading && teams.data && teams?.data?.length > 0) {
         return (
             <Table striped bordered hover variant="dark" className="teamTable">
                 <TableHead
@@ -60,5 +60,6 @@ export const TeamsTable = () => {
         );
     }
 
-    return <Spinner animation={"border"} variant={"primary"} size={"sm"}/>;
+    return <EmptyContentBanner text="Пока нет команд"
+                               show={!!(teams.finished && !teams.loading && teams.data && teams?.data?.length === 0)}/>
 };
