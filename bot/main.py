@@ -1,4 +1,4 @@
-from bot import bot, BotHandler
+from resorce.bot import bot, BotHandler
 
 
 class App(object):
