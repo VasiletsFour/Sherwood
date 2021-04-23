@@ -50,6 +50,7 @@ export const AdminBlogItem = ({title, text, date, tags, id}: Blog) => {
         <Card className="adminBlogItem">
             <Card.Header className="adminBlogItem__container">
                 <ChangeInput
+                    type={"text"}
                     name="title"
                     value={state.title}
                     open={changeTitle}
@@ -61,6 +62,9 @@ export const AdminBlogItem = ({title, text, date, tags, id}: Blog) => {
             </Card.Header>
             <Card.Body className="adminBlogItem__container">
                 <ChangeInput
+                    type={"textarea"}
+                    rows={4}
+                    cols={50}
                     value={state.text}
                     open={changeText}
                     onChange={(event) => handleInputChange(event)}
