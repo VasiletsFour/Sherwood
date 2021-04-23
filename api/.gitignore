@@ -1,3 +1,4 @@
 Pipfile
+.env
 venv
 log.log

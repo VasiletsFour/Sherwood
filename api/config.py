@@ -1,42 +1,44 @@
 from os import environ
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class Config(object):
-    CLIENT = "http://localhost:3000"
+    CLIENT = environ.get("CLIENT")
 
     # flask config
-    DEBUG = True
-    DEVELOPMENT = True
+    DEBUG = environ.get("DEBUG")
+    DEVELOPMENT = environ.get("DEVELOPMENT")
 
     # database
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    MYSQL_USER = environ.get("root")
-    MYSQL_PASSWORD = environ.get("Hft4150tbc4101f")
-    MYSQL_port = 3306
-    MYSQL_DATABASE = environ.get("Elite")
-    SQLALCHEMY_DATABASE_URI = "mysql://root:Hft4150tbc4101f@localhost:3306/Elite"
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = environ.get("SQLALCHEMY_TRACK_MODIFICATIONS")
+    MYSQL_USER = environ.get("MYSQL_USER")
+    MYSQL_PASSWORD = environ.get("MYSQL_PASSWORD")
+    MYSQL_port = environ.get("MYSQL_port")
+    MYSQL_DATABASE = environ.get("MYSQL_DATABASE")
+    SQLALCHEMY_DATABASE_URI = environ.get("SQLALCHEMY_DATABASE_URI")
 
     # bcrypt-key
-    JWT_SECRET_KEY = "flask_jwt_secret"
-    bcrypt_key = "flask_bcrypt-secret"
+    JWT_SECRET_KEY = environ.get("JWT_SECRET_KEY")
+    bcrypt_key = environ.get("bcrypt_key")
 
     # CORS
-    CORS_ENABLED = False
+    CORS_ENABLED = environ.get("CORS_ENABLED")
 
     # smtp
-    PORT_SMTP = 465
-    EMAIL_SMTP = "vasiletsl0unge@gmail.com"
-    PASS_SMTP = "hft4150tbc4101f"
+    PORT_SMTP = environ.get("PORT_SMTP")
+    EMAIL_SMTP = environ.get("EMAIL_SMTP")
+    PASS_SMTP = environ.get("PASS_SMTP")
 
     # google drive
-    GOOGLE_CLIENT_ID = "470984271265-g94r7f1h7nvdv05qpgrcmn8g4scaqf98.apps.googleusercontent.com"
-    GOOGLE_CLIENT_SECRET = "jd51qjmf0ghxf59bvQJgPbKU"
-    GOOGLE_API_NAME = 'drive'
-    GOOGLE_API_VERSION = "v3"
-    SCOPES = ['https://www.googleapis.com/auth/drive']
-
-    GOOGLE_URL_FOR_DOC = "https://docs.google.com/document/d/1tfLcofc9WRWc_WTknEkzXldUEExRxgnFD-d8qsCzW5c/edit"
+    GOOGLE_CLIENT_ID = environ.get("GOOGLE_CLIENT_ID")
+    GOOGLE_CLIENT_SECRET = environ.get("GOOGLE_CLIENT_SECRET")
+    GOOGLE_API_NAME = environ.get("GOOGLE_API_NAME")
+    GOOGLE_API_VERSION = environ.get("GOOGLE_API_VERSION")
+    SCOPES = environ.get("SCOPES")
+    GOOGLE_URL_FOR_DOC = environ.get("GOOGLE_URL_FOR_DOC")
 
 
 class ProductionConfig(Config):
