@@ -40,12 +40,3 @@ class BotHandler(object):
                                                                                   message.text)
 
         bot.send_message(message.from_user.id, result, parse_mode='HTML')
-
-# Query message is text
-# @bot.callback_query_handler(func=lambda call: True)
-# def callback_worker(call):
-#     print('ddd')
-#     if call.data == "yes":
-#         bot.send_message(call.message.chat.id, 'Запомню : )')
-#
-#     bot.send_message(call.message.chat.id, 'no')
