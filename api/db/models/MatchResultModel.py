@@ -10,7 +10,9 @@ class MatchResult(db.Model):
     status_host = db.Column(db.String(15), nullable=False)
     status_guest = db.Column(db.String(15), nullable=False)
     match_id = db.Column(db.Integer, db.ForeignKey('TimeTables.id'), unique=True, nullable=False)
+
     timeTables = db.relationship("TimeTables", back_populates="matchResult")
+    scorers = db.relationship("Scorers", back_populates="matchResult")
 
     def __init__(self, match_id: str, goal_host: int, goal_guest: int, status_host: str, status_guest: str):
         self.match_id = match_id
