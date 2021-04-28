@@ -12,13 +12,6 @@ class FormatToHtml(object):
 
     @staticmethod
     def format_time_table(data, title: str):
-        print(data)
-        result = '<b>' + data[0]["tour"] + ':</b>'
-
-        for match in data:
-            print(match)
-            result += '<b>' + match["tour"] + ':</b>'
-
         return '<b>' + title + ':</b>'
 
     def format_tournament(self, data, title: str):

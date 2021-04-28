@@ -1,5 +1,4 @@
 from telebot import TeleBot, types
-
 from config import Config
 from utils.answer.answer import answer
 from utils.decorator.decorator import request_printer
@@ -35,17 +34,28 @@ class BotHandler(object):
 
         if type(switcher) == str: return bot.send_message(message.from_user.id, switcher)
 
+        if not switcher["withLeague"]:
+            response = handle_request(switcher["route"])
+            result = response["error"] if response.get("error") else switcher["html"](response["data"]["data"],
+                                                                                      message.text)
+
+            return bot.send_message(message.from_user.id, result, parse_mode='HTML')
+
+        keyboard = types.InlineKeyboardMarkup()
+
+        callBack = str({"msg": message.text, "id": 1})
+
+        key_first = types.InlineKeyboardButton(text='Элит лига', callback_data=callBack)
+        keyboard.add(key_first)
+
+        bot.send_message(message.from_user.id, "Выберите лигу:", reply_markup=keyboard)
+
+    @staticmethod
+    @bot.callback_query_handler(func=lambda call: True)
+    def callback_worker(call):
+        data = eval(call.data)
+        switcher = answer[data["msg"]]
         response = handle_request(switcher["route"])
-        result = response["error"] if response.get("error") else switcher["html"](response["data"]["data"],
-                                                                                  message.text)
+        result = switcher["html"](response["data"]["data"], data["msg"])
 
-        bot.send_message(message.from_user.id, result, parse_mode='HTML')
-
-# Query message is text
-# @bot.callback_query_handler(func=lambda call: True)
-# def callback_worker(call):
-#     print('ddd')
-#     if call.data == "yes":
-#         bot.send_message(call.message.chat.id, 'Запомню : )')
-#
-#     bot.send_message(call.message.chat.id, 'no')
+        bot.send_message(call.message.chat.id, result, parse_mode='HTML')
