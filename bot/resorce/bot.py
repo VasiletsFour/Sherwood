@@ -1,4 +1,5 @@
 from telebot import TeleBot, types
+
 from config import Config
 from utils.answer.answer import answer
 from utils.decorator.decorator import request_printer
@@ -58,4 +59,5 @@ class BotHandler(object):
         response = handle_request(switcher["route"])
         result = switcher["html"](response["data"]["data"], data["msg"])
 
+        bot.answer_callback_query(call.id)
         bot.send_message(call.message.chat.id, result, parse_mode='HTML')
