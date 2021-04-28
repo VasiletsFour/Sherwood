@@ -6,7 +6,7 @@ import "./Home.scss";
 
 export const Home = () => {
     const {finished, loading, data} = useSelector((state: AppState) => (state?.blogState?.blogs));
-    const [actuallyNum, setActuallyNum] = useState(1);
+    const [actuallyNum, setActuallyNum] = useState(0);
 
     const handleActually = useCallback(
         (index: number) => {
@@ -39,11 +39,11 @@ export const Home = () => {
                         <AllNewsImg news={data} setActuallyNum={(index: number) => setActuallyNum(index)}/>
                     </div>
                     <BlogNews
-                        id={data[actuallyNum].id}
-                        title={data[actuallyNum].title}
-                        tags={data[actuallyNum].tags}
-                        date={data[actuallyNum].date}
-                        text={data[actuallyNum].text}
+                        id={data[actuallyNum]?.id}
+                        title={data[actuallyNum]?.title}
+                        tags={data[actuallyNum]?.tags}
+                        date={data[actuallyNum]?.date}
+                        text={data[actuallyNum]?.text}
                     />
                 </div>
             </div>
