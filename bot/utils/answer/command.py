@@ -2,7 +2,7 @@ from utils.formatToHTML.FomatToHtmlL import FormatToHtml
 
 formatTo = FormatToHtml()
 
-answer = {
+command = {
     "/start": {
         "msg": "Welcome to sherwood bot"
     },
@@ -30,14 +30,10 @@ answer = {
         "withLeague": True,
         "html": formatTo.format_tournament
     },
-    'Команды': {
-        "msg": "Team",
-        "route": "team",
-        "withLeague": True,
-    },
     'Бомбардиры': {
         "msg": "Scorer",
         "route": "scorer",
         "withLeague": True,
+        "html": formatTo.format_scorers
     }
 }

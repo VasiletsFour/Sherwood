@@ -1,10 +1,9 @@
 from config import Config
-from resorce.bot import bot, BotHandler
+from resorce.bot import bot
 
 
 class App(object):
     def __init__(self, msg="<<Bot Running>>"):
-        self.__bot_handler = BotHandler
         self.get_msg = lambda: print(msg)
 
     def run(self):
@@ -18,7 +17,5 @@ class App(object):
             exit()
 
 
-app = App()
-
 if __name__ == '__main__':
-    app.run()
+    App().run()
