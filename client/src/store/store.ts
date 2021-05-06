@@ -2,7 +2,7 @@ import {connectRouter, routerMiddleware} from "connected-react-router";
 import {AnyAction, applyMiddleware, combineReducers, compose, createStore} from "redux";
 import createSagaMiddleware from "redux-saga";
 import {all} from "redux-saga/effects";
-import history from "../utils/history";
+import history from "../utils/hisotry/history";
 import {accountReducer, AccountSaga, AccountState} from "./account";
 import {authReducer, AuthSaga, AuthState} from "./auth";
 import {blogReducer, BlogSaga, BlogState} from "./blog";

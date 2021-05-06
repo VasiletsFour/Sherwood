@@ -3,7 +3,7 @@ import {delAdminPlayerAction, postAdminPlayerAction, putAdminPlayerAction} from 
 import {AdminPlayerApi, PlayerAdminQuery} from "./PlayerApi";
 
 //GET AdminPlayer List
-export const getAdminPlayerApi = async (query?: PlayerAdminQuery): Promise<AdminPlayerApi[]> => {
+export const getAdminPlayerApi = async (query?: PlayerAdminQuery): Promise<AdminPlayerApi> => {
     const {data, error, status} = await makeGetRequest("/admin/player", query ? {params: query} : {});
 
     if (status === 200) return data;

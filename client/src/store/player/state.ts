@@ -6,7 +6,7 @@ export interface PlayerState {
         finished: boolean;
         loading: boolean;
         error: string | null;
-        data: AdminPlayerApi[] | null;
+        data: AdminPlayerApi | null;
     };
 }
 

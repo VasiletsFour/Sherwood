@@ -5,4 +5,5 @@ export interface SeasonCreate {
 export interface SeasonApi  extends  SeasonCreate{
     id: number;
     date: number;
+    active: boolean
 }

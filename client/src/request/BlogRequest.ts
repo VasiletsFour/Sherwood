@@ -3,7 +3,7 @@ import {delArticleAction, postCrateArticleAction} from "../store/blog";
 import {Blog, BlogQuery} from "./BlogApi";
 
 //GET Blogs List
-export const getBlogsApi = async (query: BlogQuery): Promise<Blog[]> => {
+export const getBlogsApi = async (query: BlogQuery): Promise<Blog> => {
     const {data, error, status} = await makeGetRequest("/blogs", {params: query});
 
     if (status === 200) return data;

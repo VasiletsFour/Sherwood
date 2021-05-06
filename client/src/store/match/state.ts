@@ -1,4 +1,4 @@
-import {AdminPlayerApi} from "../../request/PlayerApi";
+import {AdminPlayers} from "../../request/PlayerApi";
 import {defaultState} from "../defaultState";
 
 export interface MatchState {
@@ -6,7 +6,7 @@ export interface MatchState {
         finished: boolean;
         loading: boolean;
         error: string | null;
-        data: AdminPlayerApi[] | null;
+        data: AdminPlayers[] | null;
     };
 }
 

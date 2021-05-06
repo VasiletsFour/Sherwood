@@ -4,10 +4,15 @@ export interface BlogCreate {
     text: string;
 }
 
-export interface Blog extends BlogCreate {
+export interface BlogData extends BlogCreate {
     id: number;
     date: number;
     img?: string;
+}
+
+export interface Blog {
+    list: BlogData[]
+    count: number
 }
 
 export interface BlogQuery {

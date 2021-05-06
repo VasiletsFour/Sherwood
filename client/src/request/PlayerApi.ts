@@ -1,7 +1,12 @@
-export interface AdminPlayerApi {
+export interface AdminPlayers {
     id: number
     name: string
     players: PlayerApi[]
+}
+
+export interface AdminPlayerApi {
+    list: AdminPlayers[]
+    count: number
 }
 
 export interface PlayerBody {
