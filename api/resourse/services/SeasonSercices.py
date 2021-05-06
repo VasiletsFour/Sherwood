@@ -10,7 +10,7 @@ class SeasonServices(Services):
 
     def get(self, name: str):
         filters = True
-        # test
+
         if name:
             filters = Seasons.name.op("regexp")(name)
 

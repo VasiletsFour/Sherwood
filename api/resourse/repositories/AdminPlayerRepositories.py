@@ -8,9 +8,11 @@ from utils.responce.responce import Response
 class AdminPlayerRepositories(Repositories):
     def get(self, filters):
         player = self.session.query(Teams).filter(filters).all()
+        count = self.session.query(Teams).count()
+
         serialization = players_team_serialization.dump(player)
 
-        return Response(status=200, message={'data': serialization})
+        return Response(status=200, message={'data': {"list": serialization, "count": count}})
 
     def post(self, body: dict):
         player = Players(**body)

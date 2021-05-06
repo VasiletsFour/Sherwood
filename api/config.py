@@ -9,6 +9,7 @@ class Config(object):
     CLIENT = environ.get("CLIENT")
 
     # flask config
+    FLASK_ENV = "development"
     DEBUG = environ.get("DEBUG")
     DEVELOPMENT = environ.get("DEVELOPMENT")
 

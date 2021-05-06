@@ -13,6 +13,7 @@ class TimeTables(db.Model):
     date = db.Column(db.Integer)
 
     matchResult = db.relationship("MatchResult", uselist=False, back_populates="timeTables")
+    scorers = db.relationship("Scorers", back_populates="match")
 
     host = db.relationship("Teams", foreign_keys=[host_id])
     guest = db.relationship("Teams", foreign_keys=[guest_id])

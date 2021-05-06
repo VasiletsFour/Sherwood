@@ -7,10 +7,10 @@ class Scorers(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     own_goal = db.Column(db.Boolean, default=False)
 
-    match_id = db.Column(db.Integer, db.ForeignKey('MatchResult.id'), unique=True, nullable=False)
+    match_id = db.Column(db.Integer, db.ForeignKey('TimeTables.id'), unique=True, nullable=False)
     player_id = db.Column(db.Integer, db.ForeignKey('Players.id'), unique=True, nullable=False)
 
-    matchResult = db.relationship("MatchResult", back_populates="scorers")
+    match = db.relationship("TimeTables", back_populates="scorers")
     player = db.relationship("Players", back_populates="scorers")
 
     def __init__(self, match_id: int, player_id: int, status: str):

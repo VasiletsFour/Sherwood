@@ -7,7 +7,7 @@ class SeasonSerialization(BaseSerialization):
     id = fields.Int()
     name = fields.Str()
     date = fields.Int()
-    activate = fields.Bool()
+    active = fields.Bool()
 
 
 season_serialization = SeasonSerialization()
