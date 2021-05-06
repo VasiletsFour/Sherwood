@@ -54,12 +54,11 @@ import {
     TIME_TABLE_URL,
     TOURNAMENT_TABLE_URL,
 } from "./utils";
-import history from "./utils/history";
+import history from "./utils/hisotry/history";
 
 class App extends React.Component {
     render() {
         return (
-            <React.StrictMode>
                 <ErrorBoundary>
                     <Provider store={store}>
                         <ConnectedRouter history={history}>
@@ -125,7 +124,6 @@ class App extends React.Component {
                         </ConnectedRouter>
                     </Provider>
                 </ErrorBoundary>
-            </React.StrictMode>
         );
     }
 }
