@@ -1,0 +1,12 @@
+.scrollArrow {
+  transition: .15s;
+  right: 20px;
+  bottom: 20px;
+  position: fixed;
+  color: #ff9212;
+  font-size: 60px;
+
+  &:hover {
+    color: #ff1619;
+  }
+}

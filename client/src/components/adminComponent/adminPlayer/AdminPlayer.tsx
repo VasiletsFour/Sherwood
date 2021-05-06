@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {ListGroup} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
-import {AdminFilterBtn, AdminFilterTeam, AdminTopBlock, AdminUpdateDelete, NameOpenChild} from "../../";
-import {AdminPlayerApi, PlayerApi} from "../../../request/PlayerApi";
+import {AdminFilterBtn, AdminFilterTeam, AdminTopBlock, AdminUpdateDelete, NameOpenChild, NotFoundSearch} from "../../";
+import {AdminPlayers, PlayerApi} from "../../../request/PlayerApi";
 import {delAdminPlayerAction, postAdminPlayerAction, putAdminPlayerAction} from "../../../store/player";
 import {AppState} from "../../../store/store";
 import "./AdminPlayer.scss"
@@ -39,11 +39,13 @@ export const AdminPlayer = () => {
     return (
         <div className="adminPlayer">
             <AdminTopBlock title="Игроки">
-                <AdminFilterBtn text={"Сортировать Команды"} onClick={() => setOpenFilter(!openFilter)}/>
+                <AdminFilterBtn show={!!(data && data.count > 0)} text={"Сортировать Команды"}
+                                onClick={() => setOpenFilter(!openFilter)}/>
             </AdminTopBlock>
             <AdminFilterTeam openStatus={openFilter} handleClose={() => setOpenFilter(false)}/>
+            <NotFoundSearch show={(data?.list.length === 0)}/>
             <ListGroup className="adminPlayer__container">
-                {finished && !loading && data && data.map(({id, name, players}: AdminPlayerApi) => (
+                {finished && !loading && data && data.list.map(({id, name, players}: AdminPlayers) => (
                     <ListGroup.Item className="adminPlayer__team" key={id + "adminPlayer"}>
                         <NameOpenChild
                             name={name}
@@ -53,7 +55,7 @@ export const AdminPlayer = () => {
                             addBtn={true}
                             text={`Добавить игрока в ${name}?`}
                             onClickAdd={(name: string) => handleAddPlayer(name, id)}/>
-                        {openTeam.openStatus && openTeam.id === id &&
+                        {players.length > 0 && openTeam.openStatus && openTeam.id === id &&
                         <ListGroup>
                             {players.map((item: PlayerApi, index: number) => (
                                 <AdminUpdateDelete
@@ -67,6 +69,7 @@ export const AdminPlayer = () => {
                                     handleDelete={() => handleDelete(item.id)}/>
                             ))}
                         </ListGroup>}
+                        {players.length === 0 && openTeam.openStatus && openTeam.id === id && <p>Пока нет игроков</p>}
                     </ListGroup.Item>))}
             </ListGroup>
         </div>

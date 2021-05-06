@@ -3,14 +3,14 @@ import {Card} from 'react-bootstrap';
 import {FaPen, FaTimes} from "react-icons/fa";
 import {useDispatch} from "react-redux";
 import {ChangeInput, SelectTags, TagsMap} from "../../";
-import {Blog} from "../../../request/BlogApi";
+import {BlogData} from "../../../request/BlogApi";
 import {delArticleAction} from "../../../store/blog";
 import {timeStampToDate} from "../../../utils";
 import "./AdminBlogItem.scss";
 
 const selectValue = [1, 2, 3]
 
-export const AdminBlogItem = ({title, text, date, tags, id}: Blog) => {
+export const AdminBlogItem = ({title, text, date, tags, id}: BlogData) => {
     const dipatch = useDispatch();
     const [state, setState] = useState({title: title, text: text, tags: new Set(tags)});
     const [changeTitle, setChangeTitle] = useState(false);

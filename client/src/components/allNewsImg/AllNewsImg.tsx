@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from "react";
 import {FaArrowLeft, FaArrowRight} from "react-icons/fa";
-import {Blog} from "../../request/BlogApi";
+import {BlogData} from "../../request/BlogApi";
 import "./AllNewsImg.scss";
 
 interface Props {
-    news: Blog[];
+    news: BlogData[];
     setActuallyNum: (index: number) => void;
 }
 
 export const AllNewsImg = ({news, setActuallyNum}: Props) => {
-    const [allNews, setAllNews] = useState<Blog[]>([]);
+    const [allNews, setAllNews] = useState<BlogData[]>([]);
     const [paginationImg, setPaginationImg] = useState({first: 0, last: 2});
     const showArrow = news.length - 1 > 2
 
@@ -26,8 +26,8 @@ export const AllNewsImg = ({news, setActuallyNum}: Props) => {
     const filterArr = (last: number, first: number) => {
         const firstFilter = last < first ? news.length - 1 : last;
 
-        const firstNews = news.filter((item: Blog, index: number) => index >= first && index <= firstFilter);
-        const lastNews = first < last ? [] : news.filter((item: Blog, index: number) => index <= last);
+        const firstNews = news.filter((item: BlogData, index: number) => index >= first && index <= firstFilter);
+        const lastNews = first < last ? [] : news.filter((item: BlogData, index: number) => index <= last);
 
         setAllNews(firstNews.concat(lastNews));
     };
@@ -46,7 +46,7 @@ export const AllNewsImg = ({news, setActuallyNum}: Props) => {
     return (
         <div className="allNewsImg">
             {showArrow && <FaArrowLeft onClick={() => handleArrow()} className="home__arrowNews home__arrowLeft"/>}
-            {allNews.map((item: Blog, index: number) => (
+            {allNews.map((item: BlogData, index: number) => (
                 <div key={String(index) + item.id} className="allNewsImg__imgContainer">
                     <div
                         className="allNewsImg__opacity"

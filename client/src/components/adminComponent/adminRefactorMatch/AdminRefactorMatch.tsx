@@ -100,36 +100,24 @@ interface RenderProps {
 }
 
 
-const renderStep = ({
-                        teamsId,
-                        step,
-                        goalHome, goalVisitors,
-                        setGoalHome,
-                        setGoalVisitors,
-                        handleNextStep,
-                        slaughtered,
-                        setSlaughtered,
-                        handleBack,
-                        handleFinish
-                    }: RenderProps) => {
-    if (step === 1) {
+const renderStep = (props: RenderProps) => {
+    if (props.step === 1) {
         return <FirstStep
-            setGoalHome={(goals: number) => setGoalHome(goals)}
-            setGoalVisitors={(goals: number) => setGoalVisitors(goals)}
-            handleNextStep={handleNextStep}/>
+            setGoalHome={(goals: number) => props.setGoalHome(goals)}
+            setGoalVisitors={(goals: number) => props.setGoalVisitors(goals)}
+            handleNextStep={props.handleNextStep}/>
     }
 
-    if (step === 2) {
+    if (props.step === 2) {
         return <SecondStep
-            teamsId={teamsId}
-            slaughtered={slaughtered}
-            setSlaughtered={(listId: number[]) => setSlaughtered(listId)}
-            handleBack={handleBack}
-            handleFinish={handleFinish}
-            goalHome={goalHome}
-            goalVisitors={goalVisitors}
+            teamsId={props.teamsId}
+            slaughtered={props.slaughtered}
+            setSlaughtered={(listId: number[]) => props.setSlaughtered(listId)}
+            handleBack={props.handleBack}
+            handleFinish={props.handleFinish}
+            goalHome={props.goalHome}
+            goalVisitors={props.goalVisitors}
         />
     }
-
 }
 

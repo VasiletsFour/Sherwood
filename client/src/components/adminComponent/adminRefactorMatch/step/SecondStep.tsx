@@ -2,7 +2,7 @@ import React from "react";
 import {Button, Modal} from 'react-bootstrap';
 import {useSelector} from "react-redux";
 import {MatchAdminQuery} from "../../../../request/MatchApi";
-import {AdminPlayerApi} from "../../../../request/PlayerApi";
+import {AdminPlayers} from "../../../../request/PlayerApi";
 import {AppState} from "../../../../store/store";
 import {SelectTags} from "../../../input";
 
@@ -26,9 +26,8 @@ export const SecondStep = ({
                            }: Props) => {
     const {data, finished, loading} = useSelector((state: AppState) => (state.matchState.adminMatch));
 
-    const teams = (goals: number, team: AdminPlayerApi) => {
+    const teams = (goals: number, team: AdminPlayers) => {
         if (!data) return
-
         const teamHtml = []
 
         for (let i = 0; i < goals; i++) {

@@ -1,9 +1,8 @@
 import React, {useState} from "react";
-import {Spinner} from 'react-bootstrap';
 import {useSelector} from "react-redux";
 import {AdminCreateArticle, AdminFilterArticle, AdminTopBlock} from "../";
-import {AdminBlogItem, AdminCreateBtn, AdminFilterBtn} from "../../";
-import {Blog} from "../../../request/BlogApi";
+import {AdminBlogItem, AdminCreateBtn, AdminFilterBtn, NotFoundSearch, SpinnerWrapper} from "../../";
+import {BlogData} from "../../../request/BlogApi";
 import {AppState} from "../../../store/store";
 import "./AdminBlog.scss";
 
@@ -15,18 +14,21 @@ export const AdminBlog = () => {
     return (
         <div className="adminBlog">
             <div className="adminBlog__wrapper">
-                <AdminTopBlock title={"Статьи"}>
+                <AdminTopBlock title="Статьи">
                     <div>
-                        <AdminFilterBtn text={"Сортировать статьи"} onClick={() => setOpenFilter(!openFilter)}/>
+                        <AdminFilterBtn show={!!(data && data.count > 0)} text={"Сортировать статьи"}
+                                        onClick={() => setOpenFilter(!openFilter)}/>
                         <AdminCreateBtn text="Создать Новость" onClick={() => setOpenArticle(true)}/>
                     </div>
                 </AdminTopBlock>
                 <AdminFilterArticle openStatus={openFilter} handleClose={() => setOpenFilter(false)} withDate={true}
                                     withSelect={true}/>
                 <AdminCreateArticle setClose={() => setOpenArticle(false)} openStatus={openArticle}/>
+                <NotFoundSearch show={(data?.list.length === 0)}/>
+                <SpinnerWrapper show={!finished && loading}/>
                 {finished && !loading && data && (
                     <div className="adminBlog__container">
-                        {data.map((item: Blog) => (
+                        {data?.list.map((item: BlogData) => (
                             <AdminBlogItem
                                 key={item.id + "AdminBlogAdmin"}
                                 id={item.id}
@@ -38,7 +40,6 @@ export const AdminBlog = () => {
                         ))}
                     </div>
                 )}
-                {finished && loading && <Spinner animation={"border"} variant={"light"} size={"sm"}/>}
             </div>
         </div>
     );

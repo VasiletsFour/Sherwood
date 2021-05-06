@@ -5,6 +5,7 @@ import "./AdminCreateBtn.scss"
 interface Props {
     text: string
     onClick: () => void
+    disabled?: boolean
 }
 
 export const AdminCreateBtn = ({text, ...props}: Props) => (

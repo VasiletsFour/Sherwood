@@ -1,8 +1,8 @@
 import React from "react";
-import {Blog} from "../../request/BlogApi";
+import {BlogData} from "../../request/BlogApi";
 import "./BlogNews.scss";
 
-export const BlogNews = ({ title, tags, text }: Blog) => (
+export const BlogNews = ({title, tags, text}: BlogData) => (
     <div className="blogNews">
         <h1 className="blogNews__title">{title}</h1>
         {tags && <div className="blogNews__tagContainer">

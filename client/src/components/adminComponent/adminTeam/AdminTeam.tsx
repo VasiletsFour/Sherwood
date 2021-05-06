@@ -55,40 +55,45 @@ export const AdminTeam = () => {
 
     return (
         <div className="adminTeam">
-            <AdminTopBlock title={"Команды"}>
-                <AdminCreateBtn text="Создать команду" onClick={() => handleCloseCreate()}/>
-            </AdminTopBlock>
-            <Alert
-                openStatus={openCreateTeam}
-                title="Команда"
-                text="Создать новую команду"
-                closeClick={() => handleCloseCreate()}
-                btnText="Создать"
-                okClick={() => handleCreate()}>
-                <FormInput onChange={(event: ChangeEvent<HTMLInputElement>) => setCreateTeam(event.target.value)}
-                           classname={"adminTeam"} value={createTeam} placeholder={"Название команды"}/>
-            </Alert>
-            <div className="adminTeam__content">
-                <AdminSeasonLeagueList
-                    openLeague={openLeague}
-                    openSeason={openSeason}
-                    handleOpenSeason={(id: number) => handleOpenSeason(id)}
-                    handleOpenLeague={(id: number) => handleOpenLeague(id)}
-                    onDragOverSeason={(event: React.DragEvent<HTMLDivElement>, id: number) => handleDragOver(event, dragAndDrop.dropDepth, () => handleOpenSeason(id, true))}
-                    onDragOverLeague={(event: React.DragEvent<HTMLDivElement>, id: number) => handleDragOver(event, dragAndDrop.dropDepth, () => handleOpenLeague(id, true))}
-                >
-                    <div>
-                        <AdminTeamName/>
-                        <DropZone
-                            classname="adminTeam"
-                            text="drop zone"
-                            dragAndDrop={dragAndDrop}
-                            addTeam={(teams: TeamApi[]) => handleAdd(teams)}
-                            setDragAndDrop={(dragDrop: DragAndDropState) => setDragAndDrop(dragDrop)}/>
+            <div className="adminTeam__wrapper">
+                <div className="adminTeam__container">
+                    <AdminTopBlock title={"Команды"}>
+                        <AdminCreateBtn text="Создать команду" onClick={() => handleCloseCreate()}/>
+                    </AdminTopBlock>
+                    <Alert
+                        openStatus={openCreateTeam}
+                        title="Команда"
+                        text="Создать новую команду"
+                        closeClick={() => handleCloseCreate()}
+                        btnText="Создать"
+                        okClick={() => handleCreate()}>
+                        <FormInput
+                            onChange={(event: ChangeEvent<HTMLInputElement>) => setCreateTeam(event.target.value)}
+                            classname={"adminTeam"} value={createTeam} placeholder={"Название команды"}/>
+                    </Alert>
+                    <div className="adminTeam__content">
+                        <AdminSeasonLeagueList
+                            openLeague={openLeague}
+                            openSeason={openSeason}
+                            handleOpenSeason={(id: number) => handleOpenSeason(id)}
+                            handleOpenLeague={(id: number) => handleOpenLeague(id)}
+                            onDragOverSeason={(event: React.DragEvent<HTMLDivElement>, id: number) => handleDragOver(event, dragAndDrop.dropDepth, () => handleOpenSeason(id, true))}
+                            onDragOverLeague={(event: React.DragEvent<HTMLDivElement>, id: number) => handleDragOver(event, dragAndDrop.dropDepth, () => handleOpenLeague(id, true))}
+                        >
+                            <div>
+                                <AdminTeamName/>
+                                <DropZone
+                                    classname="adminTeam"
+                                    text="drop zone"
+                                    dragAndDrop={dragAndDrop}
+                                    addTeam={(teams: TeamApi[]) => handleAdd(teams)}
+                                    setDragAndDrop={(dragDrop: DragAndDropState) => setDragAndDrop(dragDrop)}/>
+                            </div>
+                        </AdminSeasonLeagueList>
                     </div>
-                </AdminSeasonLeagueList>
+                </div>
+                <AdminTeamBottom setDragAndDrop={(state: DragAndDropState) => setDragAndDrop(state)}/>
             </div>
-            <AdminTeamBottom setDragAndDrop={(state: DragAndDropState) => setDragAndDrop(state)}/>
         </div>
     )
 };

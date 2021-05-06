@@ -1,0 +1,17 @@
+.notFoundSearch {
+  &__jum {
+    border-radius: 20px;
+    padding: 20px;
+    background-color: #9C1A1C;
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__text {
+    font-size: 25px;
+    font-weight: 900;
+    color: #d2d2d2;
+  }
+}

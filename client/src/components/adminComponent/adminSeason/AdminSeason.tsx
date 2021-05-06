@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {ListGroup} from "react-bootstrap";
 import {FaTimes} from "react-icons/fa";
 import {useDispatch, useSelector} from "react-redux";
@@ -6,6 +6,7 @@ import {AdminCreateBtn, AdminTopBlock, Alert} from "../../";
 import {SeasonApi} from "../../../request/SeasonApi";
 import {delSeasonAction, postSeasonAction} from "../../../store/season";
 import {AppState} from "../../../store/store";
+import {dateSeason} from "../../../utils";
 import "./AdminSeason.scss"
 
 export const AdminSeason = () => {
@@ -13,7 +14,12 @@ export const AdminSeason = () => {
     const {data, finished, loading} = useSelector((state: AppState) => (state.seasonState?.seasons));
     const [createAlert, setCreateAlert] = useState(false);
     const [nextSeason, setNextSeason] = useState("");
+    const [haveActive, setHaveActive] = useState(false)
     const year = new Date().getFullYear();
+
+    useEffect(() => {
+        data && setHaveActive(data.some(e => e.active))
+    }, [data])
 
     const create = () => {
         dipatch(postSeasonAction.trigger({body: {name: nextSeason}}));
@@ -34,7 +40,7 @@ export const AdminSeason = () => {
                 setNextSeason(`Зима`);
                 break;
             default:
-                setNextSeason(`Весна`);
+                setNextSeason(dateSeason());
         }
 
         setCreateAlert(true);
@@ -42,8 +48,8 @@ export const AdminSeason = () => {
 
     return (
         <div className="adminSeason">
-            <AdminTopBlock title={"Сезон"}>
-                <AdminCreateBtn text="Создать сезон" onClick={() => handleCreate()}/>
+            <AdminTopBlock title="Сезон">
+                <AdminCreateBtn text="Создать сезон" onClick={() => handleCreate()} disabled={haveActive}/>
             </AdminTopBlock>
             <Alert
                 openStatus={createAlert}
