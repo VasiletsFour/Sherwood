@@ -1,5 +1,5 @@
 import React from "react";
-import {TeamApi} from "../request/TeamApi";
+import {TeamApi} from "../../request/TeamApi";
 
 export interface DragAndDropState {
     dropDepth: number

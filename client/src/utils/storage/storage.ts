@@ -1,4 +1,4 @@
-import { Token } from "../request/AuthApi";
+import {Token} from "../../request/AuthApi";
 
 export const getToken = () => {
     const token = localStorage.getItem("token");
