@@ -18,7 +18,7 @@ class AdminScorerServices(Services):
                 or body["status_guest"] == "draw" and body["status_host"] != body["status_guest"]):
             return Response(status=400, message={'error': 'Not valid'})
 
-        if res:
+        if isValid:
             return self.repository.post(body)
 
         return Response(status=400, message={'error': 'Not valid'})

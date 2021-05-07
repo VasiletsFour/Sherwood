@@ -12,7 +12,7 @@ class AdminRefereeServices(Services):
     def post(self, body: dict):
         isValid = self.valid.validation(create, body)
 
-        if res:
+        if isValid:
             return self.repository.post(body)
 
         return Response(status=400, message={'error': 'Not valid'})
