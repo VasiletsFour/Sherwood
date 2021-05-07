@@ -31,6 +31,8 @@ class FormatToHtml(object):
         return self.__format_title(title)
 
     def format_tournament(self, data, title: str):
+        if not len(data): return self.__empty_body(title, "Нет новых матчей")
+
         return self.__format_title(title)
 
     def format_match_result(self, data, title: str):
