@@ -18,7 +18,7 @@ class BlogRepositories(Repositories):
             beforeDate = Blogs.date <= self.timeStamp.fromIsoToTimeStamp(before_date)
 
         if from_date:
-            fromDate = Blogs.date >= self.timeStamp.fromIsoToTimeStamp(from_date)
+            fromDate = Blogs.date >= self.toTimeStamp(from_date)
 
         filters = (Blogs.author_id == Users.id, search, beforeDate, fromDate)
         quires = (Blogs.id, Blogs.title, Blogs.tags, Blogs.text, Blogs.date,

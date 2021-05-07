@@ -13,25 +13,25 @@ class AdminTeamServices(Services):
         return self.repository.get()
 
     def post(self, body: dict):
-        res = self.valid.validation(create, body)
+        isValid = self.valid.validation(create, body)
 
-        if res:
+        if isValid:
             return self.repository.post(body)
 
         return Response(status=400, message={'error': 'Not valid'})
 
     def put(self, body: dict):
-        res = self.valid.validation(update, body)
+        isValid = self.valid.validation(update, body)
 
-        if res:
+        if isValid:
             return self.repository.put(body)
 
         return Response(status=400, message={'error': 'Not valid'})
 
     def putUpdateName(self, id: str, body: dict):
-        res = self.valid.validation(updateName, body)
+        isValid = self.valid.validation(updateName, body)
 
-        if res and id:
+        if isValid and id:
             return self.repository.putUpdateName(id, body)
 
         return Response(status=400, message={'error': 'Not valid'})

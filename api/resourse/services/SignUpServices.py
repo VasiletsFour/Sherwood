@@ -10,9 +10,9 @@ class SignUpServices(Services):
         self.repository = SignUpRepositories()
 
     def post(self, body: dict):
-        res = self.valid.validation(create, body)
+        isValid = self.valid.validation(create, body)
 
-        if res:
+        if isValid:
             return self.repository.post(body)
 
         return Response(status=400, message={'error': 'Not valid'}, logger_message="Sign Up Invalid Body")

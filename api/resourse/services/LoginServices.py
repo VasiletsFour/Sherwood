@@ -10,9 +10,9 @@ class LoginServices(Services):
         self.repository = LoginRepositories()
 
     def post(self, body: dict):
-        res = self.valid.validation(login, body)
+        isValid = self.valid.validation(login, body)
 
-        if res:
+        if isValid:
             return self.repository.post(body)
 
         return Response(status=400, message={'error': 'Invalid body'},

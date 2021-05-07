@@ -23,19 +23,19 @@ class AdminBlogServices(Services):
                         logger_message="Blog wrong file format or empty file")
 
     def post(self, body: dict, token: str):
-        res = self.valid.validation(create, body)
+        isValid = self.valid.validation(create, body)
         check = self.decode(token)
 
-        if res and check:
+        if isValid and check:
             return self.repository.post(body, check)
 
         return Response(status=400, message={'error': 'Invalid create article'},
                         logger_message="Blog invalid body:{body}".format(body=body))
 
     def put(self, id: str, body: dict):
-        res = self.valid.validation(update, body)
+        isValid = self.valid.validation(update, body)
 
-        if res and id:
+        if isValid and id:
             return self.repository.put(id, body)
 
         return Response(status=400, message={'error': 'Invalid update article'},

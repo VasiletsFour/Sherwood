@@ -12,17 +12,17 @@ class AdminUserServices(Services):
 
     def get(self, token, **kwargs):
         authToken = self.decode(token)
-        res = self.valid.validation(query, kwargs)
+        isValid = self.valid.validation(query, kwargs)
 
-        if authToken and res:
+        if authToken and isValid:
             return self.repository.get(authToken, kwargs["search"], kwargs["sortBy"], kwargs["kind"])
 
         return Response(status=400, message={'error': 'Invalid Token'})
 
     def put(self, id: str, body: dict):
-        res = self.valid.validation(updateAdmin, body)
+        isValid = self.valid.validation(updateAdmin, body)
 
-        if res and id:
+        if isValid and id:
             return self.repository.put(id, body)
 
         return Response(status=400, message={'error': 'Not valid'})

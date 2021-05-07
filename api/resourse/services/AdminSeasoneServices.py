@@ -10,17 +10,17 @@ class AdminSeasonServices(Services):
         self.repository = AdminSeasonRepositories()
 
     def post(self, body: dict):
-        res = self.valid.validation(schema, body)
+        isValid = self.valid.validation(schema, body)
 
-        if res:
+        if isValid:
             return self.repository.post(body)
 
         return Response(status=400, message={'error': 'Not valid'})
 
     def put(self, id: str, body: dict):
-        res = self.valid.validation(schema, body)
+        isValid = self.valid.validation(schema, body)
 
-        if res and id:
+        if isValid and id:
             return self.repository.put(id, body)
 
         return Response(status=400, message={'error': 'Not valid'})

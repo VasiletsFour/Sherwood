@@ -20,9 +20,9 @@ class ConfirmEmailServices(Services):
         return Response(status=400, message={'error': 'Not a token'})
 
     def post(self, body: dict):
-        res = self.valid.validation(confirmAgain, body)
+        isValid = self.valid.validation(confirmAgain, body)
 
-        if res:
+        if isValid:
             return self.repository.post(body)
 
         return Response(status=400, message={'error': 'Not valid'}, logger_message="Confirm Email Invalid Body")

@@ -7,5 +7,5 @@ class TimeTableServices(Services):
         super().__init__()
         self.repository = TimeTableRepositories()
 
-    def get(self, **kwargs):
+    def get(self):
         return self.repository.get()

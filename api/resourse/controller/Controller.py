@@ -1,33 +1,20 @@
-# noinspection PyProtectedMember
-from flask_restful import Resource, request
+import flask_restful
 
 
-class Controller(Resource):
+class Controller(flask_restful.Resource):
     def __init__(self):
-        self.body = request.get_json()
-        self.team_one = request.args.get("team_one")
-        self.team_two = request.args.get("team_two")
-        self.name = request.args.get("name")
-        self.search = request.args.get("search")
-        self.sortBy = request.args.get("sortBy")
-        self.fromDate = request.args.get("fromDate")
-        self.beforeDate = request.args.get("beforeDate")
-        self.tags = request.args.get("tags")
-        self.league_id = request.args.get("league_id")
-        self.kind = request.args.get("kind")
-        self.type = request.args.get("type")
-        self.tour = request.args.get("tour")
-        self.delFromLeague = request.args.get("deleteFromLeague")
-        self.token = request.headers.get("Authorization")
-
-    def get(self, *args, **kwargs):
-        pass
-
-    def post(self, *args, **kwargs):
-        pass
-
-    def put(self, *args, **kwargs):
-        pass
-
-    def delete(self, *args, **kwargs):
-        pass
+        self.body = flask_restful.request.get_json()
+        self.team_one = flask_restful.request.args.get("team_one")
+        self.team_two = flask_restful.request.args.get("team_two")
+        self.name = flask_restful.request.args.get("name")
+        self.search = flask_restful.request.args.get("search")
+        self.sortBy = flask_restful.request.args.get("sortBy")
+        self.fromDate = flask_restful.request.args.get("fromDate")
+        self.beforeDate = flask_restful.request.args.get("beforeDate")
+        self.tags = flask_restful.request.args.get("tags")
+        self.league_id = flask_restful.request.args.get("league_id")
+        self.kind = flask_restful.request.args.get("kind")
+        self.type = flask_restful.request.args.get("type")
+        self.tour = flask_restful.request.args.get("tour")
+        self.delFromLeague = flask_restful.request.args.get("deleteFromLeague")
+        self.token = flask_restful.request.headers.get("Authorization")

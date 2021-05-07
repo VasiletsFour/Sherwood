@@ -7,5 +7,5 @@ class TournamentTableServices(Services):
         super().__init__()
         self.repository = TournamentTableRepositories()
 
-    def get(self, **kwargs):
+    def get(self):
         return self.repository.get()

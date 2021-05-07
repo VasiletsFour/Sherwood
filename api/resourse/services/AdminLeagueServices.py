@@ -10,7 +10,7 @@ class AdminLeagueServices(Services):
         self.repository = AdminLeagueRepositories()
 
     def post(self, body: dict):
-        res = self.valid.validation(create, body)
+        isValid = self.valid.validation(create, body)
 
         if res:
             return self.repository.post(body)
@@ -18,7 +18,7 @@ class AdminLeagueServices(Services):
         return Response(status=400, message={'error': 'Invalid League Create'})
 
     def put(self, body: dict):
-        res = self.valid.validation(update, body)
+        isValid = self.valid.validation(update, body)
 
         if res:
             return self.repository.put(body)

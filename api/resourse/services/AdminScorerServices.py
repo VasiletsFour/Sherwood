@@ -11,7 +11,7 @@ class AdminScorerServices(Services):
         self.repository = AdminScorerRepositories()
 
     def post(self, body: dict):
-        res = self.valid.validation(create, body)
+        isValid = self.valid.validation(create, body)
 
         if (body["status_host"] == "win" and body["status_guest"] != "lose"
                 or body["status_guest"] == "win" and body["status_host"] != "lose"
@@ -24,9 +24,9 @@ class AdminScorerServices(Services):
         return Response(status=400, message={'error': 'Not valid'})
 
     def put(self, id: str, body: dict):
-        res = self.valid.validation(update, body)
+        isValid = self.valid.validation(update, body)
 
-        if res and id:
+        if isValid and id:
             return self.repository.put(id, body)
 
         return Response(status=400, message={'error': 'Not valid'})

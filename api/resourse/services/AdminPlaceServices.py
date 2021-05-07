@@ -13,7 +13,7 @@ class AdminPlaceServices(Services):
         return self.repository.get()
 
     def post(self, body: dict):
-        res = self.valid.validation(create, body)
+        isValid = self.valid.validation(create, body)
 
         if res:
             return self.repository.post(body)
@@ -21,9 +21,9 @@ class AdminPlaceServices(Services):
         return Response(status=400, message={'error': 'Invalid Place Create'})
 
     def put(self, id, body: dict):
-        res = self.valid.validation(create, body)
+        isValid = self.valid.validation(create, body)
 
-        if res and id:
+        if isValid and id:
             return self.repository.put(id, body)
 
         return Response(status=400, message={'error': 'Failed Place update'})

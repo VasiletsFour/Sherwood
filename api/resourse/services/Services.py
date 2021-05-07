@@ -4,17 +4,7 @@ from utils.validation.validation import Validation
 
 class Services:
     def __init__(self):
+        token = Token()
+
         self.valid = Validation
-        self.decode = lambda decode_token: Token().decodeToken(decode_token)
-
-    def get(self, *args, **kwargs):
-        pass
-
-    def post(self, *args, **kwargs):
-        pass
-
-    def put(self, *args, **kwargs):
-        pass
-
-    def delete(self, *args, **kwargs):
-        pass
+        self.decode = lambda decode_token: token.decodeToken(decode_token)

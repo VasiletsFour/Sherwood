@@ -7,5 +7,5 @@ class ApplicationListServices(Services):
         super().__init__()
         self.repository = ApplicationListRepositories()
 
-    def get(self, **kwargs):
+    def get(self):
         return self.repository.get()

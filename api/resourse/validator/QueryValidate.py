@@ -15,5 +15,15 @@ query = {
         'type': 'string',
         'nullable': True,
         'allowed': allowed
+    },
+    "beforeDate": {
+        'type': 'string',
+        'nullable': True,
+        'maxlength': 10
+    },
+    "fromDate": {
+        'type': 'string',
+        'nullable': True,
+        'maxlength': 10
     }
 }
