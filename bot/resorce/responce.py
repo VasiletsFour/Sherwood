@@ -37,9 +37,14 @@ class ResponseBot(object):
         data = eval(call.data)
         switcher = self.__answer[data["msg"]]
         response = self.res(switcher["route"])
-        result = switcher["html"](response["data"]["data"], data["msg"])
 
         self.bot.answer_callback_query(call.id)
+
+        if response.get("error"):
+            return self.bot.send_message(call.message.chat.id, response["error"])
+
+        result = switcher["html"](response["data"]["data"], data["msg"])
+
         self.bot.send_message(call.message.chat.id, result, parse_mode='HTML')
 
     def __get_res_without_btn(self, switcher: dict, msg_text: str, msg_id: int):
