@@ -6,8 +6,22 @@ from utils.responce.responce import Response
 
 
 class TeamRepositories(Repositories):
-    def get(self, filters, order):
+    def get(self, kind, sort_by, league_id):
         try:
+            filters = True
+            order = Teams.league_id
+
+            if kind == "asc":
+                if sort_by == "name": order = Teams.name
+                if sort_by == "league_id": order = Teams.league_id
+
+            if kind == "desc":
+                if sort_by == "name": order = Teams.name.desc()
+                if sort_by == "league_id": order = Teams.league_id.desc()
+
+            if league_id:
+                filters = (Teams.league_id == league_id)
+                # | (Teams.name.like(kwargs["name"] + "%"))
             queries = (Teams.id, Teams.name, Leagues.id.label("league_id"), Leagues.name.label("league_name"))
             teams = self.session.query(*queries).filter(filters).order_by(order).join("league").all()
             serialization = teams_serialization.dump(teams)

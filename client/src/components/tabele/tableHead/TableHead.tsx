@@ -5,6 +5,7 @@ import {SortType} from "../teamTable/TeamTable";
 interface Props {
     classname?: string;
     rowHead: Array<string>;
+    withSort?:boolean
     sortType?: SortType;
     setSortType?: (type: string, kind?: "asc" | "desc", kindBool?: boolean) => void;
 }

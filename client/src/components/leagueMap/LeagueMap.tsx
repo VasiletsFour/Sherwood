@@ -2,7 +2,7 @@ import React from "react";
 import {ListGroup} from 'react-bootstrap';
 import {useSelector} from "react-redux";
 import {EmptyContentBanner, LeagueName} from "../";
-import {LeagueApi} from "../../request/LeagueApi";
+import {Leagues} from "../../request/LeagueApi";
 import {AppState} from "../../store/store";
 import "./LeagueMap.scss";
 
@@ -16,11 +16,11 @@ export const LeagueMap = ({children}: Props) => {
     if (finished && !loading && data && data.length > 0) {
         return (
             <ListGroup className="leagueMap">
-                {data.map((item: LeagueApi) => <LeagueName key={item.id + "LeagueName"}
-                                                           data={item}>{children}</LeagueName>)
+                {data[0].leagues.map((item: Leagues) => <LeagueName key={item.id + "LeagueName"}
+                                                                    data={item}>{children}</LeagueName>)
                 }</ListGroup>
         );
     }
 
-    return <EmptyContentBanner text={"Some text"} show={!!(data && data.length === 0 && !loading && finished)}/>
+    return <EmptyContentBanner text="Some text" show={!!(data && data.length === 0 && !loading && finished)}/>
 };

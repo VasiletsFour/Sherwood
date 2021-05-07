@@ -6,10 +6,23 @@ from utils.responce.responce import Response
 
 
 class BlogRepositories(Repositories):
-    def get(self, **kwargs):
+    def get(self, title, before_date, from_date):
+        search = True
+        beforeDate = True
+        fromDate = True
+
+        if title:
+            search = Blogs.title.like(title + "%")
+
+        if before_date:
+            beforeDate = Blogs.date <= self.timeStamp.fromIsoToTimeStamp(before_date)
+
+        if from_date:
+            fromDate = Blogs.date >= self.timeStamp.fromIsoToTimeStamp(from_date)
+
+        filters = (Blogs.author_id == Users.id, search, beforeDate, fromDate)
         quires = (Blogs.id, Blogs.title, Blogs.tags, Blogs.text, Blogs.date,
                   (Users.surname + " " + Users.firstname).label("author"))
-        filters = (Blogs.author_id == Users.id, kwargs["search"], kwargs["beforeDate"], kwargs["fromDate"])
 
         blogs = self.session.query(*quires).filter(*filters).order_by(Blogs.date.desc()).join(Users).all()
         count = self.session.query(*quires).count()

@@ -1,6 +1,6 @@
+from middleware.Middleware import admin_login
 from resourse.controller.Controller import Controller
 from resourse.services.AdminUserServices import AdminUserServices
-from middleware.Middleware import admin_login
 
 
 class AdminUser(Controller):
@@ -10,7 +10,7 @@ class AdminUser(Controller):
 
     @admin_login
     def get(self):
-        service = self.service.get(self.token, self.search)
+        service = self.service.get(self.token, search=self.search, sortBy=self.sortBy, kind=self.kind)
 
         return service.message, service.status
 

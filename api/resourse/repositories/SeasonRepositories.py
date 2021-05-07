@@ -5,7 +5,8 @@ from utils.responce.responce import Response
 
 
 class SeasonRepositories(Repositories):
-    def get(self, filters):
+    def get(self, name):
+        filters = Seasons.name.op("regexp")(name) if name else True
         season = self.session.query(Seasons).filter(filters).order_by(Seasons.date).all()
         serialization = seasons_serialization.dump(season)
 

@@ -9,6 +9,7 @@ class Controller(Resource):
         self.team_two = request.args.get("team_two")
         self.name = request.args.get("name")
         self.search = request.args.get("search")
+        self.sortBy = request.args.get("sortBy")
         self.fromDate = request.args.get("fromDate")
         self.beforeDate = request.args.get("beforeDate")
         self.tags = request.args.get("tags")

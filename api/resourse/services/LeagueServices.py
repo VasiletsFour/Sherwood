@@ -8,6 +8,4 @@ class LeagueServices(Services):
         self.repository = LeagueRepositories()
 
     def get(self, id: str):
-        filter_by = id if id else True
-
-        return self.repository.get(filter_by)
+        return self.repository.get(id)

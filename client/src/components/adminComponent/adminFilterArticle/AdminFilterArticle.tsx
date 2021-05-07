@@ -75,7 +75,7 @@ export const AdminFilterArticle = ({openStatus, withDate, handleClose}: Props) =
                         label={"От"}
                         name={"fromDate"}
                         classname={"adminFilterBlock"}
-                        max={maxDate}
+                        max={state.beforeDate || maxDate}
                         onChange={event => handleInputChange(event.target)}
                         value={state.fromDate || ""}/>
                     <InputDate

@@ -10,6 +10,7 @@ class ResultRepositories(Repositories):
         try:
             filters = (TimeTables.date > self.timeStamp, TimeTables.status == None, None != TimeTables.matchResult)
             orders = (TimeTables.tour, Places.name)
+
             timeTable = self.session.query(TimeTables).join("place", isouter=True).filter(*filters).order_by(
                 *orders).all()
             serialization = results_serialization.dump(timeTable)

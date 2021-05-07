@@ -13,7 +13,7 @@ import "./TeamTable.scss";
 const headRow = ["Имя", "Лига"];
 
 export interface SortType extends TeamQuery {
-    kindBool: boolean;
+    kindBool?: boolean;
 }
 
 export const TeamsTable = () => {

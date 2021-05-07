@@ -1,47 +1,59 @@
-import React, {useState} from "react";
+import React from "react";
 import {Table} from 'react-bootstrap';
-import {useSelector} from "react-redux";
-import {SortType, TableBodyAdminUser, TableHead} from "../../";
+import {useDispatch, useSelector} from "react-redux";
+import {useHistory, useLocation} from "react-router-dom";
+import {TableBodyAdminUser, TableHead} from "../../";
 import {UserApi} from "../../../request/UserApi";
 import {AppState} from "../../../store/store";
+import {getAdminUserAction} from "../../../store/user";
 
 
-const headRow = ["Пользователь", "Почта", "День рождения", "Телефон", "Роль", "Заблокирован"]
+const headRow = ["Имя", "Фамилия", "Почта", "День рождения", "Телефон", "Роль", "Заблокирован"]
+type Sort = "asc" | "desc"
 
 export const TableAdminUser = () => {
-    const {adminUser} = useSelector((state: AppState) => ({adminUser: state.userState?.adminUser}));
-    const [sortType, setSortType] = useState<SortType>({type: "", kind: "asc", kindBool: false});
+    const {data, finished, loading} = useSelector((state: AppState) => (state.userState?.adminUser));
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const query = new URLSearchParams(useLocation().search)
+    const type = query.get("type") || ""
+    const kind = query.get("kind") === "asc" ? "asc" : "desc"
 
-    const handleSort = (type: string, kind?: "asc" | "desc", kindBool?: boolean) => {
-        let sortBy: string
-        const kindType = type === sortType.type && kind === "desc" ? "asc" : "desc"
 
+    const handleHeadValue = (type: string): string => {
         switch (type) {
-            case "Пользователь":
-                sortBy = "name"
-                break
+            case "Имя":
+                return "firstname"
+            case "Фамилия":
+                return "surname"
             case "Почта":
-                sortBy = "email"
-                break
+                return "email"
+            case "День рождения":
+                return ""
+            case "Телефон":
+                return ""
+            case "Роль":
+                return "role"
+            default:
+                return "ban"
         }
-        console.log(type)
-        adminUser.data && adminUser.data.sort((first: any, second: any) => first[sortBy].localeCompare(second[sortBy]))
+    }
 
-        setSortType({
-            type,
-            kind: kindType,
-            kindBool: !kindBool,
-        });
+    const handleSort = (type: string, kind?: Sort, kindBool?: boolean): void => {
+        const sortBy = handleHeadValue(type)
+        const kindType = type === query.get("type") && kind === "desc" ? "asc" : "desc"
+
+        dispatch(getAdminUserAction.trigger({query: {sortBy, kind: kindType}}))
+        history.replace({search: "?" + new URLSearchParams({type: type, kind: kindType}).toString()})
     };
 
     return (
         <Table striped bordered hover>
-            <TableHead rowHead={headRow} sortType={sortType}
-                       setSortType={(type: string, kind?: "asc" | "desc", kindBool?: boolean) =>
-                           handleSort(type, kind, kindBool)
-                       }/>
+            <TableHead rowHead={headRow} withSort={true}
+                       sortType={{type, kind}}
+                       setSortType={(type: string, kind?: Sort, kindBool?: boolean) => handleSort(type, kind, kindBool)}/>
             <tbody className="adminUser__tableBody">
-            {adminUser.finished && !adminUser.loading && adminUser.data && adminUser.data.map((item: UserApi, index: number) =>
+            {finished && !loading && data && data.map((item: UserApi, index: number) =>
                 <TableBodyAdminUser key={item.id + "adminUser"} user={item} index={index}/>)}
             </tbody>
         </Table>

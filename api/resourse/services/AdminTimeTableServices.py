@@ -9,7 +9,7 @@ class AdminTimeTableServices(Services):
         super().__init__()
         self.repository = AdminTimeTableRepositories()
 
-    def get(self, **kwargs):
+    def get(self):
         return self.repository.get()
 
     def post(self, body: dict):

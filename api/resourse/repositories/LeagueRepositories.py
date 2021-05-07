@@ -6,7 +6,8 @@ from utils.responce.responce import Response
 
 
 class LeagueRepositories(Repositories):
-    def get(self, filter_by):
+    def get(self, id):
+        filter_by = id if id else True
         leagues = self.session.query(Seasons).filter(Seasons.active == True, Leagues.season_id == filter_by).all()
         serialization = leagues_serialization.dump(leagues)
 

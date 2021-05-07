@@ -1,4 +1,5 @@
-from sqlalchemy import or_, func, desc, case, and_
+from sqlalchemy import func, case, and_
+from sqlalchemy import or_, desc
 
 from db.models.MatchResultModel import MatchResult
 from db.models.TeamsModel import Teams

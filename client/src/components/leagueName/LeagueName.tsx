@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import {ListGroup} from 'react-bootstrap';
 import {ChevronDownRight} from "../";
-import {LeagueApi} from "../../request/LeagueApi";
+import {LeagueApi, Leagues} from "../../request/LeagueApi";
 import "./LeagueName.scss";
 
 interface Props {
-    data: LeagueApi;
+    data: Leagues;
     children: JSX.Element;
 }
 

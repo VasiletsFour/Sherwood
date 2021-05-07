@@ -17,5 +17,7 @@ export interface UserAdminUpdate {
 }
 
 export interface UserAdminQuery {
-    search?:string
+    sortBy?: string
+    kind?: "asc" | "desc"
+    search?: string
 }

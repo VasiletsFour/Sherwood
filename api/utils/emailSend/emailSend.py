@@ -27,6 +27,4 @@ class SendEmail:
     def send_email(self):
         with smtplib.SMTP_SSL("smtp.gmail.com", self.port, context=self.context) as server:
             server.login(self.sender_email, self.password)
-            server.sendmail(
-                self.sender_email, self.receiver_email, self.message.as_string()
-            )
+            server.sendmail(self.sender_email, self.receiver_email, self.message.as_string())

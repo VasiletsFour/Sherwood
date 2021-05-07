@@ -6,7 +6,8 @@ from utils.responce.responce import Response
 
 
 class AdminPlayerRepositories(Repositories):
-    def get(self, filters):
+    def get(self, search):
+        filters = Teams.name == search if search else True
         player = self.session.query(Teams).filter(filters).all()
         count = self.session.query(Teams).count()
 

@@ -6,12 +6,10 @@ import {AdminFilterBlock} from "../adminFilterBlock/AdminFilterBlock";
 
 interface InitialState {
     search?: string
-    sort: "asc" | "desc"
 }
 
 const initialState: InitialState = {
     search: "",
-    sort: "asc"
 };
 
 interface Props {
@@ -54,7 +52,7 @@ export const AdminFilterUser = ({openStatus, handleClose}: Props) => {
                         onChange={(event) => handleInputChange(event.target)}
                         classname="adminFilterBlock__input"
                         name="search"
-                        value={state.search || ""} placeholder={"Поиск по названию"}/>
+                        value={state.search || ""} placeholder={"Поиск по Имени"}/>
                 </div>
             </AdminFilterBlock>
         );

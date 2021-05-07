@@ -1,8 +1,6 @@
-from sqlalchemy import or_
-
-from db.models.UserModel import Users
 from resourse.repositories.AdminUserRepositories import AdminUserRepositories
 from resourse.services.Services import Services
+from resourse.validator.QueryValidate import query
 from resourse.validator.UserValidate import updateAdmin
 from utils.responce.responce import Response
 
@@ -12,13 +10,12 @@ class AdminUserServices(Services):
         super().__init__()
         self.repository = AdminUserRepositories()
 
-    def get(self, token: str, search=None):
+    def get(self, token, **kwargs):
         authToken = self.decode(token)
-        filters = or_(Users.surname.like(search + "%"), Users.email.like(search + "%"),
-                      Users.firstname.like(search + "%")) if search else True
+        res = self.valid.validation(query, kwargs)
 
-        if authToken:
-            return self.repository.get(authToken, filters)
+        if authToken and res:
+            return self.repository.get(authToken, kwargs["search"], kwargs["sortBy"], kwargs["kind"])
 
         return Response(status=400, message={'error': 'Invalid Token'})
 

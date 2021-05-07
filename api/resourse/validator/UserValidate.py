@@ -1,3 +1,5 @@
+allowed = ['admin', 'user']
+
 create = {
     'firstname': {
         'type': 'string',
@@ -24,7 +26,7 @@ updateAdmin = {
     },
     "role": {
         'type': 'string',
-        'allowed': ['admin', 'user']
+        'allowed': allowed
     }
 }
 

@@ -12,7 +12,11 @@ export const EmptyContentBanner = ({text, show}: Props) => {
     const [closeSpinner, setCloseSpinner] = useState(false)
 
     useEffect(() => {
-        !closeSpinner && setTimeout(() => setCloseSpinner(true), 650);
+        if (!closeSpinner) {
+            const timeout = setTimeout(() => setCloseSpinner(true), 650);
+
+            clearTimeout(timeout)
+        }
     }, [closeSpinner]);
 
     if (show && closeSpinner) {
